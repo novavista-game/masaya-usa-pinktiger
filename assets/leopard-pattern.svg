@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- Soft pastel pink background -->
+  <rect width="120" height="120" fill="#FFE5EE"/>
+  
+  <g>
+    <!-- Spot 1: Top Left -->
+    <path d="M 25 10 Q 15 8 10 20 Q 5 35 18 40 Q 25 35 22 25 Q 32 20 25 10 Z" fill="#FF8EAE"/>
+    <path d="M 28 8 Q 18 4 10 18 C 3 32 10 40 18 42 C 22 43 27 38 24 30 Q 35 25 28 8 Z M 12 21 Q 16 14 23 14 Q 24 22 20 28 Q 12 30 12 21 Z" fill="#D12B60"/>
+    
+    <!-- Spot 2: Center Right -->
+    <path d="M 85 45 Q 75 35 68 50 Q 62 65 75 75 Q 85 70 82 58 Q 92 55 85 45 Z" fill="#FF8EAE"/>
+    <path d="M 88 43 Q 75 30 65 48 C 58 64 68 76 77 77 C 83 78 88 72 84 62 Q 95 58 88 43 Z M 70 52 Q 76 43 83 48 Q 83 56 80 62 Q 72 65 70 52 Z" fill="#D12B60"/>
+
+    <!-- Spot 3: Bottom Left -->
+    <path d="M 30 80 Q 20 75 15 90 Q 10 105 25 108 Q 35 102 30 92 Q 40 88 30 80 Z" fill="#FF8EAE"/>
+    <path d="M 32 78 Q 20 70 12 88 C 6 104 18 110 27 110 C 33 110 38 104 33 94 Q 43 90 32 78 Z M 16 90 Q 21 82 28 84 Q 28 93 26 98 Q 18 100 16 90 Z" fill="#D12B60"/>
+
+    <!-- Spot 4: Top Right -->
+    <path d="M 95 10 Q 88 5 82 15 Q 78 28 90 30 Q 98 25 94 18 Q 102 15 95 10 Z" fill="#FF8EAE"/>
+    <path d="M 97 8 Q 88 2 80 14 C 74 27 85 32 92 32 C 98 32 101 27 96 20 Q 104 16 97 8 Z M 83 17 Q 87 10 93 12 Q 93 18 90 23 Q 84 24 83 17 Z" fill="#D12B60"/>
+
+    <!-- Spot 5 (Split/Seamless helper top-bottom wrap) -->
+    <path d="M 60 5 Q 52 -2 45 8 Q 40 20 52 22 Q 60 17 56 10 Q 65 8 60 5 Z" fill="#FF8EAE"/>
+    <path d="M 62 3 Q 52 -5 42 6 C 36 18 47 24 54 24 C 60 24 63 19 58 12 Q 67 10 62 3 Z M 46 10 Q 50 3 56 6 Q 56 12 53 16 Q 48 18 46 10 Z" fill="#D12B60"/>
+
+    <path d="M 60 125 Q 52 118 45 128 Q 40 140 52 142 Q 60 137 56 130 Q 65 128 60 125 Z" fill="#FF8EAE"/>
+    <path d="M 62 123 Q 52 115 42 126 C 36 138 47 144 54 144 C 60 144 63 139 58 132 Q 67 130 62 123 Z M 46 130 Q 50 123 56 126 Q 56 132 53 136 Q 48 138 46 130 Z" fill="#D12B60"/>
+
+    <!-- Solid Filler Dots (Dark Pink/Magenta) -->
+    <circle cx="50" cy="50" r="5" fill="#D12B60"/>
+    <circle cx="10" cy="65" r="4.5" fill="#D12B60"/>
+    <circle cx="110" cy="65" r="4.5" fill="#D12B60"/>
+    <circle cx="105" cy="95" r="5" fill="#D12B60"/>
+    <circle cx="45" cy="85" r="4" fill="#D12B60"/>
+    <circle cx="55" cy="25" r="3.5" fill="#D12B60"/>
+  </g>
+</svg>
