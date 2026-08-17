@@ -275,7 +275,7 @@
             <div class="action-card-icon">💬</div>
             <h4 class="action-card-title">Join the Discussion</h4>
             <p class="action-card-desc">Share your ideas on how to support Masaya in the US, leave encouraging comments, and connect with other Pinktigers!</p>
-            <a href="#community" class="action-card-btn">Go to Community <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#discussion-board" class="action-card-btn">Go to Community <i class="fa-solid fa-arrow-right"></i></a>
           </div>
 
           <!-- Card 2: Submit Your Hot Pick -->
@@ -283,19 +283,21 @@
             <div class="action-card-icon">📸</div>
             <h4 class="action-card-title">Submit Your "Hot Pick"</h4>
             <p class="action-card-desc">Do you have Masaya merch or cool fan photos? Submit them to be featured at the top of our website next week!</p>
-            <a href="mailto:Masayausapinktiger@gmail.com?subject=[Hot Pick Submission]" class="action-card-btn">Email Us Your Photos <i class="fa-solid fa-envelope"></i></a>
-          </div>
-
-          <!-- Card 3: Stream & Share -->
-          <div class="action-card">
-            <div class="action-card-icon">🎵</div>
-            <h4 class="action-card-title">Stream & Share</h4>
-            <p class="action-card-desc">Add Masaya's covers to your Spotify playlists and share clips on TikTok & Shorts to spread his voice!</p>
-            <a href="#" class="action-card-btn">Listen on Spotify <i class="fa-brands fa-spotify"></i></a>
+            <p class="action-card-email">📧 masayausapinktiger@gmail.com</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Masayausapinktiger@gmail.com" target="_blank" class="action-card-btn">Email Us Your Photos <i class="fa-solid fa-envelope"></i></a>
           </div>
 
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Discussion Board (Disqus) Section -->
+  <section id="discussion-board" class="discussion-section fade-in-section">
+    <div class="container">
+      <h2 class="section-title">Fan Discussion Board 💬🐯</h2>
+      <p class="discussion-subtitle">Share your thoughts, ideas, and love for Masaya with fellow Pinktigers!</p>
+      <div id="disqus_thread"></div>
     </div>
   </section>
 
@@ -315,6 +317,21 @@
       </div>
     </div>
   </footer>
+
+  <!-- Disqus Comment System -->
+  <script>
+    var disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
   <!-- Script Reference -->
   <script src="script.js"></script>
