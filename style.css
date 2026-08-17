@@ -617,9 +617,9 @@ body {
 
 .mascot-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.2fr 1.4fr;
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: stretch;
 }
 
 .mascot-img-container {
@@ -637,6 +637,27 @@ body {
   box-shadow: 0 15px 35px var(--brand-pink-glow);
   max-width: 320px;
   width: 100%;
+  margin: 20px 0;
+}
+
+.combined-hotpick-card {
+  padding: 40px;
+  justify-content: space-between;
+}
+
+.hotpick-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hotpick-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
 }
 
 .mascot-image {
