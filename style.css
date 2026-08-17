@@ -1194,3 +1194,30 @@ body {
     text-align: center;
   }
 }
+
+/* Extra Small Screens (Smartphones) */
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+  .nav-mascot-img {
+    margin-right: 0;
+    width: 38px;
+    height: 38px;
+  }
+  .lang-switcher {
+    padding: 2px;
+  }
+  .lang-btn {
+    padding: 4px 7px;
+    font-size: 0.65rem;
+  }
+  .nav-controls {
+    gap: 6px;
+  }
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}
