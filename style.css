@@ -366,6 +366,12 @@ body {
   animation: pulseGlow 1.5s infinite alternate;
 }
 
+.custom-hero-mascot {
+  height: 75px;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
 .hero-subtitle {
   font-size: 1.6rem;
   font-weight: 700;
