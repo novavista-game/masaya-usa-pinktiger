@@ -1,15 +1,179 @@
 /* ==========================================================================
-   Masaya USA Pinktiger - Interactive Enhancements
+   Masaya USA Pinktiger - Interactive Enhancements & Multi-language Support
    ========================================================================== */
+
+// 1. Multilingual Translation Database
+const translations = {
+  en: {
+    "nav-home": "Home",
+    "nav-about": "About Masaya",
+    "nav-mascot": "Our Mascot",
+    "nav-support": "Support & Channels",
+    "hero-title": "Masaya USA Pinktiger <span class=\"emoji-bounce\">🐯</span><span class=\"emoji-pulse\">💖</span>",
+    "hero-subtitle": "Experience the voice, vibes, and humanity of Masaya.",
+    "hero-tagline": "The official US fanbase dedicated to supporting Japanese vocalist Masaya Horikawa's global journey.",
+    "hero-btn-join": "Join the Pride 🎀",
+    "hero-btn-learn": "Learn More 🐯",
+    "video-caption": "<span class=\"label\">Featured Performance:</span> Masaya singing \"첫눈처럼 너에게 가겠다 (I Will Go to You Like the First Snow)\" with English lyrics ❄️🎶",
+    "about-section-title": "Masaya's Journey 🐯✨",
+    "about-bio-h3": "The Voice that Crosses Borders",
+    "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> is a powerhouse vocalist from Japan whose emotional range and brilliant stage presence have captured hearts across Asia. Known for his flawless pitch, soaring high notes, and passionate deliveries, he brings a deep sense of vulnerability to every song he sings.",
+    "about-bio-p2": "His participation in high-profile singing programs like Japan's <em>THE Karaoke ☆ Battle</em> and the cross-border television sensation <em>Han-Il King of Song / Korea-Japan Top Ten Show</em> established him as a premier vocalist. Masaya performs not just with technique, but with his whole heart, sharing his raw humanity through every lyric.",
+    "about-quote": "Singing is the bridge that connects different languages, cultures, and souls. Let's walk this musical path together!",
+    "about-stats-h3": "Why We Love Masaya",
+    "stat-h4-1": "Vocal Versatility",
+    "stat-p-1": "From power ballads to emotional J-Pop covers, his resonance is unmatched.",
+    "stat-h4-2": "Warm Personality",
+    "stat-p-2": "Always humble, connected, and deeply appreciative of his global fanbase.",
+    "stat-h4-3": "Fierce Passion",
+    "stat-p-3": "Like a tiger, his determination on stage commands attention and inspires us.",
+    "mascot-title": "Meet Pinktiger! 🎀🐯",
+    "mascot-desc": "Created as the mascot of the official US Fanbase, **Pinktiger** represents the energy, cute kawaii aesthetic, and bold presence of Masaya's American fanbase.",
+    "mascot-label-name": "Name:",
+    "mascot-val-name": "Pinktiger",
+    "mascot-label-skill": "Special Skill:",
+    "mascot-val-skill": "Bouncing to Masaya's high notes 🎶",
+    "mascot-label-acc": "Favorite Accessory:",
+    "mascot-val-acc": "Polka dot pink bow 🎀",
+    "mascot-label-goal": "Goal:",
+    "mascot-val-goal": "Spreading love for Masaya across the globe! 🌎💖",
+    "mascot-bubble": "\"Roar! Let's cheer for Masaya together! 🐯🎀\"",
+    "channels-title": "Support & Official Channels",
+    "channels-subtitle": "Follow Masaya on his official accounts and stream his performances to support his journey!",
+    "btn-yt-main": "Official YouTube",
+    "btn-yt-sub": "Subscribe for Cover & Vlogs",
+    "btn-ig-main": "Official Instagram",
+    "btn-ig-sub": "Follow daily life & updates",
+    "btn-sp-main": "Spotify Artist Page",
+    "btn-sp-sub": "Stream original music",
+    "btn-tk-main": "TikTok Channel",
+    "btn-tk-sub": "Watch short music clips",
+    "fan-actions-title": "How to Help as a Fan:",
+    "fan-action-p-1": "Share video clips on TikTok & Shorts",
+    "fan-action-p-2": "Leave encouraging comments in EN/JA/KO",
+    "fan-action-p-3": "Add Masaya's covers to your playlists",
+    "fan-action-p-4": "Join the USA Pinktiger discussions",
+    "footer-desc": "Creating a global home for US-based fans of Japanese vocal sensation Masaya Horikawa.",
+    "footer-copyright": "© 2026 Masaya USA Pinktiger - Unofficial Fanbase built with love. 💖",
+    "footer-disclaimer": "Disclaimer: All rights belong to Masaya Horikawa. This site is completely fan-run and non-profit."
+  },
+  ja: {
+    "nav-home": "ホーム",
+    "nav-about": "マサヤについて",
+    "nav-mascot": "マスコット",
+    "nav-support": "応援＆公式リンク",
+    "hero-title": "Masaya USA Pinktiger <span class=\"emoji-bounce\">🐯</span><span class=\"emoji-pulse\">💖</span>",
+    "hero-subtitle": "マサヤの歌声、雰囲気、そして人間性を感じてください。",
+    "hero-tagline": "日本のボーカリスト堀川雅也のグローバルな旅路を応援する公式全米ファンベースです。",
+    "hero-btn-join": "ファンクラブに入る 🎀",
+    "hero-btn-learn": "もっと知る 🐯",
+    "video-caption": "<span class=\"label\">注目パフォーマンス:</span> 英語字幕付きで歌う「첫눈처럼 너에게 가겠다 (初雪のように君に行く)」 ❄️🎶",
+    "about-section-title": "マサヤの歩み 🐯✨",
+    "about-bio-h3": "国境を越える歌声",
+    "about-bio-p1": "<strong>堀川雅也 (Masaya Horikawa)</strong> は、アジア全域で心を揺さぶるエモーショナルな歌声と圧倒的なステージ存在感を持つ日本の実力派ボーカリストです。完璧なピッチ、伸びやかなハイトーン、そして情熱的な表現力で、歌うすべての楽曲に深い感動をもたらします。",
+    "about-bio-p2": "日本のテレビ番組『THEカラオケ★バトル』での活躍や、国境を越えた歌唱バラエティ『日韓歌王戦／日韓トップテンショー』への出演により、一躍トップボーカリストとしての地位を確立。技術だけでなく、ありのままの人間性を込めて心から歌い上げます。",
+    "about-quote": "歌は異なる言語、文化、そして魂を繋ぐ架け橋です。一緒にこの音楽の道を歩みましょう！",
+    "about-stats-h3": "マサヤを愛する理由",
+    "stat-h4-1": "多彩なボーカル",
+    "stat-p-1": "パワーバラードから感性豊かなJ-Popカバーまで、彼の響きは唯一無二です。",
+    "stat-h4-2": "温かい人柄",
+    "stat-p-2": "常に謙虚で親しみやすく、世界中のファンに深く感謝しています。",
+    "stat-h4-3": "熱い情熱",
+    "stat-p-3": "虎のように、ステージでの彼の決意は目を引き、私たちにインスピレーションを与えます。",
+    "mascot-title": "ピンクタイガーをご紹介！ 🎀🐯",
+    "mascot-desc": "公式全米ファンベースのマスコットとして誕生した**ピンクタイガー**は、アメリカのファンたちのエネルギー、可愛いカワイイ感性、そして大胆な存在感を表現しています。",
+    "mascot-label-name": "名前:",
+    "mascot-val-name": "ピンクタイガー",
+    "mascot-label-skill": "特技:",
+    "mascot-val-skill": "マ사야의 고음 샤우팅에 맞춰 춤추기 🎶",
+    "mascot-label-acc": "お気に入り:",
+    "mascot-val-acc": "水玉ピンクのリボン 🎀",
+    "mascot-label-goal": "目標:",
+    "mascot-val-goal": "世界中にマサヤへの愛を広げること！ 🌎💖",
+    "mascot-bubble": "「ガオー！一緒にマサヤを応援しよう！ 🐯🎀」",
+    "channels-title": "応援＆公式チャンネル",
+    "channels-subtitle": "マサヤの公式アカウントをフォローし、パフォーマンスをストリーミングして彼の挑戦を応援しましょう！",
+    "btn-yt-main": "公式YouTube",
+    "btn-yt-sub": "カバー動画＆日常Vlogはこちら",
+    "btn-ig-main": "公式Instagram",
+    "btn-ig-sub": "日常写真や最新情報はこちら",
+    "btn-sp-main": "Spotify アーティストページ",
+    "btn-sp-sub": "オリジナル曲を配信中",
+    "btn-tk-main": "TikTok チャンネル",
+    "btn-tk-sub": "ショート歌唱動画はこちら",
+    "fan-actions-title": "ファンとしてできること：",
+    "fan-action-p-1": "TikTokやShortsで動画クリップを共有する",
+    "fan-action-p-2": "英語・日本語・韓国語で応援コメントを残す",
+    "fan-action-p-3": "プレイリストにマサヤのカバー曲を追加する",
+    "fan-action-p-4": "USA Pinktigerのコミュニティに参加する",
+    "footer-desc": "日本の実力派ボーカリスト堀川雅也の全米ファンが繋がるグローバルなコミュニティを作ります。",
+    "footer-copyright": "© 2026 Masaya USA Pinktiger - 愛を込めて作られた非公式ファンベース 💖",
+    "footer-disclaimer": "免責事項：すべての権利は堀川雅也に帰属します。当サイトはファンによって運営されており、非営利です。"
+  },
+  ko: {
+    "nav-home": "홈",
+    "nav-about": "마사야 소개",
+    "nav-mascot": "마스코트",
+    "nav-support": "응원 & 공식 채널",
+    "hero-title": "Masaya USA Pinktiger <span class=\"emoji-bounce\">🐯</span><span class=\"emoji-pulse\">💖</span>",
+    "hero-subtitle": "마사야의 목소리, 분위기, 그리고 인간미를 느껴보세요.",
+    "hero-tagline": "일본의 보컬리스트 호리카와 마사야의 글로벌 여정을 응원하는 공식 미국 팬베이스입니다.",
+    "hero-btn-join": "팬클럽 가입하기 🎀",
+    "hero-btn-learn": "자세히 보기 🐯",
+    "video-caption": "<span class=\"label\">주요 무대:</span> 영어 자막과 함께 감상하는 마사야의 \"첫눈처럼 너에게 가겠다\" ❄️🎶",
+    "about-section-title": "마사야의 여정 🐯✨",
+    "about-bio-h3": "국경을 넘는 목소리",
+    "about-bio-p1": "<strong>호리카와 마사야(堀川雅야)</strong>는 아시아 전역에서 감성적인 가창력과 압도적인 무대 매너로 사랑받는 일본의 실력파 보컬리스트입니다. 완벽한 음정, 가슴을 울리는 고음, 그리고 폭발적인 가창력으로 노래하는 매 순간 깊은 감동을 선사합니다.",
+    "about-bio-p2": "일본의 인기 가창 프로그램 『THE 가라오케☆배틀』에서의 대활약과 국경을 넘어 큰 인기를 끈 MBN 방송 『한일가왕전 / 한일톱텐쇼』에 참가하여 한국에서도 큰 화제를 불러일으켰습니다. 뛰어난 가창 기교뿐만 아니라 노래에 진심 어린 인간미를 듬뿍 담아 부릅니다.",
+    "about-quote": "노래는 다른 언어, 문화, 그리고 영혼을 잇는 가교입니다. 이 아름다운 음악의 여정을 함께 걸어갑시다!",
+    "about-stats-h3": "마사야를 사랑하는 이유",
+    "stat-h4-1": "다채로운 보컬",
+    "stat-p-1": "파워 발라드부터 감성적인 J-Pop 커버까지 독보적인 울림을 선사합니다.",
+    "stat-h4-2": "따뜻한 성품",
+    "stat-p-2": "언제나 겸손하고 팬들과 깊이 소통하며 글로벌 팬들을 아낍니다.",
+    "stat-h4-3": "뜨거운 열정",
+    "stat-p-3": "호랑이처럼 무대 위에서의 결연한 의지와 폭발적인 열정으로 영감을 줍니다.",
+    "mascot-title": "핑크타이거를 소개합니다! 🎀🐯",
+    "mascot-desc": "공식 미국 팬베이스의 마스코트인 **핑크타이거**는 미국 팬들의 열정적인 에너지, 귀여운 카와이 감성, 그리고 대담한 매력을 상징합니다.",
+    "mascot-label-name": "이름:",
+    "mascot-val-name": "핑크타이거",
+    "mascot-label-skill": "특기:",
+    "mascot-val-skill": "마사야의 고음 샤우팅에 맞춰 춤추기 🎶",
+    "mascot-label-acc": "최애 아이템:",
+    "mascot-val-acc": "땡땡이 핑크 리본 🎀",
+    "mascot-label-goal": "목표:",
+    "mascot-val-goal": "전 세계에 마사야의 매력 전파하기! 🌎💖",
+    "mascot-bubble": "“어흥! 우리 같이 마사야를 응원해요! 🐯🎀”",
+    "channels-title": "응원 & 공식 채널",
+    "channels-subtitle": "마사야의 공식 계정을 팔로우하고 무대 영상을 스밍하여 그의 여정을 응원해 주세요!",
+    "btn-yt-main": "공식 유튜브",
+    "btn-yt-sub": "커버 영상 및 일상 브이로그 구독",
+    "btn-ig-main": "공식 인스타그램",
+    "btn-ig-sub": "일상 사진 및 최신 정보 확인",
+    "btn-sp-main": "스포티파이 아티스트 페이지",
+    "btn-sp-sub": "오리지널 음원 스트리밍",
+    "btn-tk-main": "틱톡 채널",
+    "btn-tk-sub": "노래 숏폼 영상 감상",
+    "fan-actions-title": "팬으로서 함께하는 방법:",
+    "fan-action-p-1": "틱톡 및 쇼츠에 무대 영상 공유하기",
+    "fan-action-p-2": "영문/일문/국문으로 따뜻한 응원 댓글 달기",
+    "fan-action-p-3": "마사야의 노래들을 개인 플레이리스트에 담기",
+    "fan-action-p-4": "USA Pinktiger 소통 공간 함께 참여하기",
+    "footer-desc": "일본의 보컬 신성 호리카와 마사야의 미국 팬들이 모이는 글로벌 소통 커뮤니티입니다.",
+    "footer-copyright": "© 2026 Masaya USA Pinktiger - 사랑으로 만든 비공식 팬베이스 💖",
+    "footer-disclaimer": "주의사항: 모든 권리는 호리카와 마사야에게 있습니다. 본 사이트는 팬들이 운영하는 비영리 사이트입니다."
+  }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initSparkleEffect();
   initCuteAudio();
+  initLanguageSwitcher();
 });
 
 /* ==========================================================================
-   1. Scroll Reveal Animation (Intersection Observer)
+   2. Scroll Reveal Animation (Intersection Observer)
    ========================================================================== */
 function initScrollReveal() {
   const sections = document.querySelectorAll('.fade-in-section');
@@ -35,7 +199,7 @@ function initScrollReveal() {
 }
 
 /* ==========================================================================
-   2. Kawaii Sparkle Particle Effect
+   3. Kawaii Sparkle Particle Effect
    ========================================================================== */
 function initSparkleEffect() {
   const container = document.getElementById('sparkle-container');
@@ -130,18 +294,20 @@ function initSparkleEffect() {
 }
 
 /* ==========================================================================
-   3. Cute Synthesizer Audio (Web Audio API)
+   4. Cute Synthesizer Audio (Web Audio API)
    ========================================================================== */
 function initCuteAudio() {
   const soundBtn = document.getElementById('sound-btn');
   
-  soundBtn.addEventListener('click', () => {
-    playCuteChime();
-    
-    // Visual button action feedback
-    soundBtn.classList.add('playing');
-    setTimeout(() => soundBtn.classList.remove('playing'), 300);
-  });
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      playCuteChime();
+      
+      // Visual button action feedback
+      soundBtn.classList.add('playing');
+      setTimeout(() => soundBtn.classList.remove('playing'), 300);
+    });
+  }
 }
 
 function playCuteChime() {
@@ -182,5 +348,108 @@ function playCuteChime() {
 
   } catch (error) {
     console.warn('Web Audio API not supported or blocked by permissions:', error);
+  }
+}
+
+/* ==========================================================================
+   5. Language Switcher & Localization Logic
+   ========================================================================== */
+function initLanguageSwitcher() {
+  const langButtons = document.querySelectorAll('.lang-btn');
+  
+  // Set default language from localStorage or URL hash or browser setting
+  let currentLang = 'en';
+  const urlHash = window.location.hash.replace('#', '');
+  const savedLang = localStorage.getItem('preferredLang');
+  
+  if (translations[urlHash]) {
+    currentLang = urlHash;
+  } else if (translations[savedLang]) {
+    currentLang = savedLang;
+  } else {
+    // Check browser default language (en, ja, ko)
+    const browserLang = navigator.language.slice(0, 2);
+    if (translations[browserLang]) {
+      currentLang = browserLang;
+    }
+  }
+
+  // Update layout immediately
+  updateLanguage(currentLang);
+
+  // Set event listeners for language selection buttons
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // Fetch selected language
+      const selectedLang = btn.getAttribute('data-lang');
+      if (translations[selectedLang]) {
+        updateLanguage(selectedLang);
+        playCuteLanguageChime();
+      }
+    });
+  });
+
+  // Listen to hash change events for seamless anchor link transitions
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (translations[hash]) {
+      updateLanguage(hash);
+    }
+  });
+}
+
+function updateLanguage(lang) {
+  // Save chosen language preference
+  localStorage.setItem('preferredLang', lang);
+  
+  // Set HTML lang attribute
+  document.documentElement.lang = lang;
+  
+  // Update class of lang switcher buttons
+  const langButtons = document.querySelectorAll('.lang-btn');
+  langButtons.forEach(btn => {
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Translate all marked elements
+  const translateElements = document.querySelectorAll('[data-translate]');
+  translateElements.forEach(el => {
+    const key = el.getAttribute('data-translate');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+}
+
+function playCuteLanguageChime() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    
+    const audioCtx = new AudioContext();
+    const now = audioCtx.currentTime;
+    
+    // Play a single high sweet ding for lang switch
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, now); // A5 note
+    
+    gainNode.gain.setValueAtTime(0, now);
+    gainNode.gain.linearRampToValueAtTime(0.1, now + 0.01);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+    
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    osc.start(now);
+    osc.stop(now + 0.15);
+  } catch (e) {
+    console.log('Audio error:', e);
   }
 }
