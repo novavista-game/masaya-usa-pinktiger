@@ -865,9 +865,9 @@ body {
 
 .action-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 28px;
-  max-width: 820px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
