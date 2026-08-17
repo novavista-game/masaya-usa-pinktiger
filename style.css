@@ -367,11 +367,11 @@ body {
 }
 
 .custom-hero-mascot {
-  height: 75px;
+  height: 70px;
   width: auto;
   object-fit: contain;
   vertical-align: middle;
-  margin: 0 4px;
+  margin-left: 10px;
 }
 
 .hero-subtitle {
