@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Masaya USA Pinktiger 🐯💖 | Official US Fanbase for Masaya Horikawa</title>
-  <meta name="description" content="Welcome to Masaya USA Pinktiger, the official US fanbase celebrating the incredible vocals, energy, and charm of Japanese singer Masaya Horikawa. Join the tiger pride!">
+  <title>Masaya USA Pinktiger 🐯💖 | Unofficial Masaya Fan Website created by US Pinktigers</title>
+  <meta name="description" content="Welcome to Masaya USA Pinktiger, an Unofficial Masaya Fan Website created by US Pinktigers celebrating the incredible vocals, energy, and charm of Japanese singer Masaya Horikawa. Join the tiger pride!">
+  <meta property="og:title" content="Masaya USA Pinktiger 🐯💖 | Unofficial Masaya Fan Website created by US Pinktigers">
+  <meta property="og:description" content="Welcome to Masaya USA Pinktiger, an Unofficial Masaya Fan Website created by US Pinktigers celebrating the incredible vocals, energy, and charm of Japanese singer Masaya Horikawa. Join the tiger pride!">
+  <meta property="og:type" content="website">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/profile.png">
@@ -86,18 +89,20 @@
       <div class="video-outer-container fade-in-section">
         <div class="leopard-border-wrapper">
           <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
-            <!-- 💡 여기에 원하는 사진 이름을 넣으세요 -->
-            <img 
-              src="Hello%20Kitty.jpg" 
-              alt="Hello Kitty 💖" 
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 14px; transition: transform 0.4s ease, filter 0.4s ease; cursor: pointer;"
-              onmouseover="this.style.transform='scale(1.03)'; this.style.filter='brightness(1.08) drop-shadow(0 4px 20px rgba(255,105,180,0.4))';"
-              onmouseout="this.style.transform='scale(1)'; this.style.filter='none';"
-            >
+            <div class="carousel-track" id="hero-carousel-track">
+              <div class="carousel-slide">
+                <img src="assets/Hello%20Kitty.jpg" alt="Hello Kitty 💖">
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/헬로키티.jpg" alt="Hello Kitty 💖">
+              </div>
+            </div>
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" id="carousel-next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
           </div>
         </div>
-        <div class="video-caption">
-          <!-- 💡 매주 아이템 이름만 바꿔주세요! 예: "Hello Kitty Food Storage Set for Masaya" → "Leopard Print Tumbler for Masaya" -->
+        <div class="video-caption" id="carousel-caption">
           <p><span class="label">🔥 This Week's Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖🐯</p>
         </div>
       </div>

@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSparkleEffect();
   initCuteAudio();
   initLanguageSwitcher();
+  initHeroCarousel();
 });
 
 /* ==========================================================================
@@ -451,5 +452,68 @@ function playCuteLanguageChime() {
     osc.stop(now + 0.15);
   } catch (e) {
     console.log('Audio error:', e);
+  }
+}
+
+/* ==========================================================================
+   6. Hero Image Carousel
+   ========================================================================== */
+function initHeroCarousel() {
+  const track = document.getElementById('hero-carousel-track');
+  if (!track) return;
+
+  const slides = Array.from(track.children);
+  const nextButton = document.getElementById('carousel-next');
+  const prevButton = document.getElementById('carousel-prev');
+  const captionEl = document.getElementById('carousel-caption');
+  
+  const captions = [
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖🐯</p>',
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> 헬로키티 아이템 컬렉션 💖🐯</p>'
+  ];
+
+  let currentIndex = 0;
+
+  function updateSlide(index) {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    if (captionEl) {
+      captionEl.innerHTML = captions[index];
+    }
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlide(currentIndex);
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlide(currentIndex);
+  });
+
+  // Touch / Swipe Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  track.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 30) {
+      // Swiped left
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide(currentIndex);
+    }
+    if (touchEndX > touchStartX + 30) {
+      // Swiped right
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlide(currentIndex);
+    }
   }
 }
