@@ -468,8 +468,8 @@ function initHeroCarousel() {
   const captionEl = document.getElementById('carousel-caption');
   
   const captions = [
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖🐯</p>',
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> 헬로키티 아이템 컬렉션 💖🐯</p>'
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>',
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Travel Item Collection 💖 🐯</p>'
   ];
 
   let currentIndex = 0;
