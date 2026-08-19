@@ -125,22 +125,36 @@
         }
         @keyframes custom-float {
           0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
+          50% { transform: translateY(-10px); }
           100% { transform: translateY(0px); }
         }
-        .custom-floating-img {
-          animation: custom-float 4s ease-in-out infinite;
-          border-radius: 15px;
+        .layered-container {
+          position: relative;
           width: 100%;
+        }
+        .layered-bg {
+          width: 100%;
+          border-radius: 15px;
+          display: block;
           box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-          object-fit: cover;
+        }
+        .layered-tiger {
+          position: absolute;
+          bottom: -20px;
+          left: -20px;
+          width: 35%;
+          animation: custom-float 3s ease-in-out infinite;
+          z-index: 2;
         }
       </style>
 
       <div class="photo-pick-grid">
-        <!-- Left Column: Representative Image -->
+        <!-- Left Column: Layered Image -->
         <div class="photo-pick-left">
-          <img src="assets/마사야 대표이미지.jpg" alt="Masaya Representative Image" class="custom-floating-img">
+          <div class="layered-container">
+            <img src="assets/마사야 호랑이 없는 이미지.jpg" alt="Masaya Representative Image" class="layered-bg">
+            <img src="assets/pinktiger.png" alt="Floating Pinktiger" class="layered-tiger">
+          </div>
         </div>
 
         <!-- Right Column: Carousel -->
