@@ -110,24 +110,61 @@
   <section id="photo-pick" class="about-section fade-in-section" style="background: var(--light-pink); padding: 60px 0;">
     <div class="container">
       <h2 class="section-title" style="margin-bottom: 40px;">Pinktiger's Photo Pick 🎀</h2>
-      <div class="video-outer-container" style="max-width: 600px; margin: 0 auto;">
-        <div class="leopard-border-wrapper">
-          <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
-            <div class="carousel-track" id="hero-carousel-track">
-              <div class="carousel-slide">
-                <img src="assets/Hello%20Kitty%20Food%20Storage.jpg" alt="Hello Kitty 💖">
-              </div>
-              <div class="carousel-slide">
-                <img src="assets/헬로키티.jpg" alt="Hello Kitty 💖">
+
+      <style>
+        .photo-pick-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 40px;
+          align-items: center;
+        }
+        @media (min-width: 768px) {
+          .photo-pick-grid {
+            grid-template-columns: 4fr 6fr;
+          }
+        }
+        @keyframes custom-float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+        .custom-floating-img {
+          animation: custom-float 4s ease-in-out infinite;
+          border-radius: 15px;
+          width: 100%;
+          box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+          object-fit: cover;
+        }
+      </style>
+
+      <div class="photo-pick-grid">
+        <!-- Left Column: Representative Image -->
+        <div class="photo-pick-left">
+          <img src="assets/마사야 대표이미지.jpg" alt="Masaya Representative Image" class="custom-floating-img">
+        </div>
+
+        <!-- Right Column: Carousel -->
+        <div class="photo-pick-right">
+          <div class="video-outer-container" style="max-width: 600px; margin: 0 auto; width: 100%;">
+            <div class="leopard-border-wrapper">
+              <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
+                <div class="carousel-track" id="hero-carousel-track">
+                  <div class="carousel-slide">
+                    <img src="assets/Hello%20Kitty%20Food%20Storage.jpg" alt="Hello Kitty 💖">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="assets/헬로키티.jpg" alt="Hello Kitty 💖">
+                  </div>
+                </div>
+                <!-- Navigation Buttons -->
+                <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="carousel-btn next-btn" id="carousel-next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
               </div>
             </div>
-            <!-- Navigation Buttons -->
-            <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="carousel-btn next-btn" id="carousel-next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="video-caption" id="carousel-caption">
+              <p><span class="label">🔥 This Week's Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖🐯</p>
+            </div>
           </div>
-        </div>
-        <div class="video-caption" id="carousel-caption">
-          <p><span class="label">🔥 This Week's Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖🐯</p>
         </div>
       </div>
     </div>
