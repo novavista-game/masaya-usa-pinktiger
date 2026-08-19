@@ -123,10 +123,12 @@
             grid-template-columns: 4fr 6fr;
           }
         }
-        @keyframes custom-float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
+        @keyframes active-roaming {
+          0% { transform: translate(0%, 0%); }
+          25% { transform: translate(80%, -20%); }
+          50% { transform: translate(140%, -60%); }
+          75% { transform: translate(40%, -30%); }
+          100% { transform: translate(0%, 0%); }
         }
         .layered-container {
           position: relative;
@@ -143,7 +145,7 @@
           bottom: -20px;
           left: -20px;
           width: 35%;
-          animation: custom-float 3s ease-in-out infinite;
+          animation: active-roaming 14s ease-in-out infinite;
           z-index: 2;
         }
       </style>
