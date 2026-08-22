@@ -171,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCuteAudio();
   initLanguageSwitcher();
   initHeroCarousel();
+  initVideoCarousel();
 });
 
 /* ==========================================================================
@@ -516,4 +517,59 @@ function initHeroCarousel() {
       updateSlide(currentIndex);
     }
   }
+}
+
+/* ==========================================================================
+   7. Video Carousel
+   ========================================================================== */
+function initVideoCarousel() {
+  const videoPlayer = document.getElementById('main-hero-video');
+  const captionEl = document.getElementById('main-hero-caption');
+  const nextButton = document.getElementById('video-carousel-next');
+  const prevButton = document.getElementById('video-carousel-prev');
+  
+  if (!videoPlayer || !captionEl || !nextButton || !prevButton) return;
+
+  const videos = [
+    {
+      src: 'assets/마사야 첫눈.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ First Snow (English Subtitles) - Edited by Pinktiger USA</span></p>'
+    },
+    {
+      src: 'assets/당신과의 키스를 세어보아요.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ Remembering them one by one</span></p>'
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function updateVideo(index) {
+    // Smooth transition: fade out, update, fade in
+    videoPlayer.style.opacity = '0';
+    captionEl.style.opacity = '0';
+    
+    setTimeout(() => {
+      videoPlayer.src = videos[index].src;
+      captionEl.innerHTML = videos[index].caption;
+      videoPlayer.load();
+      videoPlayer.play().catch(e => console.log('Autoplay prevented', e));
+      
+      videoPlayer.style.opacity = '1';
+      captionEl.style.opacity = '1';
+    }, 300);
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % videos.length;
+    updateVideo(currentIndex);
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+    updateVideo(currentIndex);
+  });
+  
+  // Add smooth transitions for the fade effect
+  videoPlayer.style.transition = 'opacity 0.3s ease';
+  captionEl.style.transition = 'opacity 0.3s ease';
 }
