@@ -102,13 +102,13 @@
       <div class="video-outer-container fade-in-section">
         <div class="leopard-border-wrapper">
           <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec); aspect-ratio: 1 / 1; position: relative; border-radius: 18px; overflow: hidden; border: 3px solid var(--white);">
-            <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 14px; object-fit: contain;">
+            <video id="main-hero-video" controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 14px; object-fit: contain;">
               <source src="assets/마사야 첫눈.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
-        <div class="video-caption">
+        <div class="video-caption" id="main-hero-caption" style="cursor: pointer;" onclick="document.getElementById('main-hero-video').src='assets/Anata no Kisu wo Kazoemashou.mp4'; document.getElementById('main-hero-video').play(); this.innerHTML='<p><span class=\'label\' style=\'font-weight: 700; color: #FF1493;\'>❄️ Remembering them one by one</span></p>';">
           <p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ First Snow (English Subtitles) - Edited by Pinktiger USA</span></p>
         </div>
       </div>
