@@ -55,7 +55,16 @@ const translations = {
     "fan-action-p-4": "Join the USA Pinktiger discussions",
     "footer-desc": "Creating a global home for US-based fans of Japanese vocal sensation Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Unofficial Fanbase built with love. 💖",
-    "footer-disclaimer": "Disclaimer: All rights belong to Masaya Horikawa. This site is completely fan-run and non-profit."
+    "footer-disclaimer": "Disclaimer: All rights belong to Masaya Horikawa. This site is completely fan-run and non-profit.",
+    "fanletters-desc": "Leave a lovely message for Masaya! No login required. Just positive vibes and pink tiger energy. 🐯💖",
+    "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Nickname",
+    "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> Country",
+    "fanletters-message": "<i class=\"fa-solid fa-envelope-open-text\"></i> Message",
+    "fanletters-nickname-ph": "Your cute nickname",
+    "fanletters-country-ph": "Where are you from?",
+    "fanletters-message-ph": "Write a short letter to Masaya...",
+    "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> Send Letter",
+    "fanletters-empty": "Be the first to leave a message! 💌"
   },
   ja: {
     "nav-home": "ホーム",
@@ -108,7 +117,16 @@ const translations = {
     "fan-action-p-4": "USA Pinktigerのコミュニティに参加する",
     "footer-desc": "日本の実力派ボーカリスト堀川雅也の全米ファンが繋がるグローバルなコミュニティを作ります。",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 愛を込めて作られた非公式ファンベース 💖",
-    "footer-disclaimer": "免責事項：すべての権利は堀川雅也に帰属します。当サイトはファンによって運営されており、非営利です。"
+    "footer-disclaimer": "免責事項：すべての権利は堀川雅也に帰属します。当サイトはファンによって運営されており、非営利です。",
+    "fanletters-desc": "マサヤに素敵なメッセージを残そう！ログイン不要です。ポジティブな気持ちとピンクタイガーのエネルギーだけ。 🐯💖",
+    "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> ニックネーム",
+    "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 国名",
+    "fanletters-message": "<i class=\"fa-solid fa-envelope-open-text\"></i> メッセージ",
+    "fanletters-nickname-ph": "あなたの可愛いニックネーム",
+    "fanletters-country-ph": "どこから来ましたか？",
+    "fanletters-message-ph": "マサヤに短い手紙を書く...",
+    "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 手紙を送る",
+    "fanletters-empty": "最初のメッセージを残そう！ 💌"
   },
   ko: {
     "nav-home": "홈",
@@ -161,7 +179,16 @@ const translations = {
     "fan-action-p-4": "USA Pinktiger 소통 공간 함께 참여하기",
     "footer-desc": "일본의 보컬 신성 호리카와 마사야의 미국 팬들이 모이는 글로벌 소통 커뮤니티입니다.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 사랑으로 만든 비공식 팬베이스 💖",
-    "footer-disclaimer": "주의사항: 모든 권리는 호리카와 마사야에게 있습니다. 본 사이트는 팬들이 운영하는 비영리 사이트입니다."
+    "footer-disclaimer": "주의사항: 모든 권리는 호리카와 마사야에게 있습니다. 본 사이트는 팬들이 운영하는 비영리 사이트입니다.",
+    "fanletters-desc": "마사야에게 따뜻한 메시지를 남겨보세요! 로그인 불필요. 긍정적인 마음과 핑크 타이거 에너지면 충분해요. 🐯💖",
+    "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> 닉네임",
+    "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 국가",
+    "fanletters-message": "<i class=\"fa-solid fa-envelope-open-text\"></i> 메시지",
+    "fanletters-nickname-ph": "당신의 귀여운 닉네임",
+    "fanletters-country-ph": "어디서 오셨나요?",
+    "fanletters-message-ph": "마사야에게 짧은 편지를 써주세요...",
+    "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 편지 보내기",
+    "fanletters-empty": "첫 번째로 메시지를 남겨보세요! 💌"
   }
 };
 
@@ -423,6 +450,15 @@ function updateLanguage(lang) {
     const key = el.getAttribute('data-translate');
     if (translations[lang] && translations[lang][key]) {
       el.innerHTML = translations[lang][key];
+    }
+  });
+
+  // Translate placeholders
+  const translatePlaceholders = document.querySelectorAll('[data-translate-placeholder]');
+  translatePlaceholders.forEach(el => {
+    const key = el.getAttribute('data-translate-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.placeholder = translations[lang][key];
     }
   });
 }

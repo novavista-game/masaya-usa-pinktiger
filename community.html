@@ -82,7 +82,7 @@
     <div class="hero-bg-accent"></div>
     <div class="container fade-in-section is-visible">
       <h1 class="section-title" data-translate="community-title" style="margin-bottom: 20px;">Fan Letters from Afar 💌</h1>
-      <p class="hero-tagline" data-translate="community-desc" style="text-align: center; margin: 0 auto 40px auto; font-size: 1.25rem;">
+      <p class="hero-tagline" data-translate="fanletters-desc" style="text-align: center; margin: 0 auto 40px auto; font-size: 1.25rem;">
         Leave a lovely message for Masaya! No login required. Just positive vibes and pink tiger energy. 🐯💖
       </p>
 
@@ -92,18 +92,18 @@
         <div class="card-content" style="padding: 30px;">
           <form id="fan-letter-form">
             <div class="form-group">
-              <label for="fan-nickname"><i class="fa-solid fa-user"></i> Nickname</label>
-              <input type="text" id="fan-nickname" required placeholder="Your cute nickname">
+              <label for="fan-nickname" data-translate="fanletters-nickname"><i class="fa-solid fa-user"></i> Nickname</label>
+              <input type="text" id="fan-nickname" required placeholder="Your cute nickname" data-translate-placeholder="fanletters-nickname-ph">
             </div>
             <div class="form-group">
-              <label for="fan-country"><i class="fa-solid fa-earth-americas"></i> Country</label>
-              <input type="text" id="fan-country" required placeholder="Where are you from?">
+              <label for="fan-country" data-translate="fanletters-country"><i class="fa-solid fa-earth-americas"></i> Country</label>
+              <input type="text" id="fan-country" required placeholder="Where are you from?" data-translate-placeholder="fanletters-country-ph">
             </div>
             <div class="form-group">
-              <label for="fan-message"><i class="fa-solid fa-envelope-open-text"></i> Message</label>
-              <textarea id="fan-message" rows="4" required placeholder="Write a short letter to Masaya..."></textarea>
+              <label for="fan-message" data-translate="fanletters-message"><i class="fa-solid fa-envelope-open-text"></i> Message</label>
+              <textarea id="fan-message" rows="4" required placeholder="Write a short letter to Masaya..." data-translate-placeholder="fanletters-message-ph"></textarea>
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%;">
+            <button type="submit" class="btn-primary" style="width: 100%;" data-translate="fanletters-send">
               <i class="fa-solid fa-paper-plane"></i> Send Letter
             </button>
           </form>
@@ -206,7 +206,11 @@
             container.appendChild(card);
           });
         } else {
-          container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);">Be the first to leave a message! 💌</p>';
+          container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
+          // Trigger translation for the dynamically added element if the language is not English
+          if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(document.documentElement.lang || 'en');
+          }
         }
       });
 
