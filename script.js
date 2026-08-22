@@ -65,7 +65,8 @@ const translations = {
     "fanletters-message-ph": "Write a short letter to Masaya...",
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> Send Letter",
     "fanletters-empty": "Be the first to leave a message! 💌",
-    "recent-letters-title": "Recent Letters from Pinktigers 💌"
+    "recent-letters-title": "Recent Letters from Pinktigers 💌",
+    "community-btn": "Fan Letters from Afar"
   },
   ja: {
     "nav-home": "ホーム",
@@ -128,7 +129,8 @@ const translations = {
     "fanletters-message-ph": "マサヤに短い手紙を書く...",
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 手紙を送る",
     "fanletters-empty": "最初のメッセージを残そう！ 💌",
-    "recent-letters-title": "ピンクタイガーからの最近の手紙 💌"
+    "recent-letters-title": "ピンクタイガーからの最近の手紙 💌",
+    "community-btn": "ファンレターを送る"
   },
   ko: {
     "nav-home": "홈",
@@ -191,7 +193,8 @@ const translations = {
     "fanletters-message-ph": "마사야에게 짧은 편지를 써주세요...",
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 편지 보내기",
     "fanletters-empty": "첫 번째로 메시지를 남겨보세요! 💌",
-    "recent-letters-title": "핑크타이거의 최근 편지 💌"
+    "recent-letters-title": "핑크타이거의 최근 편지 💌",
+    "community-btn": "팬레터 보내기"
   }
 };
 
