@@ -1756,3 +1756,34 @@ body {
   font-style: italic;
   margin-top: 10px;
 }
+
+/* ==========================================================================
+   Home Page Recent Letters Carousel
+   ========================================================================== */
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 10px 40px 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 105, 180, 0.1);
+  border-radius: 4px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--primary-pink);
+  border-radius: 4px;
+}
+
+.carousel-letter-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+}
