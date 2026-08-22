@@ -245,20 +245,22 @@ function initSparkleEffect() {
   const particlesPool = ['✨', '💖', '🐯', '🎀', '⭐', '🌸'];
 
   // Toggle sparkles on and off
-  sparkleToggle.addEventListener('click', (e) => {
-    particlesEnabled = !particlesEnabled;
-    
-    if (particlesEnabled) {
-      sparkleToggle.classList.remove('disabled');
-      sparkleToggle.style.opacity = '1';
-      startAutoSparkles();
-      createSparkleExplosion(e.clientX, e.clientY, 15);
-    } else {
-      sparkleToggle.classList.add('disabled');
-      sparkleToggle.style.opacity = '0.5';
-      stopAutoSparkles();
-    }
-  });
+  if (sparkleToggle) {
+    sparkleToggle.addEventListener('click', (e) => {
+      particlesEnabled = !particlesEnabled;
+      
+      if (particlesEnabled) {
+        sparkleToggle.classList.remove('disabled');
+        sparkleToggle.style.opacity = '1';
+        startAutoSparkles();
+        createSparkleExplosion(e.clientX, e.clientY, 15);
+      } else {
+        sparkleToggle.classList.add('disabled');
+        sparkleToggle.style.opacity = '0.5';
+        stopAutoSparkles();
+      }
+    });
+  }
 
   // Spawn sparkle explosion on click
   window.addEventListener('click', (e) => {
