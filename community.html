@@ -115,6 +115,9 @@
     </div>
   </section>
 
+  <!-- Load environment variables -->
+  <script src="env.js"></script>
+  
   <!-- Firebase Scripts -->
   <script type="module">
     // IMPORTANT: Replace this placeholder config with your actual Firebase project config
@@ -127,7 +130,7 @@
     import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAwIaxeZZMbeyAQ3FaF6_5_rbjz2X-ZdLQ",
+      apiKey: window.env ? window.env.FIREBASE_API_KEY : "YOUR_API_KEY_HERE",
       authDomain: "masaya-usa-pinktiger.firebaseapp.com",
       databaseURL: "https://masaya-usa-pinktiger-default-rtdb.firebaseio.com",
       projectId: "masaya-usa-pinktiger",
