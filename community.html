@@ -115,112 +115,27 @@
     </div>
   </section>
 
-  <!-- Load environment variables -->
-  <script src="env.js"></script>
-  
-  <!-- Firebase Scripts -->
-  <script type="module">
-    // IMPORTANT: Replace this placeholder config with your actual Firebase project config
-    // 1. Go to Firebase Console -> Add Project
-    // 2. Add a Web App
-    // 3. Create a Realtime Database (Start in Test Mode or configure rules appropriately)
-    // 4. Copy the config below
-    
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Handle form submission statically
+      const form = document.getElementById('fan-letter-form');
+      if(form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert("Backend services are currently disabled. Your letter cannot be sent at this time. 💖");
+          form.reset();
+        });
+      }
 
-    const firebaseConfig = {
-      apiKey: window.env ? window.env.FIREBASE_API_KEY : "YOUR_API_KEY_HERE",
-      authDomain: "masaya-usa-pinktiger.firebaseapp.com",
-      databaseURL: "https://masaya-usa-pinktiger-default-rtdb.firebaseio.com",
-      projectId: "masaya-usa-pinktiger",
-      storageBucket: "masaya-usa-pinktiger.firebasestorage.app",
-      messagingSenderId: "765344339229",
-      appId: "1:765344339229:web:d4cc52501a6d1cd72cbdf4"
-    };
-
-    let db;
-    try {
-      const app = initializeApp(firebaseConfig);
-      db = getDatabase(app);
-      
-      const messagesRef = ref(db, 'fanLetters');
-
-      // Handle form submission
-      document.getElementById('fan-letter-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const nickname = document.getElementById('fan-nickname').value.trim();
-        const country = document.getElementById('fan-country').value.trim();
-        const message = document.getElementById('fan-message').value.trim();
-
-        if(nickname && country && message) {
-          push(messagesRef, {
-            nickname: nickname,
-            country: country,
-            message: message,
-            timestamp: serverTimestamp()
-          }).then(() => {
-            // Clear form
-            document.getElementById('fan-letter-form').reset();
-            alert("Your letter has been sent! 💖");
-          }).catch((error) => {
-            console.error("Error adding message: ", error);
-            alert("Oops! Something went wrong while sending your letter.");
-          });
+      // Display empty state
+      const container = document.getElementById('fan-letters-container');
+      if(container) {
+        container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
+        if (typeof window.updateLanguage === 'function') {
+          window.updateLanguage(document.documentElement.lang || 'en');
         }
-      });
-
-      // Listen for new messages
-      onValue(messagesRef, (snapshot) => {
-        const container = document.getElementById('fan-letters-container');
-        container.innerHTML = ''; // Clear loading
-        
-        const data = snapshot.val();
-        if(data) {
-          // Convert object to array and sort by newest first
-          const letters = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-          
-          letters.forEach(letter => {
-            const date = letter.timestamp ? new Date(letter.timestamp).toLocaleDateString() : 'Just now';
-            
-            const card = document.createElement('div');
-            card.className = 'fan-letter-card';
-            
-            card.innerHTML = `
-              <div class="paw-accent"><i class="fa-solid fa-paw"></i></div>
-              <div class="letter-header">
-                <span class="sender-name">${escapeHTML(letter.nickname)}</span>
-                <span class="sender-country"><i class="fa-solid fa-location-dot"></i> ${escapeHTML(letter.country)}</span>
-              </div>
-              <div class="letter-body">
-                <p>${escapeHTML(letter.message).replace(/\n/g, '<br>')}</p>
-              </div>
-              <div class="letter-footer">
-                <span class="letter-date">${date}</span>
-              </div>
-            `;
-            container.appendChild(card);
-          });
-        } else {
-          container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
-          // Trigger translation for the dynamically added element if the language is not English
-          if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(document.documentElement.lang || 'en');
-          }
-        }
-      });
-
-    } catch (error) {
-      console.warn("Firebase not configured correctly yet. Please update the config.", error);
-      document.querySelector('.loading-messages').innerHTML = '<p>⚠️ Please configure Firebase to see messages.</p>';
-    }
-
-    function escapeHTML(str) {
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
+      }
+    });
   </script>
 
   <!-- Footer -->
