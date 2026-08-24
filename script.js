@@ -582,6 +582,10 @@ function initVideoCarousel() {
     {
       src: 'assets/당신과의 키스를 세어보아요.mp4',
       caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ Remembering them one by one</span></p>'
+    },
+    {
+      src: 'assets/마지막 비 420.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ Last Rain</span></p>'
     }
   ];
 
