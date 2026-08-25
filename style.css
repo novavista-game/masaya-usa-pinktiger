@@ -1807,10 +1807,11 @@ body {
 
 @media (max-width: 900px) {
   .hamburger-menu {
-    display: block;
+    display: block !important;
   }
 
   .nav-menu {
+    display: none !important; /* Hide by default on mobile instead of just opacity */
     position: absolute;
     top: 100%;
     left: 0;
@@ -1825,15 +1826,22 @@ body {
     border-bottom: 3px solid var(--brand-pink);
     border-radius: 0 0 20px 20px;
     box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    z-index: 1000;
   }
 
   .nav-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    display: flex !important; /* Show when active */
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
