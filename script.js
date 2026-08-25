@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguageSwitcher();
   initHeroCarousel();
   initVideoCarousel();
+  initMobileMenu();
 });
 
 /* ==========================================================================
@@ -620,4 +621,26 @@ function initVideoCarousel() {
   // Add smooth transitions for the fade effect
   videoPlayer.style.transition = 'opacity 0.3s ease';
   captionEl.style.transition = 'opacity 0.3s ease';
+}
+
+/* ==========================================================================
+   8. Mobile Menu Toggle
+   ========================================================================== */
+function initMobileMenu() {
+  const hamburgerMenu = document.querySelector('.hamburger-menu');
+  const navMenu = document.querySelector('.nav-menu');
+
+  if (hamburgerMenu && navMenu) {
+    hamburgerMenu.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 }

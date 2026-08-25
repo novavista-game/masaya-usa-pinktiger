@@ -67,6 +67,9 @@
           <a href="#ja" class="lang-btn" data-lang="ja">日本語</a>
           <a href="#ko" class="lang-btn" data-lang="ko">한국어</a>
         </div>
+        <div class="hamburger-menu" id="hamburger-menu-community">
+          <i class="fa-solid fa-bars"></i>
+        </div>
       </div>
     </div>
   </header>
@@ -115,25 +118,82 @@
     </div>
   </section>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAufg8oyP5E8OaSyDlBtJ-jEcoAGQJv-2A",
+      authDomain: "masaya-usa-pinktiger.firebaseapp.com",
+      databaseURL: "https://masaya-usa-pinktiger-default-rtdb.firebaseio.com",
+      projectId: "masaya-usa-pinktiger",
+      storageBucket: "masaya-usa-pinktiger.firebasestorage.app",
+      messagingSenderId: "765344339229",
+      appId: "1:765344339229:web:d4cc52501a6d1cd72cbdf4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const lettersRef = ref(db, 'fanLetters');
+
+    // Display letters
+    onValue(lettersRef, (snapshot) => {
+      const container = document.getElementById('fan-letters-container');
+      if (!container) return;
+      
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const lettersArray = Object.keys(data).map(key => data[key]).reverse();
+        
+        let htmlContent = '';
+        lettersArray.forEach(letter => {
+          htmlContent += `
+            <div class="letter-card" style="background:var(--white); border-radius:15px; padding:25px; box-shadow:0 8px 20px rgba(255,105,180,0.15); border:3px solid var(--brand-pink); transition:all 0.3s ease;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:2px dashed rgba(255,105,180,0.3); padding-bottom:10px; color:var(--brand-pink); font-family:var(--font-title); font-size:1.2rem;">
+                <span><i class="fa-solid fa-user"></i> ${letter.nickname || 'Pinktiger'}</span>
+                <span><i class="fa-solid fa-earth-americas"></i> ${letter.country || 'USA'}</span>
+              </div>
+              <p style="color:var(--dark-text); font-size:1.15rem; line-height:1.6; font-style:italic;">"${letter.message}"</p>
+            </div>
+          `;
+        });
+        container.innerHTML = htmlContent;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+        container.style.gap = '30px';
+      } else {
+        container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
+      }
+      
+      if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(document.documentElement.lang || 'en');
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
-      // Handle form submission statically
+      // Handle form submission
       const form = document.getElementById('fan-letter-form');
       if(form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          alert("Backend services are currently disabled. Your letter cannot be sent at this time. 💖");
-          form.reset();
+          
+          const nickname = document.getElementById('fan-nickname').value;
+          const country = document.getElementById('fan-country').value;
+          const message = document.getElementById('fan-message').value;
+          
+          push(lettersRef, {
+            nickname,
+            country,
+            message,
+            timestamp: Date.now()
+          }).then(() => {
+            alert('Your letter has been sent to Masaya! 💖');
+            form.reset();
+          }).catch(err => {
+            console.error("Error sending letter:", err);
+            alert('Oops! Something went wrong.');
+          });
         });
-      }
-
-      // Display empty state
-      const container = document.getElementById('fan-letters-container');
-      if(container) {
-        container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
-        if (typeof window.updateLanguage === 'function') {
-          window.updateLanguage(document.documentElement.lang || 'en');
-        }
       }
     });
   </script>

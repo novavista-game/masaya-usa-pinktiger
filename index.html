@@ -67,6 +67,9 @@
           <a href="#ja" class="lang-btn" data-lang="ja">日本語</a>
           <a href="#ko" class="lang-btn" data-lang="ko">한국어</a>
         </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fa-solid fa-bars"></i>
+        </div>
       </div>
     </div>
   </header>
@@ -404,14 +407,52 @@
   </footer>
 
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getDatabase, ref, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAufg8oyP5E8OaSyDlBtJ-jEcoAGQJv-2A",
+      authDomain: "masaya-usa-pinktiger.firebaseapp.com",
+      databaseURL: "https://masaya-usa-pinktiger-default-rtdb.firebaseio.com",
+      projectId: "masaya-usa-pinktiger",
+      storageBucket: "masaya-usa-pinktiger.firebasestorage.app",
+      messagingSenderId: "765344339229",
+      appId: "1:765344339229:web:d4cc52501a6d1cd72cbdf4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const lettersRef = query(ref(db, 'fanLetters'), limitToLast(6));
+
+    onValue(lettersRef, (snapshot) => {
       const container = document.getElementById('home-letters-container');
-      if (container) {
+      if (!container) return;
+      
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const lettersArray = Object.keys(data).map(key => data[key]).reverse();
+        
+        let htmlContent = '';
+        lettersArray.forEach(letter => {
+          htmlContent += `
+            <div class="carousel-letter-card" style="background:var(--white); border-radius:15px; padding:20px; box-shadow:0 5px 15px rgba(255,105,180,0.15); margin: 0 10px; border:2px solid var(--brand-pink); display:inline-block; vertical-align:top; white-space:normal;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px; color:var(--brand-pink); font-weight:bold;">
+                <span><i class="fa-solid fa-user"></i> ${letter.nickname || 'Pinktiger'}</span>
+                <span><i class="fa-solid fa-earth-americas"></i> ${letter.country || 'USA'}</span>
+              </div>
+              <p style="color:var(--dark-text); font-size:1.1rem; line-height:1.5;">"${letter.message}"</p>
+            </div>
+          `;
+        });
+        container.innerHTML = htmlContent;
+        container.style.whiteSpace = 'nowrap';
+      } else {
         container.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-color);" data-translate="fanletters-empty">Be the first to leave a message! 💌</p>';
-        if (typeof window.updateLanguage === 'function') {
-          window.updateLanguage(document.documentElement.lang || 'en');
-        }
+      }
+      
+      if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(document.documentElement.lang || 'en');
       }
     });
   </script>

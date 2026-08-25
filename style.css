@@ -1787,3 +1787,53 @@ body {
   flex: 0 0 320px;
   scroll-snap-align: start;
 }
+
+/* ==========================================================================
+   Responsive Navigation
+   ========================================================================== */
+.hamburger-menu {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--brand-pink);
+  cursor: pointer;
+  margin-left: 15px;
+  transition: var(--transition-smooth);
+}
+
+.hamburger-menu:hover {
+  color: var(--brand-pink-hover);
+  transform: scale(1.1);
+}
+
+@media (max-width: 900px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 15px;
+    border-bottom: 3px solid var(--brand-pink);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
