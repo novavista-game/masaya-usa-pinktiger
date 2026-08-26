@@ -3,7 +3,7 @@
    ========================================================================== */
 
 // 1. Multilingual Translation Database
-const translations = {
+window.translations = {
   en: {
     "nav-home": "Home",
     "nav-about": "About Masaya",
@@ -73,7 +73,9 @@ const translations = {
     "map-modal-msg-ph": "Write a cheer message!",
     "map-modal-file-label": "Upload a Photo:",
     "map-modal-submit": "Submit",
-    "map-modal-cancel": "Cancel"
+    "map-modal-cancel": "Cancel",
+    "lbl-location": "Location",
+    "lbl-time": "Time"
   },
   ja: {
     "nav-home": "ホーム",
@@ -144,7 +146,9 @@ const translations = {
     "map-modal-msg-ph": "応援メッセージを書いてね！",
     "map-modal-file-label": "写真をアップロード：",
     "map-modal-submit": "送信",
-    "map-modal-cancel": "キャンセル"
+    "map-modal-cancel": "キャンセル",
+    "lbl-location": "位置",
+    "lbl-time": "投稿時間"
   },
   ko: {
     "nav-home": "홈",
@@ -215,7 +219,9 @@ const translations = {
     "map-modal-msg-ph": "응원 메시지를 남겨주세요!",
     "map-modal-file-label": "사진 업로드:",
     "map-modal-submit": "제출",
-    "map-modal-cancel": "취소"
+    "map-modal-cancel": "취소",
+    "lbl-location": "위치",
+    "lbl-time": "작성 시간"
   }
 };
 
@@ -422,14 +428,14 @@ function initLanguageSwitcher() {
   const urlHash = window.location.hash.replace('#', '');
   const savedLang = localStorage.getItem('preferredLang');
   
-  if (translations[urlHash]) {
+  if (window.translations[urlHash]) {
     currentLang = urlHash;
-  } else if (translations[savedLang]) {
+  } else if (window.translations[savedLang]) {
     currentLang = savedLang;
   } else {
     // Check browser default language (en, ja, ko)
     const browserLang = navigator.language.slice(0, 2);
-    if (translations[browserLang]) {
+    if (window.translations[browserLang]) {
       currentLang = browserLang;
     }
   }
@@ -442,7 +448,7 @@ function initLanguageSwitcher() {
     btn.addEventListener('click', (e) => {
       // Fetch selected language
       const selectedLang = btn.getAttribute('data-lang');
-      if (translations[selectedLang]) {
+      if (window.translations[selectedLang]) {
         updateLanguage(selectedLang);
         playCuteLanguageChime();
       }
@@ -452,7 +458,7 @@ function initLanguageSwitcher() {
   // Listen to hash change events for seamless anchor link transitions
   window.addEventListener('hashchange', () => {
     const hash = window.location.hash.replace('#', '');
-    if (translations[hash]) {
+    if (window.translations[hash]) {
       updateLanguage(hash);
     }
   });
@@ -479,8 +485,8 @@ function updateLanguage(lang) {
   const translateElements = document.querySelectorAll('[data-translate]');
   translateElements.forEach(el => {
     const key = el.getAttribute('data-translate');
-    if (translations[lang] && translations[lang][key]) {
-      el.innerHTML = translations[lang][key];
+    if (window.translations[lang] && window.translations[lang][key]) {
+      el.innerHTML = window.translations[lang][key];
     }
   });
 
@@ -488,8 +494,17 @@ function updateLanguage(lang) {
   const translatePlaceholders = document.querySelectorAll('[data-translate-placeholder]');
   translatePlaceholders.forEach(el => {
     const key = el.getAttribute('data-translate-placeholder');
-    if (translations[lang] && translations[lang][key]) {
-      el.placeholder = translations[lang][key];
+    if (window.translations[lang] && window.translations[lang][key]) {
+      el.placeholder = window.translations[lang][key];
+    }
+  });
+  
+  // Re-translate dynamic labels like lbl-location and lbl-time
+  const dynamicLabels = document.querySelectorAll('.translatable-lbl');
+  dynamicLabels.forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (window.translations[lang] && window.translations[lang][key]) {
+      el.innerHTML = window.translations[lang][key];
     }
   });
 }

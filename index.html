@@ -472,11 +472,22 @@
         
         let htmlContent = '';
         lettersArray.forEach(letter => {
+          let imageUrlHtml = letter.imageUrl ? `<img src="${letter.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px; max-height: 200px; object-fit: cover;">` : '';
+          let locationIcon = letter.fromMap ? '<i class="fa-solid fa-map-location-dot"></i>' : '<i class="fa-solid fa-earth-americas"></i>';
+          let lang = document.documentElement.lang || 'en';
+          let locLabel = (window.translations && window.translations[lang] && window.translations[lang]['lbl-location']) || 'Location';
+          let timeLabel = (window.translations && window.translations[lang] && window.translations[lang]['lbl-time']) || 'Time';
+          let timeStr = letter.timestamp ? new Date(letter.timestamp).toLocaleString() : '';
+
           htmlContent += `
-            <div class="carousel-letter-card" style="background:var(--white); border-radius:15px; padding:20px; box-shadow:0 5px 15px rgba(255,105,180,0.15); margin: 0 10px; border:2px solid var(--brand-pink); display:inline-block; vertical-align:top; white-space:normal;">
-              <div style="display:flex; justify-content:space-between; margin-bottom:10px; color:var(--brand-pink); font-weight:bold;">
+            <div class="carousel-letter-card" style="background:var(--white); border-radius:15px; padding:20px; box-shadow:0 5px 15px rgba(255,105,180,0.15); margin: 0 10px; border:2px solid var(--brand-pink); display:inline-block; vertical-align:top; white-space:normal; width: 300px;">
+              ${imageUrlHtml}
+              <div style="display:flex; justify-content:space-between; margin-bottom:5px; color:var(--brand-pink); font-weight:bold;">
                 <span><i class="fa-solid fa-user"></i> ${letter.nickname || 'Pinktiger'}</span>
-                <span><i class="fa-solid fa-earth-americas"></i> ${letter.country || 'USA'}</span>
+              </div>
+              <div style="text-align: right; margin-bottom: 10px;">
+                <div style="font-size: 0.9rem; color: var(--brand-pink);">${locationIcon} <span class="translatable-lbl" data-key="lbl-location">${locLabel}</span>: ${letter.country || 'USA'}</div>
+                <div style="font-size: 0.8rem; color: #888;"><i class="fa-regular fa-clock"></i> <span class="translatable-lbl" data-key="lbl-time">${timeLabel}</span>: ${timeStr}</div>
               </div>
               <p style="color:var(--dark-text); font-size:1.1rem; line-height:1.5;">"${letter.message}"</p>
             </div>
@@ -513,6 +524,33 @@
           imageUrl: imageUrl,
           timestamp: Date.now()
         });
+        
+        // Reverse Geocoding
+        let locationStr = 'Global Pinktiger';
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+          const geoData = await res.json();
+          if (geoData && geoData.address) {
+             const city = geoData.address.city || geoData.address.town || geoData.address.village || "";
+             const country = geoData.address.country || "";
+             locationStr = city ? `${city}, ${country}` : country;
+          }
+        } catch (e) {
+          console.log('Geocoding failed');
+        }
+        
+        // Push to Fan Letters
+        const allLettersRef = ref(db, 'fanLetters');
+        const newLetterRef = push(allLettersRef);
+        await set(newLetterRef, {
+          nickname: 'Pinktiger Fan (Map)',
+          country: locationStr,
+          message: message,
+          imageUrl: imageUrl,
+          fromMap: true,
+          timestamp: Date.now()
+        });
+        
         return true;
       } catch (error) {
         console.error("Error adding marker: ", error);

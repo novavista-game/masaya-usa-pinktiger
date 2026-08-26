@@ -147,13 +147,24 @@
         
         let htmlContent = '';
         lettersArray.forEach(letter => {
+          let imageUrlHtml = letter.imageUrl ? `<img src="${letter.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:15px; max-height: 250px; object-fit: cover; border: 2px solid var(--light-pink);">` : '';
+          let locationIcon = letter.fromMap ? '<i class="fa-solid fa-map-location-dot"></i>' : '<i class="fa-solid fa-earth-americas"></i>';
+          let lang = document.documentElement.lang || 'en';
+          let locLabel = (window.translations && window.translations[lang] && window.translations[lang]['lbl-location']) || 'Location';
+          let timeLabel = (window.translations && window.translations[lang] && window.translations[lang]['lbl-time']) || 'Time';
+          let timeStr = letter.timestamp ? new Date(letter.timestamp).toLocaleString() : '';
+
           htmlContent += `
-            <div class="letter-card" style="background:var(--white); border-radius:15px; padding:25px; box-shadow:0 8px 20px rgba(255,105,180,0.15); border:3px solid var(--brand-pink); transition:all 0.3s ease;">
-              <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:2px dashed rgba(255,105,180,0.3); padding-bottom:10px; color:var(--brand-pink); font-family:var(--font-title); font-size:1.2rem;">
+            <div class="letter-card" style="background:var(--white); border-radius:15px; padding:25px; box-shadow:0 8px 20px rgba(255,105,180,0.15); border:3px solid var(--brand-pink); transition:all 0.3s ease; display: flex; flex-direction: column;">
+              ${imageUrlHtml}
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:2px dashed rgba(255,105,180,0.3); padding-bottom:10px; color:var(--brand-pink); font-family:var(--font-title); font-size:1.2rem;">
                 <span><i class="fa-solid fa-user"></i> ${letter.nickname || 'Pinktiger'}</span>
-                <span><i class="fa-solid fa-earth-americas"></i> ${letter.country || 'USA'}</span>
               </div>
-              <p style="color:var(--dark-text); font-size:1.15rem; line-height:1.6; font-style:italic;">"${letter.message}"</p>
+              <div style="text-align: right; margin-bottom: 15px;">
+                <div style="font-size: 1rem; color: var(--brand-pink); font-weight: bold;">${locationIcon} <span class="translatable-lbl" data-key="lbl-location">${locLabel}</span>: ${letter.country || 'USA'}</div>
+                <div style="font-size: 0.85rem; color: #888; margin-top: 5px;"><i class="fa-regular fa-clock"></i> <span class="translatable-lbl" data-key="lbl-time">${timeLabel}</span>: ${timeStr}</div>
+              </div>
+              <p style="color:var(--dark-text); font-size:1.15rem; line-height:1.6; font-style:italic; flex-grow: 1;">"${letter.message}"</p>
             </div>
           `;
         });
