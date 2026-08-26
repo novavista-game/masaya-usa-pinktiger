@@ -711,10 +711,16 @@ function initInteractiveMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer || typeof L === 'undefined') return;
   
-  const map = L.map('map', { worldCopyJump: true }).setView([20, 0], 2);
+  const map = L.map('map', { 
+    worldCopyJump: true,
+    maxBounds: [[-90, -180], [90, 180]],
+    minZoom: 2,
+    maxBoundsViscosity: 1.0
+  }).setView([20, 0], 2);
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; OpenStreetMap contributors',
+    noWrap: true
   }).addTo(map);
 
   const pawIcon = L.divIcon({
@@ -797,8 +803,15 @@ function initInteractiveMap() {
       
       if (markerData.lat !== undefined && markerData.lng !== undefined) {
         if (!renderedMarkers[key]) {
-          const lat = parseFloat(markerData.lat);
-          const lng = parseFloat(markerData.lng);
+          let lat = parseFloat(markerData.lat);
+          let lng = parseFloat(markerData.lng);
+          
+          // Data Sanitization & Mexico Fallback
+          if (isNaN(lat) || isNaN(lng) || (lat === 0 && lng === 0) || (markerData.message && markerData.message.toLowerCase().includes('mexico'))) {
+            lat = 32.70;
+            lng = -114.80;
+          }
+
           const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
           
           let popupContent = `<div style="text-align:center; max-width: 200px;">`;
