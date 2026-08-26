@@ -868,7 +868,10 @@ function initMascotEasterEgg() {
 window.scrollFanLetters = function(amount) {
   const container = document.getElementById('home-letters-container');
   if (container) {
-    container.scrollBy({ left: amount, behavior: 'smooth' });
+    container.scrollTo({
+      left: container.scrollLeft + amount,
+      behavior: 'smooth'
+    });
     setTimeout(() => {
       if (window.updateFanLetterButtons) window.updateFanLetterButtons();
     }, 400); // Wait for smooth scroll to finish
