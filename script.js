@@ -864,14 +864,23 @@ function initMascotEasterEgg() {
 /* ==========================================================================
    11. Fan Letter Carousel
    ========================================================================== */
+
+window.scrollFanLetters = function(amount) {
+  const container = document.getElementById('home-letters-container');
+  if (container) {
+    container.scrollBy({ left: amount, behavior: 'smooth' });
+    setTimeout(() => {
+      if (window.updateFanLetterButtons) window.updateFanLetterButtons();
+    }, 400); // Wait for smooth scroll to finish
+  }
+};
+
 function initFanLetterCarousel() {
   const container = document.getElementById('home-letters-container');
   const prevBtn = document.getElementById('fanletter-prev');
   const nextBtn = document.getElementById('fanletter-next');
   
   if (!container || !prevBtn || !nextBtn) return;
-  
-  const scrollAmount = 340; // width of a card + gap roughly
 
   const updateButtons = () => {
     // Disable prev if at start
@@ -879,14 +888,6 @@ function initFanLetterCarousel() {
     // Disable next if at end (allow 1px rounding error)
     nextBtn.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
   };
-
-  prevBtn.addEventListener('click', () => {
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
 
   container.addEventListener('scroll', updateButtons);
   window.addEventListener('resize', updateButtons);
