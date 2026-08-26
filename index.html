@@ -507,7 +507,18 @@
       
       if (snapshot.exists()) {
         const data = snapshot.val();
-        const lettersArray = Object.keys(data).map(key => data[key]).reverse();
+        let lettersArray = Object.keys(data).map(key => data[key]).reverse();
+        
+        // Deduplication Filter
+        const seen = new Set();
+        lettersArray = lettersArray.filter(letter => {
+          const uniqueKey = (letter.message || '') + '|' + (letter.nickname || '');
+          if (seen.has(uniqueKey)) {
+            return false;
+          }
+          seen.add(uniqueKey);
+          return true;
+        });
         
         let htmlContent = '';
         lettersArray.forEach(letter => {
@@ -549,63 +560,6 @@
 
     // --- Map Firebase Logic ---
     const mapMarkersRef = ref(db, 'mapMarkers');
-    
-    // Auto-Seed Function for initial map pins (prevent duplicates)
-    async function injectSeedPinsIfNeeded() {
-      try {
-        const snapshot = await get(mapMarkersRef);
-        let markers = [];
-        if (snapshot.exists()) {
-          markers = Object.values(snapshot.val());
-        }
-        
-        const seeds = [
-          { lat: 47.606, lng: -122.332, nickname: "Seattle Fan", message: "Always supporting Masaya! 💖🐯", country: "Seattle, USA" },
-          { lat: 33.518, lng: -86.810, nickname: "Birmingham Fan", message: "Always supporting Masaya! 💖🐯", country: "Birmingham, USA" },
-          { lat: 35.710, lng: 139.810, nickname: "Japan Fan", message: "Always supporting Masaya! 💖🐯", country: "Sumida City, Japan" },
-          { lat: 32.70, lng: -114.80, nickname: "Mexico Fan", message: "Me hice fan por casualidad después de verte cantar en 'Hyunyeok Gawang' por YouTube. Al principio no entendía bien la letra, pero después de usar un traductor automático para entenderla y escuchar la canción, me cautivaste aún más. Gracias por conmoverme con tu hermosa voz. Realmente creo que la música no tiene fronteras. ¡Te estaré apoyando siempre! 💖🐯", country: "Ciudad Morelos, Mexico" },
-          { lat: 39.90, lng: 116.40, nickname: "China Fan", message: "在YouTube上偶然刷到了你在《现役歌王》里的演唱，那一瞬间我就被圈粉了。刚开始我其实听不懂歌词的意思，但借助翻译软件弄懂之后再听，反而让我陷得更深了。谢谢你用如此美妙的嗓音给我带来感动。果然，音乐是真正没有国界的语言。我会一直一直支持你的！💖🐯", country: "Beijing, China" }
-        ];
-
-        const allLettersRef = ref(db, 'fanLetters');
-        let injectedCount = 0;
-
-        for (const seed of seeds) {
-          // Check if this seed already exists in Firebase
-          const exists = markers.some(m => m.nickname === seed.nickname || (Math.abs(parseFloat(m.lat) - seed.lat) < 0.1 && Math.abs(parseFloat(m.lng) - seed.lng) < 0.1));
-          
-          if (!exists) {
-            console.log(`Injecting seed pin for ${seed.nickname}...`);
-            const newMarkerRef = push(mapMarkersRef);
-            await set(newMarkerRef, {
-              lat: seed.lat, // Number type
-              lng: seed.lng, // Number type
-              message: seed.message,
-              nickname: seed.nickname,
-              imageUrl: "",
-              timestamp: Date.now()
-            });
-            
-            const newLetterRef = push(allLettersRef);
-            await set(newLetterRef, {
-              nickname: seed.nickname,
-              country: seed.country,
-              message: seed.message,
-              imageUrl: "",
-              fromMap: true,
-              timestamp: Date.now()
-            });
-            injectedCount++;
-          }
-        }
-        if (injectedCount > 0) console.log(`${injectedCount} seed pin(s) injected successfully.`);
-      } catch(e) {
-        console.error("Error checking or injecting seeds", e);
-      }
-    }
-    
-    // Execute Auto-Seed logic
-    injectSeedPinsIfNeeded();
     
     async function compressImage(file, maxWidth) {
       return new Promise((resolve) => {
