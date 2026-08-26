@@ -31,6 +31,11 @@
   <!-- FontAwesome Icons for Cute UI elements -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -324,6 +329,34 @@
     </div>
   </section>
 
+  <!-- Interactive Map Section -->
+  <section id="interactive-map" class="fade-in-section" style="padding: 60px 0; background: var(--light-pink);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <h2 class="section-title" data-translate="map-title" style="margin-bottom: 10px;">Global Pinktiger Interactive Map 🗺️</h2>
+      <p class="section-subtitle" data-translate="map-subtitle" style="margin-bottom: 30px; font-weight: bold; color: var(--primary-pink);">Upload a photo and get special event glasses!</p>
+      
+      <!-- Leaflet Map Container -->
+      <div id="map" style="height: 500px; width: 100%; border-radius: 15px; border: 4px solid var(--white); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2); z-index: 1;"></div>
+    </div>
+  </section>
+
+  <!-- Map Marker Popup Modal (Hidden by default) -->
+  <div id="map-modal" class="map-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="map-modal-content" style="background: var(--white); padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; border: 4px solid var(--primary-pink); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+      <h3 style="color: var(--primary-pink); margin-bottom: 20px;" data-translate="map-modal-title">Leave a Marker 🐾</h3>
+      
+      <textarea id="map-modal-message" placeholder="Write a cheer message!" data-translate-placeholder="map-modal-msg-ph" style="width: 100%; height: 100px; padding: 10px; border: 2px solid var(--light-pink); border-radius: 10px; resize: none; margin-bottom: 15px; font-family: 'Quicksand', sans-serif;"></textarea>
+      
+      <label for="map-modal-file" style="display: block; text-align: left; margin-bottom: 5px; color: var(--dark-text); font-weight: bold;" data-translate="map-modal-file-label">Upload a Photo:</label>
+      <input type="file" id="map-modal-file" accept="image/*" style="width: 100%; margin-bottom: 20px; padding: 10px; background: var(--light-pink); border-radius: 10px;">
+      
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button id="map-modal-submit" class="btn btn-primary" data-translate="map-modal-submit">Submit</button>
+        <button id="map-modal-cancel" class="btn btn-secondary" data-translate="map-modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Support Masaya Section -->
   <section id="channels" class="support-section fade-in-section">
     <div class="support-bg-leopard"></div>
@@ -409,7 +442,8 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getDatabase, ref, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getDatabase, ref, onValue, query, limitToLast, push, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAufg8oyP5E8OaSyDlBtJ-jEcoAGQJv-2A",
@@ -423,6 +457,9 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const storage = getStorage(app);
+    
+    // Fan letters logic
     const lettersRef = query(ref(db, 'fanLetters'), limitToLast(6));
 
     onValue(lettersRef, (snapshot) => {
@@ -453,6 +490,43 @@
       
       if (typeof window.updateLanguage === 'function') {
         window.updateLanguage(document.documentElement.lang || 'en');
+      }
+    });
+
+    // --- Map Firebase Logic ---
+    const mapMarkersRef = ref(db, 'mapMarkers');
+    
+    window.submitMapMarker = async function(lat, lng, message, file) {
+      try {
+        let imageUrl = '';
+        if (file) {
+          const fileRef = storageRef(storage, 'mapPhotos/' + Date.now() + '_' + file.name);
+          const snapshot = await uploadBytes(fileRef, file);
+          imageUrl = await getDownloadURL(snapshot.ref);
+        }
+        
+        const newMarkerRef = push(mapMarkersRef);
+        await set(newMarkerRef, {
+          lat: lat,
+          lng: lng,
+          message: message,
+          imageUrl: imageUrl,
+          timestamp: Date.now()
+        });
+        return true;
+      } catch (error) {
+        console.error("Error adding marker: ", error);
+        alert("Failed to upload marker. Please try again.");
+        return false;
+      }
+    };
+
+    onValue(mapMarkersRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        if (window.renderMapMarkers) {
+          window.renderMapMarkers(data);
+        }
       }
     });
   </script>

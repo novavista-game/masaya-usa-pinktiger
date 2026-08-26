@@ -66,7 +66,14 @@ const translations = {
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> Send Letter",
     "fanletters-empty": "Be the first to leave a message! 💌",
     "recent-letters-title": "Recent Letters from Pinktigers 💌",
-    "community-btn": "Fan Letters from Afar"
+    "community-btn": "Fan Letters from Afar",
+    "map-title": "Global Pinktiger Interactive Map 🗺️",
+    "map-subtitle": "Upload a photo and get special event glasses!",
+    "map-modal-title": "Leave a Marker 🐾",
+    "map-modal-msg-ph": "Write a cheer message!",
+    "map-modal-file-label": "Upload a Photo:",
+    "map-modal-submit": "Submit",
+    "map-modal-cancel": "Cancel"
   },
   ja: {
     "nav-home": "ホーム",
@@ -130,7 +137,14 @@ const translations = {
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 手紙を送る",
     "fanletters-empty": "最初のメッセージを残そう！ 💌",
     "recent-letters-title": "ピンクタイガーからの最近の手紙 💌",
-    "community-btn": "ファンレターを送る"
+    "community-btn": "ファンレターを送る",
+    "map-title": "グローバル ピンクタイガー インタラクティブマップ 🗺️",
+    "map-subtitle": "写真をアップロードして特別なイベント用メガネをゲットしよう！",
+    "map-modal-title": "マーカーを残す 🐾",
+    "map-modal-msg-ph": "応援メッセージを書いてね！",
+    "map-modal-file-label": "写真をアップロード：",
+    "map-modal-submit": "送信",
+    "map-modal-cancel": "キャンセル"
   },
   ko: {
     "nav-home": "홈",
@@ -194,7 +208,14 @@ const translations = {
     "fanletters-send": "<i class=\"fa-solid fa-paper-plane\"></i> 편지 보내기",
     "fanletters-empty": "첫 번째로 메시지를 남겨보세요! 💌",
     "recent-letters-title": "핑크타이거의 최근 편지 💌",
-    "community-btn": "팬레터 보내기"
+    "community-btn": "팬레터 보내기",
+    "map-title": "글로벌 핑크타이거 인터랙티브 지도 🗺️",
+    "map-subtitle": "사진을 올리고 특별한 행사 안경을 받아가세요!",
+    "map-modal-title": "마커 남기기 🐾",
+    "map-modal-msg-ph": "응원 메시지를 남겨주세요!",
+    "map-modal-file-label": "사진 업로드:",
+    "map-modal-submit": "제출",
+    "map-modal-cancel": "취소"
   }
 };
 
@@ -206,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroCarousel();
   initVideoCarousel();
   initMobileMenu();
+  initInteractiveMap();
 });
 
 /* ==========================================================================
@@ -644,4 +666,101 @@ function initMobileMenu() {
       });
     });
   }
+}
+
+/* ==========================================================================
+   9. Interactive Map Logic (Leaflet)
+   ========================================================================== */
+function initInteractiveMap() {
+  const mapContainer = document.getElementById('map');
+  if (!mapContainer || typeof L === 'undefined') return;
+  
+  const map = L.map('map').setView([20, 0], 2);
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const pawIcon = L.divIcon({
+    html: '<div style="font-size: 24px; color: #FF1493; text-shadow: 0 0 5px white; transform: translate(-12px, -12px);">🐾</div>',
+    className: 'custom-paw-icon',
+    iconSize: [24, 24],
+    iconAnchor: [12, 12]
+  });
+
+  const modal = document.getElementById('map-modal');
+  const btnSubmit = document.getElementById('map-modal-submit');
+  const btnCancel = document.getElementById('map-modal-cancel');
+  const inputMessage = document.getElementById('map-modal-message');
+  const inputFile = document.getElementById('map-modal-file');
+  
+  let currentLatLng = null;
+
+  map.on('click', function(e) {
+    currentLatLng = e.latlng;
+    inputMessage.value = '';
+    inputFile.value = '';
+    modal.style.display = 'flex';
+  });
+
+  btnCancel.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  btnSubmit.addEventListener('click', async () => {
+    if (!currentLatLng) return;
+    
+    const message = inputMessage.value.trim();
+    const file = inputFile.files[0];
+    
+    if (!message && !file) {
+      alert("Please enter a message or upload a photo! 💖");
+      return;
+    }
+    
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "Uploading...";
+    
+    if (window.submitMapMarker) {
+      const success = await window.submitMapMarker(currentLatLng.lat, currentLatLng.lng, message, file);
+      if (success) {
+        modal.style.display = 'none';
+      }
+    } else {
+      console.error("Firebase submitMapMarker function not found.");
+    }
+    
+    btnSubmit.disabled = false;
+    // We shouldn't translate it statically back since it's dynamic, but let's just trigger an update
+    if (typeof updateLanguage === 'function') {
+      btnSubmit.innerText = document.documentElement.lang === 'ko' ? "제출" : document.documentElement.lang === 'ja' ? "送信" : "Submit";
+    } else {
+      btnSubmit.innerText = "Submit";
+    }
+  });
+
+  window.renderMapMarkers = function(markersData) {
+    map.eachLayer((layer) => {
+      if (layer instanceof L.Marker) {
+        map.removeLayer(layer);
+      }
+    });
+
+    Object.values(markersData).forEach(markerData => {
+      if (markerData.lat && markerData.lng) {
+        const marker = L.marker([markerData.lat, markerData.lng], { icon: pawIcon }).addTo(map);
+        
+        let popupContent = `<div style="text-align:center; max-width: 200px;">`;
+        if (markerData.imageUrl) {
+          popupContent += `<img src="${markerData.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Pinktiger Fan Photo">`;
+        }
+        if (markerData.message) {
+          popupContent += `<p style="font-family:'Quicksand', sans-serif; font-weight:bold; color:#333; margin:0;">"${markerData.message}"</p>`;
+        }
+        popupContent += `</div>`;
+        
+        marker.bindPopup(popupContent);
+      }
+    });
+  };
 }
