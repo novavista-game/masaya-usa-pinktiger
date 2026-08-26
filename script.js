@@ -514,9 +514,9 @@ function initHeroCarousel() {
   const captionEl = document.getElementById('carousel-caption');
   
   const captions = [
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Masaya Event Glasses 💖 🐯</p>',
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>',
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Travel Item Collection 💖 🐯</p>'
+    '<p><span class="label">🔥 This Week\'s Hot Pic:</span> MasayaUSAPinktiger Fandom made</p>',
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Travel Item Collection 💖 🐯</p>',
+    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>'
   ];
 
   let currentIndex = 0;
