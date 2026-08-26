@@ -803,14 +803,10 @@ function initInteractiveMap() {
       
       if (markerData.lat !== undefined && markerData.lng !== undefined) {
         if (!renderedMarkers[key]) {
-          let lat = parseFloat(markerData.lat);
-          let lng = parseFloat(markerData.lng);
+          const lat = parseFloat(markerData.lat);
+          const lng = parseFloat(markerData.lng);
           
-          // Data Sanitization & Mexico Fallback
-          if (isNaN(lat) || isNaN(lng) || (lat === 0 && lng === 0) || (markerData.message && markerData.message.toLowerCase().includes('mexico'))) {
-            lat = 32.70;
-            lng = -114.80;
-          }
+          if (isNaN(lat) || isNaN(lng)) return;
 
           const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
           

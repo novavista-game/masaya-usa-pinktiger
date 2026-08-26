@@ -512,7 +512,7 @@
         // Deduplication Filter
         const seen = new Set();
         lettersArray = lettersArray.filter(letter => {
-          const uniqueKey = (letter.message || '') + '|' + (letter.nickname || '') + '|' + (letter.country || '');
+          const uniqueKey = (letter.message || '').trim();
           if (seen.has(uniqueKey)) {
             return false;
           }
