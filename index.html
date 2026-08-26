@@ -258,11 +258,44 @@
   <section id="mascot" class="mascot-section fade-in-section">
     <div class="container">
       <div class="mascot-grid">
-        <!-- Combined Mascot Image -->
-        <div class="combined-hotpick-card action-card" style="display: flex; justify-content: center; align-items: center; padding: 40px; background: var(--white); border-radius: 20px; border: 4px solid var(--primary-pink); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);">
-          <div class="mascot-frame" style="width: 100%; max-width: 250px;">
-            <img src="assets/profile.png" alt="Official Pinktiger Mascot" class="mascot-image floating-animation" style="width: 100%; display: block; margin: 0 auto;">
-            <div class="mascot-shadow" style="width: 60%; height: 20px; background: rgba(0,0,0,0.1); border-radius: 50%; margin: 10px auto 0 auto;"></div>
+        <!-- Combined Mascot Image with Easter Egg -->
+        <div class="combined-hotpick-card action-card" style="display: flex; justify-content: center; align-items: center; padding: 20px; background: var(--white); border-radius: 20px; border: 4px solid var(--primary-pink); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2); width: 100%; height: 100%; position: relative;">
+          <div class="mascot-frame" style="position: relative; width: 90%; max-width: 400px; margin: 0 auto;">
+            
+            <!-- SVG Heart Clip Path -->
+            <svg width="0" height="0" style="position: absolute;">
+              <defs>
+                <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+                  <path d="M0.5 0.15 C0.25 -0.05 -0.05 0.2 0.15 0.5 L0.5 0.85 L0.85 0.5 C1.05 0.2 0.75 -0.05 0.5 0.15 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <!-- Easter Egg Popup -->
+            <div id="easter-egg-popup" style="display: none; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 220px; height: 220px; z-index: 100; filter: drop-shadow(0 15px 25px rgba(255,105,180,0.6));">
+              <!-- Pink Frame -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-pink); clip-path: url(#heart-clip);"></div>
+              <!-- Inner Image -->
+              <img id="ee-image" src="" alt="Masaya Easter Egg" style="position: absolute; top: 5%; left: 5%; width: 90%; height: 90%; object-fit: cover; clip-path: url(#heart-clip);">
+            </div>
+
+            <style>
+              @keyframes popInHeart {
+                0% { transform: translateX(-50%) scale(0) rotate(-10deg); opacity: 0; }
+                70% { transform: translateX(-50%) scale(1.1) rotate(5deg); opacity: 1; }
+                100% { transform: translateX(-50%) scale(1) rotate(0deg); opacity: 1; }
+              }
+              .heart-pop-anim {
+                animation: popInHeart 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+              }
+              #mascot-trigger:hover {
+                transform: scale(1.05);
+                filter: brightness(1.1);
+              }
+            </style>
+
+            <img src="assets/profile.png" alt="Official Pinktiger Mascot" id="mascot-trigger" class="mascot-image floating-animation" style="width: 100%; display: block; margin: 0 auto; cursor: pointer; transition: all 0.3s ease; position: relative; z-index: 10;">
+            <div class="mascot-shadow" style="width: 70%; height: 25px; background: rgba(0,0,0,0.1); border-radius: 50%; margin: 15px auto 0 auto;"></div>
           </div>
         </div>
         

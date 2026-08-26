@@ -811,3 +811,32 @@ function initInteractiveMap() {
     });
   };
 }
+
+/* ==========================================================================
+   10. Mascot Easter Egg
+   ========================================================================== */
+function initMascotEasterEgg() {
+  const mascotTrigger = document.getElementById('mascot-trigger');
+  const eePopup = document.getElementById('easter-egg-popup');
+  const eeImage = document.getElementById('ee-image');
+  
+  if (!mascotTrigger || !eePopup || !eeImage) return;
+
+  let eeCount = 0;
+  const eeTotal = 7;
+
+  mascotTrigger.addEventListener('click', () => {
+    eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
+    eeImage.src = `assets/마사야 사진 ${eeCount}.png`;
+    
+    // Reset animation
+    eePopup.style.display = 'block';
+    eePopup.classList.remove('heart-pop-anim');
+    void eePopup.offsetWidth; // Trigger reflow
+    eePopup.classList.add('heart-pop-anim');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMascotEasterEgg();
+});
