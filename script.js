@@ -817,23 +817,32 @@ function initInteractiveMap() {
    ========================================================================== */
 function initMascotEasterEgg() {
   const mascotTrigger = document.getElementById('mascot-trigger');
-  const eePopup = document.getElementById('easter-egg-popup');
+  const eeModal = document.getElementById('easter-egg-modal');
   const eeImage = document.getElementById('ee-image');
+  const eeModalContent = document.getElementById('ee-modal-content');
   
-  if (!mascotTrigger || !eePopup || !eeImage) return;
+  if (!mascotTrigger || !eeModal || !eeImage) return;
 
   let eeCount = 0;
   const eeTotal = 7;
 
   mascotTrigger.addEventListener('click', () => {
     eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
-    eeImage.src = `assets/마사야 사진 ${eeCount}.png`;
+    // Properly encode URI for spaces and Korean characters
+    eeImage.src = encodeURI(`assets/마사야 사진 ${eeCount}.png`);
     
-    // Reset animation
-    eePopup.style.display = 'block';
-    eePopup.classList.remove('heart-pop-anim');
-    void eePopup.offsetWidth; // Trigger reflow
-    eePopup.classList.add('heart-pop-anim');
+    // Show modal and reset animation
+    eeModal.style.display = 'flex';
+    eeModalContent.classList.remove('heart-pop-anim');
+    void eeModalContent.offsetWidth; // Trigger reflow
+    eeModalContent.classList.add('heart-pop-anim');
+  });
+
+  // Close modal when clicking outside the heart
+  eeModal.addEventListener('click', (e) => {
+    if (e.target === eeModal) {
+      eeModal.style.display = 'none';
+    }
   });
 }
 
