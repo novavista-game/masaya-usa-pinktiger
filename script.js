@@ -825,25 +825,40 @@ function initMascotEasterEgg() {
 
   let eeCount = 0;
   const eeTotal = 7;
+  let eeTimeout = null;
+
+  const hideModal = () => {
+    eeModal.style.opacity = '0';
+    eeModal.style.pointerEvents = 'none';
+    eeModal.style.visibility = 'hidden';
+    if (eeTimeout) {
+      clearTimeout(eeTimeout);
+      eeTimeout = null;
+    }
+  };
 
   mascotTrigger.addEventListener('click', () => {
     eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
     // Properly encode URI for spaces and Korean characters
     eeImage.src = encodeURI(`assets/마사야 사진 ${eeCount}.png`);
     
-    // Show modal and reset animation
-    eeModal.style.display = 'flex';
+    // Show modal with fade
+    eeModal.style.opacity = '1';
+    eeModal.style.pointerEvents = 'auto';
+    eeModal.style.visibility = 'visible';
+    
+    // Reset animation
     eeModalContent.classList.remove('heart-pop-anim');
     void eeModalContent.offsetWidth; // Trigger reflow
     eeModalContent.classList.add('heart-pop-anim');
+
+    // Auto-hide after 2 seconds
+    if (eeTimeout) clearTimeout(eeTimeout);
+    eeTimeout = setTimeout(hideModal, 2000);
   });
 
-  // Close modal when clicking outside the heart
-  eeModal.addEventListener('click', (e) => {
-    if (e.target === eeModal) {
-      eeModal.style.display = 'none';
-    }
-  });
+  // Close modal when clicking anywhere on the modal
+  eeModal.addEventListener('click', hideModal);
 }
 
 /* ==========================================================================
