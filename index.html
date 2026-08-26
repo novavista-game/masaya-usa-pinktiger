@@ -579,28 +579,41 @@
         // Populate Fandom Gallery
         const galleryTrack = document.getElementById('hero-carousel-track');
         if (galleryTrack) {
-          const markersArray = Object.keys(data).map(key => data[key]).reverse(); // Latest first
+          const markersArray = data ? Object.keys(data).map(key => data[key]).reverse() : []; // Latest first
           const galleryItems = markersArray.filter(m => m.imageUrl);
           
           let htmlContent = '';
           window.galleryCaptions = [];
           
+          // Seed Data (Static Assets)
+          const staticSeedData = [
+            { src: 'assets/행사안경-Final.png', caption: '<p><span class="label">🔥 This Week\'s Hot Pic:</span> MasayaUSAPinktiger Fandom made</p>' },
+            { src: 'assets/Hello Kitty Food Storage.jpg', caption: '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>' },
+            { src: 'assets/헬로키티.jpg', caption: '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Travel Item Collection 💖 🐯</p>' }
+          ];
+
+          staticSeedData.forEach(item => {
+            htmlContent += `
+              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%;">
+                <img src="${item.src}" alt="Fandom Gallery Seed Photo" style="width: 100%; display: block; border-radius: 14px;">
+              </div>
+            `;
+            window.galleryCaptions.push(item.caption);
+          });
+          
+          // Dynamic Firebase Data
           galleryItems.forEach(item => {
             htmlContent += `
               <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%;">
-                <img src="${item.imageUrl}" alt="Fandom Gallery Photo" style="width: 100%; display: block;">
+                <img src="${item.imageUrl}" alt="Fandom Gallery Fan Photo" style="width: 100%; display: block; border-radius: 14px;">
               </div>
             `;
             window.galleryCaptions.push(`<p><span class="label">🐾 Fan Photo:</span> ${item.message || 'Pinktiger Fan'}</p>`);
           });
           
-          if (galleryItems.length > 0) {
-            galleryTrack.innerHTML = htmlContent;
-            if (window.updateCarouselData) {
-              window.updateCarouselData();
-            }
-          } else {
-            galleryTrack.innerHTML = '<div style="text-align:center; padding: 50px; color: var(--text-color); width: 100%;">Be the first to upload a photo! 💖</div>';
+          galleryTrack.innerHTML = htmlContent;
+          if (window.updateCarouselData) {
+            window.updateCarouselData();
           }
         }
 
