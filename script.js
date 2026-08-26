@@ -786,29 +786,41 @@ function initInteractiveMap() {
     }
   });
 
+  const renderedMarkers = {};
+
   window.renderMapMarkers = function(markersData) {
-    map.eachLayer((layer) => {
-      if (layer instanceof L.Marker) {
-        map.removeLayer(layer);
+    if (!markersData) return;
+
+    // Add new markers
+    Object.keys(markersData).forEach(key => {
+      const markerData = markersData[key];
+      
+      if (markerData.lat !== undefined && markerData.lng !== undefined) {
+        if (!renderedMarkers[key]) {
+          const lat = parseFloat(markerData.lat);
+          const lng = parseFloat(markerData.lng);
+          const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
+          
+          let popupContent = `<div style="text-align:center; max-width: 200px;">`;
+          if (markerData.imageUrl) {
+            popupContent += `<img src="${markerData.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Pinktiger Fan Photo">`;
+          }
+          if (markerData.message) {
+            popupContent += `<p style="font-family:'Quicksand', sans-serif; font-weight:bold; color:#333; margin:0;">"${markerData.message}"</p>`;
+          }
+          popupContent += `</div>`;
+          
+          marker.bindPopup(popupContent);
+          renderedMarkers[key] = marker;
+        }
       }
     });
 
-    Object.values(markersData).forEach(markerData => {
-      if (markerData.lat !== undefined && markerData.lng !== undefined) {
-        const lat = parseFloat(markerData.lat);
-        const lng = parseFloat(markerData.lng);
-        const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
-        
-        let popupContent = `<div style="text-align:center; max-width: 200px;">`;
-        if (markerData.imageUrl) {
-          popupContent += `<img src="${markerData.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Pinktiger Fan Photo">`;
-        }
-        if (markerData.message) {
-          popupContent += `<p style="font-family:'Quicksand', sans-serif; font-weight:bold; color:#333; margin:0;">"${markerData.message}"</p>`;
-        }
-        popupContent += `</div>`;
-        
-        marker.bindPopup(popupContent);
+    // Remove deleted markers
+    Object.keys(renderedMarkers).forEach(key => {
+      if (!markersData[key]) {
+        map.removeLayer(renderedMarkers[key]);
+        delete renderedMarkers[key];
       }
     });
   };
