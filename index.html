@@ -341,7 +341,7 @@
       <div style="position: relative; width: 100%; padding: 0 40px;">
         <button class="carousel-btn prev-btn" id="fanletter-prev" aria-label="Previous letters" onclick="scrollFanLetters(-350)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;"><i class="fa-solid fa-chevron-left"></i></button>
         
-        <div id="home-letters-container" class="horizontal-scroll-container" style="overflow-x: auto; scroll-behavior: smooth; display: flex; width: 100%; padding: 15px 0;">
+        <div id="home-letters-container" class="horizontal-scroll-container" style="overflow-x: hidden; scroll-behavior: smooth; display: flex; flex-wrap: nowrap; width: 100%; padding: 15px 0;">
           <!-- Messages will be injected here via JavaScript -->
           <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color);">
             <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
@@ -499,7 +499,7 @@
     const storage = getStorage(app);
     
     // Fan letters logic
-    const lettersRef = query(ref(db, 'fanLetters'), limitToLast(6));
+    const lettersRef = ref(db, 'fanLetters');
 
     onValue(lettersRef, (snapshot) => {
       const container = document.getElementById('home-letters-container');
@@ -512,7 +512,7 @@
         // Deduplication Filter
         const seen = new Set();
         lettersArray = lettersArray.filter(letter => {
-          const uniqueKey = (letter.message || '') + '|' + (letter.nickname || '');
+          const uniqueKey = (letter.message || '') + '|' + (letter.nickname || '') + '|' + (letter.country || '');
           if (seen.has(uniqueKey)) {
             return false;
           }
