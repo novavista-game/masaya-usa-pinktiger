@@ -711,7 +711,7 @@ function initInteractiveMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer || typeof L === 'undefined') return;
   
-  const map = L.map('map').setView([20, 0], 2);
+  const map = L.map('map', { worldCopyJump: true }).setView([20, 0], 2);
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
@@ -794,8 +794,10 @@ function initInteractiveMap() {
     });
 
     Object.values(markersData).forEach(markerData => {
-      if (markerData.lat && markerData.lng) {
-        const marker = L.marker([markerData.lat, markerData.lng], { icon: pawIcon }).addTo(map);
+      if (markerData.lat !== undefined && markerData.lng !== undefined) {
+        const lat = parseFloat(markerData.lat);
+        const lng = parseFloat(markerData.lng);
+        const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
         
         let popupContent = `<div style="text-align:center; max-width: 200px;">`;
         if (markerData.imageUrl) {
