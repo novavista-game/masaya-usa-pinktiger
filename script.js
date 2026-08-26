@@ -545,35 +545,36 @@ function initHeroCarousel() {
   const track = document.getElementById('hero-carousel-track');
   if (!track) return;
 
-  const slides = Array.from(track.children);
+  let slides = Array.from(track.children);
   const nextButton = document.getElementById('carousel-next');
   const prevButton = document.getElementById('carousel-prev');
   const captionEl = document.getElementById('carousel-caption');
   
-  const captions = [
-    '<p><span class="label">🔥 This Week\'s Hot Pic:</span> MasayaUSAPinktiger Fandom made</p>',
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>',
-    '<p><span class="label">🔥 This Week\'s Hot Pick:</span> Hello Kitty Travel Item Collection 💖 🐯</p>'
-  ];
-
   let currentIndex = 0;
 
   function updateSlide(index) {
+    if (slides.length === 0) return;
     track.style.transform = `translateX(-${index * 100}%)`;
-    if (captionEl) {
-      captionEl.innerHTML = captions[index];
+    if (captionEl && window.galleryCaptions && window.galleryCaptions[index]) {
+      captionEl.innerHTML = window.galleryCaptions[index];
     }
   }
 
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlide(currentIndex);
-  });
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      if (slides.length === 0) return;
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide(currentIndex);
+    });
+  }
 
-  prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateSlide(currentIndex);
-  });
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      if (slides.length === 0) return;
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlide(currentIndex);
+    });
+  }
 
   // Touch / Swipe Support
   let touchStartX = 0;
@@ -589,6 +590,7 @@ function initHeroCarousel() {
   });
 
   function handleSwipe() {
+    if (slides.length === 0) return;
     if (touchEndX < touchStartX - 30) {
       // Swiped left
       currentIndex = (currentIndex + 1) % slides.length;
@@ -600,6 +602,13 @@ function initHeroCarousel() {
       updateSlide(currentIndex);
     }
   }
+
+  // Expose update function to be called after dynamic content injection
+  window.updateCarouselData = function() {
+    slides = Array.from(track.children);
+    currentIndex = 0;
+    updateSlide(0);
+  };
 }
 
 /* ==========================================================================

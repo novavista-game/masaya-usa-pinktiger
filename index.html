@@ -123,7 +123,7 @@
   <!-- Photo Pick Section (Moved Carousel) -->
   <section id="photo-pick" class="about-section fade-in-section" style="background: var(--light-pink); padding: 60px 0;">
     <div class="container">
-      <h2 class="section-title" style="margin-bottom: 40px;">Pinktiger's Photo Pick 🎀</h2>
+      <h2 class="section-title" style="margin-bottom: 40px;">Fandom Gallery 🎀</h2>
 
       <style>
         .photo-pick-grid {
@@ -176,15 +176,10 @@
           <div class="video-outer-container" style="max-width: 600px; margin: 0 auto; width: 100%;">
             <div class="leopard-border-wrapper">
               <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
-                <div class="carousel-track" id="hero-carousel-track">
-                  <div class="carousel-slide">
-                    <img src="assets/행사안경-Final.png" alt="Masaya Event Glasses 💖">
-                  </div>
-                  <div class="carousel-slide">
-                    <img src="assets/Hello%20Kitty%20Food%20Storage.jpg" alt="Hello Kitty 💖">
-                  </div>
-                  <div class="carousel-slide">
-                    <img src="assets/헬로키티.jpg" alt="Hello Kitty 💖">
+                <div class="carousel-track" id="hero-carousel-track" style="display: flex; width: 100%;">
+                  <!-- Images will be injected dynamically from Firebase -->
+                  <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color); padding: 50px;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
                   </div>
                 </div>
                 <!-- Navigation Buttons -->
@@ -263,22 +258,11 @@
   <section id="mascot" class="mascot-section fade-in-section">
     <div class="container">
       <div class="mascot-grid">
-        <!-- Combined Mascot Image & Hot Pick Card -->
-        <div class="combined-hotpick-card action-card">
-          <div class="hotpick-header">
-            <div class="action-card-icon">📸</div>
-            <h4 class="action-card-title">Submit Your "Hot Pick"</h4>
-            <p class="action-card-desc">Do you have Masaya merch or cool fan photos? Submit them to be featured at the top of our website next week!</p>
-          </div>
-          
-          <div class="mascot-frame">
-            <img src="assets/profile.png" alt="Official Pinktiger Mascot" class="mascot-image floating-animation">
-            <div class="mascot-shadow"></div>
-          </div>
-          
-          <div class="hotpick-footer">
-            <p class="action-card-email">📧 masayausapinktiger@gmail.com</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Masayausapinktiger@gmail.com" target="_blank" class="action-card-btn">Email Us Your Photos <i class="fa-solid fa-envelope"></i></a>
+        <!-- Combined Mascot Image -->
+        <div class="combined-hotpick-card action-card" style="display: flex; justify-content: center; align-items: center; padding: 40px; background: var(--white); border-radius: 20px; border: 4px solid var(--primary-pink); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);">
+          <div class="mascot-frame" style="width: 100%; max-width: 250px;">
+            <img src="assets/profile.png" alt="Official Pinktiger Mascot" class="mascot-image floating-animation" style="width: 100%; display: block; margin: 0 auto;">
+            <div class="mascot-shadow" style="width: 60%; height: 20px; background: rgba(0,0,0,0.1); border-radius: 50%; margin: 10px auto 0 auto;"></div>
           </div>
         </div>
         
@@ -507,12 +491,41 @@
     // --- Map Firebase Logic ---
     const mapMarkersRef = ref(db, 'mapMarkers');
     
+    async function compressImage(file, maxWidth) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            canvas.toBlob((blob) => {
+              const newFile = new File([blob], file.name, { type: 'image/jpeg' });
+              resolve(newFile);
+            }, 'image/jpeg', 0.8); // 80% quality
+          };
+        };
+      });
+    }
+    
     window.submitMapMarker = async function(lat, lng, message, file) {
       try {
         let imageUrl = '';
         if (file) {
-          const fileRef = storageRef(storage, 'mapPhotos/' + Date.now() + '_' + file.name);
-          const snapshot = await uploadBytes(fileRef, file);
+          const compressedFile = await compressImage(file, 800);
+          const fileRef = storageRef(storage, 'mapPhotos/' + Date.now() + '_' + compressedFile.name);
+          const snapshot = await uploadBytes(fileRef, compressedFile);
           imageUrl = await getDownloadURL(snapshot.ref);
         }
         
@@ -562,6 +575,35 @@
     onValue(mapMarkersRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
+        
+        // Populate Fandom Gallery
+        const galleryTrack = document.getElementById('hero-carousel-track');
+        if (galleryTrack) {
+          const markersArray = Object.keys(data).map(key => data[key]).reverse(); // Latest first
+          const galleryItems = markersArray.filter(m => m.imageUrl);
+          
+          let htmlContent = '';
+          window.galleryCaptions = [];
+          
+          galleryItems.forEach(item => {
+            htmlContent += `
+              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%;">
+                <img src="${item.imageUrl}" alt="Fandom Gallery Photo" style="width: 100%; display: block;">
+              </div>
+            `;
+            window.galleryCaptions.push(`<p><span class="label">🐾 Fan Photo:</span> ${item.message || 'Pinktiger Fan'}</p>`);
+          });
+          
+          if (galleryItems.length > 0) {
+            galleryTrack.innerHTML = htmlContent;
+            if (window.updateCarouselData) {
+              window.updateCarouselData();
+            }
+          } else {
+            galleryTrack.innerHTML = '<div style="text-align:center; padding: 50px; color: var(--text-color); width: 100%;">Be the first to upload a photo! 💖</div>';
+          }
+        }
+
         if (window.renderMapMarkers) {
           window.renderMapMarkers(data);
         }
