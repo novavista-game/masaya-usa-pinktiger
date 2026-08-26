@@ -682,10 +682,21 @@ function initInteractiveMap() {
   }).addTo(map);
 
   const pawIcon = L.divIcon({
-    html: '<div style="font-size: 24px; color: #FF1493; text-shadow: 0 0 5px white; transform: translate(-12px, -12px);">🐾</div>',
+    html: `
+      <div style="color: #FF69B4; font-size: 30px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-15px, -15px); animation: pulse-paw 2s infinite;">
+        <i class="fa-solid fa-paw"></i>
+      </div>
+      <style>
+        @keyframes pulse-paw {
+          0% { transform: translate(-15px, -15px) scale(1); }
+          50% { transform: translate(-15px, -15px) scale(1.15); }
+          100% { transform: translate(-15px, -15px) scale(1); }
+        }
+      </style>
+    `,
     className: 'custom-paw-icon',
-    iconSize: [24, 24],
-    iconAnchor: [12, 12]
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
   });
 
   const modal = document.getElementById('map-modal');
