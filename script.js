@@ -553,24 +553,36 @@ function initHeroCarousel() {
   let currentIndex = 0;
 
   function updateSlide(index) {
-    if (slides.length === 0) return;
+    if (slides.length <= 1) {
+      track.style.transform = `translateX(0%)`;
+      if (captionEl && window.galleryCaptions && window.galleryCaptions[0]) {
+        captionEl.innerHTML = window.galleryCaptions[0];
+      }
+      return;
+    }
+    
+    // Explicitly add transition just in case CSS is missing
+    track.style.transition = 'transform 0.4s ease-in-out';
     track.style.transform = `translateX(-${index * 100}%)`;
+    
     if (captionEl && window.galleryCaptions && window.galleryCaptions[index]) {
       captionEl.innerHTML = window.galleryCaptions[index];
     }
   }
 
   if (nextButton) {
-    nextButton.addEventListener('click', () => {
-      if (slides.length === 0) return;
+    nextButton.addEventListener('click', (e) => {
+      if (e) e.preventDefault();
+      if (slides.length <= 1) return;
       currentIndex = (currentIndex + 1) % slides.length;
       updateSlide(currentIndex);
     });
   }
 
   if (prevButton) {
-    prevButton.addEventListener('click', () => {
-      if (slides.length === 0) return;
+    prevButton.addEventListener('click', (e) => {
+      if (e) e.preventDefault();
+      if (slides.length <= 1) return;
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       updateSlide(currentIndex);
     });
@@ -590,14 +602,14 @@ function initHeroCarousel() {
   });
 
   function handleSwipe() {
-    if (slides.length === 0) return;
+    if (slides.length <= 1) return;
     if (touchEndX < touchStartX - 30) {
-      // Swiped left
+      // Swiped left (next)
       currentIndex = (currentIndex + 1) % slides.length;
       updateSlide(currentIndex);
     }
     if (touchEndX > touchStartX + 30) {
-      // Swiped right
+      // Swiped right (prev)
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       updateSlide(currentIndex);
     }
