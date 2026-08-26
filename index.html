@@ -459,7 +459,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getDatabase, ref, onValue, query, limitToLast, push, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getDatabase, ref, onValue, query, limitToLast, push, set, get } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
     const firebaseConfig = {
@@ -523,6 +523,62 @@
 
     // --- Map Firebase Logic ---
     const mapMarkersRef = ref(db, 'mapMarkers');
+    
+    // Auto-Seed Function for initial map pins (prevent duplicates)
+    async function injectSeedPinsIfNeeded() {
+      try {
+        const snapshot = await get(mapMarkersRef);
+        let needsSeed = true;
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const markers = Object.values(data);
+          // Check if Seattle or Birmingham already exists
+          const hasSeattle = markers.some(m => m.nickname === "Seattle Fan" || (m.lat > 47 && m.lat < 48 && m.lng > -123 && m.lng < -122));
+          const hasBirmingham = markers.some(m => m.nickname === "Birmingham Fan" || (m.lat > 33 && m.lat < 34 && m.lng > -87 && m.lng < -86));
+          if (hasSeattle || hasBirmingham) {
+            needsSeed = false;
+          }
+        }
+        
+        if (needsSeed) {
+          console.log("Injecting seed pins...");
+          const seeds = [
+            { lat: 47.606, lng: -122.332, nickname: "Seattle Fan", message: "Always supporting Masaya! 💖🐯", country: "Seattle, USA" },
+            { lat: 33.518, lng: -86.810, nickname: "Birmingham Fan", message: "Always supporting Masaya! 💖🐯", country: "Birmingham, USA" },
+            { lat: 35.710, lng: 139.810, nickname: "Japan Fan", message: "Always supporting Masaya! 💖🐯", country: "Sumida City, Japan" }
+          ];
+          
+          const allLettersRef = ref(db, 'fanLetters');
+          for (const seed of seeds) {
+            const newMarkerRef = push(mapMarkersRef);
+            await set(newMarkerRef, {
+              lat: seed.lat,
+              lng: seed.lng,
+              message: seed.message,
+              nickname: seed.nickname,
+              imageUrl: "",
+              timestamp: Date.now()
+            });
+            
+            const newLetterRef = push(allLettersRef);
+            await set(newLetterRef, {
+              nickname: seed.nickname,
+              country: seed.country,
+              message: seed.message,
+              imageUrl: "",
+              fromMap: true,
+              timestamp: Date.now()
+            });
+          }
+          console.log("Seed pins injected successfully.");
+        }
+      } catch(e) {
+        console.error("Error checking or injecting seeds", e);
+      }
+    }
+    
+    // Execute Auto-Seed logic
+    injectSeedPinsIfNeeded();
     
     async function compressImage(file, maxWidth) {
       return new Promise((resolve) => {
