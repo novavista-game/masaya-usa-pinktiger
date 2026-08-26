@@ -846,6 +846,44 @@ function initMascotEasterEgg() {
   });
 }
 
+/* ==========================================================================
+   11. Fan Letter Carousel
+   ========================================================================== */
+function initFanLetterCarousel() {
+  const container = document.getElementById('home-letters-container');
+  const prevBtn = document.getElementById('fanletter-prev');
+  const nextBtn = document.getElementById('fanletter-next');
+  
+  if (!container || !prevBtn || !nextBtn) return;
+  
+  const scrollAmount = 340; // width of a card + gap roughly
+
+  const updateButtons = () => {
+    // Disable prev if at start
+    prevBtn.disabled = container.scrollLeft <= 0;
+    // Disable next if at end (allow 1px rounding error)
+    nextBtn.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+  };
+
+  prevBtn.addEventListener('click', () => {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  container.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  
+  // Initial check (delay slightly to allow Firebase injection)
+  setTimeout(updateButtons, 1000);
+  
+  // Expose update function to be called after Firebase injection
+  window.updateFanLetterButtons = updateButtons;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initMascotEasterEgg();
+  initFanLetterCarousel();
 });

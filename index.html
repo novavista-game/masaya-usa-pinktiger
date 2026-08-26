@@ -338,13 +338,33 @@
     <div class="container" style="max-width: 1200px; margin: 0 auto;">
       <h2 class="section-title" data-translate="recent-letters-title" style="margin-bottom: 30px;">Recent Letters from Pinktigers 💌</h2>
       
-      <div id="home-letters-container" class="horizontal-scroll-container">
-        <!-- Messages will be injected here via JavaScript -->
-        <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color);">
-          <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
-          <p>Loading love letters...</p>
+      <div style="position: relative; width: 100%; padding: 0 40px;">
+        <button class="carousel-btn prev-btn" id="fanletter-prev" aria-label="Previous letters" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;"><i class="fa-solid fa-chevron-left"></i></button>
+        
+        <div id="home-letters-container" class="horizontal-scroll-container" style="overflow-x: auto; scroll-behavior: smooth; display: flex; width: 100%; padding: 15px 0;">
+          <!-- Messages will be injected here via JavaScript -->
+          <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color);">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
+            <p>Loading love letters...</p>
+          </div>
         </div>
+        
+        <button class="carousel-btn next-btn" id="fanletter-next" aria-label="Next letters" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
+
+      <style>
+        #home-letters-container::-webkit-scrollbar {
+          display: none;
+        }
+        #home-letters-container {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        #fanletter-prev:disabled, #fanletter-next:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      </style>
     </div>
   </section>
 
@@ -499,7 +519,7 @@
           let timeStr = letter.timestamp ? new Date(letter.timestamp).toLocaleString() : '';
 
           htmlContent += `
-            <div class="carousel-letter-card" style="background:var(--white); border-radius:15px; padding:20px; box-shadow:0 5px 15px rgba(255,105,180,0.15); margin: 0 10px; border:2px solid var(--brand-pink); display:inline-block; vertical-align:top; white-space:normal; width: 300px;">
+            <div class="carousel-letter-card" style="background:var(--white); border-radius:15px; padding:20px; box-shadow:0 5px 15px rgba(255,105,180,0.15); margin: 0 10px; border:2px solid var(--brand-pink); display:inline-block; vertical-align:top; white-space:normal; width: 300px; flex-shrink: 0;">
               ${imageUrlHtml}
               <div style="display:flex; justify-content:space-between; margin-bottom:5px; color:var(--brand-pink); font-weight:bold;">
                 <span><i class="fa-solid fa-user"></i> ${letter.nickname || 'Pinktiger'}</span>
@@ -520,6 +540,10 @@
       
       if (typeof window.updateLanguage === 'function') {
         window.updateLanguage(document.documentElement.lang || 'en');
+      }
+      
+      if (typeof window.updateFanLetterButtons === 'function') {
+        window.updateFanLetterButtons();
       }
     });
 
