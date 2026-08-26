@@ -68,7 +68,7 @@ window.translations = {
     "recent-letters-title": "Recent Letters from Pinktigers 💌",
     "community-btn": "Fan Letters from Afar",
     "map-title": "Global Pinktiger Interactive Map 🗺️",
-    "map-subtitle": "Upload a photo and get special event glasses!",
+    "map-subtitle": "Upload a photo or leave a message of support!",
     "map-modal-title": "Leave a Marker 🐾",
     "map-modal-msg-ph": "Write a cheer message!",
     "map-modal-file-label": "Upload a Photo:",
