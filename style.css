@@ -293,8 +293,8 @@ body {
 
 .lang-btn {
   font-family: var(--font-title);
-  font-size: 0.85rem;
-  padding: 6px 12px;
+  font-size: 0.8rem;
+  padding: 6px 8px;
   border-radius: 20px;
   color: var(--brand-pink);
   text-decoration: none;
@@ -1868,4 +1868,12 @@ body {
 @keyframes gentleBounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
+}
+
+/* Prevent long word overflow for translations (e.g. Spanish) */
+h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, .card-content, .detail-val {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
