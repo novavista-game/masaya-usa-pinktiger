@@ -1387,6 +1387,15 @@ body {
 /* ==========================================================================
    Hero Image Carousel
    ========================================================================== */
+.fandom-gallery-video {
+  height: 100%;
+}
+@media (max-width: 767px) {
+  .fandom-gallery-video {
+    aspect-ratio: 1 / 1;
+  }
+}
+
 .carousel-track {
   position: absolute;
   top: 0;

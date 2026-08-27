@@ -131,7 +131,7 @@
           display: grid;
           grid-template-columns: 1fr;
           gap: 40px;
-          align-items: center;
+          align-items: stretch;
         }
         @media (min-width: 768px) {
           .photo-pick-grid {
@@ -173,10 +173,10 @@
         </div>
 
         <!-- Right Column: Carousel -->
-        <div class="photo-pick-right">
+        <div class="photo-pick-right" style="height: 100%;">
           <div class="video-outer-container" style="max-width: 600px; margin: 0 auto; width: 100%;">
             <div class="leopard-border-wrapper">
-              <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec); aspect-ratio: 1 / 1;">
+              <div class="video-inner-container fandom-gallery-video" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
                 <div class="carousel-track" id="hero-carousel-track" style="display: flex; width: 100%;">
                   <!-- Images will be injected dynamically from Firebase -->
                   <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color); padding: 50px;">
