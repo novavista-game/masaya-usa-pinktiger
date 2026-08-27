@@ -176,7 +176,7 @@
         <div class="photo-pick-right">
           <div class="video-outer-container" style="max-width: 600px; margin: 0 auto; width: 100%;">
             <div class="leopard-border-wrapper">
-              <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
+              <div class="video-inner-container" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec); aspect-ratio: 1 / 1;">
                 <div class="carousel-track" id="hero-carousel-track" style="display: flex; width: 100%;">
                   <!-- Images will be injected dynamically from Firebase -->
                   <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color); padding: 50px;">
@@ -671,8 +671,8 @@
           // Dynamic Firebase Data First (Newest First)
           galleryItems.forEach(item => {
             htmlContent += `
-              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%;">
-                <img src="${item.imageUrl}" alt="Fandom Gallery Fan Photo" style="width: 100%; display: block; border-radius: 14px;">
+              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%; height: 100%;">
+                <img src="${item.imageUrl}" alt="Fandom Gallery Fan Photo" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px;">
               </div>
             `;
             window.galleryCaptions.push(`<p><span class="label" style="font-weight: 700; color: var(--brand-pink-hover);"><i class="fa-solid fa-paw" style="color: #FF69B4;"></i> Fan Photo:</span> ${item.message || 'Pinktiger Fan'}</p>`);
@@ -687,8 +687,8 @@
 
           staticSeedData.forEach(item => {
             htmlContent += `
-              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%;">
-                <img src="${item.src}" alt="Fandom Gallery Seed Photo" style="width: 100%; display: block; border-radius: 14px;">
+              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%; height: 100%;">
+                <img src="${item.src}" alt="Fandom Gallery Seed Photo" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px;">
               </div>
             `;
             window.galleryCaptions.push(item.caption);
