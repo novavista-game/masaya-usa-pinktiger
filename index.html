@@ -514,6 +514,7 @@
       if (snapshot.exists()) {
         const data = snapshot.val();
         let lettersArray = Object.keys(data).map(key => data[key]).reverse();
+        lettersArray = lettersArray.filter(letter => letter.isApproved === true);
         
         // Deduplication Filter
         const seen = new Set();
@@ -596,6 +597,10 @@
     }
     
     window.submitMapMarker = async function(lat, lng, message, file) {
+      if (window.containsProfanity && window.containsProfanity(message)) {
+        alert("부적절한 단어가 포함되어 있습니다. 다시 작성해 주세요.");
+        return false;
+      }
       try {
         let imageUrl = '';
         if (file) {
@@ -611,7 +616,8 @@
           lng: lng,
           message: message,
           imageUrl: imageUrl,
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          isApproved: false
         });
         
         // Reverse Geocoding
@@ -637,7 +643,8 @@
           message: message,
           imageUrl: imageUrl,
           fromMap: true,
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          isApproved: false
         });
         
         return true;
@@ -655,7 +662,7 @@
         // Populate Fandom Gallery
         const galleryTrack = document.getElementById('hero-carousel-track');
         if (galleryTrack) {
-          const markersArray = data ? Object.keys(data).map(key => data[key]).reverse() : []; // Latest first
+          const markersArray = data ? Object.keys(data).map(key => data[key]).reverse().filter(m => m.isApproved === true) : []; // Latest first
           const galleryItems = markersArray.filter(m => m.imageUrl);
           
           let htmlContent = '';
@@ -694,7 +701,13 @@
         }
 
         if (window.renderMapMarkers) {
-          window.renderMapMarkers(data);
+          const filteredData = {};
+          if (data) {
+            Object.keys(data).forEach(k => {
+              if (data[k].isApproved === true) filteredData[k] = data[k];
+            });
+          }
+          window.renderMapMarkers(filteredData);
         }
       }
     });

@@ -302,6 +302,19 @@ window.translations = {
   }
 };
 
+// Profanity Filter Helper
+window.containsProfanity = function(text) {
+  if (!text) return false;
+  const badWords = [
+    'fuck', 'shit', 'bitch', 'asshole', 'cunt', 'dick', 'pussy', 'bastard', 'slut', 'whore',
+    '씨발', '시발', '병신', '개새끼', '존나', '지랄', '미친', '좆', '창녀', '새끼',
+    'puta', 'mierda', 'cabrón', 'pendejo', 'coño', 'joder', 'maricón', 'zorra', 'puto',
+    'バカ', 'ばか', 'アホ', 'あほ', '死ね', 'クソ', 'くそ', 'キモい', 'ガイジ', 'カス'
+  ];
+  const lowerText = text.toLowerCase();
+  return badWords.some(word => lowerText.includes(word));
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initSparkleEffect();
