@@ -1845,3 +1845,27 @@ body {
     }
   }
 }
+
+/* Mascot Hint Text Styling */
+.mascot-hint-text {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-pink-hover);
+  background-color: var(--light-pink);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px dashed var(--brand-pink);
+  margin: 0 auto 15px auto;
+  width: fit-content;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+  animation: gentleBounce 2s infinite;
+  position: relative;
+  z-index: 20;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

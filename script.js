@@ -75,7 +75,8 @@ window.translations = {
     "map-modal-submit": "Submit",
     "map-modal-cancel": "Cancel",
     "lbl-location": "Location",
-    "lbl-time": "Time"
+    "lbl-time": "Time",
+    "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨"
   },
   ja: {
     "nav-home": "ホーム",
@@ -148,7 +149,8 @@ window.translations = {
     "map-modal-submit": "送信",
     "map-modal-cancel": "キャンセル",
     "lbl-location": "位置",
-    "lbl-time": "投稿時間"
+    "lbl-time": "投稿時間",
+    "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨"
   },
   ko: {
     "nav-home": "홈",
@@ -221,7 +223,8 @@ window.translations = {
     "map-modal-submit": "제출",
     "map-modal-cancel": "취소",
     "lbl-location": "위치",
-    "lbl-time": "작성 시간"
+    "lbl-time": "작성 시간",
+    "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨"
   }
 };
 
