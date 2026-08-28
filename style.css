@@ -1233,6 +1233,20 @@ body {
     align-items: center;
   }
   
+  .hero-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .mascot-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1470,6 +1484,16 @@ body {
 
 /* Mobile Screens */
 @media (max-width: 768px) {
+  .about-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  .about-bio-card, .about-stats-card {
+    height: auto !important;
+  }
+
   .video-outer-container,
   .leopard-border-wrapper {
     height: auto !important;
