@@ -1497,6 +1497,12 @@ body {
     flex-direction: column !important;
     gap: 20px !important;
   }
+
+  .carousel-letter-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    scroll-snap-align: center !important;
+  }
   
   .about-bio-card, .about-stats-card {
     height: auto !important;

@@ -981,8 +981,14 @@ function initMascotEasterEgg() {
 window.scrollFanLetters = function(amount) {
   const container = document.getElementById('home-letters-container');
   if (container) {
+    // On mobile, scroll by the full width of the container instead of fixed pixel amount
+    let scrollAmount = amount;
+    if (window.innerWidth <= 768) {
+      scrollAmount = amount > 0 ? container.clientWidth : -container.clientWidth;
+    }
+    
     container.scrollTo({
-      left: container.scrollLeft + amount,
+      left: container.scrollLeft + scrollAmount,
       behavior: 'smooth'
     });
     setTimeout(() => {
