@@ -1470,6 +1470,16 @@ body {
 
 /* Mobile Screens */
 @media (max-width: 768px) {
+  .video-outer-container,
+  .leopard-border-wrapper {
+    height: auto !important;
+  }
+
+  .video-inner-container {
+    height: 0 !important;
+    padding-bottom: 56.25% !important; /* Force 16:9 space */
+  }
+
   .navbar {
     padding: 8px 0;
   }
