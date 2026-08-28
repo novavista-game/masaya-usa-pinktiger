@@ -1592,6 +1592,12 @@ body {
   .footer-right {
     text-align: center;
   }
+
+  #map-modal-submit, #map-modal-cancel {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    white-space: nowrap !important;
+  }
 }
 
 /* Extra Small Screens (Smartphones) */
