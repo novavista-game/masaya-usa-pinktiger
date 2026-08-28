@@ -1484,6 +1484,14 @@ body {
 
 /* Mobile Screens */
 @media (max-width: 768px) {
+  .about-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   .about-grid {
     display: flex !important;
     flex-direction: column !important;
