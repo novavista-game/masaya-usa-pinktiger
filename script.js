@@ -831,21 +831,21 @@ function initInteractiveMap() {
 
   const pawIcon = L.divIcon({
     html: `
-      <div style="color: #FF69B4; font-size: 30px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-15px, -30px); animation: pulse-paw 2s infinite;">
+      <div style="color: #FF69B4; font-size: 20px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-10px, -20px); animation: pulse-paw 2s infinite;">
         <i class="fa-solid fa-paw"></i>
       </div>
       <style>
         @keyframes pulse-paw {
-          0% { transform: translate(-15px, -30px) scale(1); }
-          50% { transform: translate(-15px, -30px) scale(1.15); }
-          100% { transform: translate(-15px, -30px) scale(1); }
+          0% { transform: translate(-10px, -20px) scale(1); }
+          50% { transform: translate(-10px, -20px) scale(1.15); }
+          100% { transform: translate(-10px, -20px) scale(1); }
         }
       </style>
     `,
     className: 'custom-paw-icon',
-    iconSize: [30, 30],
-    iconAnchor: [15, 30],
-    popupAnchor: [0, -30]
+    iconSize: [20, 20],
+    iconAnchor: [10, 20],
+    popupAnchor: [0, -20]
   });
 
   const markerCluster = L.markerClusterGroup({
@@ -869,7 +869,9 @@ function initInteractiveMap() {
     { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. 🇪🇸🔥" },
     { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! 🇨🇳🐯" },
     { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🇧🇷💖" },
-    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🇬🇧🎵" }
+    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🇬🇧🎵" },
+    { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! 🇯🇵🐯" },
+    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷✨" }
   ];
 
   hardcodedMarkers.forEach(item => {
