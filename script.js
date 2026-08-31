@@ -357,8 +357,8 @@ window.translations = {
     "video-caption-2": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">Pour Vous (Sous-titres anglais) - Édité par Pinktiger USA</span>",
     "about-section-title": "Le Parcours de Masaya 🐯✨",
     "about-bio-h3": "La Voix qui Traverse les Frontières",
-    "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> est un puissant chanteur japonais dont la gamme émotionnelle et la présence scénique lumineuse ont conquis les cœurs à travers l'Asie. Connu pour sa justesse parfaite, ses notes hautes époustouflantes et ses interprétations passionnées, il apporte un profond sentiment de vulnérabilité à chaque chanson qu'il interprète.",
-    "about-bio-p2": "Sa participation à des émissions de chant de premier plan telles que <em>THE Karaoke ☆ Battle</em> au Japon et la sensation télévisée transfrontalière <em>Han-Il King of Song / Korea-Japan Top Ten Show</em> l'a établi comme un chanteur de premier ordre. Masaya ne chante pas seulement avec technique, mais avec tout son cœur, partageant son humanité brute à travers chaque parole.",
+    "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> est un puissant chanteur japonais dont la gamme émotionnelle et la présence scénique lumineuse ont conquis les cœurs à travers l'Asie. Connu pour sa justesse parfaite, ses notes hautes époustouflantes et ses interprétations passionnées, il apporte un profond sentiment de vulnérabilité à chaque chanson.",
+    "about-bio-p2": "Sa participation à des émissions de chant telles que <em>THE Karaoke ☆ Battle</em> au Japon et <em>Han-Il King of Song / Korea-Japan Top Ten Show</em> l'a établi comme un chanteur de premier ordre. Masaya ne chante pas seulement avec technique, mais avec tout son cœur, partageant son humanité brute.",
     "about-quote": "Chanter est le pont qui relie différentes langues, cultures et âmes. Marchons ensemble sur ce chemin musical !",
     "about-stats-h3": "Pourquoi Nous Aimons Masaya",
     "stat-h4-1": "Polyvalence Vocale",
@@ -459,10 +459,17 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase only if the SDK is loaded
-if (typeof firebase !== 'undefined' && !firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+let db = null;
+try {
+  if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  if (typeof firebase !== 'undefined') {
+    db = firebase.database();
+  }
+} catch (error) {
+  console.warn("Firebase initialization failed:", error);
 }
-const db = typeof firebase !== 'undefined' ? firebase.database() : null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
@@ -471,7 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguageSwitcher();
   initVideoCarousel();
   initMobileMenu();
-  initInteractiveMap();
   
   // Nickname Modal Logic
   const nicknameModal = document.getElementById('nickname-modal');
@@ -804,40 +810,50 @@ function playCuteLanguageChime() {
 
 function initLeaderboard() {
   const listEl = document.getElementById('leaderboard-list');
-  if (!listEl || !db) return;
+  if (!listEl) return;
 
-  db.ref('leaderboard').orderByChild('score').limitToLast(10).on('value', snapshot => {
-    const users = [];
-    snapshot.forEach(child => {
-      users.push({
-        nickname: child.key,
-        score: child.val().score
+  if (!db) {
+    listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">Leaderboard offline. Play for fun! 🐾</li>';
+    return;
+  }
+
+  try {
+    db.ref('leaderboard').orderByChild('score').limitToLast(10).on('value', snapshot => {
+      const users = [];
+      snapshot.forEach(child => {
+        users.push({
+          nickname: child.key,
+          score: child.val().score
+        });
+      });
+      // Sort descending
+      users.sort((a, b) => b.score - a.score);
+
+      listEl.innerHTML = '';
+      if (users.length === 0) {
+        listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">No scores yet! Play to rank up! 🐾</li>';
+        return;
+      }
+
+      users.forEach((user, index) => {
+        const li = document.createElement('li');
+        li.style.padding = '10px 15px';
+        li.style.background = index === 0 ? '#ffb6c1' : '#ffe4ec';
+        li.style.borderRadius = '15px';
+        li.style.border = '2px dashed #ffb6c1';
+        li.style.display = 'flex';
+        li.style.justifyContent = 'space-between';
+        
+        const rankMedal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+        
+        li.innerHTML = `<span>${rankMedal} ${user.nickname}</span> <span>${user.score} pts</span>`;
+        listEl.appendChild(li);
       });
     });
-    // Sort descending
-    users.sort((a, b) => b.score - a.score);
-
-    listEl.innerHTML = '';
-    if (users.length === 0) {
-      listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">No scores yet! Play to rank up! 🐾</li>';
-      return;
-    }
-
-    users.forEach((user, index) => {
-      const li = document.createElement('li');
-      li.style.padding = '10px 15px';
-      li.style.background = index === 0 ? '#ffb6c1' : '#ffe4ec';
-      li.style.borderRadius = '15px';
-      li.style.border = '2px dashed #ffb6c1';
-      li.style.display = 'flex';
-      li.style.justifyContent = 'space-between';
-      
-      const rankMedal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
-      
-      li.innerHTML = `<span>${rankMedal} ${user.nickname}</span> <span>${user.score} pts</span>`;
-      listEl.appendChild(li);
-    });
-  });
+  } catch (error) {
+    console.warn("Failed to load leaderboard:", error);
+    listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">Leaderboard offline. 🐾</li>';
+  }
 }
 function initStampTour() {
   const gameBoard = document.getElementById('match3-board');
@@ -1093,11 +1109,15 @@ function initStampTour() {
     }
     
     // Push Score to Firebase
-    if (db && playerNickname !== "Guest") {
-      db.ref('leaderboard/' + playerNickname).set({
-        score: totalScore,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-      }).catch(err => console.log("Firebase Error:", err));
+    try {
+      if (db && playerNickname !== "Guest") {
+        db.ref('leaderboard/' + playerNickname).set({
+          score: totalScore,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        }).catch(err => console.warn("Firebase set error:", err));
+      }
+    } catch (err) {
+      console.warn("Firebase score push failed:", err);
     }
     
     if (totalScore >= config.target) {
