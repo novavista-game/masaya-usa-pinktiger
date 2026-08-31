@@ -470,10 +470,7 @@
         let lettersArray = Object.keys(data).map(key => data[key]).reverse();
         lettersArray = lettersArray.filter(letter => letter.isApproved === true);
         
-        // Update map markers
-        if (window.updateMapFromLetters) {
-          window.updateMapFromLetters(lettersArray);
-        }
+
         
         // Deduplication Filter
         const seen = new Set();

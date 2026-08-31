@@ -862,57 +862,27 @@ function initInteractiveMap() {
   });
   map.addLayer(markerCluster);
 
-  const countryCoordinates = {
-    "USA": [39.8283, -98.5795], "US": [39.8283, -98.5795], "UNITED STATES": [39.8283, -98.5795],
-    "JAPAN": [36.2048, 138.2529], "JP": [36.2048, 138.2529],
-    "SOUTH KOREA": [35.9078, 127.7669], "KOREA": [35.9078, 127.7669], "KR": [35.9078, 127.7669],
-    "SPAIN": [40.4637, -3.7492], "ES": [40.4637, -3.7492],
-    "MEXICO": [23.6345, -102.5528], "MX": [23.6345, -102.5528],
-    "CANADA": [56.1304, -106.3468], "CA": [56.1304, -106.3468],
-    "UK": [55.3781, -3.4360], "UNITED KINGDOM": [55.3781, -3.4360],
-    "AUSTRALIA": [-25.2744, 133.7751], "FRANCE": [46.2276, 2.2137],
-    "GERMANY": [51.1657, 10.4515], "BRAZIL": [-14.2350, -51.9253],
-    "ITALY": [41.8719, 12.5674], "PHILIPPINES": [12.8797, 121.7740],
-    "INDONESIA": [-0.7893, 113.9213], "TAIWAN": [23.6978, 120.9605],
-    "CHINA": [35.8617, 104.1954], "INDIA": [20.5937, 78.9629]
-  };
+  const hardcodedMarkers = [
+    { lat: 34.0522, lng: -118.2437, nickname: "PinkTiger_LA", message: "Been listening to his covers on repeat! Can't wait for a US tour! 🐯💖" },
+    { lat: 40.7128, lng: -74.0060, nickname: "Melody_NY", message: "His vocal range is absolutely insane. This new fan site is gorgeous! 🎤✨" },
+    { lat: 48.8566, lng: 2.3522, nickname: "Paris_PinkTiger", message: "Growing fanbase in Paris! Your vocal tone is incredibly trendy in Europe. 🇫🇷✨" },
+    { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. 🇪🇸🔥" },
+    { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! 🇨🇳🐯" },
+    { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🇧🇷💖" },
+    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🇬🇧🎵" }
+  ];
 
-  window.updateMapFromLetters = function(letters) {
-    if (!letters) return;
+  hardcodedMarkers.forEach(item => {
+    const marker = L.marker([item.lat, item.lng], { icon: pawIcon });
     
-    // Clear existing markers
-    markerCluster.clearLayers();
-
-    letters.forEach(letter => {
-      // Create a pseudo-unique ID for the marker
-      const key = letter.timestamp + "_" + letter.nickname;
-      
-      const country = (letter.country || "USA").toUpperCase().trim();
-      let coords = countryCoordinates[country];
-      if (!coords) {
-        coords = [20 + (Math.random() - 0.5) * 50, 0 + (Math.random() - 0.5) * 100];
-      }
-      // Add slight jitter so multiple markers don't perfectly overlap
-      const lat = coords[0] + (Math.random() - 0.5) * 4;
-      const lng = coords[1] + (Math.random() - 0.5) * 4;
-
-      const marker = L.marker([lat, lng], { icon: pawIcon });
-      
-      let popupContent = `<div style="text-align:center; max-width: 250px;">`;
-      popupContent += `<h4 style="color: var(--brand-pink); margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">${letter.nickname || 'Pinktiger'}</h4>`;
-      if (letter.imageUrl) {
-        popupContent += `<img src="${letter.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Fan Photo">`;
-      }
-      if (letter.message) {
-        popupContent += `<p style="font-family:'Quicksand', sans-serif; color:#333; margin:0;">"${letter.message}"</p>`;
-      }
-      popupContent += `</div>`;
-      
-      marker.bindPopup(popupContent);
-      markerCluster.addLayer(marker);
-    });
-  };
-  // Removed old renderedMarkers logic
+    let popupContent = `<div style="text-align:center; max-width: 250px;">`;
+    popupContent += `<h4 style="color: var(--brand-pink); margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">${item.nickname}</h4>`;
+    popupContent += `<p style="font-family:'Quicksand', sans-serif; color:#333; margin:0;">"${item.message}"</p>`;
+    popupContent += `</div>`;
+    
+    marker.bindPopup(popupContent);
+    markerCluster.addLayer(marker);
+  });
 }
 
 /* ==========================================================================
