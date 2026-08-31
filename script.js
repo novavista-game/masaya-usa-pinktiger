@@ -831,21 +831,36 @@ function initInteractiveMap() {
 
   const pawIcon = L.divIcon({
     html: `
-      <div style="color: #FF69B4; font-size: 30px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-15px, -15px); animation: pulse-paw 2s infinite;">
+      <div style="color: #FF69B4; font-size: 30px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-15px, -30px); animation: pulse-paw 2s infinite;">
         <i class="fa-solid fa-paw"></i>
       </div>
       <style>
         @keyframes pulse-paw {
-          0% { transform: translate(-15px, -15px) scale(1); }
-          50% { transform: translate(-15px, -15px) scale(1.15); }
-          100% { transform: translate(-15px, -15px) scale(1); }
+          0% { transform: translate(-15px, -30px) scale(1); }
+          50% { transform: translate(-15px, -30px) scale(1.15); }
+          100% { transform: translate(-15px, -30px) scale(1); }
         }
       </style>
     `,
     className: 'custom-paw-icon',
     iconSize: [30, 30],
-    iconAnchor: [15, 15]
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30]
   });
+
+  const markerCluster = L.markerClusterGroup({
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: true,
+    iconCreateFunction: function(cluster) {
+      return L.divIcon({ 
+        html: '<div style="color: #FF69B4; font-size: 35px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"><i class="fa-solid fa-paw"></i></div>',
+        className: 'custom-cluster-icon', 
+        iconSize: [35, 35] 
+      });
+    }
+  });
+  map.addLayer(markerCluster);
 
   const modal = document.getElementById('map-modal');
   const btnSubmit = document.getElementById('map-modal-submit');
@@ -914,7 +929,7 @@ function initInteractiveMap() {
           
           if (isNaN(lat) || isNaN(lng)) return;
 
-          const marker = L.marker([lat, lng], { icon: pawIcon }).addTo(map);
+          const marker = L.marker([lat, lng], { icon: pawIcon });
           
           let popupContent = `<div style="text-align:center; max-width: 200px;">`;
           if (markerData.imageUrl) {
@@ -926,6 +941,7 @@ function initInteractiveMap() {
           popupContent += `</div>`;
           
           marker.bindPopup(popupContent);
+          markerCluster.addLayer(marker);
           renderedMarkers[key] = marker;
         }
       }
@@ -934,7 +950,7 @@ function initInteractiveMap() {
     // Remove deleted markers
     Object.keys(renderedMarkers).forEach(key => {
       if (!markersData[key]) {
-        map.removeLayer(renderedMarkers[key]);
+        markerCluster.removeLayer(renderedMarkers[key]);
         delete renderedMarkers[key];
       }
     });
