@@ -82,7 +82,10 @@ window.translations = {
     "lbl-time": "Time",
     "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨",
     "ig-updates-title": "Masaya's Latest Updates 🐯✨",
-    "teaser_text": "Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!"
+    "teaser_text": "Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!",
+    "nav-stamp-tour": "Stamp Tour",
+    "stamp-tour-title": "Stamp Tour 🗺️🐾",
+    "stamp-tour-desc": "Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!"
   },
   ja: {
     "nav-home": "ホーム",
@@ -162,7 +165,10 @@ window.translations = {
     "lbl-time": "投稿時間",
     "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨",
     "ig-updates-title": "マサヤの最新情報 🐯✨",
-    "teaser_text": "Pinktigerが楽しいMasayaの足跡巡りゲームを一生懸命作っています！最高得点を記録した方が上位にランクインするシステムも準備中ですので、ぜひご期待ください！"
+    "teaser_text": "Pinktigerが楽しいMasayaの足跡巡りゲームを一生懸命作っています！最高得点を記録した方が上位にランクインするシステムも準備中ですので、ぜひご期待ください！",
+    "nav-stamp-tour": "スタンプツアー",
+    "stamp-tour-title": "スタンプツアー 🗺️🐾",
+    "stamp-tour-desc": "マサヤの足跡をたどろう！クイズに答えてスタンプを集め、次の目的地をアンロック！"
   },
   ko: {
     "nav-home": "홈",
@@ -243,7 +249,10 @@ window.translations = {
     "lbl-time": "작성 시간",
     "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨",
     "ig-updates-title": "마사야 최신 소식 🐯✨",
-    "teaser_text": "핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 최고점을 기록하신 분이 상위에 올라가는 랭킹 시스템도 준비 중이니 기대해 주세요!"
+    "teaser_text": "핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 최고점을 기록하신 분이 상위에 올라가는 랭킹 시스템도 준비 중이니 기대해 주세요!",
+    "nav-stamp-tour": "스탬프 투어",
+    "stamp-tour-title": "스탬프 투어 🗺️🐾",
+    "stamp-tour-desc": "마사야의 발자취를 따라가보세요! 퀴즈를 풀고 스탬프를 모아 다음 목적지를 열어보세요!"
   },
   es: {
     "nav-home": "Inicio",
@@ -324,7 +333,10 @@ window.translations = {
     "lbl-time": "Tiempo",
     "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨",
     "ig-updates-title": "Últimas noticias de Masaya 🐯✨",
-    "teaser_text": "¡Nuestro Pinktiger está trabajando duro para traerte un divertido juego de recorrido por las huellas de Masaya! Además, ¡espera nuestro sistema de clasificación donde los mejores puntajes aparecerán en la tabla de líderes!"
+    "teaser_text": "¡Nuestro Pinktiger está trabajando duro para traerte un divertido juego de recorrido por las huellas de Masaya! Además, ¡espera nuestro sistema de clasificación donde los mejores puntajes aparecerán en la tabla de líderes!",
+    "nav-stamp-tour": "Tour de Sellos",
+    "stamp-tour-title": "Tour de Sellos 🗺️🐾",
+    "stamp-tour-desc": "¡Sigue las huellas de Masaya! ¡Responde cuestionarios para coleccionar sellos y desbloquear el siguiente destino!"
   },
   fr: {
     "nav-home": "Accueil",
@@ -406,7 +418,10 @@ window.translations = {
     "lbl-time": "Heure",
     "clickMascotHint": "Cliquez sur la Mascotte Pinktiger pour trouver des photos cachées de Masaya ! 🐯✨",
     "ig-updates-title": "Dernières Mises à Jour de Masaya 🐯✨",
-    "teaser_text": "Notre Pinktiger travaille dur pour vous proposer un jeu de parcours amusant sur les traces de Masaya ! De plus, attendez-vous à notre système de classement où les meilleurs scores figureront au sommet du classement !"
+    "teaser_text": "Notre Pinktiger travaille dur pour vous proposer un jeu de parcours amusant sur les traces de Masaya ! De plus, attendez-vous à notre système de classement où les meilleurs scores figureront au sommet du classement !",
+    "nav-stamp-tour": "Tour des Timbres",
+    "stamp-tour-title": "Tour des Timbres 🗺️🐾",
+    "stamp-tour-desc": "Suivez les traces de Masaya ! Répondez aux quiz pour collectionner des timbres et débloquer la prochaine destination !"
   }
 };
 
@@ -431,6 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoCarousel();
   initMobileMenu();
   initInteractiveMap();
+  initStampTour();
 });
 
 /* ==========================================================================
@@ -738,7 +754,110 @@ function playCuteLanguageChime() {
 
 
 /* ==========================================================================
-   7. Video Carousel
+   7. Stamp Tour Logic
+   ========================================================================== */
+function initStampTour() {
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step2Lock = document.getElementById('step-2-lock');
+  const mascot = document.getElementById('tour-mascot');
+  const stamp1 = document.getElementById('stamp-1');
+  const modal = document.getElementById('quiz-modal');
+  const closeBtn = document.getElementById('close-quiz-btn');
+  const correctBtn = document.getElementById('quiz-correct-btn');
+  
+  if (!step1) return;
+
+  step1.addEventListener('click', () => {
+    // 1. Animate mascot to step 1
+    const stepRect = step1.getBoundingClientRect();
+    const containerRect = document.querySelector('.stamp-board').getBoundingClientRect();
+    
+    const targetLeft = stepRect.left - containerRect.left + (stepRect.width / 2) - 40; // approx center
+    const targetTop = stepRect.top - containerRect.top - 70; // above the step
+
+    if(mascot) {
+        mascot.style.left = targetLeft + 'px';
+        mascot.style.top = targetTop + 'px';
+    }
+
+    // 2. Open modal after a short delay for animation
+    setTimeout(() => {
+      if(modal) {
+          modal.style.visibility = 'visible';
+          modal.style.opacity = '1';
+          modal.style.pointerEvents = 'auto';
+      }
+    }, 1000);
+  });
+
+  // Close Modal
+  if(closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        if(modal) {
+            modal.style.visibility = 'hidden';
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+        }
+      });
+  }
+
+  // Correct Answer Clicked
+  if(correctBtn) {
+      correctBtn.addEventListener('click', () => {
+        // Close modal
+        if(modal) {
+            modal.style.visibility = 'hidden';
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+        }
+
+        // Trigger Confetti
+        if (window.confetti) {
+          const duration = 3000;
+          const animationEnd = Date.now() + duration;
+          const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10001, colors: ['#FF1493', '#FF69B4', '#FFB6C1', '#FFF'] };
+
+          const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+              return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            window.confetti(Object.assign({}, defaults, { particleCount,
+              origin: { x: Math.random() * 0.5 + 0.25, y: Math.random() - 0.2 }
+            }));
+          }, 250);
+        }
+
+        // Show Stamp
+        setTimeout(() => {
+          if(stamp1) {
+              stamp1.style.opacity = '1';
+              stamp1.style.transform = 'scale(1) rotate(15deg)';
+          }
+          
+          // Unlock Step 2
+          setTimeout(() => {
+            if(step2) {
+                step2.classList.remove('locked-step');
+                step2.style.opacity = '1';
+                step2.style.filter = 'grayscale(0%)';
+                step2.style.cursor = 'pointer';
+            }
+            if (step2Lock) {
+              step2Lock.style.opacity = '0';
+            }
+          }, 800);
+        }, 500);
+      });
+  }
+}
+
+/* ==========================================================================
+   8. Video Carousel
    ========================================================================== */
 function initVideoCarousel() {
   const videoPlayer = document.getElementById('main-hero-video');

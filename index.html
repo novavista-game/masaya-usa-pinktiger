@@ -64,6 +64,7 @@
       <nav class="nav-menu">
         <a href="#hero" class="nav-link" data-translate="nav-home">Home</a>
         <a href="#about" class="nav-link" data-translate="nav-about">About Masaya</a>
+        <a href="#stamp-tour" class="nav-link" data-translate="nav-stamp-tour">Stamp Tour</a>
         <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">Our Mascot</a>
         <a href="index.html#channels" class="nav-link" data-translate="nav-support">Support & Channels</a>
         <a href="video_archive.html" class="nav-link"><i class="fa-solid fa-music"></i> <span data-translate="nav-video">Video Archive</span></a>
@@ -124,26 +125,91 @@
     </div>
   </section>
 
-  <!-- Coming Soon Game Teaser Section -->
-  <section id="photo-pick" class="about-section fade-in-section" style="background: var(--light-pink); padding: 60px 0;">
+  <!-- Stamp Tour Interactive Game Section -->
+  <section id="stamp-tour" class="about-section fade-in-section" style="background: var(--light-pink); padding: 80px 0;">
     <div class="container">
-      <div style="max-width: 800px; margin: 0 auto; text-align: center; background: #fff; border-radius: 25px; padding: 50px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.15); border: 3px dashed var(--brand-pink); position: relative; overflow: hidden;">
+      <h2 class="section-title" data-translate="stamp-tour-title" style="margin-bottom: 20px;">Stamp Tour 🗺️🐾</h2>
+      <p style="text-align: center; font-size: 1.3rem; margin-bottom: 40px; color: #666; font-family: 'Quicksand', sans-serif;">
+        <span data-translate="stamp-tour-desc">Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!</span>
+      </p>
+
+      <div class="stamp-board" style="position: relative; max-width: 800px; margin: 0 auto; background: #fff; border-radius: 30px; padding: 60px 40px; box-shadow: 0 15px 40px rgba(255,105,180,0.15); border: 4px dashed var(--brand-pink); overflow: hidden;">
         
-        <!-- Leopard print decorative corner (fallback to solid color if missing) -->
-        <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--pastel-pink); border-radius: 50%; opacity: 0.5;"></div>
-        
-        <h2 style="font-family: var(--font-title); font-size: 2.5rem; color: var(--brand-pink); margin-bottom: 20px; text-shadow: 2px 2px 0px #fff, 3px 3px 0px rgba(255,105,180,0.3);">Coming Soon! 🎀</h2>
-        
-        <div style="font-size: 5rem; margin: 30px 0; animation: bounce 2s infinite;">
-          🐯 👷‍♀️ 🛠️ 💻
+        <!-- Board Background Decorative Elements -->
+        <div style="position: absolute; top: -40px; left: -40px; width: 120px; height: 120px; background: var(--pastel-pink); border-radius: 50%; opacity: 0.4;"></div>
+        <div style="position: absolute; bottom: -20px; right: -20px; width: 100px; height: 100px; background: var(--pastel-pink); border-radius: 50%; opacity: 0.4;"></div>
+
+        <!-- The Mascot (Animated Tiger) -->
+        <!-- Replace emoji with real image later: <img src="assets/tiger-character.png" class="mascot-character" id="tour-mascot"> -->
+        <div class="mascot-character" id="tour-mascot" style="position: absolute; font-size: 4rem; z-index: 10; transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); left: 10%; top: 20%;">
+          🐯
         </div>
-        
-        <p data-translate="teaser_text" style="font-family: 'Quicksand', sans-serif; font-size: 1.2rem; color: #555; line-height: 1.6; max-width: 600px; margin: 0 auto; font-weight: 600; text-align: center; padding: 10px 20px;">
-          Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!
-        </p>
+
+        <!-- The Path -->
+        <div class="tour-path-line" style="position: absolute; top: 45%; left: 15%; right: 15%; height: 8px; background: #ffe4ec; border-radius: 4px; z-index: 1;"></div>
+
+        <!-- Steps Container -->
+        <div class="steps-container" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 5;">
+          
+          <!-- Step 1 -->
+          <div class="tour-step active-step" id="step-1" style="text-align: center; width: 140px; cursor: pointer; position: relative;">
+            <div class="step-icon" style="width: 80px; height: 80px; background: var(--brand-pink); color: #fff; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 0 8px 20px rgba(255,105,180,0.4); border: 4px solid #fff; transition: transform 0.2s;">
+              🍜
+            </div>
+            <h4 style="font-family: var(--font-title); color: var(--dark-text); font-size: 1.4rem; margin-bottom: 5px;">Step 1</h4>
+            <p style="font-size: 1.1rem; color: #555; font-weight: 600;">Yoshimaru Malatang Umeda</p>
+            
+            <!-- Stamp Overlay (Hidden initially) -->
+            <!-- Replace emoji with real image later: <img src="assets/paw-stamp.png" class="paw-stamp" id="stamp-1"> -->
+            <div class="paw-stamp" id="stamp-1" style="position: absolute; top: -10px; right: -10px; font-size: 4rem; color: #FF1493; opacity: 0; transform: scale(3) rotate(20deg); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-shadow: 0 5px 15px rgba(0,0,0,0.2); pointer-events: none;">
+              🐾
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="tour-step locked-step" id="step-2" style="text-align: center; width: 140px; position: relative; opacity: 0.6; filter: grayscale(100%); transition: all 0.8s ease;">
+            <div class="step-icon" style="width: 80px; height: 80px; background: #ccc; color: #fff; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 4px solid #fff;">
+              ☕
+            </div>
+            <h4 style="font-family: var(--font-title); color: var(--dark-text); font-size: 1.4rem; margin-bottom: 5px;">Step 2</h4>
+            <p style="font-size: 1.1rem; color: #555; font-weight: 600;">Animal Cafe</p>
+            <div class="lock-icon" id="step-2-lock" style="position: absolute; top: -5px; right: 15px; font-size: 1.8rem; transition: all 0.5s;">🔒</div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Quiz Modal -->
+  <div id="quiz-modal" style="opacity: 0; pointer-events: none; visibility: hidden; transition: all 0.4s ease; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,240,246,0.95); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
+    <div class="quiz-modal-content" style="background: #fff; border-radius: 30px; padding: 40px; max-width: 600px; width: 90%; box-shadow: 0 20px 60px rgba(255,105,180,0.25); border: 5px solid var(--primary-pink); position: relative; text-align: center;">
+      
+      <button id="close-quiz-btn" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2.5rem; color: #aaa; cursor: pointer; transition: color 0.2s;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px;">Yoshimaru Malatang Quiz! 🍜</h3>
+      
+      <!-- Video Placeholder -->
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 15px; margin-bottom: 25px; border: 3px solid #ffe4ec;">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
+      </div>
+
+      <p style="font-size: 1.4rem; color: #444; font-weight: 700; margin-bottom: 30px; line-height: 1.5; font-family: 'Quicksand', sans-serif;">
+        [QUIZ_QUESTION] What is Masaya's favorite topping here?
+      </p>
+
+      <div class="quiz-buttons" style="display: flex; flex-direction: column; gap: 15px;">
+        <button class="quiz-btn wrong-btn" style="background: #fff; border: 3px solid #ddd; padding: 20px; font-size: 1.5rem; font-weight: 700; border-radius: 15px; color: #555; cursor: pointer; transition: all 0.2s; font-family: 'Quicksand', sans-serif;">
+          A) [OPTION_A] Extra spicy beef
+        </button>
+        <button class="quiz-btn correct-btn" id="quiz-correct-btn" style="background: #fff; border: 3px solid #ddd; padding: 20px; font-size: 1.5rem; font-weight: 700; border-radius: 15px; color: #555; cursor: pointer; transition: all 0.2s; font-family: 'Quicksand', sans-serif;">
+          B) [OPTION_B] Cheese and rice cakes
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- About Section -->
   <section id="about" class="about-section fade-in-section">
@@ -501,6 +567,8 @@
 
 
   </script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Script Reference -->
   <script src="script.js"></script>
 </body>
