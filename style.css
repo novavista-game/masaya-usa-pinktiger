@@ -1970,3 +1970,10 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   border-radius: 10px;
   overflow: hidden;
 }
+
+/* Elfsight Widget Watermark Hide */
+.ig-widget-container a[href*="elfsight.com"],
+.eapps-link,
+[class*="eapps-instagram-feed-title"] {
+  display: none !important;
+}

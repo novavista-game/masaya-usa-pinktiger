@@ -56,6 +56,7 @@ window.translations = {
     "footer-desc": "Creating a global home for US-based fans of Japanese vocal sensation Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Unofficial Fanbase built with love. 💖",
     "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
+    "disclaimer-text": "🐯 Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
     "fanletters-desc": "Leave a lovely message for Masaya! No login required. Just positive vibes and pink tiger energy. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Nickname",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> Country",
@@ -76,7 +77,8 @@ window.translations = {
     "map-modal-cancel": "Cancel",
     "lbl-location": "Location",
     "lbl-time": "Time",
-    "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨"
+    "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨",
+    "ig-updates-title": "Masaya's Latest Updates 🐯✨"
   },
   ja: {
     "nav-home": "ホーム",
@@ -130,6 +132,7 @@ window.translations = {
     "footer-desc": "日本の実力派ボーカリスト堀川雅也の全米ファンが繋がるグローバルなコミュニティを作ります。",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 愛を込めて作られた非公式ファンベース 💖",
     "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
+    "disclaimer-text": "🐯 免責事項：当サイトの全著作権はMasayaUSAPinktigerに帰属します。堀川雅也氏および所属事務所とは一切関係ありません。ファンによって運営されている非営利サイトです。",
     "fanletters-desc": "マサヤに素敵なメッセージを残そう！ログイン不要です。ポジティブな気持ちとピンクタイガーのエネルギーだけ。 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> ニックネーム",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 国名",
@@ -150,7 +153,8 @@ window.translations = {
     "map-modal-cancel": "キャンセル",
     "lbl-location": "位置",
     "lbl-time": "投稿時間",
-    "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨"
+    "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨",
+    "ig-updates-title": "マサヤの最新情報 🐯✨"
   },
   ko: {
     "nav-home": "홈",
@@ -204,6 +208,7 @@ window.translations = {
     "footer-desc": "일본의 보컬 신성 호리카와 마사야의 미국 팬들이 모이는 글로벌 소통 커뮤니티입니다.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 사랑으로 만든 비공식 팬베이스 💖",
     "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
+    "disclaimer-text": "🐯 면책 조항: 본 사이트의 모든 권리는 MasayaUSAPinktiger에게 있습니다. 마사야(호리카와 마사야) 님 및 소속사와는 아무런 관련이 없습니다. 팬들이 운영하는 비영리 사이트입니다.",
     "fanletters-desc": "마사야에게 따뜻한 메시지를 남겨보세요! 로그인 불필요. 긍정적인 마음과 핑크 타이거 에너지면 충분해요. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> 닉네임",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 국가",
@@ -224,7 +229,8 @@ window.translations = {
     "map-modal-cancel": "취소",
     "lbl-location": "위치",
     "lbl-time": "작성 시간",
-    "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨"
+    "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨",
+    "ig-updates-title": "마사야 최신 소식 🐯✨"
   },
   es: {
     "nav-home": "Inicio",
@@ -278,6 +284,7 @@ window.translations = {
     "footer-desc": "Creando un hogar global para los fans en EE. UU. de la sensación vocal japonesa Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Fanbase no oficial construida con amor. 💖",
     "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
+    "disclaimer-text": "🐯 Descargo de responsabilidad: Todos los derechos de este sitio pertenecen a MasayaUSAPinktiger. No tenemos afiliación con Masaya Horikawa ni con su agencia. Este es un sitio sin fines de lucro operado por fans.",
     "fanletters-desc": "¡Deja un hermoso mensaje para Masaya! No se requiere iniciar sesión. Solo vibras positivas y energía de pink tiger. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Apodo",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> País",
@@ -298,7 +305,8 @@ window.translations = {
     "map-modal-cancel": "Cancelar",
     "lbl-location": "Ubicación",
     "lbl-time": "Tiempo",
-    "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨"
+    "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨",
+    "ig-updates-title": "Últimas noticias de Masaya 🐯✨"
   }
 };
 
