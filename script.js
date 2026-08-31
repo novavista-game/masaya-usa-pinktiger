@@ -81,7 +81,8 @@ window.translations = {
     "lbl-location": "Location",
     "lbl-time": "Time",
     "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨",
-    "ig-updates-title": "Masaya's Latest Updates 🐯✨"
+    "ig-updates-title": "Masaya's Latest Updates 🐯✨",
+    "teaser_text": "Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!"
   },
   ja: {
     "nav-home": "ホーム",
@@ -160,7 +161,8 @@ window.translations = {
     "lbl-location": "位置",
     "lbl-time": "投稿時間",
     "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨",
-    "ig-updates-title": "マサヤの最新情報 🐯✨"
+    "ig-updates-title": "マサヤの最新情報 🐯✨",
+    "teaser_text": "Pinktigerが楽しいMasayaの足跡巡りゲームを一生懸命作っています！最高得点を記録した方が上位にランクインするシステムも準備中ですので、ぜひご期待ください！"
   },
   ko: {
     "nav-home": "홈",
@@ -240,7 +242,8 @@ window.translations = {
     "lbl-location": "위치",
     "lbl-time": "작성 시간",
     "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨",
-    "ig-updates-title": "마사야 최신 소식 🐯✨"
+    "ig-updates-title": "마사야 최신 소식 🐯✨",
+    "teaser_text": "핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 최고점을 기록하신 분이 상위에 올라가는 랭킹 시스템도 준비 중이니 기대해 주세요!"
   },
   es: {
     "nav-home": "Inicio",
@@ -320,7 +323,8 @@ window.translations = {
     "lbl-location": "Ubicación",
     "lbl-time": "Tiempo",
     "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨",
-    "ig-updates-title": "Últimas noticias de Masaya 🐯✨"
+    "ig-updates-title": "Últimas noticias de Masaya 🐯✨",
+    "teaser_text": "¡Nuestro Pinktiger está trabajando duro para traerte un divertido juego de recorrido por las huellas de Masaya! Además, ¡espera nuestro sistema de clasificación donde los mejores puntajes aparecerán en la tabla de líderes!"
   },
   fr: {
     "nav-home": "Accueil",
@@ -401,7 +405,8 @@ window.translations = {
     "lbl-location": "Emplacement",
     "lbl-time": "Heure",
     "clickMascotHint": "Cliquez sur la Mascotte Pinktiger pour trouver des photos cachées de Masaya ! 🐯✨",
-    "ig-updates-title": "Dernières Mises à Jour de Masaya 🐯✨"
+    "ig-updates-title": "Dernières Mises à Jour de Masaya 🐯✨",
+    "teaser_text": "Notre Pinktiger travaille dur pour vous proposer un jeu de parcours amusant sur les traces de Masaya ! De plus, attendez-vous à notre système de classement où les meilleurs scores figureront au sommet du classement !"
   }
 };
 
