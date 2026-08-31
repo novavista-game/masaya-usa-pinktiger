@@ -124,78 +124,24 @@
     </div>
   </section>
 
-  <!-- Photo Pick Section (Moved Carousel) -->
+  <!-- Coming Soon Game Teaser Section -->
   <section id="photo-pick" class="about-section fade-in-section" style="background: var(--light-pink); padding: 60px 0;">
     <div class="container">
-      <h2 class="section-title" style="margin-bottom: 40px;" data-translate="gallery-title">Fandom Gallery 🎀</h2>
-
-      <style>
-        .photo-pick-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 40px;
-          align-items: stretch;
-        }
-        @media (min-width: 768px) {
-          .photo-pick-grid {
-            grid-template-columns: 4fr 6fr;
-          }
-        }
-        @keyframes bounce {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
-        }
-        .layered-container {
-          position: relative;
-          width: 100%;
-        }
-        .layered-bg {
-          width: 100%;
-          border-radius: 15px;
-          display: block;
-          box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-        }
-        .layered-tiger {
-          position: absolute;
-          bottom: -20px;
-          left: -20px;
-          width: 35%;
-          animation: bounce 1.2s ease-in-out infinite;
-          z-index: 2;
-        }
-      </style>
-
-      <div class="photo-pick-grid">
-        <!-- Left Column: Layered Image -->
-        <div class="photo-pick-left">
-          <div class="layered-container">
-            <img src="assets/마사야 호랑이 없는 이미지.jpg" alt="Masaya Representative Image" class="layered-bg">
-            <img src="assets/pinktiger.png" alt="Floating Pinktiger" class="layered-tiger">
-          </div>
+      <div style="max-width: 800px; margin: 0 auto; text-align: center; background: #fff; border-radius: 25px; padding: 50px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.15); border: 3px dashed var(--brand-pink); position: relative; overflow: hidden;">
+        
+        <!-- Leopard print decorative corner (fallback to solid color if missing) -->
+        <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--pastel-pink); border-radius: 50%; opacity: 0.5;"></div>
+        
+        <h2 style="font-family: var(--font-title); font-size: 2.5rem; color: var(--brand-pink); margin-bottom: 20px; text-shadow: 2px 2px 0px #fff, 3px 3px 0px rgba(255,105,180,0.3);">Coming Soon! 🎀</h2>
+        
+        <div style="font-size: 5rem; margin: 30px 0; animation: bounce 2s infinite;">
+          🐯 👷‍♀️ 🛠️ 💻
         </div>
-
-        <!-- Right Column: Carousel -->
-        <div class="photo-pick-right" style="height: 100%;">
-          <div class="video-outer-container" style="max-width: 600px; margin: 0 auto; width: 100%;">
-            <div class="leopard-border-wrapper">
-              <div class="video-inner-container fandom-gallery-video" style="background: linear-gradient(135deg, #fff0f6, #ffe4ec);">
-                <div class="carousel-track" id="hero-carousel-track" style="display: flex; width: 100%;">
-                  <!-- Images will be injected dynamically from Firebase -->
-                  <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color); padding: 50px;">
-                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
-                  </div>
-                </div>
-                <!-- Navigation Buttons -->
-                <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="carousel-btn next-btn" id="carousel-next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
-              </div>
-            </div>
-            <div class="video-caption" id="carousel-caption">
-              <p><span class="label">🔥 This Week's Hot Pic:</span> MasayaUSAPinktiger Fandom made</p>
-            </div>
-          </div>
-        </div>
+        
+        <p style="font-family: 'Quicksand', sans-serif; font-size: 1.2rem; color: #555; line-height: 1.6; max-width: 600px; margin: 0 auto; font-weight: 600;">
+          Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned!<br><br>
+          <span style="font-size: 1rem; color: #888; font-weight: 400;">(핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 기대해 주세요!)</span>
+        </p>
       </div>
     </div>
   </section>
@@ -555,54 +501,6 @@
     
 
 
-    onValue(mapMarkersRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        
-        // Populate Fandom Gallery
-        const galleryTrack = document.getElementById('hero-carousel-track');
-        if (galleryTrack) {
-          const markersArray = data ? Object.keys(data).map(key => data[key]).reverse().filter(m => m.isApproved === true) : []; // Latest first
-          const galleryItems = markersArray.filter(m => m.imageUrl);
-          
-          let htmlContent = '';
-          window.galleryCaptions = [];
-          
-          // Dynamic Firebase Data First (Newest First)
-          galleryItems.forEach(item => {
-            htmlContent += `
-              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%; height: 100%;">
-                <img src="${item.imageUrl}" alt="Fandom Gallery Fan Photo" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px;">
-              </div>
-            `;
-            window.galleryCaptions.push(`<p><span class="label" style="font-weight: 700; color: var(--brand-pink-hover);"><i class="fa-solid fa-paw" style="color: #FF69B4;"></i> Fan Photo:</span> ${item.message || 'Pinktiger Fan'}</p>`);
-          });
-          
-          // Seed Data (Static Assets) Appended After
-          const staticSeedData = [
-            { src: 'assets/행사안경-Final.png', caption: '<p><span class="label" style="font-weight: 700; color: var(--brand-pink-hover);"><i class="fa-solid fa-paw" style="color: #FF69B4;"></i> Fan Photo:</span> MasayaUSAPinktiger Fandom made</p>' },
-            { src: 'assets/Hello Kitty Food Storage.jpg', caption: '<p><span class="label" style="font-weight: 700; color: var(--brand-pink-hover);"><i class="fa-solid fa-paw" style="color: #FF69B4;"></i> Fan Photo:</span> Hello Kitty Food Storage Set for Masaya 💖 🐯</p>' },
-            { src: 'assets/헬로키티.jpg', caption: '<p><span class="label" style="font-weight: 700; color: var(--brand-pink-hover);"><i class="fa-solid fa-paw" style="color: #FF69B4;"></i> Fan Photo:</span> Hello Kitty Travel Item Collection 💖 🐯</p>' }
-          ];
-
-          staticSeedData.forEach(item => {
-            htmlContent += `
-              <div class="carousel-slide" style="flex: 0 0 100%; min-width: 100%; height: 100%;">
-                <img src="${item.src}" alt="Fandom Gallery Seed Photo" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px;">
-              </div>
-            `;
-            window.galleryCaptions.push(item.caption);
-          });
-          
-          galleryTrack.innerHTML = htmlContent;
-          if (window.updateCarouselData) {
-            window.updateCarouselData();
-          }
-        }
-
-
-      }
-    });
   </script>
   <!-- Script Reference -->
   <script src="script.js"></script>
