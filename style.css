@@ -2080,4 +2080,22 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
     padding: 15px !important;
     margin-bottom: 5px !important;
   }
+  
+  #match3-board {
+    grid-template-columns: repeat(6, 1fr) !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+  
+  .match3-cell {
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: clamp(20px, 8vw, 40px) !important; /* Scale proportionally */
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
 }

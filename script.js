@@ -483,6 +483,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const nicknameModal = document.getElementById('nickname-modal');
   const startBtn = document.getElementById('start-game-btn');
   const nicknameInput = document.getElementById('nickname-input');
+  const exitGameBtn = document.getElementById('exit-game-btn');
+  
+  if (exitGameBtn) {
+    exitGameBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetGame();
+    });
+  }
   
   if (nicknameModal && startBtn) {
     startBtn.addEventListener('click', () => {
@@ -855,6 +863,25 @@ function initLeaderboard() {
     listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">Leaderboard offline. 🐾</li>';
   }
 }
+
+function resetGame() {
+  const nicknameModal = document.getElementById('nickname-modal');
+  const nicknameInput = document.getElementById('nickname-input');
+  const levelTitle = document.getElementById('level-title');
+  const scoreCounter = document.getElementById('score-counter');
+  
+  playerNickname = "Guest";
+  if (nicknameInput) nicknameInput.value = '';
+  if (nicknameModal) nicknameModal.style.display = 'flex';
+  
+  // Expose global variables to reset game state. 
+  // Wait, I need to reset them where they are accessible. They are in the global scope? No, they are inside initStampTour scope.
+  // Actually, I can just call a global reset function.
+  if (window.doResetGame) {
+    window.doResetGame();
+  }
+}
+
 function initStampTour() {
   const gameBoard = document.getElementById('match3-board');
   const scoreCounter = document.getElementById('score-counter');
@@ -880,6 +907,21 @@ function initStampTour() {
   let draggedElement = null;
   let replacedElement = null;
   let isProcessing = false;
+
+  window.doResetGame = function() {
+    currentLevel = 1;
+    totalScore = 0;
+    isProcessing = false;
+    
+    if (levelTitle) levelTitle.innerHTML = `Level ${currentLevel} 💖`;
+    
+    if (treasureChest) treasureChest.style.display = 'none';
+    if (gameHeader) gameHeader.style.display = 'block';
+    if (gameBoard) gameBoard.style.display = 'grid';
+    
+    updateLegend();
+    createBoard();
+  };
 
   // Event Delegation for the entire Game Board
   gameBoard.addEventListener('mousedown', dragStart);
