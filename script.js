@@ -952,7 +952,11 @@ function initStampTour() {
   }
 
   function touchEnd(e) {
-    if (isProcessing || !draggedElement) return;
+    if (!draggedElement) {
+      touchStartX = 0;
+      touchStartY = 0;
+      return;
+    }
     
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
@@ -961,24 +965,26 @@ function initStampTour() {
     const dy = touchEndY - touchStartY;
     
     let targetId = parseInt(draggedElement.getAttribute('data-id'));
+    let isValidSwipe = false;
     
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
       if (dx > 0) targetId += 1; // Swipe Right
       else targetId -= 1; // Swipe Left
+      isValidSwipe = true;
     } else if (Math.abs(dy) > 15) {
       if (dy > 0) targetId += width; // Swipe Down
       else targetId -= width; // Swipe Up
-    } else {
-      draggedElement = null;
-      return; 
+      isValidSwipe = true;
     }
     
-    if (targetId >= 0 && targetId < width * width) {
+    if (!isProcessing && isValidSwipe && targetId >= 0 && targetId < width * width) {
       replacedElement = grid[targetId];
       handleSwap();
     }
-    touchStartX = null;
-    touchStartY = null;
+    
+    // Hard reset
+    touchStartX = 0;
+    touchStartY = 0;
     draggedElement = null;
   }
 
@@ -1029,7 +1035,9 @@ function initStampTour() {
           let temp = draggedElement.innerHTML;
           draggedElement.innerHTML = replacedElement.innerHTML;
           replacedElement.innerHTML = temp;
-          isProcessing = false;
+          
+          // Safety unlock
+          setTimeout(() => { isProcessing = false; }, 50);
         }
       }, 300);
     }
@@ -1137,9 +1145,10 @@ function initStampTour() {
     setTimeout(() => {
       let stillHasMatches = checkMatches(true);
       if (!stillHasMatches) {
-        isProcessing = false;
+        // Force unlock with safety fallback
+        setTimeout(() => { isProcessing = false; }, 50);
       }
-    }, 400);
+    }, 450); // Increased timeout slightly to ensure DOM has updated
   }
 
   function triggerWin() {
