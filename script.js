@@ -787,6 +787,12 @@ function initStampTour() {
   let replacedElement = null;
   let isProcessing = false;
 
+  // Event Delegation for the entire Game Board
+  gameBoard.addEventListener('mousedown', dragStart);
+  gameBoard.addEventListener('touchstart', touchStart, {passive: false});
+  gameBoard.addEventListener('touchmove', touchMove, {passive: false});
+  gameBoard.addEventListener('touchend', touchEnd, {passive: false});
+
   function getConfig() {
     return levelConfigs[currentLevel] || levelConfigs[3];
   }
@@ -834,11 +840,6 @@ function initStampTour() {
       let randomItem = items[Math.floor(Math.random() * items.length)];
       cell.innerHTML = randomItem;
       
-      cell.addEventListener('mousedown', dragStart);
-      cell.addEventListener('touchstart', touchStart, {passive: false});
-      cell.addEventListener('touchmove', touchMove, {passive: false});
-      cell.addEventListener('touchend', touchEnd, {passive: false});
-      
       gameBoard.appendChild(cell);
       grid.push(cell);
     }
@@ -859,10 +860,13 @@ function initStampTour() {
 
   function touchStart(e) {
     if (isProcessing) return;
+    const targetCell = e.target.closest('.match3-cell');
+    if (!targetCell) return;
+    
     e.preventDefault(); 
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-    draggedElement = this;
+    draggedElement = targetCell;
   }
 
   function touchMove(e) {
@@ -895,13 +899,18 @@ function initStampTour() {
       replacedElement = grid[targetId];
       handleSwap();
     }
+    touchStartX = null;
+    touchStartY = null;
     draggedElement = null;
   }
 
   // Mouse Drag
   function dragStart(e) {
     if (isProcessing) return;
-    draggedElement = this;
+    const targetCell = e.target.closest('.match3-cell');
+    if (!targetCell) return;
+    
+    draggedElement = targetCell;
     document.addEventListener('mouseup', dragEndMouse, {once: true});
   }
 
