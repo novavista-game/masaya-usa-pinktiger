@@ -836,6 +836,8 @@ function initStampTour() {
       
       cell.addEventListener('mousedown', dragStart);
       cell.addEventListener('touchstart', touchStart, {passive: false});
+      cell.addEventListener('touchmove', touchMove, {passive: false});
+      cell.addEventListener('touchend', touchEnd, {passive: false});
       
       gameBoard.appendChild(cell);
       grid.push(cell);
@@ -854,41 +856,37 @@ function initStampTour() {
   // Touch support
   let touchStartX = 0;
   let touchStartY = 0;
-  let touchCell = null;
 
   function touchStart(e) {
     if (isProcessing) return;
     e.preventDefault(); 
-    touchCell = this;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     draggedElement = this;
-    
-    document.addEventListener('touchmove', touchMove, {passive: false});
-    document.addEventListener('touchend', touchEnd, {once: true});
   }
 
   function touchMove(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent scrolling while swiping on the board
   }
 
   function touchEnd(e) {
-    document.removeEventListener('touchmove', touchMove);
+    if (isProcessing || !draggedElement) return;
     
-    if (isProcessing || !touchCell) return;
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
+    
     const dx = touchEndX - touchStartX;
     const dy = touchEndY - touchStartY;
     
-    let targetId = parseInt(touchCell.getAttribute('data-id'));
+    let targetId = parseInt(draggedElement.getAttribute('data-id'));
     
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
-      if (dx > 0) targetId += 1; else targetId -= 1;
+      if (dx > 0) targetId += 1; // Swipe Right
+      else targetId -= 1; // Swipe Left
     } else if (Math.abs(dy) > 15) {
-      if (dy > 0) targetId += width; else targetId -= width;
+      if (dy > 0) targetId += width; // Swipe Down
+      else targetId -= width; // Swipe Up
     } else {
-      touchCell = null;
       draggedElement = null;
       return; 
     }
@@ -897,7 +895,7 @@ function initStampTour() {
       replacedElement = grid[targetId];
       handleSwap();
     }
-    touchCell = null;
+    draggedElement = null;
   }
 
   // Mouse Drag
