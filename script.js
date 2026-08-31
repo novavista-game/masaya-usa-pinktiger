@@ -83,8 +83,8 @@ window.translations = {
     "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨",
     "ig-updates-title": "Masaya's Latest Updates 🐯✨",
     "teaser_text": "Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!",
-    "nav-stamp-tour": "Stamp Tour",
-    "stamp-tour-title": "Stamp Tour 🗺️🐾",
+    "nav-tiger-crush": "Tiger Crush",
+    "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!",
     "tiger-crush-subtitle": "Enjoy your complimentary game for Masaya's fandom!"
   },
@@ -167,8 +167,8 @@ window.translations = {
     "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨",
     "ig-updates-title": "マサヤの最新情報 🐯✨",
     "teaser_text": "Pinktigerが楽しいMasayaの足跡巡りゲームを一生懸命作っています！最高得点を記録した方が上位にランクインするシステムも準備中ですので、ぜひご期待ください！",
-    "nav-stamp-tour": "スタンプツアー",
-    "stamp-tour-title": "スタンプツアー 🗺️🐾",
+    "nav-tiger-crush": "Tiger Crush",
+    "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "マサヤの足跡をたどろう！クイズに答えてスタンプを集め、次の目的地をアンロック！",
     "tiger-crush-subtitle": "マサヤファンダムのための無料ゲームをお楽しみください！"
   },
@@ -252,8 +252,8 @@ window.translations = {
     "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨",
     "ig-updates-title": "마사야 최신 소식 🐯✨",
     "teaser_text": "핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 최고점을 기록하신 분이 상위에 올라가는 랭킹 시스템도 준비 중이니 기대해 주세요!",
-    "nav-stamp-tour": "스탬프 투어",
-    "stamp-tour-title": "스탬프 투어 🗺️🐾",
+    "nav-tiger-crush": "Tiger Crush",
+    "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "마사야의 발자취를 따라가보세요! 퀴즈를 풀고 스탬프를 모아 다음 목적지를 잠금 해제하세요!",
     "tiger-crush-subtitle": "마사야 팬덤을 위한 무료 게임을 즐겨보세요!"
   },
@@ -337,8 +337,8 @@ window.translations = {
     "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨",
     "ig-updates-title": "Últimas noticias de Masaya 🐯✨",
     "teaser_text": "¡Nuestro Pinktiger está trabajando duro para traerte un divertido juego de recorrido por las huellas de Masaya! Además, ¡espera nuestro sistema de clasificación donde los mejores puntajes aparecerán en la tabla de líderes!",
-    "nav-stamp-tour": "Tour de Sellos",
-    "stamp-tour-title": "Tour de Sellos 🗺️🐾",
+    "nav-tiger-crush": "Tiger Crush",
+    "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "¡Sigue las huellas de Masaya! ¡Responde cuestionarios para coleccionar sellos y desbloquear el siguiente destino!",
     "tiger-crush-subtitle": "¡Disfruta de tu juego gratuito para el fandom de Masaya!"
   },
@@ -423,8 +423,8 @@ window.translations = {
     "clickMascotHint": "Cliquez sur la Mascotte Pinktiger pour trouver des photos cachées de Masaya ! 🐯✨",
     "ig-updates-title": "Dernières Mises à Jour de Masaya 🐯✨",
     "teaser_text": "Notre Pinktiger travaille dur pour vous proposer un jeu de parcours amusant sur les traces de Masaya ! De plus, attendez-vous à notre système de classement où les meilleurs scores figureront au sommet du classement !",
-    "nav-stamp-tour": "Tour des Timbres",
-    "stamp-tour-title": "Tour des Timbres 🗺️🐾",
+    "nav-tiger-crush": "Tiger Crush",
+    "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "Suivez les traces de Masaya ! Répondez aux quiz pour collectionner des timbres et débloquer la prochaine destination !",
     "tiger-crush-subtitle": "Profitez de votre jeu gratuit pour le fandom de Masaya !"
   }
