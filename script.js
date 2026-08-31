@@ -848,12 +848,33 @@ function initInteractiveMap() {
     popupAnchor: [0, -20]
   });
 
+  const clusterPawIcon = L.divIcon({
+    html: `
+      <div style="color: #FF69B4; font-size: 26px; filter: drop-shadow(0px 0px 10px rgba(255, 105, 180, 1)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-13px, -26px); animation: pulse-cluster 1.5s infinite;">
+        <i class="fa-solid fa-paw"></i>
+        <div style="position: absolute; width: 40px; height: 40px; border: 2px solid rgba(255, 105, 180, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);"></div>
+      </div>
+      <style>
+        @keyframes pulse-cluster {
+          0% { transform: translate(-13px, -26px) scale(1); }
+          50% { transform: translate(-13px, -26px) scale(1.1); }
+          100% { transform: translate(-13px, -26px) scale(1); }
+        }
+      </style>
+    `,
+    className: 'custom-cluster-icon',
+    iconSize: [26, 26],
+    iconAnchor: [13, 26]
+  });
+
   const markerCluster = L.markerClusterGroup({
     spiderfyOnMaxZoom: true,
     showCoverageOnHover: false,
     zoomToBoundsOnClick: true,
+    maxClusterRadius: 50,
+    spiderLegPolylineOptions: { weight: 3, color: 'rgba(255, 105, 180, 0.7)', opacity: 0.8 },
     iconCreateFunction: function(cluster) {
-      return pawIcon;
+      return clusterPawIcon;
     }
   });
   map.addLayer(markerCluster);
