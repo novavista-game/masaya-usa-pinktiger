@@ -1993,3 +1993,59 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 .ig-widget-container [class*="elfsight-app"] {
   margin-bottom: -45px !important; /* 하단 45px를 넘치게 하여 overflow: hidden에 의해 잘리도록 처리 */
 }
+
+/* ==========================================================================
+   Match-3 Puzzle Game Styles
+   ========================================================================== */
+.match3-cell {
+  background: var(--white);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 2px 4px rgba(255,105,180,0.2);
+  user-select: none;
+  cursor: grab;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+  touch-action: none; /* Prevent scroll on touch */
+}
+
+.match3-cell:active {
+  cursor: grabbing;
+  transform: scale(0.9);
+}
+
+.match3-cell.pop-anim {
+  animation: popItem 0.4s ease-out forwards;
+}
+
+@keyframes popItem {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.match3-cell.fall-anim {
+  animation: fallItem 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fallItem {
+  0% { transform: translateY(-50px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.heart-icon {
+  filter: drop-shadow(0 2px 4px rgba(255,105,180,0.3));
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.heart-icon.filled {
+  transform: scale(1.2);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}

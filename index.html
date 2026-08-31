@@ -181,32 +181,39 @@
     </div>
   </section>
 
-  <!-- Quiz Modal -->
+  <!-- Match-3 Game Modal -->
   <div id="quiz-modal" style="opacity: 0; pointer-events: none; visibility: hidden; transition: all 0.4s ease; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,240,246,0.95); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
-    <div class="quiz-modal-content" style="background: #fff; border-radius: 30px; padding: 40px; max-width: 600px; width: 90%; box-shadow: 0 20px 60px rgba(255,105,180,0.25); border: 5px solid var(--primary-pink); position: relative; text-align: center;">
+    <div class="match3-modal-content" style="background: url('assets/leopard-print.png') center/cover, #fff; border-radius: 30px; padding: 30px 20px; max-width: 500px; width: 95%; box-shadow: 0 20px 60px rgba(255,105,180,0.4); border: 6px solid var(--primary-pink); position: relative; text-align: center;">
       
-      <button id="close-quiz-btn" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2.5rem; color: #aaa; cursor: pointer; transition: color 0.2s;">
+      <button id="close-quiz-btn" style="position: absolute; top: 15px; right: 20px; background: rgba(255,255,255,0.8); border-radius: 50%; width: 40px; height: 40px; border: none; font-size: 1.8rem; color: #ff69b4; cursor: pointer; transition: all 0.2s; z-index: 10;">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <h3 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px;">Yoshimaru Malatang Quiz! 🍜</h3>
-      
-      <!-- Video Placeholder -->
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 15px; margin-bottom: 25px; border: 3px solid #ffe4ec;">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
+      <div id="game-header">
+        <h3 style="font-family: var(--font-title); font-size: 2rem; color: var(--brand-pink); margin-bottom: 15px; text-shadow: 2px 2px 0px #fff;">Match 3 to Win! 💖</h3>
+        
+        <!-- Progress Bar (5 Matches) -->
+        <div id="match-progress" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; font-size: 2rem;">
+          <span class="heart-icon">🤍</span>
+          <span class="heart-icon">🤍</span>
+          <span class="heart-icon">🤍</span>
+          <span class="heart-icon">🤍</span>
+          <span class="heart-icon">🤍</span>
+        </div>
       </div>
 
-      <p style="font-size: 1.4rem; color: #444; font-weight: 700; margin-bottom: 30px; line-height: 1.5; font-family: 'Quicksand', sans-serif;">
-        [QUIZ_QUESTION] What is Masaya's favorite topping here?
-      </p>
+      <!-- 6x6 Game Board -->
+      <div id="match3-board" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 15px; border: 4px dashed #ffb6c1; width: 100%; max-width: 400px; margin: 0 auto; aspect-ratio: 1; touch-action: none;">
+        <!-- Javascript will inject the emojis here -->
+      </div>
 
-      <div class="quiz-buttons" style="display: flex; flex-direction: column; gap: 15px;">
-        <button class="quiz-btn wrong-btn" style="background: #fff; border: 3px solid #ddd; padding: 20px; font-size: 1.5rem; font-weight: 700; border-radius: 15px; color: #555; cursor: pointer; transition: all 0.2s; font-family: 'Quicksand', sans-serif;">
-          A) [OPTION_A] Extra spicy beef
-        </button>
-        <button class="quiz-btn correct-btn" id="quiz-correct-btn" style="background: #fff; border: 3px solid #ddd; padding: 20px; font-size: 1.5rem; font-weight: 700; border-radius: 15px; color: #555; cursor: pointer; transition: all 0.2s; font-family: 'Quicksand', sans-serif;">
-          B) [OPTION_B] Cheese and rice cakes
-        </button>
+      <!-- Treasure Chest Reward (Hidden initially) -->
+      <div id="treasure-chest" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 400px; cursor: pointer;">
+        <h3 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px; text-shadow: 2px 2px 0px #fff;">You Did It! 🎉</h3>
+        <div style="font-size: 8rem; animation: bounce 1.5s infinite; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));">
+          🎁
+        </div>
+        <p style="font-family: 'Quicksand', sans-serif; font-size: 1.3rem; font-weight: 700; color: #555; margin-top: 20px; background: #fff; padding: 10px 20px; border-radius: 20px; border: 2px solid #ffb6c1;">Tap to open!</p>
       </div>
     </div>
   </div>

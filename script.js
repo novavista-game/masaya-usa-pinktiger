@@ -754,7 +754,7 @@ function playCuteLanguageChime() {
 
 
 /* ==========================================================================
-   7. Stamp Tour Logic
+   7. Stamp Tour & Match-3 Game Logic
    ========================================================================== */
 function initStampTour() {
   const step1 = document.getElementById('step-1');
@@ -762,36 +762,44 @@ function initStampTour() {
   const step2Lock = document.getElementById('step-2-lock');
   const mascot = document.getElementById('tour-mascot');
   const stamp1 = document.getElementById('stamp-1');
+  
   const modal = document.getElementById('quiz-modal');
   const closeBtn = document.getElementById('close-quiz-btn');
-  const correctBtn = document.getElementById('quiz-correct-btn');
   
+  const gameBoard = document.getElementById('match3-board');
+  const matchProgress = document.getElementById('match-progress');
+  const treasureChest = document.getElementById('treasure-chest');
+  const gameHeader = document.getElementById('game-header');
+
+  let isGameInitialized = false;
+
   if (!step1) return;
 
   step1.addEventListener('click', () => {
-    // 1. Animate mascot to step 1
+    // Animate mascot
     const stepRect = step1.getBoundingClientRect();
     const containerRect = document.querySelector('.stamp-board').getBoundingClientRect();
-    
-    const targetLeft = stepRect.left - containerRect.left + (stepRect.width / 2) - 40; // approx center
-    const targetTop = stepRect.top - containerRect.top - 70; // above the step
+    const targetLeft = stepRect.left - containerRect.left + (stepRect.width / 2) - 40; 
+    const targetTop = stepRect.top - containerRect.top - 70; 
 
     if(mascot) {
         mascot.style.left = targetLeft + 'px';
         mascot.style.top = targetTop + 'px';
     }
 
-    // 2. Open modal after a short delay for animation
     setTimeout(() => {
       if(modal) {
           modal.style.visibility = 'visible';
           modal.style.opacity = '1';
           modal.style.pointerEvents = 'auto';
+          if (!isGameInitialized) {
+            initMatch3Game();
+            isGameInitialized = true;
+          }
       }
     }, 1000);
   });
 
-  // Close Modal
   if(closeBtn) {
       closeBtn.addEventListener('click', () => {
         if(modal) {
@@ -802,57 +810,307 @@ function initStampTour() {
       });
   }
 
-  // Correct Answer Clicked
-  if(correctBtn) {
-      correctBtn.addEventListener('click', () => {
-        // Close modal
-        if(modal) {
-            modal.style.visibility = 'hidden';
-            modal.style.opacity = '0';
-            modal.style.pointerEvents = 'none';
-        }
+  // MATCH-3 LOGIC
+  function initMatch3Game() {
+    const width = 6;
+    const items = ['🍲', '🥞', '🎀', '🐯', '🩷'];
+    let grid = [];
+    let matchesCount = 0;
+    const maxMatches = 5;
+    
+    // Drag state
+    let draggedElement = null;
+    let replacedElement = null;
+    let isProcessing = false;
 
-        // Trigger Confetti
-        if (window.confetti) {
-          const duration = 3000;
-          const animationEnd = Date.now() + duration;
-          const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10001, colors: ['#FF1493', '#FF69B4', '#FFB6C1', '#FFF'] };
+    // Generate Board
+    function createBoard() {
+      if(!gameBoard) return;
+      gameBoard.innerHTML = '';
+      grid = [];
+      for (let i = 0; i < width * width; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('match3-cell');
+        cell.setAttribute('data-id', i);
+        
+        let randomItem = items[Math.floor(Math.random() * items.length)];
+        cell.innerHTML = randomItem;
+        
+        // Add events
+        cell.addEventListener('mousedown', dragStart);
+        cell.addEventListener('touchstart', touchStart, {passive: false});
+        
+        gameBoard.appendChild(cell);
+        grid.push(cell);
+      }
+      
+      // Ensure no initial matches
+      let hasMatches = checkMatches(false);
+      while(hasMatches) {
+        grid.forEach(cell => {
+           cell.innerHTML = items[Math.floor(Math.random() * items.length)];
+        });
+        hasMatches = checkMatches(false);
+      }
+    }
 
-          const interval = setInterval(function() {
-            const timeLeft = animationEnd - Date.now();
+    // Touch support variables
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchCell = null;
 
-            if (timeLeft <= 0) {
-              return clearInterval(interval);
-            }
+    function touchStart(e) {
+      if (isProcessing) return;
+      e.preventDefault();
+      touchCell = this;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      draggedElement = this;
+      
+      document.addEventListener('touchend', touchEnd, {once: true});
+    }
 
-            const particleCount = 50 * (timeLeft / duration);
-            window.confetti(Object.assign({}, defaults, { particleCount,
-              origin: { x: Math.random() * 0.5 + 0.25, y: Math.random() - 0.2 }
-            }));
-          }, 250);
-        }
+    function touchEnd(e) {
+      if (isProcessing || !touchCell) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      
+      let targetId = parseInt(touchCell.getAttribute('data-id'));
+      
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+        // Horizontal
+        if (dx > 0) targetId += 1; // Right
+        else targetId -= 1; // Left
+      } else if (Math.abs(dy) > 30) {
+        // Vertical
+        if (dy > 0) targetId += width; // Down
+        else targetId -= width; // Up
+      } else {
+        return; // Tap, no swipe
+      }
+      
+      // Validate bounds
+      if (targetId >= 0 && targetId < width * width) {
+        replacedElement = grid[targetId];
+        handleSwap();
+      }
+      touchCell = null;
+    }
 
-        // Show Stamp
+    // Desktop Mouse Drag
+    function dragStart(e) {
+      if (isProcessing) return;
+      draggedElement = this;
+      document.addEventListener('mouseup', dragEndMouse, {once: true});
+    }
+
+    function dragEndMouse(e) {
+       if (isProcessing || !draggedElement) return;
+       
+       // Hide dragged slightly to find element underneath
+       draggedElement.style.visibility = 'hidden';
+       let elemBelow = document.elementFromPoint(e.clientX, e.clientY);
+       draggedElement.style.visibility = 'visible';
+       
+       if (elemBelow && elemBelow.classList.contains('match3-cell')) {
+           replacedElement = elemBelow;
+           handleSwap();
+       }
+       draggedElement = null;
+    }
+
+    function handleSwap() {
+      if (!draggedElement || !replacedElement) return;
+      const draggedId = parseInt(draggedElement.getAttribute('data-id'));
+      const replacedId = parseInt(replacedElement.getAttribute('data-id'));
+      
+      // Check adjacency
+      const validMoves = [
+        draggedId - 1, draggedId + 1,
+        draggedId - width, draggedId + width
+      ];
+      
+      // Prevent row wrap around
+      if (draggedId % width === 0 && replacedId === draggedId - 1) return;
+      if ((draggedId + 1) % width === 0 && replacedId === draggedId + 1) return;
+
+      if (validMoves.includes(replacedId)) {
+        // Swap content
+        let temp = draggedElement.innerHTML;
+        draggedElement.innerHTML = replacedElement.innerHTML;
+        replacedElement.innerHTML = temp;
+
+        isProcessing = true;
+        
         setTimeout(() => {
-          if(stamp1) {
-              stamp1.style.opacity = '1';
-              stamp1.style.transform = 'scale(1) rotate(15deg)';
+          let hasMatch = checkMatches(true);
+          if (!hasMatch) {
+            // Swap back
+            let temp = draggedElement.innerHTML;
+            draggedElement.innerHTML = replacedElement.innerHTML;
+            replacedElement.innerHTML = temp;
+            isProcessing = false;
           }
-          
-          // Unlock Step 2
-          setTimeout(() => {
-            if(step2) {
-                step2.classList.remove('locked-step');
-                step2.style.opacity = '1';
-                step2.style.filter = 'grayscale(0%)';
-                step2.style.cursor = 'pointer';
-            }
-            if (step2Lock) {
-              step2Lock.style.opacity = '0';
-            }
-          }, 800);
-        }, 500);
+        }, 300);
+      }
+      draggedElement = null;
+      replacedElement = null;
+    }
+
+    function checkMatches(executePop = true) {
+      let matchedIndices = new Set();
+
+      // Check rows
+      for (let i = 0; i < width * width; i++) {
+        if (i % width > width - 3) continue; // Skip last 2 in row
+        let rowMatch = [i, i+1, i+2];
+        let val = grid[i].innerHTML;
+        if (val === '') continue;
+        if (grid[i+1].innerHTML === val && grid[i+2].innerHTML === val) {
+          rowMatch.forEach(idx => matchedIndices.add(idx));
+          if (i % width <= width - 4 && grid[i+3].innerHTML === val) matchedIndices.add(i+3);
+          if (i % width <= width - 5 && grid[i+3].innerHTML === val && grid[i+4].innerHTML === val) matchedIndices.add(i+4);
+        }
+      }
+
+      // Check columns
+      for (let i = 0; i < width * width - (width * 2); i++) {
+        let colMatch = [i, i+width, i+(width*2)];
+        let val = grid[i].innerHTML;
+        if (val === '') continue;
+        if (grid[i+width].innerHTML === val && grid[i+(width*2)].innerHTML === val) {
+          colMatch.forEach(idx => matchedIndices.add(idx));
+        }
+      }
+
+      if (matchedIndices.size > 0) {
+        if (executePop) {
+          updateScore();
+          popMatches(matchedIndices);
+        }
+        return true;
+      }
+      return false;
+    }
+
+    function popMatches(indices) {
+      indices.forEach(idx => {
+        grid[idx].classList.add('pop-anim');
+        setTimeout(() => {
+          grid[idx].innerHTML = '';
+          grid[idx].classList.remove('pop-anim');
+        }, 400);
       });
+      
+      setTimeout(applyGravity, 400);
+    }
+
+    function applyGravity() {
+      // Move items down
+      for (let i = width * width - 1; i >= width; i--) {
+        if (grid[i].innerHTML === '') {
+          // Find first item above
+          let above = i - width;
+          while (above >= 0 && grid[above].innerHTML === '') {
+            above -= width;
+          }
+          if (above >= 0) {
+            grid[i].innerHTML = grid[above].innerHTML;
+            grid[i].classList.add('fall-anim');
+            grid[above].innerHTML = '';
+            setTimeout(() => grid[i].classList.remove('fall-anim'), 300);
+          }
+        }
+      }
+      
+      // Fill empty spots at top
+      for (let i = 0; i < width * width; i++) {
+        if (grid[i].innerHTML === '') {
+          grid[i].innerHTML = items[Math.floor(Math.random() * items.length)];
+          grid[i].classList.add('fall-anim');
+          setTimeout(() => grid[i].classList.remove('fall-anim'), 300);
+        }
+      }
+
+      setTimeout(() => {
+        let stillHasMatches = checkMatches(true);
+        if (!stillHasMatches) {
+          isProcessing = false;
+        }
+      }, 400);
+    }
+
+    function updateScore() {
+      if (matchesCount < maxMatches) {
+        matchesCount++;
+        const hearts = matchProgress.querySelectorAll('.heart-icon');
+        if (hearts[matchesCount - 1]) {
+          hearts[matchesCount - 1].innerHTML = '🩷';
+          hearts[matchesCount - 1].classList.add('filled');
+        }
+        
+        if (matchesCount >= maxMatches) {
+          triggerWin();
+        }
+      }
+    }
+
+    function triggerWin() {
+      setTimeout(() => {
+        gameBoard.style.display = 'none';
+        gameHeader.style.display = 'none';
+        treasureChest.style.display = 'flex';
+        
+        treasureChest.addEventListener('click', handleReward, {once: true});
+      }, 1000);
+    }
+
+    function handleReward() {
+      // Confetti
+      if (window.confetti) {
+        const duration = 3000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10001, colors: ['#FF1493', '#FF69B4', '#FFB6C1', '#FFF'] };
+        const interval = setInterval(function() {
+          const timeLeft = animationEnd - Date.now();
+          if (timeLeft <= 0) return clearInterval(interval);
+          const particleCount = 50 * (timeLeft / duration);
+          window.confetti(Object.assign({}, defaults, { particleCount,
+            origin: { x: Math.random() * 0.5 + 0.25, y: Math.random() - 0.2 }
+          }));
+        }, 250);
+      }
+
+      // Close modal
+      setTimeout(() => {
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+        
+        // Show stamp
+        if(stamp1) {
+            stamp1.style.opacity = '1';
+            stamp1.style.transform = 'scale(1) rotate(15deg)';
+        }
+        
+        // Unlock step 2
+        setTimeout(() => {
+          if(step2) {
+              step2.classList.remove('locked-step');
+              step2.style.opacity = '1';
+              step2.style.filter = 'grayscale(0%)';
+              step2.style.cursor = 'pointer';
+          }
+          if (step2Lock) {
+            step2Lock.style.opacity = '0';
+          }
+        }, 800);
+      }, 500);
+    }
+
+    createBoard();
   }
 }
 
