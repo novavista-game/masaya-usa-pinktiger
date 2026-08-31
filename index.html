@@ -66,7 +66,6 @@
         <a href="#about" class="nav-link" data-translate="nav-about">About Masaya</a>
         <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">Our Mascot</a>
         <a href="index.html#channels" class="nav-link" data-translate="nav-support">Support & Channels</a>
-        <a href="community.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-translate="nav-community">Fan Letters</span></a>
         <a href="video_archive.html" class="nav-link"><i class="fa-solid fa-music"></i> <span data-translate="nav-video">Video Archive</span></a>
       </nav>
       <div class="nav-controls">
@@ -340,41 +339,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Recent Fan Letters Section -->
-  <section id="recent-letters" class="fade-in-section" style="padding: 60px 0;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto;">
-      <h2 class="section-title" data-translate="recent-letters-title" style="margin-bottom: 30px;">Recent Letters from Pinktigers 💌</h2>
-      
-      <div style="position: relative; width: 100%; padding: 0 40px;">
-        <button class="carousel-btn prev-btn" id="fanletter-prev" aria-label="Previous letters" onclick="scrollFanLetters(-350)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;"><i class="fa-solid fa-chevron-left"></i></button>
-        
-        <div id="home-letters-container" class="horizontal-scroll-container" style="overflow-x: hidden; scroll-behavior: smooth; display: flex; flex-wrap: nowrap; width: 100%; padding: 15px 0;">
-          <!-- Messages will be injected here via JavaScript -->
-          <div class="loading-messages" style="text-align: center; width: 100%; color: var(--text-color);">
-            <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-pink);"></i>
-            <p>Loading love letters...</p>
-          </div>
-        </div>
-        
-        <button class="carousel-btn next-btn" id="fanletter-next" aria-label="Next letters" onclick="scrollFanLetters(350)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
-
-      <style>
-        #home-letters-container::-webkit-scrollbar {
-          display: none;
-        }
-        #home-letters-container {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        #fanletter-prev:disabled, #fanletter-next:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-      </style>
     </div>
   </section>
 
