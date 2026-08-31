@@ -2003,13 +2003,14 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: min(10vw, 2.5rem);
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 2px 4px rgba(255,105,180,0.2);
   user-select: none;
   cursor: grab;
   position: relative;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
   touch-action: none; /* Prevent scroll on touch */
+  overflow: hidden;
 }
 
 .match3-cell:active {

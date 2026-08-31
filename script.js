@@ -823,15 +823,25 @@ function initStampTour() {
 
   function touchStart(e) {
     if (isProcessing) return;
-    e.preventDefault();
+    // e.preventDefault() is good but can throw errors if passive:true. We set passive:false when attaching.
+    e.preventDefault(); 
     touchCell = this;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     draggedElement = this;
+    
+    document.addEventListener('touchmove', touchMove, {passive: false});
     document.addEventListener('touchend', touchEnd, {once: true});
   }
 
+  function touchMove(e) {
+    // Prevent default scrolling while swiping on the game board
+    e.preventDefault();
+  }
+
   function touchEnd(e) {
+    document.removeEventListener('touchmove', touchMove);
+    
     if (isProcessing || !touchCell) return;
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
@@ -840,11 +850,14 @@ function initStampTour() {
     
     let targetId = parseInt(touchCell.getAttribute('data-id'));
     
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+    // Lower threshold for easier swipes on mobile
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
       if (dx > 0) targetId += 1; else targetId -= 1;
-    } else if (Math.abs(dy) > 30) {
+    } else if (Math.abs(dy) > 15) {
       if (dy > 0) targetId += width; else targetId -= width;
     } else {
+      touchCell = null;
+      draggedElement = null;
       return; 
     }
     
