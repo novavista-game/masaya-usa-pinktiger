@@ -443,6 +443,27 @@ window.containsProfanity = function(text) {
   return badWords.some(word => lowerText.includes(word));
 };
 
+// Global Variables for Game
+let playerNickname = "Guest";
+
+// Firebase Initialization (Placeholder Configuration)
+const firebaseConfig = {
+  // TODO: Replace with actual Firebase config
+  apiKey: "AIzaSyDummyKey-xxxxxxxxxxxxxxxxxxx",
+  authDomain: "masaya-usa-pinktiger.firebaseapp.com",
+  databaseURL: "https://masaya-usa-pinktiger-default-rtdb.firebaseio.com",
+  projectId: "masaya-usa-pinktiger",
+  storageBucket: "masaya-usa-pinktiger.appspot.com",
+  messagingSenderId: "123456789012",
+  appId: "1:123456789012:web:abcdef1234567890"
+};
+
+// Initialize Firebase only if the SDK is loaded
+if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const db = typeof firebase !== 'undefined' ? firebase.database() : null;
+
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initSparkleEffect();
@@ -451,7 +472,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoCarousel();
   initMobileMenu();
   initInteractiveMap();
-  initStampTour();
+  
+  // Nickname Modal Logic
+  const nicknameModal = document.getElementById('nickname-modal');
+  const startBtn = document.getElementById('start-game-btn');
+  const nicknameInput = document.getElementById('nickname-input');
+  
+  if (nicknameModal && startBtn) {
+    startBtn.addEventListener('click', () => {
+      const val = nicknameInput.value.trim();
+      if (val) {
+        playerNickname = val;
+      }
+      nicknameModal.style.display = 'none';
+      initStampTour();
+      initLeaderboard();
+    });
+  } else {
+    initStampTour();
+    initLeaderboard();
+  }
 });
 
 /* ==========================================================================
@@ -761,6 +801,44 @@ function playCuteLanguageChime() {
 /* ==========================================================================
    7. Stamp Tour & Match-3 Game Logic
    ========================================================================== */
+
+function initLeaderboard() {
+  const listEl = document.getElementById('leaderboard-list');
+  if (!listEl || !db) return;
+
+  db.ref('leaderboard').orderByChild('score').limitToLast(10).on('value', snapshot => {
+    const users = [];
+    snapshot.forEach(child => {
+      users.push({
+        nickname: child.key,
+        score: child.val().score
+      });
+    });
+    // Sort descending
+    users.sort((a, b) => b.score - a.score);
+
+    listEl.innerHTML = '';
+    if (users.length === 0) {
+      listEl.innerHTML = '<li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">No scores yet! Play to rank up! 🐾</li>';
+      return;
+    }
+
+    users.forEach((user, index) => {
+      const li = document.createElement('li');
+      li.style.padding = '10px 15px';
+      li.style.background = index === 0 ? '#ffb6c1' : '#ffe4ec';
+      li.style.borderRadius = '15px';
+      li.style.border = '2px dashed #ffb6c1';
+      li.style.display = 'flex';
+      li.style.justifyContent = 'space-between';
+      
+      const rankMedal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+      
+      li.innerHTML = `<span>${rankMedal} ${user.nickname}</span> <span>${user.score} pts</span>`;
+      listEl.appendChild(li);
+    });
+  });
+}
 function initStampTour() {
   const gameBoard = document.getElementById('match3-board');
   const scoreCounter = document.getElementById('score-counter');
@@ -1006,6 +1084,14 @@ function initStampTour() {
       scoreCounter.innerHTML = `Score: ${totalScore} / ${config.target}`;
     }
     
+    // Push Score to Firebase
+    if (db && playerNickname !== "Guest") {
+      db.ref('leaderboard/' + playerNickname).set({
+        score: totalScore,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      }).catch(err => console.log("Firebase Error:", err));
+    }
+    
     if (totalScore >= config.target) {
       triggerWin();
     }
@@ -1086,8 +1172,7 @@ function initStampTour() {
       levelTitle.innerHTML = `Level ${currentLevel} 💖`;
     }
 
-    // Reset Progress
-    totalScore = 0;
+    // Do NOT reset totalScore to 0. It accumulates!
     updateLegend();
 
     // Rebuild Board
