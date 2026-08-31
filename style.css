@@ -288,6 +288,8 @@ body {
 
 .lang-switcher {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   background: var(--pastel-pink-bg);
   padding: 3px;
   border-radius: 30px;
