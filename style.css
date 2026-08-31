@@ -1977,3 +1977,17 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 [class*="eapps-instagram-feed-title"] {
   display: none !important;
 }
+
+/* 1. 강력한 강제 숨김 CSS 추가 */
+.ig-widget-container [class*="eapps-link"], 
+.ig-widget-container [class*="elfsight-app"] a[href*="elfsight.com"], 
+.ig-widget-container a[title*="Free Instagram Widget"] { 
+    display: none !important; 
+    opacity: 0 !important; 
+    pointer-events: none !important; 
+} 
+
+/* 2. 컨테이너 하단 자르기 (마스크 효과) */
+.ig-widget-container [class*="elfsight-app"] {
+  margin-bottom: -45px !important; /* 하단 45px를 넘치게 하여 overflow: hidden에 의해 잘리도록 처리 */
+}
