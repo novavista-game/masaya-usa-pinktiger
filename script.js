@@ -888,7 +888,9 @@ function initInteractiveMap() {
     { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🇧🇷💖" },
     { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🇬🇧🎵" },
     { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! 🇯🇵🐯" },
-    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷✨" }
+    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷✨" },
+    { lat: 47.6062, lng: -122.3321, nickname: "Seattle_PinkTiger", message: "Streaming your songs every day from the rainy city! We love you Masaya! ☕🐯" },
+    { lat: 33.9367, lng: -118.0278, nickname: "SoCal_Roar", message: "Huge fan from Southern California! Your high notes are amazing! 🌴✨" }
   ];
 
   hardcodedMarkers.forEach(item => {
