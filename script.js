@@ -85,7 +85,8 @@ window.translations = {
     "teaser_text": "Our Pinktiger is working hard to bring you a fun Masaya footprint tour game! Stay tuned! Also, look forward to our ranking system where the top scorers will be featured on the leaderboard!",
     "nav-stamp-tour": "Stamp Tour",
     "stamp-tour-title": "Stamp Tour 🗺️🐾",
-    "stamp-tour-desc": "Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!"
+    "stamp-tour-desc": "Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!",
+    "tiger-crush-subtitle": "Enjoy your complimentary game for Masaya's fandom!"
   },
   ja: {
     "nav-home": "ホーム",
@@ -168,7 +169,8 @@ window.translations = {
     "teaser_text": "Pinktigerが楽しいMasayaの足跡巡りゲームを一生懸命作っています！最高得点を記録した方が上位にランクインするシステムも準備中ですので、ぜひご期待ください！",
     "nav-stamp-tour": "スタンプツアー",
     "stamp-tour-title": "スタンプツアー 🗺️🐾",
-    "stamp-tour-desc": "マサヤの足跡をたどろう！クイズに答えてスタンプを集め、次の目的地をアンロック！"
+    "stamp-tour-desc": "マサヤの足跡をたどろう！クイズに答えてスタンプを集め、次の目的地をアンロック！",
+    "tiger-crush-subtitle": "マサヤファンダムのための無料ゲームをお楽しみください！"
   },
   ko: {
     "nav-home": "홈",
@@ -252,7 +254,8 @@ window.translations = {
     "teaser_text": "핑크타이거가 신나는 마사야 발자취 투어 게임을 열심히 뚝딱뚝딱 만들고 있어요! 최고점을 기록하신 분이 상위에 올라가는 랭킹 시스템도 준비 중이니 기대해 주세요!",
     "nav-stamp-tour": "스탬프 투어",
     "stamp-tour-title": "스탬프 투어 🗺️🐾",
-    "stamp-tour-desc": "마사야의 발자취를 따라가보세요! 퀴즈를 풀고 스탬프를 모아 다음 목적지를 열어보세요!"
+    "stamp-tour-desc": "마사야의 발자취를 따라가보세요! 퀴즈를 풀고 스탬프를 모아 다음 목적지를 잠금 해제하세요!",
+    "tiger-crush-subtitle": "마사야 팬덤을 위한 무료 게임을 즐겨보세요!"
   },
   es: {
     "nav-home": "Inicio",
@@ -336,7 +339,8 @@ window.translations = {
     "teaser_text": "¡Nuestro Pinktiger está trabajando duro para traerte un divertido juego de recorrido por las huellas de Masaya! Además, ¡espera nuestro sistema de clasificación donde los mejores puntajes aparecerán en la tabla de líderes!",
     "nav-stamp-tour": "Tour de Sellos",
     "stamp-tour-title": "Tour de Sellos 🗺️🐾",
-    "stamp-tour-desc": "¡Sigue las huellas de Masaya! ¡Responde cuestionarios para coleccionar sellos y desbloquear el siguiente destino!"
+    "stamp-tour-desc": "¡Sigue las huellas de Masaya! ¡Responde cuestionarios para coleccionar sellos y desbloquear el siguiente destino!",
+    "tiger-crush-subtitle": "¡Disfruta de tu juego gratuito para el fandom de Masaya!"
   },
   fr: {
     "nav-home": "Accueil",
@@ -421,7 +425,8 @@ window.translations = {
     "teaser_text": "Notre Pinktiger travaille dur pour vous proposer un jeu de parcours amusant sur les traces de Masaya ! De plus, attendez-vous à notre système de classement où les meilleurs scores figureront au sommet du classement !",
     "nav-stamp-tour": "Tour des Timbres",
     "stamp-tour-title": "Tour des Timbres 🗺️🐾",
-    "stamp-tour-desc": "Suivez les traces de Masaya ! Répondez aux quiz pour collectionner des timbres et débloquer la prochaine destination !"
+    "stamp-tour-desc": "Suivez les traces de Masaya ! Répondez aux quiz pour collectionner des timbres et débloquer la prochaine destination !",
+    "tiger-crush-subtitle": "Profitez de votre jeu gratuit pour le fandom de Masaya !"
   }
 };
 
@@ -758,7 +763,8 @@ function playCuteLanguageChime() {
    ========================================================================== */
 function initStampTour() {
   const gameBoard = document.getElementById('match3-board');
-  const matchProgress = document.getElementById('match-progress');
+  const scoreCounter = document.getElementById('score-counter');
+  const scoreLegend = document.getElementById('score-legend');
   const treasureChest = document.getElementById('treasure-chest');
   const gameHeader = document.getElementById('game-header');
   const levelTitle = document.getElementById('level-title');
@@ -768,22 +774,51 @@ function initStampTour() {
   // Level System State
   let currentLevel = 1;
   const levelConfigs = {
-    1: ['🐯', '🩷', '🎀', '🍲', '🥞'],
-    2: ['🍲', '🥞', '🥘', '🥟', '🍜'],
-    3: ['🌸', '🎵', '💖', '🎤', '🌟']
+    1: { items: ['🐯', '🩷', '🎀', '🍲', '🥞'], points: { '🩷': 10, '🎀': 20, '🍲': 30, '🥞': 40, '🐯': 50 }, target: 500 },
+    2: { items: ['🍲', '🥞', '🥘', '🥟', '🍜'], points: { '🍲': 20, '🥞': 30, '🥘': 40, '🥟': 50, '🍜': 60 }, target: 1000 },
+    3: { items: ['🌸', '🎵', '💖', '🎤', '🌟'], points: { '🌸': 30, '🎵': 40, '💖': 50, '🎤': 60, '🌟': 70 }, target: 2000 }
   };
 
   const width = 6;
   let grid = [];
-  let matchesCount = 0;
-  const maxMatches = 5;
+  let totalScore = 0;
   
   let draggedElement = null;
   let replacedElement = null;
   let isProcessing = false;
 
+  function getConfig() {
+    return levelConfigs[currentLevel] || levelConfigs[3];
+  }
+
   function getLevelItems() {
-    return levelConfigs[currentLevel] || levelConfigs[3]; // Fallback to level 3
+    return getConfig().items;
+  }
+
+  function updateLegend() {
+    if (!scoreLegend) return;
+    const config = getConfig();
+    scoreLegend.innerHTML = '';
+    
+    config.items.forEach(item => {
+      const span = document.createElement('span');
+      span.className = 'legend-item';
+      span.style.background = '#fff';
+      span.style.padding = '5px 12px';
+      span.style.borderRadius = '20px';
+      span.style.border = '2px solid #ffb6c1';
+      span.style.fontWeight = 'bold';
+      span.style.color = '#555';
+      span.style.display = 'flex';
+      span.style.alignItems = 'center';
+      span.style.gap = '5px';
+      span.innerHTML = `${item} <span>${config.points[item]}</span>`;
+      scoreLegend.appendChild(span);
+    });
+    
+    if (scoreCounter) {
+      scoreCounter.innerHTML = `Score: ${totalScore} / ${config.target}`;
+    }
   }
 
   function createBoard() {
@@ -823,7 +858,6 @@ function initStampTour() {
 
   function touchStart(e) {
     if (isProcessing) return;
-    // e.preventDefault() is good but can throw errors if passive:true. We set passive:false when attaching.
     e.preventDefault(); 
     touchCell = this;
     touchStartX = e.touches[0].clientX;
@@ -835,7 +869,6 @@ function initStampTour() {
   }
 
   function touchMove(e) {
-    // Prevent default scrolling while swiping on the game board
     e.preventDefault();
   }
 
@@ -850,7 +883,6 @@ function initStampTour() {
     
     let targetId = parseInt(touchCell.getAttribute('data-id'));
     
-    // Lower threshold for easier swipes on mobile
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
       if (dx > 0) targetId += 1; else targetId -= 1;
     } else if (Math.abs(dy) > 15) {
@@ -946,12 +978,30 @@ function initStampTour() {
 
     if (matchedIndices.size > 0) {
       if (executePop) {
-        updateScore();
+        let matchedValues = Array.from(matchedIndices).map(idx => grid[idx].innerHTML);
+        calculateScore(matchedValues);
         popMatches(matchedIndices);
       }
       return true;
     }
     return false;
+  }
+
+  function calculateScore(matchedValues) {
+    let earned = 0;
+    const config = getConfig();
+    matchedValues.forEach(val => {
+      earned += config.points[val] || 10;
+    });
+    
+    totalScore += earned;
+    if (scoreCounter) {
+      scoreCounter.innerHTML = `Score: ${totalScore} / ${config.target}`;
+    }
+    
+    if (totalScore >= config.target) {
+      triggerWin();
+    }
   }
 
   function popMatches(indices) {
@@ -999,25 +1049,10 @@ function initStampTour() {
     }, 400);
   }
 
-  function updateScore() {
-    if (matchesCount < maxMatches) {
-      matchesCount++;
-      const hearts = matchProgress.querySelectorAll('.heart-icon');
-      if (hearts[matchesCount - 1]) {
-        hearts[matchesCount - 1].innerHTML = '🩷';
-        hearts[matchesCount - 1].classList.add('filled');
-      }
-      
-      if (matchesCount >= maxMatches) {
-        triggerWin();
-      }
-    }
-  }
-
   function triggerWin() {
     setTimeout(() => {
       gameBoard.style.display = 'none';
-      gameHeader.style.display = 'none';
+      if (gameHeader) gameHeader.style.display = 'none';
       treasureChest.style.display = 'flex';
       
       treasureChest.addEventListener('click', handleNextLevel, {once: true});
@@ -1045,17 +1080,13 @@ function initStampTour() {
     }
 
     // Reset Progress
-    matchesCount = 0;
-    const hearts = matchProgress.querySelectorAll('.heart-icon');
-    hearts.forEach(heart => {
-      heart.innerHTML = '🤍';
-      heart.classList.remove('filled');
-    });
+    totalScore = 0;
+    updateLegend();
 
     // Rebuild Board
     setTimeout(() => {
       treasureChest.style.display = 'none';
-      gameHeader.style.display = 'block';
+      if (gameHeader) gameHeader.style.display = 'block';
       gameBoard.style.display = 'grid';
       createBoard();
       isProcessing = false;
@@ -1063,6 +1094,7 @@ function initStampTour() {
   }
 
   // Start game immediately
+  updateLegend();
   createBoard();
 }
 
