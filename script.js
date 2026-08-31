@@ -862,99 +862,57 @@ function initInteractiveMap() {
   });
   map.addLayer(markerCluster);
 
-  const modal = document.getElementById('map-modal');
-  const btnSubmit = document.getElementById('map-modal-submit');
-  const btnCancel = document.getElementById('map-modal-cancel');
-  const inputMessage = document.getElementById('map-modal-message');
-  const inputFile = document.getElementById('map-modal-file');
-  
-  let currentLatLng = null;
+  const countryCoordinates = {
+    "USA": [39.8283, -98.5795], "US": [39.8283, -98.5795], "UNITED STATES": [39.8283, -98.5795],
+    "JAPAN": [36.2048, 138.2529], "JP": [36.2048, 138.2529],
+    "SOUTH KOREA": [35.9078, 127.7669], "KOREA": [35.9078, 127.7669], "KR": [35.9078, 127.7669],
+    "SPAIN": [40.4637, -3.7492], "ES": [40.4637, -3.7492],
+    "MEXICO": [23.6345, -102.5528], "MX": [23.6345, -102.5528],
+    "CANADA": [56.1304, -106.3468], "CA": [56.1304, -106.3468],
+    "UK": [55.3781, -3.4360], "UNITED KINGDOM": [55.3781, -3.4360],
+    "AUSTRALIA": [-25.2744, 133.7751], "FRANCE": [46.2276, 2.2137],
+    "GERMANY": [51.1657, 10.4515], "BRAZIL": [-14.2350, -51.9253],
+    "ITALY": [41.8719, 12.5674], "PHILIPPINES": [12.8797, 121.7740],
+    "INDONESIA": [-0.7893, 113.9213], "TAIWAN": [23.6978, 120.9605],
+    "CHINA": [35.8617, 104.1954], "INDIA": [20.5937, 78.9629]
+  };
 
-  map.on('click', function(e) {
-    currentLatLng = e.latlng;
-    inputMessage.value = '';
-    inputFile.value = '';
-    modal.style.display = 'flex';
-  });
-
-  btnCancel.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  btnSubmit.addEventListener('click', async () => {
-    if (!currentLatLng) return;
+  window.updateMapFromLetters = function(letters) {
+    if (!letters) return;
     
-    const message = inputMessage.value.trim();
-    const file = inputFile.files[0];
-    
-    if (!message && !file) {
-      alert("Please enter a message or upload a photo! 💖");
-      return;
-    }
-    
-    btnSubmit.disabled = true;
-    btnSubmit.innerText = "Uploading...";
-    
-    if (window.submitMapMarker) {
-      const success = await window.submitMapMarker(currentLatLng.lat, currentLatLng.lng, message, file);
-      if (success) {
-        modal.style.display = 'none';
-      }
-    } else {
-      console.error("Firebase submitMapMarker function not found.");
-    }
-    
-    btnSubmit.disabled = false;
-    // We shouldn't translate it statically back since it's dynamic, but let's just trigger an update
-    if (typeof updateLanguage === 'function') {
-      btnSubmit.innerText = document.documentElement.lang === 'ko' ? "제출" : document.documentElement.lang === 'ja' ? "送信" : "Submit";
-    } else {
-      btnSubmit.innerText = "Submit";
-    }
-  });
+    // Clear existing markers
+    markerCluster.clearLayers();
 
-  const renderedMarkers = {};
-
-  window.renderMapMarkers = function(markersData) {
-    if (!markersData) return;
-
-    // Add new markers
-    Object.keys(markersData).forEach(key => {
-      const markerData = markersData[key];
+    letters.forEach(letter => {
+      // Create a pseudo-unique ID for the marker
+      const key = letter.timestamp + "_" + letter.nickname;
       
-      if (markerData.lat !== undefined && markerData.lng !== undefined) {
-        if (!renderedMarkers[key]) {
-          const lat = parseFloat(markerData.lat);
-          const lng = parseFloat(markerData.lng);
-          
-          if (isNaN(lat) || isNaN(lng)) return;
-
-          const marker = L.marker([lat, lng], { icon: pawIcon });
-          
-          let popupContent = `<div style="text-align:center; max-width: 200px;">`;
-          if (markerData.imageUrl) {
-            popupContent += `<img src="${markerData.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Pinktiger Fan Photo">`;
-          }
-          if (markerData.message) {
-            popupContent += `<p style="font-family:'Quicksand', sans-serif; font-weight:bold; color:#333; margin:0;">"${markerData.message}"</p>`;
-          }
-          popupContent += `</div>`;
-          
-          marker.bindPopup(popupContent);
-          markerCluster.addLayer(marker);
-          renderedMarkers[key] = marker;
-        }
+      const country = (letter.country || "USA").toUpperCase().trim();
+      let coords = countryCoordinates[country];
+      if (!coords) {
+        coords = [20 + (Math.random() - 0.5) * 50, 0 + (Math.random() - 0.5) * 100];
       }
-    });
+      // Add slight jitter so multiple markers don't perfectly overlap
+      const lat = coords[0] + (Math.random() - 0.5) * 4;
+      const lng = coords[1] + (Math.random() - 0.5) * 4;
 
-    // Remove deleted markers
-    Object.keys(renderedMarkers).forEach(key => {
-      if (!markersData[key]) {
-        markerCluster.removeLayer(renderedMarkers[key]);
-        delete renderedMarkers[key];
+      const marker = L.marker([lat, lng], { icon: pawIcon });
+      
+      let popupContent = `<div style="text-align:center; max-width: 250px;">`;
+      popupContent += `<h4 style="color: var(--brand-pink); margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">${letter.nickname || 'Pinktiger'}</h4>`;
+      if (letter.imageUrl) {
+        popupContent += `<img src="${letter.imageUrl}" style="width:100%; border-radius:10px; margin-bottom:10px;" alt="Fan Photo">`;
       }
+      if (letter.message) {
+        popupContent += `<p style="font-family:'Quicksand', sans-serif; color:#333; margin:0;">"${letter.message}"</p>`;
+      }
+      popupContent += `</div>`;
+      
+      marker.bindPopup(popupContent);
+      markerCluster.addLayer(marker);
     });
   };
+  // Removed old renderedMarkers logic
 }
 
 /* ==========================================================================

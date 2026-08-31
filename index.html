@@ -390,21 +390,7 @@
   </section>
 
   <!-- Map Marker Popup Modal (Hidden by default) -->
-  <div id="map-modal" class="map-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
-    <div class="map-modal-content" style="background: var(--white); padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; border: 4px solid var(--primary-pink); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-      <h3 style="color: var(--primary-pink); margin-bottom: 20px;" data-translate="map-modal-title">Leave a Marker 🐾</h3>
-      
-      <textarea id="map-modal-message" placeholder="Write a cheer message!" data-translate-placeholder="map-modal-msg-ph" style="width: 100%; height: 100px; padding: 10px; border: 2px solid var(--light-pink); border-radius: 10px; resize: none; margin-bottom: 15px; font-family: 'Quicksand', sans-serif;"></textarea>
-      
-      <label for="map-modal-file" style="display: block; text-align: left; margin-bottom: 5px; color: var(--dark-text); font-weight: bold;" data-translate="map-modal-file-label">Upload a Photo:</label>
-      <input type="file" id="map-modal-file" accept="image/*" style="width: 100%; margin-bottom: 20px; padding: 10px; background: var(--light-pink); border-radius: 10px;">
-      
-      <div style="display: flex; gap: 10px; justify-content: center;">
-        <button id="map-modal-submit" class="btn btn-primary" data-translate="map-modal-submit">Submit</button>
-        <button id="map-modal-cancel" class="btn btn-secondary" data-translate="map-modal-cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Support Masaya Section -->
   <section id="channels" class="support-section fade-in-section">
@@ -520,6 +506,11 @@
         let lettersArray = Object.keys(data).map(key => data[key]).reverse();
         lettersArray = lettersArray.filter(letter => letter.isApproved === true);
         
+        // Update map markers
+        if (window.updateMapFromLetters) {
+          window.updateMapFromLetters(lettersArray);
+        }
+        
         // Deduplication Filter
         const seen = new Set();
         lettersArray = lettersArray.filter(letter => {
@@ -600,64 +591,7 @@
       });
     }
     
-    window.submitMapMarker = async function(lat, lng, message, file) {
-      if (window.containsProfanity && window.containsProfanity(message)) {
-        alert("부적절한 단어가 포함되어 있습니다. 다시 작성해 주세요.");
-        return false;
-      }
-      try {
-        let imageUrl = '';
-        if (file) {
-          const compressedFile = await compressImage(file, 800);
-          const fileRef = storageRef(storage, 'mapPhotos/' + Date.now() + '_' + compressedFile.name);
-          const snapshot = await uploadBytes(fileRef, compressedFile);
-          imageUrl = await getDownloadURL(snapshot.ref);
-        }
-        
-        const newMarkerRef = push(mapMarkersRef);
-        await set(newMarkerRef, {
-          lat: lat,
-          lng: lng,
-          message: message,
-          imageUrl: imageUrl,
-          timestamp: Date.now(),
-          isApproved: false
-        });
-        
-        // Reverse Geocoding
-        let locationStr = 'Global Pinktiger';
-        try {
-          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
-          const geoData = await res.json();
-          if (geoData && geoData.address) {
-             const city = geoData.address.city || geoData.address.town || geoData.address.village || "";
-             const country = geoData.address.country || "";
-             locationStr = city ? `${city}, ${country}` : country;
-          }
-        } catch (e) {
-          console.log('Geocoding failed');
-        }
-        
-        // Push to Fan Letters
-        const allLettersRef = ref(db, 'fanLetters');
-        const newLetterRef = push(allLettersRef);
-        await set(newLetterRef, {
-          nickname: 'Pinktiger Fan (Map)',
-          country: locationStr,
-          message: message,
-          imageUrl: imageUrl,
-          fromMap: true,
-          timestamp: Date.now(),
-          isApproved: false
-        });
-        
-        return true;
-      } catch (error) {
-        console.error("Error adding marker: ", error);
-        alert("Failed to upload marker. Please try again.");
-        return false;
-      }
-    };
+
 
     onValue(mapMarkersRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -704,15 +638,7 @@
           }
         }
 
-        if (window.renderMapMarkers) {
-          const filteredData = {};
-          if (data) {
-            Object.keys(data).forEach(k => {
-              if (data[k].isApproved === true) filteredData[k] = data[k];
-            });
-          }
-          window.renderMapMarkers(filteredData);
-        }
+
       }
     });
   </script>
