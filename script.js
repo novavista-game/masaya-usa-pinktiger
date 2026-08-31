@@ -853,11 +853,7 @@ function initInteractiveMap() {
     showCoverageOnHover: false,
     zoomToBoundsOnClick: true,
     iconCreateFunction: function(cluster) {
-      return L.divIcon({ 
-        html: '<div style="color: #FF69B4; font-size: 35px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"><i class="fa-solid fa-paw"></i></div>',
-        className: 'custom-cluster-icon', 
-        iconSize: [35, 35] 
-      });
+      return pawIcon;
     }
   });
   map.addLayer(markerCluster);
