@@ -71,7 +71,7 @@
       <nav class="nav-menu">
         <a href="#hero" class="nav-link" data-translate="nav-home">Home</a>
         <a href="#about" class="nav-link" data-translate="nav-about">About Masaya</a>
-        <a href="#stamp-tour" class="nav-link" data-translate="nav-tiger-crush">Tiger Crush</a>
+        <a href="#stamp-tour" class="nav-link" id="nav-tiger-crush" data-translate="nav-tiger-crush">Tiger Crush</a>
         <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">Our Mascot</a>
         <a href="index.html#channels" class="nav-link" data-translate="nav-support">Support & Channels</a>
         <a href="video_archive.html" class="nav-link"><i class="fa-solid fa-music"></i> <span data-translate="nav-video">Video Archive</span></a>
@@ -133,7 +133,7 @@
   </section>
 
   <!-- Tiger Crush Standalone Game Section -->
-  <section id="stamp-tour" class="about-section fade-in-section" style="background: var(--light-pink) url('assets/leopard-print.png') center/cover; padding: 80px 0; position: relative;">
+  <section id="stamp-tour" class="about-section fade-in-section" style="display: none; background: var(--light-pink) url('assets/leopard-print.png') center/cover; padding: 80px 0; position: relative;">
     <!-- Semi-transparent overlay to make background less distracting -->
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 240, 245, 0.85); z-index: 1;"></div>
     
@@ -552,11 +552,11 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Script Reference -->
   <!-- Nickname Modal -->
-  <div id="nickname-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+  <div id="nickname-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
     <div style="position: relative; background: var(--light-pink); padding: 40px; border-radius: 30px; border: 6px solid var(--primary-pink); box-shadow: 0 20px 60px rgba(255,105,180,0.5); text-align: center; max-width: 400px; width: 90%; animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
       
       <!-- Close Button -->
-      <a href="#" onclick="document.getElementById('nickname-modal').style.display='none';" style="position: absolute; top: 15px; right: 15px; font-size: 1.5rem; text-decoration: none; color: var(--brand-pink); transition: transform 0.2s; z-index: 10;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" aria-label="Close modal">✖️</a>
+      <a href="#" id="modal-close-btn" style="position: absolute; top: 15px; right: 15px; font-size: 1.5rem; text-decoration: none; color: var(--brand-pink); transition: transform 0.2s; z-index: 10;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" aria-label="Close modal">✖️</a>
 
       <h2 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px;">Welcome! 🐾</h2>
       <p style="font-family: 'Quicksand', sans-serif; font-size: 1.2rem; color: #555; margin-bottom: 20px; font-weight: 600;">Enter your Nickname to start! 🐯</p>

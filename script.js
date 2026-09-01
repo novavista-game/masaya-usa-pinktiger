@@ -484,11 +484,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('start-game-btn');
   const nicknameInput = document.getElementById('nickname-input');
   const exitGameBtn = document.getElementById('exit-game-btn');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const navTigerCrush = document.getElementById('nav-tiger-crush');
+  const stampTour = document.getElementById('stamp-tour');
   
   if (exitGameBtn) {
     exitGameBtn.addEventListener('click', (e) => {
       e.preventDefault();
       resetGame();
+    });
+  }
+  
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetGame();
+    });
+  }
+  
+  if (navTigerCrush) {
+    navTigerCrush.addEventListener('click', (e) => {
+      // Don't prevent default, allow smooth scroll to happen
+      if (stampTour) stampTour.style.display = 'block'; // Or 'block' depending on CSS
+      if (nicknameModal && playerNickname === "Guest") {
+        nicknameModal.style.display = 'flex';
+      }
     });
   }
   
@@ -867,12 +887,14 @@ function initLeaderboard() {
 function resetGame() {
   const nicknameModal = document.getElementById('nickname-modal');
   const nicknameInput = document.getElementById('nickname-input');
-  const levelTitle = document.getElementById('level-title');
-  const scoreCounter = document.getElementById('score-counter');
+  const stampTour = document.getElementById('stamp-tour');
   
   playerNickname = "Guest";
   if (nicknameInput) nicknameInput.value = '';
-  if (nicknameModal) nicknameModal.style.display = 'flex';
+  
+  // Clean Exit Logic: Hide container and modal
+  if (stampTour) stampTour.style.display = 'none';
+  if (nicknameModal) nicknameModal.style.display = 'none';
   
   // Expose global variables to reset game state. 
   // Wait, I need to reset them where they are accessible. They are in the global scope? No, they are inside initStampTour scope.
