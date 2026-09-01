@@ -7,6 +7,7 @@ window.translations = {
   en: {
     "nav-home": "Home",
     "nav-about": "About Masaya",
+    "nav-schedule": "Upcoming Schedule",
     "nav-mascot": "Our Mascot",
     "nav-support": "Support & Channels",
     "hero-title": "Masaya USA <span style=\"white-space: nowrap;\">Pinktiger</span> <img src=\"./assets/pinktiger.png?v=4\" alt=\"Pinktiger Mascot\" class=\"custom-hero-mascot emoji-bounce\"><span class=\"emoji-pulse\">💖</span>",
@@ -100,6 +101,7 @@ window.translations = {
   ja: {
     "nav-home": "ホーム",
     "nav-about": "マサヤについて",
+    "nav-schedule": "スケジュール",
     "nav-mascot": "マスコット",
     "nav-support": "応援＆公式リンク",
     "hero-title": "Masaya USA <span style=\"white-space: nowrap;\">Pinktiger</span> <img src=\"./assets/pinktiger.png?v=4\" alt=\"Pinktiger Mascot\" class=\"custom-hero-mascot emoji-bounce\"><span class=\"emoji-pulse\">💖</span>",
@@ -193,6 +195,7 @@ window.translations = {
   ko: {
     "nav-home": "홈",
     "nav-about": "마사야 소개",
+    "nav-schedule": "주요 스케줄",
     "nav-mascot": "마스코트",
     "nav-support": "응원 & 공식 채널",
     "hero-title": "Masaya USA <span style=\"white-space: nowrap;\">Pinktiger</span> <img src=\"./assets/pinktiger.png?v=4\" alt=\"Pinktiger Mascot\" class=\"custom-hero-mascot emoji-bounce\"><span class=\"emoji-pulse\">💖</span>",
@@ -287,6 +290,7 @@ window.translations = {
   es: {
     "nav-home": "Inicio",
     "nav-about": "Sobre Masaya",
+    "nav-schedule": "Próximos Eventos",
     "nav-mascot": "Nuestra Mascota",
     "nav-support": "Apoyo y Enlaces",
     "hero-title": "Masaya USA <span style=\"white-space: nowrap;\">Pinktiger</span> <img src=\"./assets/pinktiger.png?v=4\" alt=\"Pinktiger Mascot\" class=\"custom-hero-mascot emoji-bounce\"><span class=\"emoji-pulse\">💖</span>",
@@ -381,6 +385,7 @@ window.translations = {
   fr: {
     "nav-home": "Accueil",
     "nav-about": "À propos de Masaya",
+    "nav-schedule": "Événements à venir",
     "nav-mascot": "Notre Mascotte",
     "nav-support": "Soutien et Chaînes",
     "nav-video": "Archives Vidéo",
