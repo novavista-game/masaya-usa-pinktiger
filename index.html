@@ -41,6 +41,8 @@
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <!-- Leaflet MarkerCluster CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
@@ -321,6 +323,54 @@
     </div>
   </section>
 
+  <!-- Goods Store Section -->
+  <section id="goods-store" class="goods-store-section fade-in-section" style="padding: 60px 0; background: var(--light-pink);">
+    <div class="container masaya-goods-store" style="max-width: 1200px; margin: 0 auto; text-align: center; background: var(--white); border-radius: 20px; padding: 40px 20px; box-shadow: 0 10px 25px rgba(255, 105, 180, 0.15);">
+      <h2 class="section-title" data-translate="goods-store-title" style="color: #DE3163; font-family: var(--font-title); margin-bottom: 10px;">Masaya Free Goods Store</h2>
+      <p class="section-subtitle" data-translate="goods-store-subtitle" style="margin-bottom: 30px; font-weight: bold; color: var(--dark-text);">Download your favorite goods!</p>
+      
+      <!-- Swiper -->
+      <div class="swiper goodsSwiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide goods-card">
+            <img src="assets/goods_nail.jpg" alt="Nail Art Edition">
+            <h3 class="goods-title" data-translate="goods-title-1">Nail Art Edition</h3>
+            <a href="assets/goods_nail.jpg" download class="btn download-btn" data-translate="download-btn">Download</a>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide goods-card">
+            <img src="assets/goods_yukata.jpg" alt="Yukata Edition">
+            <h3 class="goods-title" data-translate="goods-title-2">Yukata Edition</h3>
+            <a href="assets/goods_yukata.jpg" download class="btn download-btn" data-translate="download-btn">Download</a>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide goods-card">
+            <img src="assets/goods_sea prince.jpg" alt="Concert Outfit Edition">
+            <h3 class="goods-title" data-translate="goods-title-3">Concert Outfit Edition</h3>
+            <a href="assets/goods_sea prince.jpg" download class="btn download-btn" data-translate="download-btn">Download</a>
+          </div>
+          <!-- Slide 4 -->
+          <div class="swiper-slide goods-card">
+            <img src="assets/goods_hello kitty.jpg" alt="Insta Live Edition">
+            <h3 class="goods-title" data-translate="goods-title-4">Insta Live Edition</h3>
+            <a href="assets/goods_hello kitty.jpg" download class="btn download-btn" data-translate="download-btn">Download</a>
+          </div>
+          <!-- Slide 5 -->
+          <div class="swiper-slide goods-card">
+            <img src="assets/goods_MCM perfume.jpg" alt="Luxury Perfume Ambassador Edition">
+            <h3 class="goods-title" data-translate="goods-title-5">Luxury Perfume Ambassador Edition</h3>
+            <a href="assets/goods_MCM perfume.jpg" download class="btn download-btn" data-translate="download-btn">Download</a>
+          </div>
+        </div>
+        <!-- Add Pagination & Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive Map Section -->
   <section id="interactive-map" class="fade-in-section" style="padding: 60px 0; background: var(--light-pink);">
     <div class="container" style="max-width: 1200px; margin: 0 auto; text-align: center;">
@@ -536,6 +586,8 @@
   </script>
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- Script Reference -->
 
 

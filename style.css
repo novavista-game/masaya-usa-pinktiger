@@ -1988,3 +1988,95 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   }
 }
 
+/* ==========================================================================
+   Goods Store Section
+   ========================================================================== */
+.goods-store-section .swiper {
+  width: 100%;
+  padding-bottom: 50px; /* Space for pagination */
+}
+
+.goods-card {
+  background: var(--white);
+  border-radius: 16px;
+  border: 2px solid var(--light-pink);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition-smooth);
+}
+
+.goods-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+  border-color: var(--brand-pink);
+}
+
+.goods-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--light-pink);
+}
+
+.goods-title {
+  font-family: var(--font-title);
+  color: var(--dark-text);
+  font-size: 1.2rem;
+  margin: 15px 10px 10px 10px;
+  text-align: center;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-btn {
+  background-color: var(--brand-pink);
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.download-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--leopard-pattern);
+  background-size: 80px 80px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #DE3163;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(222, 49, 99, 0.4);
+}
+
+.download-btn:hover::before {
+  opacity: 0.15;
+}
+
+.goods-store-section .swiper-button-next,
+.goods-store-section .swiper-button-prev {
+  color: var(--brand-pink);
+}
+
+.goods-store-section .swiper-pagination-bullet-active {
+  background: var(--brand-pink);
+}
+

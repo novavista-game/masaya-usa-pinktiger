@@ -96,7 +96,15 @@ window.translations = {
     "sch-title-3": "Masaya Concert \"Cheers to the Masterpieces of Life!\"",
     "sch-loc-3": "@YCC Prefectural Cultural Hall",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
-    "sch-loc-4": "Tokyo @SHIBUYA DIVE"
+    "sch-loc-4": "Tokyo @SHIBUYA DIVE",
+    "goods-store-title": "Masaya Free Goods Store",
+    "goods-store-subtitle": "Download your favorite goods!",
+    "download-btn": "Download",
+    "goods-title-1": "Nail Art Edition",
+    "goods-title-2": "Yukata Edition",
+    "goods-title-3": "Concert Outfit Edition",
+    "goods-title-4": "Insta Live Edition",
+    "goods-title-5": "Luxury Perfume Ambassador Edition"
   },
   ja: {
     "nav-home": "ホーム",
@@ -190,7 +198,15 @@ window.translations = {
     "sch-title-3": "Masaya「人生の名曲に喝采を！コンサート」",
     "sch-loc-3": "@YCC県民文化ホール",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
-    "sch-loc-4": "東京 @SHIBUYA DIVE"
+    "sch-loc-4": "東京 @SHIBUYA DIVE",
+    "goods-store-title": "Masaya フリーグッズ ストア",
+    "goods-store-subtitle": "お気に入りのグッズをダウンロード!",
+    "download-btn": "ダウンロード",
+    "goods-title-1": "ネイルアート エディション",
+    "goods-title-2": "浴衣 エディション",
+    "goods-title-3": "ライブ衣装 エディション",
+    "goods-title-4": "インスタライブ エディション",
+    "goods-title-5": "ラグジュアリー香水 앰버서더 エディション"
   },
   ko: {
     "nav-home": "홈",
@@ -285,7 +301,15 @@ window.translations = {
     "sch-title-3": "마사야 '인생의 명곡에 갈채를! 콘서트'",
     "sch-loc-3": "@YCC 현민 문화홀",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
-    "sch-loc-4": "도쿄 @SHIBUYA DIVE"
+    "sch-loc-4": "도쿄 @SHIBUYA DIVE",
+    "goods-store-title": "Masaya Free Goods Store",
+    "goods-store-subtitle": "원하시는 굿즈를 다운로드하세요!",
+    "download-btn": "다운로드",
+    "goods-title-1": "네일아트 에디션",
+    "goods-title-2": "유카타 에디션",
+    "goods-title-3": "콘서트 제복 에디션",
+    "goods-title-4": "인스타 라이브 에디션",
+    "goods-title-5": "럭셔리 향수 앰버서더 에디션"
   },
   es: {
     "nav-home": "Inicio",
@@ -380,7 +404,15 @@ window.translations = {
     "sch-title-3": "Concierto de Masaya \"¡Aplausos a las Obras Maestras de la Vida!\"",
     "sch-loc-3": "@YCC Prefectural Cultural Hall",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
-    "sch-loc-4": "Tokio @SHIBUYA DIVE"
+    "sch-loc-4": "Tokio @SHIBUYA DIVE",
+    "goods-store-title": "Tienda de Productos Gratuitos de Masaya",
+    "goods-store-subtitle": "¡Descarga tus productos favoritos!",
+    "download-btn": "Descargar",
+    "goods-title-1": "Edición Nail Art",
+    "goods-title-2": "Edición Yukata",
+    "goods-title-3": "Edición Atuendo de Concierto",
+    "goods-title-4": "Edición Insta Live",
+    "goods-title-5": "Edición Embajador de Perfume de Lujo"
   },
   fr: {
     "nav-home": "Accueil",
@@ -476,7 +508,15 @@ window.translations = {
     "sch-title-3": "Concert de Masaya \"Acclamations aux Chefs-d'œuvre de la Vie !\"",
     "sch-loc-3": "@YCC Prefectural Cultural Hall",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
-    "sch-loc-4": "Tokyo @SHIBUYA DIVE"
+    "sch-loc-4": "Tokyo @SHIBUYA DIVE",
+    "goods-store-title": "Boutique de Produits Gratuits Masaya",
+    "goods-store-subtitle": "Téléchargez vos articles préférés !",
+    "download-btn": "Télécharger",
+    "goods-title-1": "Édition Art des Ongles",
+    "goods-title-2": "Édition Yukata",
+    "goods-title-3": "Édition Tenue de Concert",
+    "goods-title-4": "Édition Insta Live",
+    "goods-title-5": "Édition Ambassadeur de Parfum de Luxe"
   }
 };
 
@@ -527,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoCarousel();
   initMobileMenu();
   initInteractiveMap();
+  initGoodsSwiper();
 
 });
 
@@ -1679,3 +1720,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initMascotEasterEgg();
   initFanLetterCarousel();
 });
+
+/* ==========================================================================
+   Goods Store Swiper Initialization
+   ========================================================================== */
+function initGoodsSwiper() {
+  if (typeof Swiper !== 'undefined') {
+    new Swiper('.goodsSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        }
+      }
+    });
+  }
+}
