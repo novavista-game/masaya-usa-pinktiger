@@ -201,14 +201,14 @@ window.translations = {
     "sch-loc-3": "@YCC県民文化ホール",
     "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
     "sch-loc-4": "東京 @SHIBUYA DIVE",
-    "goods-store-title": "Masaya 프리굿즈 스트아",
-    "goods-store-subtitle": "お気に入りのグッズ를 다운로드!",
+    "goods-store-title": "Masaya フリーグッズ ストア",
+    "goods-store-subtitle": "お気に入りのグッズをダウンロード！",
     "download-btn": "ダウンロード",
-    "goods-title-1": "네일아트 에디션",
-    "goods-title-2": "유카타 에디션",
-    "goods-title-3": "라이브 의상 에디션",
-    "goods-title-4": "인스타 라이브 에디션",
-    "goods-title-5": "럭셔리 향수 앰버서더 에디션"
+    "goods-title-1": "ネイルアート エディション",
+    "goods-title-2": "浴衣 エディション",
+    "goods-title-3": "ライブ衣装 エディション",
+    "goods-title-4": "インスタライブ エディション",
+    "goods-title-5": "ラグジュアリー香水 エディション"
   },
   ko: {
     "nav-home": "홈",
