@@ -1465,106 +1465,8 @@ function initInteractiveMap() {
   });
 }
 
-/* ==========================================================================
-   10. Mascot Easter Egg
-   ========================================================================== */
-function initMascotEasterEgg() {
-  const mascotTrigger = document.getElementById('mascot-trigger');
-  const eeModal = document.getElementById('easter-egg-modal');
-  const eeImage = document.getElementById('ee-image');
-  const eeModalContent = document.getElementById('ee-modal-content');
-  
-  if (!mascotTrigger || !eeModal || !eeImage) return;
 
-  let eeCount = 0;
-  const eeTotal = 7;
-  let eeTimeout = null;
 
-  const hideModal = () => {
-    eeModal.style.opacity = '0';
-    eeModal.style.pointerEvents = 'none';
-    eeModal.style.visibility = 'hidden';
-    if (eeTimeout) {
-      clearTimeout(eeTimeout);
-      eeTimeout = null;
-    }
-  };
-
-  mascotTrigger.addEventListener('click', () => {
-    eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
-    // Properly encode URI for spaces and Korean characters
-    eeImage.src = encodeURI(`assets/마사야 사진 ${eeCount}.png`);
-    
-    // Show modal with fade
-    eeModal.style.opacity = '1';
-    eeModal.style.pointerEvents = 'auto';
-    eeModal.style.visibility = 'visible';
-    
-    // Reset animation
-    eeModalContent.classList.remove('heart-pop-anim');
-    void eeModalContent.offsetWidth; // Trigger reflow
-    eeModalContent.classList.add('heart-pop-anim');
-
-    // Auto-hide after 2 seconds
-    if (eeTimeout) clearTimeout(eeTimeout);
-    eeTimeout = setTimeout(hideModal, 2000);
-  });
-
-  // Close modal when clicking anywhere on the modal
-  eeModal.addEventListener('click', hideModal);
-}
-
-/* ==========================================================================
-   11. Fan Letter Carousel
-   ========================================================================== */
-
-window.scrollFanLetters = function(amount) {
-  const container = document.getElementById('home-letters-container');
-  if (container) {
-    // On mobile, scroll by the full width of the container instead of fixed pixel amount
-    let scrollAmount = amount;
-    if (window.innerWidth <= 768) {
-      scrollAmount = amount > 0 ? container.clientWidth : -container.clientWidth;
-    }
-    
-    container.scrollTo({
-      left: container.scrollLeft + scrollAmount,
-      behavior: 'smooth'
-    });
-    setTimeout(() => {
-      if (window.updateFanLetterButtons) window.updateFanLetterButtons();
-    }, 400); // Wait for smooth scroll to finish
-  }
-};
-
-function initFanLetterCarousel() {
-  const container = document.getElementById('home-letters-container');
-  const prevBtn = document.getElementById('fanletter-prev');
-  const nextBtn = document.getElementById('fanletter-next');
-  
-  if (!container || !prevBtn || !nextBtn) return;
-
-  const updateButtons = () => {
-    // Disable prev if at start
-    prevBtn.disabled = container.scrollLeft <= 0;
-    // Disable next if at end (allow 1px rounding error)
-    nextBtn.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
-  };
-
-  container.addEventListener('scroll', updateButtons);
-  window.addEventListener('resize', updateButtons);
-  
-  // Initial check (delay slightly to allow Firebase injection)
-  setTimeout(updateButtons, 1000);
-  
-  // Expose update function to be called after Firebase injection
-  window.updateFanLetterButtons = updateButtons;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initMascotEasterEgg();
-  initFanLetterCarousel();
-});
 
 function initInteractiveMap() {
   const mapContainer = document.getElementById('map');
@@ -1674,6 +1576,15 @@ function initMascotEasterEgg() {
   const eeTotal = 7;
   let eeTimeout = null;
 
+  // Preload all images for instant display
+  const imagePaths = [];
+  for (let i = 1; i <= eeTotal; i++) {
+    const path = `assets/마사야 사진 ${i}.png`;
+    imagePaths.push(path);
+    const preloadImg = new Image();
+    preloadImg.src = path;
+  }
+
   const hideModal = () => {
     eeModal.style.opacity = '0';
     eeModal.style.pointerEvents = 'none';
@@ -1684,10 +1595,18 @@ function initMascotEasterEgg() {
     }
   };
 
-  mascotTrigger.addEventListener('click', () => {
+  mascotTrigger.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent sparkle click handler from interfering
     eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
-    // Properly encode URI for spaces and Korean characters
-    eeImage.src = encodeURI(`assets/留덉궗???ъ쭊 ${eeCount}.png`);
+    
+    // Set image source (no encodeURI - browser handles Korean filenames natively)
+    eeImage.src = imagePaths[eeCount - 1];
+    
+    // Ensure image element is visible and on top
+    eeImage.style.display = 'block';
+    eeImage.style.visibility = 'visible';
+    eeImage.style.opacity = '1';
+    eeImage.style.zIndex = '2';
     
     // Show modal with fade
     eeModal.style.opacity = '1';
@@ -1695,13 +1614,15 @@ function initMascotEasterEgg() {
     eeModal.style.visibility = 'visible';
     
     // Reset animation
-    eeModalContent.classList.remove('heart-pop-anim');
-    void eeModalContent.offsetWidth; // Trigger reflow
-    eeModalContent.classList.add('heart-pop-anim');
+    if (eeModalContent) {
+      eeModalContent.classList.remove('heart-pop-anim');
+      void eeModalContent.offsetWidth; // Trigger reflow
+      eeModalContent.classList.add('heart-pop-anim');
+    }
 
-    // Auto-hide after 2 seconds
+    // Auto-hide after 3 seconds
     if (eeTimeout) clearTimeout(eeTimeout);
-    eeTimeout = setTimeout(hideModal, 2000);
+    eeTimeout = setTimeout(hideModal, 3000);
   });
 
   // Close modal when clicking anywhere on the modal

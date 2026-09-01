@@ -259,7 +259,7 @@
         <div class="combined-hotpick-card action-card" style="display: flex; justify-content: center; align-items: center; padding: 20px; background: var(--white); border-radius: 20px; border: 4px solid var(--primary-pink); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2); width: 100%; height: 100%; position: relative;">
           <div class="mascot-frame" style="position: relative; width: 90%; max-width: 400px; margin: 0 auto;">
             
-            <!-- SVG Heart Clip Path -->
+            <!-- SVG Heart Clip Path (at document level for fixed-position modal access) -->
             <svg width="0" height="0" style="position: absolute;">
               <defs>
                 <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
@@ -271,10 +271,10 @@
             <!-- Easter Egg Popup Modal -->
             <div id="easter-egg-modal" style="opacity: 0; pointer-events: none; visibility: hidden; transition: all 0.4s ease; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,192,203,0.8); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(5px);">
               <div id="ee-modal-content" style="position: relative; width: 80vw; max-width: 400px; aspect-ratio: 1 / 1; filter: drop-shadow(0 20px 40px rgba(255,20,147,0.5));">
-                <!-- Pink Frame -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-pink); clip-path: url(#heart-clip);"></div>
-                <!-- Inner Image -->
-                <img id="ee-image" src="" alt="Masaya Easter Egg" style="position: absolute; top: 5%; left: 5%; width: 90%; height: 90%; object-fit: cover; clip-path: url(#heart-clip);">
+                <!-- Pink Frame (behind the image) -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-pink); clip-path: url(#heart-clip); z-index: 1;"></div>
+                <!-- Inner Image (on top of pink frame) -->
+                <img id="ee-image" src="" alt="Masaya Easter Egg" style="position: absolute; top: 3%; left: 3%; width: 94%; height: 94%; object-fit: cover; clip-path: url(#heart-clip); z-index: 2;">
               </div>
             </div>
 
