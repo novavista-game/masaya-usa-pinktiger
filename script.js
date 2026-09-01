@@ -1633,17 +1633,17 @@ function initInteractiveMap() {
   map.addLayer(markerCluster);
 
   const hardcodedMarkers = [
-    { lat: 34.0522, lng: -118.2437, nickname: "PinkTiger_LA", message: "Been listening to his covers on repeat! Can't wait for a US tour! ?맦?뮇" },
-    { lat: 40.7128, lng: -74.0060, nickname: "Melody_NY", message: "His vocal range is absolutely insane. This new fan site is gorgeous! ?렎?? },
-    { lat: 48.8566, lng: 2.3522, nickname: "Paris_PinkTiger", message: "Growing fanbase in Paris! Your vocal tone is incredibly trendy in Europe. ?눏?눟?? },
-    { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. ?눎?눡?뵦" },
-    { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! ?눊?눛?맦" },
-    { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! ?눉?눟?뮇" },
-    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! ?눐?눉?렦" },
-    { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! ?눓?눝?맦" },
-    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! ?눖?눟?? },
-    { lat: 47.6062, lng: -122.3321, nickname: "Seattle_PinkTiger", message: "Streaming your songs every day from the rainy city! We love you Masaya! ?뺩윇? },
-    { lat: 33.9367, lng: -118.0278, nickname: "SoCal_Roar", message: "Huge fan from Southern California! Your high notes are amazing! ?뙱?? }
+    { lat: 34.0522, lng: -118.2437, nickname: "PinkTiger_LA", message: "Been listening to his covers on repeat! Can't wait for a US tour! 💖" },
+    { lat: 40.7128, lng: -74.0060, nickname: "Melody_NY", message: "His vocal range is absolutely insane. This new fan site is gorgeous! ✨" },
+    { lat: 48.8566, lng: 2.3522, nickname: "Paris_PinkTiger", message: "Growing fanbase in Paris! Your vocal tone is incredibly trendy in Europe. 🗼" },
+    { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. 🎶" },
+    { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! 🐅" },
+    { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🌎" },
+    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🎵" },
+    { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! 🗼" },
+    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷" },
+    { lat: 47.6062, lng: -122.3321, nickname: "Seattle_PinkTiger", message: "Streaming your songs every day from the rainy city! We love you Masaya! ☔" },
+    { lat: 33.9367, lng: -118.0278, nickname: "SoCal_Roar", message: "Huge fan from Southern California! Your high notes are amazing! 🌴" }
   ];
 
   hardcodedMarkers.forEach(item => {
