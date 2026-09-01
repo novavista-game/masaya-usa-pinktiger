@@ -86,7 +86,16 @@ window.translations = {
     "nav-tiger-crush": "Tiger Crush",
     "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "Follow Masaya's footprints! Answer quizzes to collect stamps and unlock the next destination!",
-    "tiger-crush-subtitle": "Enjoy your complimentary game for Masaya's fandom!"
+    "tiger-crush-subtitle": "Enjoy your complimentary game for Masaya's fandom!",
+    "schedule-title": "Masaya's Schedule 📅",
+    "sch-title-1": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-1": "Nagoya @JAMMIN'",
+    "sch-title-2": "\"Kagero\" Digital Single Release",
+    "sch-loc-2": "Online",
+    "sch-title-3": "Masaya Concert \"Cheers to the Masterpieces of Life!\"",
+    "sch-loc-3": "@YCC Prefectural Cultural Hall",
+    "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-4": "Tokyo @SHIBUYA DIVE"
   },
   ja: {
     "nav-home": "ホーム",
@@ -170,7 +179,16 @@ window.translations = {
     "nav-tiger-crush": "Tiger Crush",
     "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "マサヤの足跡をたどろう！クイズに答えてスタンプを集め、次の目的地をアンロック！",
-    "tiger-crush-subtitle": "マサヤファンダムのための無料ゲームをお楽しみください！"
+    "tiger-crush-subtitle": "マサヤファンダムのための無料ゲームをお楽しみください！",
+    "schedule-title": "マサヤのスケジュール 📅",
+    "sch-title-1": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-1": "名古屋 @JAMMIN'",
+    "sch-title-2": "「陽炎」 デジタルシングルリリース",
+    "sch-loc-2": "オンライン",
+    "sch-title-3": "Masaya「人生の名曲に喝采を！コンサート」",
+    "sch-loc-3": "@YCC県民文化ホール",
+    "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-4": "東京 @SHIBUYA DIVE"
   },
   ko: {
     "nav-home": "홈",
@@ -255,7 +273,16 @@ window.translations = {
     "nav-tiger-crush": "Tiger Crush",
     "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "마사야의 발자취를 따라가보세요! 퀴즈를 풀고 스탬프를 모아 다음 목적지를 잠금 해제하세요!",
-    "tiger-crush-subtitle": "마사야 팬덤을 위한 무료 게임을 즐겨보세요!"
+    "tiger-crush-subtitle": "마사야 팬덤을 위한 무료 게임을 즐겨보세요!",
+    "schedule-title": "마사야의 스케줄 📅",
+    "sch-title-1": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-1": "나고야 @JAMMIN'",
+    "sch-title-2": "'아지랑이(陽炎)' 디지털 싱글 발매",
+    "sch-loc-2": "온라인",
+    "sch-title-3": "마사야 '인생의 명곡에 갈채를! 콘서트'",
+    "sch-loc-3": "@YCC 현민 문화홀",
+    "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-4": "도쿄 @SHIBUYA DIVE"
   },
   es: {
     "nav-home": "Inicio",
@@ -340,7 +367,16 @@ window.translations = {
     "nav-tiger-crush": "Tiger Crush",
     "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "¡Sigue las huellas de Masaya! ¡Responde cuestionarios para coleccionar sellos y desbloquear el siguiente destino!",
-    "tiger-crush-subtitle": "¡Disfruta de tu juego gratuito para el fandom de Masaya!"
+    "tiger-crush-subtitle": "¡Disfruta de tu juego gratuito para el fandom de Masaya!",
+    "schedule-title": "Horario de Masaya 📅",
+    "sch-title-1": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-1": "Nagoya @JAMMIN'",
+    "sch-title-2": "Lanzamiento del Sencillo Digital \"Kagero\"",
+    "sch-loc-2": "En línea",
+    "sch-title-3": "Concierto de Masaya \"¡Aplausos a las Obras Maestras de la Vida!\"",
+    "sch-loc-3": "@YCC Prefectural Cultural Hall",
+    "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-4": "Tokio @SHIBUYA DIVE"
   },
   fr: {
     "nav-home": "Accueil",
@@ -426,7 +462,16 @@ window.translations = {
     "nav-tiger-crush": "Tiger Crush",
     "tiger-crush-title": "Tiger Crush 🐯 🐾<span style=\"color: pink;\">🐾</span>",
     "stamp-tour-desc": "Suivez les traces de Masaya ! Répondez aux quiz pour collectionner des timbres et débloquer la prochaine destination !",
-    "tiger-crush-subtitle": "Profitez de votre jeu gratuit pour le fandom de Masaya !"
+    "tiger-crush-subtitle": "Profitez de votre jeu gratuit pour le fandom de Masaya !",
+    "schedule-title": "Programme de Masaya 📅",
+    "sch-title-1": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-1": "Nagoya @JAMMIN'",
+    "sch-title-2": "Sortie du Single Numérique \"Kagero\"",
+    "sch-loc-2": "En ligne",
+    "sch-title-3": "Concert de Masaya \"Acclamations aux Chefs-d'œuvre de la Vie !\"",
+    "sch-loc-3": "@YCC Prefectural Cultural Hall",
+    "sch-title-4": "AGE LIVE TOUR 2026 \"PERCENTAGE%\"",
+    "sch-loc-4": "Tokyo @SHIBUYA DIVE"
   }
 };
 
