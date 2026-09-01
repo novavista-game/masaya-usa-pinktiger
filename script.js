@@ -443,8 +443,6 @@ window.containsProfanity = function(text) {
   return badWords.some(word => lowerText.includes(word));
 };
 
-// Global Variables for Game
-let playerNickname = "Guest";
 
 // Firebase Initialization (Placeholder Configuration)
 const firebaseConfig = {
@@ -479,56 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoCarousel();
   initMobileMenu();
   initInteractiveMap();
-  
-  // Nickname Modal Logic
-  const nicknameModal = document.getElementById('nickname-modal');
-  const startBtn = document.getElementById('start-game-btn');
-  const nicknameInput = document.getElementById('nickname-input');
-  const exitGameBtn = document.getElementById('exit-game-btn');
-  const modalCloseBtn = document.getElementById('modal-close-btn');
-  const navTigerCrush = document.getElementById('nav-tiger-crush');
-  const stampTour = document.getElementById('stamp-tour');
-  const interactiveMap = document.getElementById('interactive-map');
-  
-  if (exitGameBtn) {
-    exitGameBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      resetGame();
-    });
-  }
-  
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      resetGame();
-    });
-  }
-  
-  if (navTigerCrush) {
-    navTigerCrush.addEventListener('click', (e) => {
-      // Don't prevent default, allow smooth scroll to happen
-      if (stampTour) stampTour.style.display = 'block';
-      if (interactiveMap) interactiveMap.style.display = 'none';
-      if (nicknameModal && playerNickname === "Guest") {
-        nicknameModal.style.display = 'flex';
-      }
-    });
-  }
-  
-  if (nicknameModal && startBtn) {
-    startBtn.addEventListener('click', () => {
-      const val = nicknameInput.value.trim();
-      if (val) {
-        playerNickname = val;
-      }
-      nicknameModal.style.display = 'none';
-      initStampTour();
-      initLeaderboard();
-    });
-  } else {
-    initStampTour();
-    initLeaderboard();
-  }
+
 });
 
 /* ==========================================================================

@@ -1357,6 +1357,47 @@ body {
   .footer-right {
     text-align: center;
   }
+
+  /* Mobile layout fixes for about section and video */
+  .about-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .about-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .carousel-letter-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    scroll-snap-align: center !important;
+  }
+
+  .about-bio-card, .about-stats-card {
+    height: auto !important;
+  }
+
+  .video-outer-container,
+  .leopard-border-wrapper {
+    height: auto !important;
+  }
+
+  .video-inner-container {
+    height: 0 !important;
+    padding-bottom: 56.25% !important; /* Force 16:9 space */
+  }
+
+  #map-modal-submit, #map-modal-cancel {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    white-space: nowrap !important;
+  }
 }
 
 /* Extra Small Screens (Smartphones) */
@@ -1455,123 +1496,6 @@ body {
 .prev-btn { left: 10px; }
 .next-btn { right: 10px; }
 
-/* Mobile Screens */
-@media (max-width: 768px) {
-  .about-section {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  .about-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-
-  .carousel-letter-card {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    scroll-snap-align: center !important;
-  }
-  
-  .about-bio-card, .about-stats-card {
-    height: auto !important;
-  }
-
-  .video-outer-container,
-  .leopard-border-wrapper {
-    height: auto !important;
-  }
-
-  .video-inner-container {
-    height: 0 !important;
-    padding-bottom: 56.25% !important; /* Force 16:9 space */
-  }
-
-  .navbar {
-    padding: 8px 0;
-  }
-  
-  .nav-menu {
-    display: none; /* Keep simple mobile nav / hide text menus */
-  }
-
-  .nav-controls {
-    gap: 8px;
-  }
-  
-  .lang-btn {
-    padding: 4px 8px;
-    font-size: 0.75rem;
-  }
-  
-  .btn-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1.05rem;
-  }
-  
-  .hero-title {
-    font-size: 2.2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.3rem;
-  }
-  
-  .section-title {
-    font-size: 2.1rem;
-  }
-  
-  .about-bio-card, .about-stats-card {
-    padding: 24px;
-  }
-  
-  .mascot-frame {
-    max-width: 250px;
-  }
-  
-  .mascot-section-title {
-    font-size: 2.1rem;
-  }
-  
-  .detail-label {
-    width: 120px;
-  }
-  
-  .action-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .action-card {
-    padding: 28px 20px 24px;
-  }
-
-  #disqus_thread {
-    padding: 20px;
-    border-radius: 18px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-  
-  .footer-right {
-    text-align: center;
-  }
-
-  #map-modal-submit, #map-modal-cancel {
-    font-size: 14px !important;
-    padding: 8px 12px !important;
-    white-space: nowrap !important;
-  }
-}
 
 /* Extra Small Screens (Smartphones) */
 @media (max-width: 480px) {
@@ -1907,108 +1831,3 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   margin-bottom: -45px !important; /* 하단 45px를 넘치게 하여 overflow: hidden에 의해 잘리도록 처리 */
 }
 
-/* ==========================================================================
-   Match-3 Puzzle Game Styles
-   ========================================================================== */
-.match3-cell {
-  background: var(--white);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: min(10vw, 2.5rem);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05), 0 2px 4px rgba(255,105,180,0.2);
-  user-select: none;
-  cursor: grab;
-  position: relative;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
-  touch-action: none; /* Prevent scroll on touch */
-  overflow: hidden;
-}
-
-.match3-cell:active {
-  cursor: grabbing;
-  transform: scale(0.9);
-}
-
-.match3-cell.pop-anim {
-  animation: popItem 0.4s ease-out forwards;
-}
-
-@keyframes popItem {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.8; }
-  100% { transform: scale(0); opacity: 0; }
-}
-
-.match3-cell.fall-anim {
-  animation: fallItem 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes fallItem {
-  0% { transform: translateY(-50px); opacity: 0.5; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-.heart-icon {
-  filter: drop-shadow(0 2px 4px rgba(255,105,180,0.3));
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.heart-icon.filled {
-  transform: scale(1.2);
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* ==========================================================================
-   Mobile Responsive Fixes for Tiger Crush Leaderboard
-   ========================================================================== */
-@media (max-width: 768px) {
-  .game-split-layout {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 0 !important;
-  }
-  
-  .leaderboard-panel {
-    width: 100% !important;
-    max-width: 400px !important;
-    margin-top: 30px !important;
-    padding: 20px 15px !important;
-  }
-  
-  .leaderboard-panel h3 {
-    font-size: 2.2rem !important;
-  }
-  
-  #leaderboard-list {
-    font-size: 1.4rem !important;
-  }
-  
-  #leaderboard-list li {
-    padding: 15px !important;
-    margin-bottom: 5px !important;
-  }
-  
-  #match3-board {
-    grid-template-columns: repeat(6, 1fr) !important;
-    width: 100% !important;
-    max-width: 400px !important;
-    aspect-ratio: 1 / 1 !important;
-  }
-  
-  .match3-cell {
-    aspect-ratio: 1 / 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: clamp(20px, 8vw, 40px) !important; /* Scale proportionally */
-    width: 100% !important;
-    height: 100% !important;
-    box-sizing: border-box !important;
-  }
-}

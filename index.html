@@ -71,7 +71,6 @@
       <nav class="nav-menu">
         <a href="#hero" class="nav-link" data-translate="nav-home">Home</a>
         <a href="#about" class="nav-link" data-translate="nav-about">About Masaya</a>
-        <a href="#stamp-tour" class="nav-link" id="nav-tiger-crush" data-translate="nav-tiger-crush">Tiger Crush</a>
         <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">Our Mascot</a>
         <a href="index.html#channels" class="nav-link" data-translate="nav-support">Support & Channels</a>
         <a href="video_archive.html" class="nav-link"><i class="fa-solid fa-music"></i> <span data-translate="nav-video">Video Archive</span></a>
@@ -132,65 +131,6 @@
     </div>
   </section>
 
-  <!-- Tiger Crush Standalone Game Section -->
-  <section id="stamp-tour" class="about-section fade-in-section" style="display: none; background: var(--light-pink) url('assets/leopard-print.png') center/cover; padding: 80px 0; position: relative;">
-    <!-- Semi-transparent overlay to make background less distracting -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 240, 245, 0.85); z-index: 1;"></div>
-    
-    <div class="container" style="position: relative; z-index: 2;">
-      <!-- Exit Button -->
-      <div style="display: flex; justify-content: flex-end; margin-bottom: -20px; position: relative; z-index: 10; padding-right: 10px;">
-        <a href="#" id="exit-game-btn" style="background: #fff; padding: 8px 18px; border-radius: 25px; border: 3px solid var(--brand-pink); color: var(--brand-pink); font-family: 'Quicksand', sans-serif; font-size: 1.1rem; font-weight: 700; text-decoration: none; box-shadow: 0 5px 15px rgba(255,105,180,0.3); transition: transform 0.2s; display: inline-block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Exit Game ✖️</a>
-      </div>
-
-      <h2 class="section-title" data-translate="tiger-crush-title" style="margin-bottom: 10px; color: var(--brand-pink); text-shadow: 2px 2px 0px #fff;">Tiger Crush 🐯 🐾<span style="color: pink;">🐾</span></h2>
-      <p style="text-align: center; font-size: 1.3rem; margin-bottom: 30px; color: #555; font-family: 'Quicksand', sans-serif; font-weight: 600;">
-        <span data-translate="tiger-crush-subtitle">Enjoy your complimentary game for Masaya's fandom!</span>
-      </p>
-
-      <div class="game-split-layout" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start; max-width: 1000px; margin: 0 auto;">
-        
-        <div class="match3-main-content" style="background: #fff; border-radius: 30px; padding: 30px 20px; width: 100%; max-width: 500px; flex: 1 1 400px; box-shadow: 0 20px 60px rgba(255,105,180,0.3); border: 6px solid var(--primary-pink); text-align: center; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; overflow: hidden;">
-          
-          <div id="game-header" style="width: 100%;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; width: 100%;">
-              <h3 id="level-title" style="font-family: var(--font-title); font-size: 2rem; color: var(--brand-pink); margin: 0;">Level 1 💖</h3>
-              <div id="score-counter" style="font-family: 'Quicksand', sans-serif; font-size: 1.5rem; font-weight: 700; color: #555; background: #ffe4ec; padding: 5px 15px; border-radius: 20px; border: 2px solid #ffb6c1;">Score: 0 / 500</div>
-            </div>
-            
-            <!-- Dynamic Score Legend -->
-            <div id="score-legend" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; font-size: 1.2rem; flex-wrap: wrap; width: 100%;">
-              <!-- JS will inject legend items here -->
-            </div>
-          </div>
-
-          <!-- 6x6 Game Board -->
-          <div id="match3-board" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; background: rgba(255,240,245,0.9); padding: 10px; border-radius: 15px; border: 4px dashed #ffb6c1; width: 100%; max-width: 400px; margin: 0 auto; justify-content: center; aspect-ratio: 1/1; touch-action: none; overflow: hidden; box-sizing: border-box;">
-            <!-- Javascript will inject the emojis here -->
-          </div>
-
-          <!-- Treasure Chest Reward (Hidden initially) -->
-          <div id="treasure-chest" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 400px; cursor: pointer;">
-            <h3 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px; text-shadow: 2px 2px 0px #fff;">Level Clear! 🎉</h3>
-            <div style="font-size: 8rem; animation: bounce 1.5s infinite; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));">
-              🎁
-            </div>
-            <p style="font-family: 'Quicksand', sans-serif; font-size: 1.3rem; font-weight: 700; color: #555; margin-top: 20px; background: #fff; padding: 10px 20px; border-radius: 20px; border: 2px solid #ffb6c1;">Tap to open & continue!</p>
-          </div>
-        </div>
-        
-        <!-- Global Top Fans Leaderboard -->
-        <div class="leaderboard-panel" style="background: #fff; border-radius: 30px; padding: 30px 20px; width: 100%; max-width: 400px; flex: 1 1 300px; box-shadow: 0 20px 60px rgba(255,105,180,0.3); border: 6px solid #ffb6c1; text-align: center; box-sizing: border-box;">
-          <h3 style="font-family: var(--font-title); font-size: 2rem; color: var(--brand-pink); margin-bottom: 15px;">Global Top Fans 🏆</h3>
-          <p style="font-family: 'Quicksand', sans-serif; font-size: 1.1rem; color: #777; margin-bottom: 20px;">Top 10 highest scores worldwide!</p>
-          <ul id="leaderboard-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-family: 'Quicksand', sans-serif; font-size: 1.2rem; font-weight: 700; color: #555;">
-            <li style="padding: 10px; background: #ffe4ec; border-radius: 15px; border: 2px dashed #ffb6c1;">Loading Leaderboard... 🐾</li>
-          </ul>
-        </div>
-        
-      </div>
-    </div>
-  </section>
 
   <!-- About Section -->
   <section id="about" class="about-section fade-in-section">
@@ -551,19 +491,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Script Reference -->
-  <!-- Nickname Modal -->
-  <div id="nickname-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
-    <div style="position: relative; background: var(--light-pink); padding: 40px; border-radius: 30px; border: 6px solid var(--primary-pink); box-shadow: 0 20px 60px rgba(255,105,180,0.5); text-align: center; max-width: 400px; width: 90%; animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-      
-      <!-- Close Button -->
-      <a href="#" id="modal-close-btn" style="position: absolute; top: 15px; right: 15px; font-size: 1.5rem; text-decoration: none; color: var(--brand-pink); transition: transform 0.2s; z-index: 10;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" aria-label="Close modal">✖️</a>
 
-      <h2 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--brand-pink); margin-bottom: 20px;">Welcome! 🐾</h2>
-      <p style="font-family: 'Quicksand', sans-serif; font-size: 1.2rem; color: #555; margin-bottom: 20px; font-weight: 600;">Enter your Nickname to start! 🐯</p>
-      <input type="text" id="nickname-input" placeholder="Your cute nickname" style="width: 100%; padding: 15px; border-radius: 20px; border: 2px solid #ffb6c1; font-family: 'Quicksand', sans-serif; font-size: 1.2rem; margin-bottom: 25px; outline: none; text-align: center;">
-      <button id="start-game-btn" class="custom-btn" style="width: 100%; font-size: 1.3rem;">Start Game 🎀</button>
-    </div>
-  </div>
 
   <script src="script.js?v=4"></script>
 </body>
