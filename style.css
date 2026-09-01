@@ -1996,6 +1996,15 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   padding-bottom: 50px; /* Space for pagination */
 }
 
+.goods-disclaimer {
+  font-size: 11px;
+  color: #999999;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.4;
+  padding: 0 15px;
+}
+
 .goods-card {
   background: var(--white);
   border-radius: 16px;
