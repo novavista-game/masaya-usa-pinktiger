@@ -105,7 +105,8 @@ window.translations = {
     "goods-title-2": "Yukata Edition",
     "goods-title-3": "Concert Outfit Edition",
     "goods-title-4": "Insta Live Edition",
-    "goods-title-5": "Luxury Perfume Ambassador Edition"
+    "goods-title-5": "Luxury Perfume Ambassador Edition",
+    "footer-disclaimer": "This is an unofficial fan site created out of love for Masaya. All original rights and copyrights to the artist belong to their respective agency. Any brands or logos depicted in the fan art (Digital Merch) are intended purely for parody and tribute purposes, and are not affiliated with this site. No commercial infringement is intended, and all digital goods are provided strictly for free non-commercial use."
   },
   ja: {
     "nav-home": "ホーム",
@@ -208,7 +209,8 @@ window.translations = {
     "goods-title-2": "浴衣 エディション",
     "goods-title-3": "ライブ衣装 エディション",
     "goods-title-4": "インスタライブ エディション",
-    "goods-title-5": "ラグジュアリー香水 エディション"
+    "goods-title-5": "ラグジュアリー香水 エディション",
+    "footer-disclaimer": "当サイトはMasayaを応援するために作られた非公式ファンサイトです。アーティストに関するすべての原著作権は該当事務所に帰属します。ファンアート（デジタルグッズ）に描かれているブランドやロゴは、純粋なパロディおよびオマージュを目的としており、当サイトとは一切関係ありません。商業的侵害の意図はなく、すべてのデジタルグッズは非営利目的で完全無料で提供されています。"
   },
   ko: {
     "nav-home": "홈",
@@ -312,7 +314,8 @@ window.translations = {
     "goods-title-2": "유카타 에디션",
     "goods-title-3": "콘서트 제복 에디션",
     "goods-title-4": "인스타 라이브 에디션",
-    "goods-title-5": "럭셔리 향수 앰버서더 에디션"
+    "goods-title-5": "럭셔리 향수 앰버서더 에디션",
+    "footer-disclaimer": "본 사이트는 마사야를 응원하기 위해 만들어진 비공식 팬사이트입니다. 아티스트에 대한 모든 원 저작권은 해당 소속사에 있습니다. 팬아트(디지털 굿즈)에 묘사된 브랜드나 로고는 순수한 패러디 및 오마주 목적이며, 본 사이트와 무관합니다. 상업적 침해 의도가 전혀 없으며, 모든 디지털 굿즈는 엄격하게 비상업적 무료 용도로만 제공됩니다."
   },
   es: {
     "nav-home": "Inicio",
@@ -416,7 +419,8 @@ window.translations = {
     "goods-title-2": "Edición Yukata",
     "goods-title-3": "Edición Atuendo de Concierto",
     "goods-title-4": "Edición Insta Live",
-    "goods-title-5": "Edición Embajador de Perfume de Lujo"
+    "goods-title-5": "Edición Embajador de Perfume de Lujo",
+    "footer-disclaimer": "Este es un sitio de fans no oficial creado por amor a Masaya. Todos los derechos originales y derechos de autor del artista pertenecen a su respectiva agencia. Cualquier marca o logotipo representado en el fan art (Mercancía Digital) tiene fines puramente de parodia y homenaje, y no está afiliado a este sitio. No se pretende ninguna infracción comercial, y todos los productos digitales se proporcionan estrictamente para uso gratuito y no comercial."
   },
   fr: {
     "nav-home": "Accueil",
@@ -521,7 +525,8 @@ window.translations = {
     "goods-title-2": "Édition Yukata",
     "goods-title-3": "Édition Tenue de Concert",
     "goods-title-4": "Édition Insta Live",
-    "goods-title-5": "Édition Ambassadeur de Parfum de Luxe"
+    "goods-title-5": "Édition Ambassadeur de Parfum de Luxe",
+    "footer-disclaimer": "Ceci est un site de fans non officiel créé par amour pour Masaya. Tous les droits originaux et droits d'auteur de l'artiste appartiennent à leur agence respective. Toutes les marques ou logos représentés dans le fan art (Marchandise Numérique) sont uniquement destinés à des fins de parodie et d'hommage, et ne sont pas affiliés à ce site. Aucune violation commerciale n'est prévue, et tous les produits numériques sont fournis strictement pour un usage gratuit et non commercial."
   }
 };
 
