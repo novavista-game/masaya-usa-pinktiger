@@ -1361,6 +1361,14 @@ function initVideoCarousel() {
 
   const videos = [
     {
+      src: 'assets/참새의 눈물.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">Suzume no Namida (참새의 눈물) - Edited by Pinktiger USA</span></p>'
+    },
+    {
+      src: 'assets/For you.mp4',
+      caption: '<p data-translate="video-caption-2"><span class="label" style="font-weight: 700; color: #FF1493;">For You (English Subtitles) - Edited by Pinktiger USA</span></p>'
+    },
+    {
       src: 'assets/마사야 첫눈.mp4',
       caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">❄️ First Snow (English Subtitles) - Edited by Pinktiger USA</span></p>'
     },
