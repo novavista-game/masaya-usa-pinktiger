@@ -106,6 +106,8 @@ window.translations = {
     "goods-title-3": "Concert Outfit Edition",
     "goods-title-4": "Insta Live Edition",
     "goods-title-5": "Luxury Perfume Ambassador Edition",
+    "goods-title-6": "Rainbow Nail Art Edition",
+    "goods-title-7": "Indian Hair Style Edition",
     "footer-disclaimer": "This is an unofficial fan site created out of love for Masaya. All original rights and copyrights to the artist belong to their respective agency. Any brands or logos depicted in the fan art (Digital Merch) are intended purely for parody and tribute purposes, and are not affiliated with this site. No commercial infringement is intended, and all digital goods are provided strictly for free non-commercial use."
   },
   ja: {
@@ -210,6 +212,8 @@ window.translations = {
     "goods-title-3": "ライブ衣装 エディション",
     "goods-title-4": "インスタライブ エディション",
     "goods-title-5": "ラグジュアリー香水 エディション",
+    "goods-title-6": "レインボーネイル エディション",
+    "goods-title-7": "インディアンヘアスタイル エディション",
     "footer-disclaimer": "当サイトはマサヤへの愛から作られた非公式ファンサイトです。アーティストに関するすべての元の権利および著作権は、それぞれの所属事務所に帰属します。ファンアート（デジタルグッズ）に描かれているすべてのブランドやロゴは、純粋にパロディおよびトリビュートを目的としており、当サイトとは一切関係ありません。商業的な侵害を意図するものではなく、すべてのデジタルグッズは非営利目的で完全に無料で提供されます。"
   },
   ko: {
@@ -315,6 +319,8 @@ window.translations = {
     "goods-title-3": "콘서트 제복 에디션",
     "goods-title-4": "인스타 라이브 에디션",
     "goods-title-5": "럭셔리 향수 앰버서더 에디션",
+    "goods-title-6": "레인보우 네일아트 에디션",
+    "goods-title-7": "인디언 헤어스타일 에디션",
     "footer-disclaimer": "본 사이트는 마사야를 향한 사랑으로 만들어진 비공식 팬 사이트입니다. 아티스트에 대한 모든 원본 권리 및 저작권은 해당 소속사에 있습니다. 팬 아트(디지털 굿즈)에 묘사된 모든 브랜드나 로고는 순수하게 패러디 및 헌정 목적으로 의도되었으며, 본 사이트와는 아무런 관련이 없습니다. 어떠한 상업적 침해도 의도하지 않으며, 모든 디지털 굿즈는 비상업적 용도로 엄격히 무료로 제공됩니다."
   },
   es: {
@@ -420,6 +426,8 @@ window.translations = {
     "goods-title-3": "Edición Atuendo de Concierto",
     "goods-title-4": "Edición Insta Live",
     "goods-title-5": "Edición Embajador de Perfume de Lujo",
+    "goods-title-6": "Edición Rainbow Nail Art",
+    "goods-title-7": "Edición Indian Hair Style",
     "footer-disclaimer": "Este es un sitio de fans no oficial creado por amor a Masaya. Todos los derechos y derechos de autor originales del artista pertenecen a su respectiva agencia. Cualquier marca o logotipo representado en el fan art (Mercancía Digital) tiene fines puramente de parodia y homenaje, y no están afiliados a este sitio. No se pretende ninguna infracción comercial y todos los productos digitales se proporcionan estrictamente para uso gratuito y no comercial."
   },
   fr: {
@@ -526,6 +534,8 @@ window.translations = {
     "goods-title-3": "Édition Tenue de Concert",
     "goods-title-4": "Édition Insta Live",
     "goods-title-5": "Édition Ambassadeur de Parfum de Luxe",
+    "goods-title-6": "Édition Nail Art Arc-en-ciel",
+    "goods-title-7": "Édition Style de Cheveux Indien",
     "footer-disclaimer": "Ceci est un site de fans non officiel créé par amour pour Masaya. Tous les droits et droits d'auteur originaux de l'artiste appartiennent à leur agence respective. Toutes les marques ou logos représentés dans le fan art (Marchandise Numérique) sont destinés uniquement à des fins de parodie et d'hommage, et ne sont pas affiliés à ce site. Aucune violation commerciale n'est intentionnelle, et tous les biens numériques sont fournis strictement pour un usage gratuit et non commercial."
   }
 };
