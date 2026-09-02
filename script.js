@@ -106,7 +106,7 @@ window.translations = {
     "goods-title-3": "Concert Outfit Edition",
     "goods-title-4": "Insta Live Edition",
     "goods-title-5": "Luxury Perfume Ambassador Edition",
-    "footer-disclaimer": "🐯 Disclaimer: This site is a non-profit fan page voluntarily operated by MasayaUSAPinktiger fans. It is not officially affiliated with Masaya (Masaya Horikawa) or his agency. The copyrights of content such as artist photos and videos used on the site belong to the original copyright holders."
+    "footer-disclaimer": "This is an unofficial fan site created out of love for Masaya. All original rights and copyrights to the artist belong to their respective agency. Any brands or logos depicted in the fan art (Digital Merch) are intended purely for parody and tribute purposes, and are not affiliated with this site. No commercial infringement is intended, and all digital goods are provided strictly for free non-commercial use."
   },
   ja: {
     "nav-home": "ホーム",
@@ -210,7 +210,7 @@ window.translations = {
     "goods-title-3": "ライブ衣装 エディション",
     "goods-title-4": "インスタライブ エディション",
     "goods-title-5": "ラグジュアリー香水 エディション",
-    "footer-disclaimer": "🐯 免責事項：当サイトはMasayaUSAPinktigerのファンが自発的に運営する非営利のファンサイトです。マサヤ（堀川マサヤ）氏および所属事務所とは一切公式な関係はありません。サイト内で使用されているアーティストの写真や動画などのコンテンツの著作権は、それぞれの原著作者に帰属します。"
+    "footer-disclaimer": "当サイトはマサヤへの愛から作られた非公式ファンサイトです。アーティストに関するすべての元の権利および著作権は、それぞれの所属事務所に帰属します。ファンアート（デジタルグッズ）に描かれているすべてのブランドやロゴは、純粋にパロディおよびトリビュートを目的としており、当サイトとは一切関係ありません。商業的な侵害を意図するものではなく、すべてのデジタルグッズは非営利目的で完全に無料で提供されます。"
   },
   ko: {
     "nav-home": "홈",
@@ -315,7 +315,7 @@ window.translations = {
     "goods-title-3": "콘서트 제복 에디션",
     "goods-title-4": "인스타 라이브 에디션",
     "goods-title-5": "럭셔리 향수 앰버서더 에디션",
-    "footer-disclaimer": "🐯 면책 조항: 본 사이트는 MasayaUSAPinktiger 팬들이 자발적으로 운영하는 비영리 팬페이지입니다. 마사야(호리카와 마사야) 님 및 소속사와는 어떠한 공식적인 관련도 없으며, 사이트 내 사용된 아티스트의 사진 및 영상 등 콘텐츠의 저작권은 원저작권자에게 있습니다."
+    "footer-disclaimer": "본 사이트는 마사야를 향한 사랑으로 만들어진 비공식 팬 사이트입니다. 아티스트에 대한 모든 원본 권리 및 저작권은 해당 소속사에 있습니다. 팬 아트(디지털 굿즈)에 묘사된 모든 브랜드나 로고는 순수하게 패러디 및 헌정 목적으로 의도되었으며, 본 사이트와는 아무런 관련이 없습니다. 어떠한 상업적 침해도 의도하지 않으며, 모든 디지털 굿즈는 비상업적 용도로 엄격히 무료로 제공됩니다."
   },
   es: {
     "nav-home": "Inicio",
@@ -420,7 +420,7 @@ window.translations = {
     "goods-title-3": "Edición Atuendo de Concierto",
     "goods-title-4": "Edición Insta Live",
     "goods-title-5": "Edición Embajador de Perfume de Lujo",
-    "footer-disclaimer": "🐯 Descargo de responsabilidad: Este sitio es una página de fans sin fines de lucro operada voluntariamente por fans de MasayaUSAPinktiger. No está afiliada oficialmente con Masaya (Masaya Horikawa) ni con su agencia. Los derechos de autor del contenido, como fotos y videos del artista utilizados en el sitio, pertenecen a los titulares de los derechos de autor originales."
+    "footer-disclaimer": "Este es un sitio de fans no oficial creado por amor a Masaya. Todos los derechos y derechos de autor originales del artista pertenecen a su respectiva agencia. Cualquier marca o logotipo representado en el fan art (Mercancía Digital) tiene fines puramente de parodia y homenaje, y no están afiliados a este sitio. No se pretende ninguna infracción comercial y todos los productos digitales se proporcionan estrictamente para uso gratuito y no comercial."
   },
   fr: {
     "nav-home": "Accueil",
@@ -526,7 +526,7 @@ window.translations = {
     "goods-title-3": "Édition Tenue de Concert",
     "goods-title-4": "Édition Insta Live",
     "goods-title-5": "Édition Ambassadeur de Parfum de Luxe",
-    "footer-disclaimer": "🐯 Clause de non-responsabilité : Ce site est une page de fans à but non lucratif gérée bénévolement par les fans de MasayaUSAPinktiger. Il n'est pas officiellement affilié à Masaya (Masaya Horikawa) ni à son agence. Les droits d'auteur des contenus tels que les photos et vidéos de l'artiste utilisés sur le site appartiennent aux titulaires des droits d'auteur originaux."
+    "footer-disclaimer": "Ceci est un site de fans non officiel créé par amour pour Masaya. Tous les droits et droits d'auteur originaux de l'artiste appartiennent à leur agence respective. Toutes les marques ou logos représentés dans le fan art (Marchandise Numérique) sont destinés uniquement à des fins de parodie et d'hommage, et ne sont pas affiliés à ce site. Aucune violation commerciale n'est intentionnelle, et tous les biens numériques sont fournis strictement pour un usage gratuit et non commercial."
   }
 };
 
