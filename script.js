@@ -60,8 +60,8 @@ window.translations = {
     "fan-action-p-4": "Join the USA Pinktiger discussions",
     "footer-desc": "Creating a global home for US-based fans of Japanese vocal sensation Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Unofficial Fanbase built with love. 💖",
-    "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
-    "disclaimer-text": "🐯 Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
+    "footer-disclaimer": "🐯 Disclaimer: This site is a non-profit fan page voluntarily operated by MasayaUSAPinktiger fans. It is not officially affiliated with Masaya (Masaya Horikawa) or his agency. The copyrights of content such as artist photos and videos used on the site belong to the original copyright holders.",
+    "disclaimer-text": "🐯 Disclaimer: This site is a non-profit fan page voluntarily operated by MasayaUSAPinktiger fans. It is not officially affiliated with Masaya (Masaya Horikawa) or his agency. The copyrights of content such as artist photos and videos used on the site belong to the original copyright holders.",
     "fanletters-desc": "Leave a lovely message for Masaya! No login required. Just positive vibes and pink tiger energy. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Nickname",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> Country",
@@ -106,7 +106,7 @@ window.translations = {
     "goods-title-3": "Concert Outfit Edition",
     "goods-title-4": "Insta Live Edition",
     "goods-title-5": "Luxury Perfume Ambassador Edition",
-    "footer-disclaimer": "This is an unofficial fan site created out of love for Masaya. All original rights and copyrights to the artist belong to their respective agency. Any brands or logos depicted in the fan art (Digital Merch) are intended purely for parody and tribute purposes, and are not affiliated with this site. No commercial infringement is intended, and all digital goods are provided strictly for free non-commercial use."
+    "footer-disclaimer": "🐯 Disclaimer: This site is a non-profit fan page voluntarily operated by MasayaUSAPinktiger fans. It is not officially affiliated with Masaya (Masaya Horikawa) or his agency. The copyrights of content such as artist photos and videos used on the site belong to the original copyright holders."
   },
   ja: {
     "nav-home": "ホーム",
@@ -164,8 +164,8 @@ window.translations = {
     "fan-action-p-4": "USA Pinktigerのコミュニティに参加する",
     "footer-desc": "日本の実力派ボーカリスト堀川雅也の全米ファンが繋がるグローバルなコミュニティを作ります。",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 愛を込めて作られた非公式ファンベース 💖",
-    "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
-    "disclaimer-text": "🐯 免責事項：当サイトの全著作権はMasayaUSAPinktigerに帰属します。堀川雅也氏および所属事務所とは一切関係ありません。ファンによって運営されている非営利サイトです。",
+    "footer-disclaimer": "🐯 免責事項：当サイトはMasayaUSAPinktigerのファンが自発的に運営する非営利のファンサイトです。マサヤ（堀川マサヤ）氏および所属事務所とは一切公式な関係はありません。サイト内で使用されているアーティストの写真や動画などのコンテンツの著作権は、それぞれの原著作者に帰属します。",
+    "disclaimer-text": "🐯 免責事項：当サイトはMasayaUSAPinktigerのファンが自発的に運営する非営利のファンサイトです。マサヤ（堀川マサヤ）氏および所属事務所とは一切公式な関係はありません。サイト内で使用されているアーティストの写真や動画などのコンテンツの著作権は、それぞれの原著作者に帰属します。",
     "fanletters-desc": "マサヤに素敵なメッセージを残そう！ログイン不要です。ポジティブな気持ちとピンクタイガーのエネルギーだけ。 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> ニックネーム",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 国名",
@@ -210,7 +210,7 @@ window.translations = {
     "goods-title-3": "ライブ衣装 エディション",
     "goods-title-4": "インスタライブ エディション",
     "goods-title-5": "ラグジュアリー香水 エディション",
-    "footer-disclaimer": "当サイトはMasayaを応援するために作られた非公式ファンサイトです。アーティストに関するすべての原著作権は該当事務所に帰属します。ファンアート（デジタルグッズ）に描かれているブランドやロゴは、純粋なパロディおよびオマージュを目的としており、当サイトとは一切関係ありません。商業的侵害の意図はなく、すべてのデジタルグッズは非営利目的で完全無料で提供されています。"
+    "footer-disclaimer": "🐯 免責事項：当サイトはMasayaUSAPinktigerのファンが自発的に運営する非営利のファンサイトです。マサヤ（堀川マサヤ）氏および所属事務所とは一切公式な関係はありません。サイト内で使用されているアーティストの写真や動画などのコンテンツの著作権は、それぞれの原著作者に帰属します。"
   },
   ko: {
     "nav-home": "홈",
@@ -269,8 +269,8 @@ window.translations = {
     "fan-action-p-4": "USA Pinktiger 소통 공간 함께 참여하기",
     "footer-desc": "일본의 보컬 신성 호리카와 마사야의 미국 팬들이 모이는 글로벌 소통 커뮤니티입니다.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - 사랑으로 만든 비공식 팬베이스 💖",
-    "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
-    "disclaimer-text": "🐯 면책 조항: 본 사이트의 모든 권리는 MasayaUSAPinktiger에게 있습니다. 마사야(호리카와 마사야) 님 및 소속사와는 아무런 관련이 없습니다. 팬들이 운영하는 비영리 사이트입니다.",
+    "footer-disclaimer": "🐯 면책 조항: 본 사이트는 MasayaUSAPinktiger 팬들이 자발적으로 운영하는 비영리 팬페이지입니다. 마사야(호리카와 마사야) 님 및 소속사와는 어떠한 공식적인 관련도 없으며, 사이트 내 사용된 아티스트의 사진 및 영상 등 콘텐츠의 저작권은 원저작권자에게 있습니다.",
+    "disclaimer-text": "🐯 면책 조항: 본 사이트는 MasayaUSAPinktiger 팬들이 자발적으로 운영하는 비영리 팬페이지입니다. 마사야(호리카와 마사야) 님 및 소속사와는 어떠한 공식적인 관련도 없으며, 사이트 내 사용된 아티스트의 사진 및 영상 등 콘텐츠의 저작권은 원저작권자에게 있습니다.",
     "fanletters-desc": "마사야에게 따뜻한 메시지를 남겨보세요! 로그인 불필요. 긍정적인 마음과 핑크 타이거 에너지면 충분해요. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> 닉네임",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> 국가",
@@ -315,7 +315,7 @@ window.translations = {
     "goods-title-3": "콘서트 제복 에디션",
     "goods-title-4": "인스타 라이브 에디션",
     "goods-title-5": "럭셔리 향수 앰버서더 에디션",
-    "footer-disclaimer": "본 사이트는 마사야를 응원하기 위해 만들어진 비공식 팬사이트입니다. 아티스트에 대한 모든 원 저작권은 해당 소속사에 있습니다. 팬아트(디지털 굿즈)에 묘사된 브랜드나 로고는 순수한 패러디 및 오마주 목적이며, 본 사이트와 무관합니다. 상업적 침해 의도가 전혀 없으며, 모든 디지털 굿즈는 엄격하게 비상업적 무료 용도로만 제공됩니다."
+    "footer-disclaimer": "🐯 면책 조항: 본 사이트는 MasayaUSAPinktiger 팬들이 자발적으로 운영하는 비영리 팬페이지입니다. 마사야(호리카와 마사야) 님 및 소속사와는 어떠한 공식적인 관련도 없으며, 사이트 내 사용된 아티스트의 사진 및 영상 등 콘텐츠의 저작권은 원저작권자에게 있습니다."
   },
   es: {
     "nav-home": "Inicio",
@@ -374,8 +374,8 @@ window.translations = {
     "fan-action-p-4": "Únete a las discusiones de USA Pinktiger",
     "footer-desc": "Creando un hogar global para los fans en EE. UU. de la sensación vocal japonesa Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Fanbase no oficial construida con amor. 💖",
-    "footer-disclaimer": "Disclaimer: All rights to this site belong to MasayaUSAPinktiger. We have no affiliation with Masaya Horikawa or his agency. This is a non-profit site operated by fans.",
-    "disclaimer-text": "🐯 Descargo de responsabilidad: Todos los derechos de este sitio pertenecen a MasayaUSAPinktiger. No tenemos afiliación con Masaya Horikawa ni con su agencia. Este es un sitio sin fines de lucro operado por fans.",
+    "footer-disclaimer": "🐯 Descargo de responsabilidad: Este sitio es una página de fans sin fines de lucro operada voluntariamente por fans de MasayaUSAPinktiger. No está afiliada oficialmente con Masaya (Masaya Horikawa) ni con su agencia. Los derechos de autor del contenido, como fotos y videos del artista utilizados en el sitio, pertenecen a los titulares de los derechos de autor originales.",
+    "disclaimer-text": "🐯 Descargo de responsabilidad: Este sitio es una página de fans sin fines de lucro operada voluntariamente por fans de MasayaUSAPinktiger. No está afiliada oficialmente con Masaya (Masaya Horikawa) ni con su agencia. Los derechos de autor del contenido, como fotos y videos del artista utilizados en el sitio, pertenecen a los titulares de los derechos de autor originales.",
     "fanletters-desc": "¡Deja un hermoso mensaje para Masaya! No se requiere iniciar sesión. Solo vibras positivas y energía de pink tiger. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Apodo",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> País",
@@ -420,7 +420,7 @@ window.translations = {
     "goods-title-3": "Edición Atuendo de Concierto",
     "goods-title-4": "Edición Insta Live",
     "goods-title-5": "Edición Embajador de Perfume de Lujo",
-    "footer-disclaimer": "Este es un sitio de fans no oficial creado por amor a Masaya. Todos los derechos originales y derechos de autor del artista pertenecen a su respectiva agencia. Cualquier marca o logotipo representado en el fan art (Mercancía Digital) tiene fines puramente de parodia y homenaje, y no está afiliado a este sitio. No se pretende ninguna infracción comercial, y todos los productos digitales se proporcionan estrictamente para uso gratuito y no comercial."
+    "footer-disclaimer": "🐯 Descargo de responsabilidad: Este sitio es una página de fans sin fines de lucro operada voluntariamente por fans de MasayaUSAPinktiger. No está afiliada oficialmente con Masaya (Masaya Horikawa) ni con su agencia. Los derechos de autor del contenido, como fotos y videos del artista utilizados en el sitio, pertenecen a los titulares de los derechos de autor originales."
   },
   fr: {
     "nav-home": "Accueil",
@@ -480,8 +480,8 @@ window.translations = {
     "fan-action-p-4": "Rejoignez les discussions de USA Pinktiger",
     "footer-desc": "Créer un foyer mondial pour les fans américains de la sensation vocale japonaise Masaya Horikawa.",
     "footer-copyright": "© 2026 Masaya USA Pinktiger - Fanbase non officielle construite avec amour. 💖",
-    "footer-disclaimer": "Avis de non-responsabilité : Tous les droits sur ce site appartiennent à MasayaUSAPinktiger. Nous n'avons aucune affiliation avec Masaya Horikawa ou son agence. Ceci est un site à but non lucratif géré par des fans.",
-    "disclaimer-text": "🐯 Avis de non-responsabilité : Tous les droits sur ce site appartiennent à MasayaUSAPinktiger. Nous n'avons aucune affiliation avec Masaya Horikawa ou son agence. Ceci est un site à but non lucratif géré par des fans.",
+    "footer-disclaimer": "🐯 Clause de non-responsabilité : Ce site est une page de fans à but non lucratif gérée bénévolement par les fans de MasayaUSAPinktiger. Il n'est pas officiellement affilié à Masaya (Masaya Horikawa) ni à son agence. Les droits d'auteur des contenus tels que les photos et vidéos de l'artiste utilisés sur le site appartiennent aux titulaires des droits d'auteur originaux.",
+    "disclaimer-text": "🐯 Clause de non-responsabilité : Ce site est une page de fans à but non lucratif gérée bénévolement par les fans de MasayaUSAPinktiger. Il n'est pas officiellement affilié à Masaya (Masaya Horikawa) ni à son agence. Les droits d'auteur des contenus tels que les photos et vidéos de l'artiste utilisés sur le site appartiennent aux titulaires des droits d'auteur originaux.",
     "fanletters-desc": "Laissez un joli message pour Masaya ! Pas besoin de se connecter. Seulement de bonnes ondes et l'énergie du tigre rose. 🐯💖",
     "fanletters-nickname": "<i class=\"fa-solid fa-user\"></i> Pseudo",
     "fanletters-country": "<i class=\"fa-solid fa-earth-americas\"></i> Pays",
@@ -526,7 +526,7 @@ window.translations = {
     "goods-title-3": "Édition Tenue de Concert",
     "goods-title-4": "Édition Insta Live",
     "goods-title-5": "Édition Ambassadeur de Parfum de Luxe",
-    "footer-disclaimer": "Ceci est un site de fans non officiel créé par amour pour Masaya. Tous les droits originaux et droits d'auteur de l'artiste appartiennent à leur agence respective. Toutes les marques ou logos représentés dans le fan art (Marchandise Numérique) sont uniquement destinés à des fins de parodie et d'hommage, et ne sont pas affiliés à ce site. Aucune violation commerciale n'est prévue, et tous les produits numériques sont fournis strictement pour un usage gratuit et non commercial."
+    "footer-disclaimer": "🐯 Clause de non-responsabilité : Ce site est une page de fans à but non lucratif gérée bénévolement par les fans de MasayaUSAPinktiger. Il n'est pas officiellement affilié à Masaya (Masaya Horikawa) ni à son agence. Les droits d'auteur des contenus tels que les photos et vidéos de l'artiste utilisés sur le site appartiennent aux titulaires des droits d'auteur originaux."
   }
 };
 
