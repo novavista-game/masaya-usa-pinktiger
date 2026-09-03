@@ -703,12 +703,81 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initInteractiveMap();
   initGoodsSwiper();
-
+  initCalendarModal();
 });
 
 /* ==========================================================================
    2. Scroll Reveal Animation (Intersection Observer)
    ========================================================================== */
+function initCalendarModal() {
+  const modal = document.getElementById('cal-modal');
+  const modalClose = document.getElementById('cal-modal-close');
+  const modalDate = document.getElementById('cal-modal-date');
+  const modalText = document.getElementById('cal-modal-text');
+  
+  if (!modal || !modalClose) return;
+
+  const events = document.querySelectorAll('.cal-event');
+  
+  events.forEach(eventEl => {
+    eventEl.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent triggering other clicks
+      
+      // Get current active language
+      const currentLang = document.documentElement.lang || 'en';
+      const translateKey = eventEl.getAttribute('data-translate');
+      
+      // Get the full translated text for the event
+      let fullText = "";
+      if (window.translations && window.translations[currentLang] && window.translations[currentLang][translateKey]) {
+        fullText = window.translations[currentLang][translateKey];
+      } else {
+        fullText = eventEl.textContent; // fallback
+      }
+      
+      // Determine the date text (from parent cell's .cal-num and month title)
+      const cell = eventEl.closest('.cal-cell');
+      const monthContainer = eventEl.closest('.cal-month-container');
+      
+      let dateString = "Event Details";
+      if (cell && monthContainer) {
+        const dayNumEl = cell.querySelector('.cal-num');
+        const monthTitleEl = monthContainer.querySelector('.cal-month-title');
+        
+        let monthKey = monthTitleEl ? monthTitleEl.getAttribute('data-translate') : null;
+        let monthText = monthTitleEl ? monthTitleEl.textContent : "";
+        if (monthKey && window.translations && window.translations[currentLang] && window.translations[currentLang][monthKey]) {
+          monthText = window.translations[currentLang][monthKey];
+        }
+        // Clean up emojis from month text
+        monthText = monthText.replace('🗓️', '').trim();
+        
+        const dayNum = dayNumEl ? dayNumEl.textContent : "";
+        dateString = `${monthText} ${dayNum}`;
+      }
+      
+      // Inject into modal
+      modalDate.innerHTML = dateString;
+      modalText.innerHTML = fullText;
+      
+      // Show modal
+      modal.classList.add('active');
+    });
+  });
+
+  // Close modal on close button click
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // Close modal on clicking outside the content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+}
+
 function initScrollReveal() {
   const sections = document.querySelectorAll('.fade-in-section');
   

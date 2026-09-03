@@ -2201,11 +2201,10 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   color: #8B0A50;
   font-weight: 600;
   margin-top: 2px;
-  word-break: break-word;
+  cursor: pointer;
+  white-space: nowrap;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .cal-event.cal-event-second {
@@ -2251,4 +2250,83 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
     padding: 10px 8px;
   }
 }
+
+/* Calendar Event Modal */
+.cal-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+.cal-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.cal-modal-content {
+  background-image: var(--leopard-pattern);
+  background-color: #fff0f6;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 90%;
+  border: 4px solid var(--brand-pink);
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cal-modal-overlay.active .cal-modal-content {
+  transform: scale(1);
+}
+.cal-modal-inner {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+}
+.cal-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #FF1493;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.cal-modal-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  background: #C71585;
+}
+.cal-modal-date {
+  font-weight: bold;
+  color: #FF1493;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  border-bottom: 2px dashed #FFB6C1;
+  padding-bottom: 10px;
+}
+.cal-modal-text {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
 
