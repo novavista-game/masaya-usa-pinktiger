@@ -2123,7 +2123,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 
 .cal-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 1px;
   background: rgba(255, 182, 193, 0.25);
   padding: 1px;
@@ -2156,6 +2156,8 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   flex-direction: column;
   transition: background 0.2s ease;
   position: relative;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .cal-cell:hover {
@@ -2202,6 +2204,9 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   font-weight: 600;
   margin-top: 2px;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
