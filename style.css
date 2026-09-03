@@ -2335,3 +2335,14 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 }
 
 
+
+ / *   F i x   f o r   m o b i l e   v i s i b i l i t y   o f   i m a g e _ 2 2 c d 0 1 . j p g   * / 
+ @ m e d i a   ( m a x - w i d t h :   7 6 8 p x )   { 
+     i m g [ s r c * = ' i m a g e _ 2 2 c d 0 1 . j p g ' ] , 
+     . i m a g e _ 2 2 c d 0 1 - c o n t a i n e r   { 
+         d i s p l a y :   b l o c k   ! i m p o r t a n t ; 
+         m a x - w i d t h :   1 0 0 % ; 
+         h e i g h t :   a u t o ; 
+     } 
+ }  
+ 
