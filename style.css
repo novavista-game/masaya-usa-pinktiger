@@ -64,51 +64,6 @@ body {
   100% { transform: translateY(-15px); }
 }
 
-/* Hello Kitty Rainbow Ribbon */
-.hello-kitty-ribbon {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 25px;
-  height: 20px;
-  background: radial-gradient(circle at center, #ff1493 30%, transparent 30%), linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #0000ff, #ff00ff);
-  border-radius: 20px;
-  transform: rotate(15deg);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-  z-index: 10;
-  animation: ribbon-flutter 2s infinite alternate ease-in-out !important;
-  animation-iteration-count: infinite !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.hello-kitty-ribbon::before,
-.hello-kitty-ribbon::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 15px;
-  height: 20px;
-  background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #0000ff, #ff00ff);
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.hello-kitty-ribbon::before {
-  left: -8px;
-  transform: rotate(-30deg);
-}
-
-.hello-kitty-ribbon::after {
-  right: -8px;
-  transform: rotate(30deg);
-}
-
-@keyframes ribbon-flutter {
-  0% { transform: rotate(15deg) scale(1); }
-  100% { transform: rotate(25deg) scale(1.1); }
-}
-
 /* Glowing Rainbow Path (small, behind mascot only) */
 .glowing-rainbow-path {
   position: absolute;
