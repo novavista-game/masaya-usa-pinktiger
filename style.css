@@ -41,20 +41,19 @@ body {
   background: 
     linear-gradient(
       124deg, 
-      rgba(255, 0, 0, 0.25), 
-      rgba(255, 154, 0, 0.25), 
-      rgba(255, 255, 0, 0.25), 
-      rgba(0, 255, 0, 0.25), 
-      rgba(0, 255, 255, 0.25), 
-      rgba(0, 0, 255, 0.25), 
-      rgba(255, 0, 255, 0.25), 
-      rgba(255, 0, 0, 0.25)
-    ),
-    var(--leopard-pattern),
-    var(--light-pink);
-  background-size: 400% 400%, 300px 300px, auto;
-  background-blend-mode: overlay, normal, normal;
-  animation: rainbow-holo-anim 15s ease infinite;
+      rgba(255, 0, 0, 1), 
+      rgba(255, 154, 0, 1), 
+      rgba(255, 255, 0, 1), 
+      rgba(0, 255, 0, 1), 
+      rgba(0, 255, 255, 1), 
+      rgba(0, 0, 255, 1), 
+      rgba(255, 0, 255, 1), 
+      rgba(255, 0, 0, 1)
+    );
+  background-size: 400% 400%;
+  animation: rainbow-holo-anim 15s linear infinite;
+  animation-iteration-count: infinite;
+  opacity: 1 !important;
   color: var(--dark-text);
   overflow-x: hidden;
   position: relative;
@@ -62,9 +61,9 @@ body {
 }
 
 @keyframes rainbow-holo-anim {
-  0% { background-position: 0% 50%, 0 0, 0 0; }
-  50% { background-position: 100% 50%, 150px 150px, 0 0; }
-  100% { background-position: 0% 50%, 300px 300px, 0 0; }
+  0% { background-position: 0% 50%; opacity: 1; }
+  50% { background-position: 100% 50%; opacity: 1; }
+  100% { background-position: 0% 50%; opacity: 1; }
 }
 
 /* Mascot Walking & Ribbon Animation */
@@ -72,14 +71,16 @@ body {
   position: relative;
   display: inline-block;
   animation: walk-across-path 4s ease-in-out infinite alternate;
+  animation-iteration-count: infinite;
+  opacity: 1 !important;
 }
 
 @keyframes walk-across-path {
-  0% { transform: translateX(-15px) rotate(-5deg); }
-  25% { transform: translateX(-5px) translateY(-5px) rotate(3deg); }
-  50% { transform: translateX(5px) rotate(-3deg); }
-  75% { transform: translateX(15px) translateY(-5px) rotate(5deg); }
-  100% { transform: translateX(25px) rotate(-2deg); }
+  0% { transform: translateX(-15px) rotate(-5deg); opacity: 1; }
+  25% { transform: translateX(-5px) translateY(-5px) rotate(3deg); opacity: 1; }
+  50% { transform: translateX(5px) rotate(-3deg); opacity: 1; }
+  75% { transform: translateX(15px) translateY(-5px) rotate(5deg); opacity: 1; }
+  100% { transform: translateX(25px) rotate(-2deg); opacity: 1; }
 }
 
 .glowing-rainbow-path {
