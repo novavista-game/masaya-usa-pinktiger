@@ -70,17 +70,21 @@ body {
 .mascot-walking-wrapper {
   position: relative;
   display: inline-block;
-  animation: walk-across-path 4s ease-in-out infinite alternate;
+  animation: hop-across-path 2s linear infinite alternate;
   animation-iteration-count: infinite;
   opacity: 1 !important;
 }
 
-@keyframes walk-across-path {
-  0% { transform: translateX(-15px) rotate(-5deg); opacity: 1; }
-  25% { transform: translateX(-5px) translateY(-5px) rotate(3deg); opacity: 1; }
-  50% { transform: translateX(5px) rotate(-3deg); opacity: 1; }
-  75% { transform: translateX(15px) translateY(-5px) rotate(5deg); opacity: 1; }
-  100% { transform: translateX(25px) rotate(-2deg); opacity: 1; }
+@keyframes hop-across-path {
+  0% { transform: translateX(-15px) translateY(0) rotate(0deg); opacity: 1; }
+  12.5% { transform: translateX(-10px) translateY(-15px) rotate(5deg); opacity: 1; }
+  25% { transform: translateX(-5px) translateY(0) rotate(0deg); opacity: 1; }
+  37.5% { transform: translateX(0px) translateY(-15px) rotate(-5deg); opacity: 1; }
+  50% { transform: translateX(5px) translateY(0) rotate(0deg); opacity: 1; }
+  62.5% { transform: translateX(10px) translateY(-15px) rotate(5deg); opacity: 1; }
+  75% { transform: translateX(15px) translateY(0) rotate(0deg); opacity: 1; }
+  87.5% { transform: translateX(20px) translateY(-15px) rotate(-5deg); opacity: 1; }
+  100% { transform: translateX(25px) translateY(0) rotate(0deg); opacity: 1; }
 }
 
 .glowing-rainbow-path {
