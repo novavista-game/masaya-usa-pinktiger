@@ -996,7 +996,6 @@ function initLanguageSwitcher() {
       // Add Rainbow Ripple Effect
       if (['en', 'ja', 'ko'].includes(selectedLang)) {
         createRainbowRipple(e, btn);
-        showDamMarquee(selectedLang);
       }
 
       if (window.translations[selectedLang]) {
@@ -1019,32 +1018,13 @@ function createRainbowRipple(e, btn) {
   setTimeout(() => ripple.remove(), 600);
 }
 
-function showDamMarquee(lang) {
-  const banner = document.getElementById('dam-marquee-banner');
-  const textEl = document.getElementById('dam-marquee-text');
-  if (!banner || !textEl) return;
-  
-  let msg = '';
-  if (lang === 'en') msg = 'Congratulations on DAM Karaoke Solo Entry!';
-  else if (lang === 'ja') msg = 'DAMカラオケソロエントリーおめでとうございます！';
-  else if (lang === 'ko') msg = 'DAM 노래방 솔로 진출을 축하합니다!';
-  
-  textEl.textContent = msg;
-  banner.classList.add('show');
-  
-  // Hide after 10 seconds
-  setTimeout(() => {
-    banner.classList.remove('show');
-  }, 10000);
-
-  // Listen to hash change events for seamless anchor link transitions
-  window.addEventListener('hashchange', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (window.translations[hash]) {
-      updateLanguage(hash);
-    }
-  });
-}
+// Listen to hash change events for seamless anchor link transitions
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (window.translations[hash]) {
+    updateLanguage(hash);
+  }
+});
 
 function updateLanguage(lang) {
   // Save chosen language preference
