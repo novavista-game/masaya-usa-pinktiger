@@ -83,25 +83,31 @@ body {
 .rainbow-arch-bg {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150vw;
-  height: 150vw;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    transparent 50%,
-    #ff0000 50%, #ff0000 53%,
-    #ff7f00 53%, #ff7f00 56%,
-    #ffff00 56%, #ffff00 59%,
-    #00ff00 59%, #00ff00 62%,
-    #0000ff 62%, #0000ff 65%,
-    #4b0082 65%, #4b0082 68%,
-    #9400d3 68%, #9400d3 71%,
-    transparent 71%
-  );
-  z-index: 0;
-  animation: fadeArch 5s infinite alternate ease-in-out;
+  left: 0;
+  width: 100vw;
+  min-height: 50vh;
   pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle at top center,
+    transparent 40%,
+    #ff0000 40%, #ff0000 44%,
+    #ff7f00 44%, #ff7f00 48%,
+    #ffff00 48%, #ffff00 52%,
+    #00ff00 52%, #00ff00 56%,
+    #0000ff 56%, #0000ff 60%,
+    #4b0082 60%, #4b0082 64%,
+    #9400d3 64%, #9400d3 68%,
+    transparent 68%
+  );
+  animation: fadeArch 5s infinite alternate ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .rainbow-arch-bg {
+    display: block !important;
+    visibility: visible !important;
+  }
 }
 
 @keyframes fadeArch {
