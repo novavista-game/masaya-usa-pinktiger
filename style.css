@@ -1200,10 +1200,8 @@ body {
    Scroll Reveal Animations
    ========================================================================== */
 .fade-in-section {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .fade-in-section.is-visible {
