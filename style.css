@@ -63,42 +63,6 @@ body {
   0% { transform: translateY(0); }
   100% { transform: translateY(-15px); }
 }
-.rainbow-arch-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-height: 50vh;
-  max-height: 100vh;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(
-    circle at top center,
-    transparent 40%,
-    #ff0000 40%, #ff0000 44%,
-    #ff7f00 44%, #ff7f00 48%,
-    #ffff00 48%, #ffff00 52%,
-    #00ff00 52%, #00ff00 56%,
-    #0000ff 56%, #0000ff 60%,
-    #4b0082 60%, #4b0082 64%,
-    #9400d3 64%, #9400d3 68%,
-    transparent 68%
-  );
-  animation: fadeArch 5s infinite alternate ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .rainbow-arch-bg {
-    display: block !important;
-    visibility: visible !important;
-  }
-}
-
-@keyframes fadeArch {
-  0% { opacity: 0; }
-  100% { opacity: 0.6; }
-}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
