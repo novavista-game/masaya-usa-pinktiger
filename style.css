@@ -38,33 +38,16 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: 
-    linear-gradient(
-      124deg, 
-      rgba(255, 0, 0, 1), 
-      rgba(255, 154, 0, 1), 
-      rgba(255, 255, 0, 1), 
-      rgba(0, 255, 0, 1), 
-      rgba(0, 255, 255, 1), 
-      rgba(0, 0, 255, 1), 
-      rgba(255, 0, 255, 1), 
-      rgba(255, 0, 0, 1)
-    );
-  background-size: 400% 400%;
-  animation: rainbow-holo-anim 15s linear infinite;
-  animation-iteration-count: infinite;
-  opacity: 1 !important;
+  background-color: var(--pastel-pink-bg);
+  background-image: var(--leopard-pattern);
+  background-size: 150px;
+  background-attachment: fixed;
   color: var(--dark-text);
   overflow-x: hidden;
   position: relative;
   line-height: 1.6;
 }
 
-@keyframes rainbow-holo-anim {
-  0% { background-position: 0% 50%; opacity: 1; }
-  50% { background-position: 100% 50%; opacity: 1; }
-  100% { background-position: 0% 50%; opacity: 1; }
-}
 
 /* Mascot Walking & Ribbon Animation */
 .mascot-walking-wrapper {
@@ -86,6 +69,8 @@ body {
   left: 0;
   width: 100vw;
   min-height: 50vh;
+  max-height: 100vh;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(
