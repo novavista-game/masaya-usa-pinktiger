@@ -992,12 +992,50 @@ function initLanguageSwitcher() {
     btn.addEventListener('click', (e) => {
       // Fetch selected language
       const selectedLang = btn.getAttribute('data-lang');
+      
+      // Add Rainbow Ripple Effect
+      if (['en', 'ja', 'ko'].includes(selectedLang)) {
+        createRainbowRipple(e, btn);
+        showDamMarquee(selectedLang);
+      }
+
       if (window.translations[selectedLang]) {
         updateLanguage(selectedLang);
         playCuteLanguageChime();
       }
     });
   });
+}
+
+function createRainbowRipple(e, btn) {
+  const ripple = document.createElement('span');
+  ripple.classList.add('rainbow-ripple');
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = `${size}px`;
+  ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+  ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+  btn.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+function showDamMarquee(lang) {
+  const banner = document.getElementById('dam-marquee-banner');
+  const textEl = document.getElementById('dam-marquee-text');
+  if (!banner || !textEl) return;
+  
+  let msg = '';
+  if (lang === 'en') msg = 'Congratulations on DAM Karaoke Solo Entry!';
+  else if (lang === 'ja') msg = 'DAMカラオケソロエントリーおめでとうございます！';
+  else if (lang === 'ko') msg = 'DAM 노래방 솔로 진출을 축하합니다!';
+  
+  textEl.textContent = msg;
+  banner.classList.add('show');
+  
+  // Hide after 10 seconds
+  setTimeout(() => {
+    banner.classList.remove('show');
+  }, 10000);
 
   // Listen to hash change events for seamless anchor link transitions
   window.addEventListener('hashchange', () => {
