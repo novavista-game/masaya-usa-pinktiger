@@ -75,7 +75,7 @@ body {
   border-radius: 10px;
   background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
   background-size: 200% 100%;
-  animation: glow-rainbow-path 2s linear infinite !important;
+  animation: glow-rainbow-path 8s ease-in-out infinite !important;
   animation-iteration-count: infinite !important;
   z-index: -1;
   filter: blur(2px);
