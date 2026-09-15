@@ -1573,6 +1573,10 @@ function initVideoCarousel() {
 
   const videos = [
     {
+      src: 'assets/Kagerou.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">陽炎 (Kagerou) , 아지랑이 - Edited by Pinktiger USA</span></p>'
+    },
+    {
       src: 'assets/참새의 눈물.mp4',
       caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">Suzume no Namida (참새의 눈물) - Edited by Pinktiger USA</span></p>'
     },
