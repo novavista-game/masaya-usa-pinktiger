@@ -830,12 +830,22 @@
 
   </script>
 
-  <!-- 팝업창(Modal) UI 및 클릭 이벤트 -->
-    <div id="scheduleModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.75); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(3px);">
-      <div style="background: white; padding: 30px; border-radius: 20px; border: 4px dashed #ff66b2; text-align: center; position: relative; max-width: 350px; width: 100%; box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);">
-        <span onclick="document.getElementById('scheduleModal').style.display='none'" style="position: absolute; top: 10px; right: 15px; font-size: 28px; color: #ff66b2; cursor: pointer; font-weight: bold; line-height: 1;">&times;</span>
-        <h3 id="modalDate" style="color: #ff3399; font-weight: bold; margin-bottom: 15px; font-size: 1.3rem;">날짜</h3>
-        <p id="modalDetails" style="color: #333; font-size: 1.1rem; line-height: 1.5; font-weight: bold; word-break: keep-all;">일정 내용</p>
+  <!-- 팝업창(Modal) UI (호피 무늬 디자인 복구) -->
+    <div id="scheduleModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(3px);">
+      <div class="leopard-border-wrapper" style="max-width: 420px; width: 100%; margin: 0 auto; padding: 8px;">
+        <div style="background: white; padding: 35px 20px 30px; border-radius: 15px; border: 3px solid white; text-align: center; position: relative; box-shadow: inset 0 0 10px rgba(255,105,180,0.1);">
+          <!-- 동그란 핑크색 닫기 버튼 -->
+          <span onclick="document.getElementById('scheduleModal').style.display='none'" style="position: absolute; top: 12px; right: 15px; font-size: 22px; color: white; background: #ff3399; border-radius: 50%; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); line-height: 1;">&times;</span>
+          
+          <!-- 날짜 제목 -->
+          <h3 id="modalDate" style="color: #ff3399; font-weight: 900; margin-bottom: 15px; font-size: 1.3rem;">날짜</h3>
+          
+          <!-- 구분선 (점선) -->
+          <hr style="border: 0; border-top: 2px dashed #ffb6c1; margin: 15px auto; width: 80%;">
+          
+          <!-- 일정 세부 내용 -->
+          <p id="modalDetails" style="color: #333; font-size: 1.1rem; line-height: 1.6; font-weight: bold; word-break: keep-all; margin-top: 15px;">일정 내용</p>
+        </div>
       </div>
     </div>
 
