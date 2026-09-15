@@ -283,178 +283,252 @@
       </div>
     </div>
   </section>
-
-  <!-- Schedule Section -->
+<!-- Schedule Section -->
   <section id="schedule" class="schedule-section fade-in-section">
     <div class="container" style="max-width: 1200px; margin: 0 auto;">
       <h2 class="section-title" data-translate="schedule-title">Masaya's Schedule 📅</h2>
       <div class="leopard-border-wrapper" style="margin-top: 30px; height: auto !important;">
-        <div style="background: linear-gradient(135deg, #fff0f6, #ffe4ec); border-radius: 18px; border: 3px solid var(--white); padding: 20px; height: auto !important;">
-          <div class="schedule-calendars">
+        <div style="background: linear-gradient(135deg, #fff0f6, #ffe4ec); border-radius: 18px; border: 3px solid var(--white); padding: 20px; height: auto !important; position: relative;">
+          
+          <!-- 슬라이더 왼쪽 화살표 -->
+          <button onclick="moveSchedule(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: #ff66b2; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">&#10094;</button>
 
-            <!-- ===== SEPTEMBER 2026 ===== -->
-            <div class="cal-month-container">
-              <h3 class="cal-month-title" data-translate="cal-month-sep">🗓️ September 2026</h3>
-              <div class="cal-grid">
-                <!-- Day Headers -->
-                <div class="cal-day-hdr cal-sun" data-translate="cal-day-sun">SUN</div>
-                <div class="cal-day-hdr" data-translate="cal-day-mon">MON</div>
-                <div class="cal-day-hdr" data-translate="cal-day-tue">TUE</div>
-                <div class="cal-day-hdr" data-translate="cal-day-wed">WED</div>
-                <div class="cal-day-hdr" data-translate="cal-day-thu">THU</div>
-                <div class="cal-day-hdr" data-translate="cal-day-fri">FRI</div>
-                <div class="cal-day-hdr cal-sat" data-translate="cal-day-sat">SAT</div>
-                <!-- Week 1 -->
-                <div class="cal-cell cal-empty cal-sun"></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell"><span class="cal-num">1</span></div>
-                <div class="cal-cell"><span class="cal-num">2</span></div>
-                <div class="cal-cell"><span class="cal-num">3</span></div>
-                <div class="cal-cell"><span class="cal-num">4</span></div>
-                <div class="cal-cell has-event cal-sat">
-                  <span class="cal-num">5</span>
-                  <span class="cal-event" data-translate="cal-sep-5">AGE LIVE TOUR 2026 "PERCENTAGE%" Nagoya @JAMMIN'</span>
+          <!-- 전체 슬라이더 영역 -->
+          <div style="overflow: hidden; width: 100%; padding: 0 40px; box-sizing: border-box;">
+            <div id="scheduleTrack" style="display: flex; transition: transform 0.5s ease-in-out; width: 200%;">
+              
+              <!-- ============================================== -->
+              <!-- 첫 번째 슬라이드 (9월 & 10월) -->
+              <!-- ============================================== -->
+              <div class="schedule-calendars" style="width: 50%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+                
+                <!-- ===== SEPTEMBER 2026 ===== -->
+                <div class="cal-month-container">
+                  <h3 class="cal-month-title" data-translate="cal-month-sep">🗓️ September 2026</h3>
+                  <div class="cal-grid">
+                    <!-- Day Headers -->
+                    <div class="cal-day-hdr cal-sun" data-translate="cal-day-sun">SUN</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-mon">MON</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-tue">TUE</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-wed">WED</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-thu">THU</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-fri">FRI</div>
+                    <div class="cal-day-hdr cal-sat" data-translate="cal-day-sat">SAT</div>
+                    <!-- Week 1 -->
+                    <div class="cal-cell cal-empty cal-sun"></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell"><span class="cal-num">1</span></div>
+                    <div class="cal-cell"><span class="cal-num">2</span></div>
+                    <div class="cal-cell"><span class="cal-num">3</span></div>
+                    <div class="cal-cell"><span class="cal-num">4</span></div>
+                    <div class="cal-cell has-event cal-sat">
+                      <span class="cal-num">5</span>
+                      <span class="cal-event" data-translate="cal-sep-5">AGE LIVE TOUR 2026 "PERCENTAGE%" Nagoya @JAMMIN'</span>
+                    </div>
+                    <!-- Week 2 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">6</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">7</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">8</span></div>
+                    <div class="cal-cell"><span class="cal-num">9</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">10</span>
+                      <span class="cal-event" data-translate="cal-sep-10">Uen Sparkle Life @STAR BOX</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">11</span></div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">12</span></div>
+                    <!-- Week 3 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">13</span></div>
+                    <div class="cal-cell"><span class="cal-num">14</span></div>
+                    <div class="cal-cell"><span class="cal-num">15</span></div>
+                    <div class="cal-cell"><span class="cal-num">16</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">17</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">18</span></div>
+                    <div class="cal-cell has-event cal-sat">
+                      <span class="cal-num">19</span>
+                      <span class="cal-event" data-translate="cal-sep-19">AGE LIVE TOUR 2026 "PERCENTAGE%" Sendai @darwin</span>
+                    </div>
+                    <!-- Week 4 -->
+                    <div class="cal-cell has-event cal-sun">
+                      <span class="cal-num">20</span>
+                      <span class="cal-event" data-translate="cal-sep-20">Masaya Concert "Cheers to the Masterpieces of Life!" @YCC Hall</span>
+                    </div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">21</span>
+                      <span class="cal-event" data-translate="cal-sep-21">3meet @BANGBOO</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">22</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">23</span>
+                      <span class="cal-event" data-translate="cal-sep-23">AGE Memorial Live ~Yuta's Birthday~ @club JOULE</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">24</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">25</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">26</span></div>
+                    <!-- Week 5 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">27</span></div>
+                    <div class="cal-cell"><span class="cal-num">28</span></div>
+                    <div class="cal-cell"><span class="cal-num">29</span></div>
+                    <div class="cal-cell"><span class="cal-num">30</span></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell cal-empty cal-sat"></div>
+                  </div>
                 </div>
-                <!-- Week 2 -->
-                <div class="cal-cell cal-sun"><span class="cal-num">6</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">7</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+
+                <!-- ===== OCTOBER 2026 ===== -->
+                <div class="cal-month-container">
+                  <h3 class="cal-month-title" data-translate="cal-month-oct">🗓️ October 2026</h3>
+                  <div class="cal-grid">
+                    <!-- Day Headers -->
+                    <div class="cal-day-hdr cal-sun" data-translate="cal-day-sun">SUN</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-mon">MON</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-tue">TUE</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-wed">WED</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-thu">THU</div>
+                    <div class="cal-day-hdr" data-translate="cal-day-fri">FRI</div>
+                    <div class="cal-day-hdr cal-sat" data-translate="cal-day-sat">SAT</div>
+                    <!-- Week 1 -->
+                    <div class="cal-cell cal-empty cal-sun"></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell cal-empty"></div>
+                    <div class="cal-cell"><span class="cal-num">1</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">2</span>
+                      <span class="cal-event" data-translate="cal-oct-2">Jun "Hypnosis Mic" Rule the Stage @Pia Arena MM</span>
+                    </div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">3</span></div>
+                    <!-- Week 2 -->
+                    <div class="cal-cell has-event cal-sun">
+                      <span class="cal-num">4</span>
+                      <span class="cal-event" data-translate="cal-oct-4">AGE LIVE TOUR 2026 "PERCENTAGE%" Tokyo @SHIBUYA DIVE</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">5</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">6</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">7</span></div>
+                    <div class="cal-cell"><span class="cal-num">8</span></div>
+                    <div class="cal-cell"><span class="cal-num">9</span></div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">10</span></div>
+                    <!-- Week 3 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">11</span></div>
+                    <div class="cal-cell"><span class="cal-num">12</span></div>
+                    <div class="cal-cell"><span class="cal-num">13</span></div>
+                    <div class="cal-cell"><span class="cal-num">14</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">15</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">16</span></div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">17</span></div>
+                    <!-- Week 4 -->
+                    <div class="cal-cell has-event cal-sun">
+                      <span class="cal-num">18</span>
+                      <span class="cal-event" data-translate="cal-oct-18">Live Scheduled @Osaka</span>
+                    </div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">19</span>
+                      <span class="cal-event" data-translate="cal-oct-19a">Masaya Showa 100 Years Super Song Book Show @Festival Hall</span>
+                      <span class="cal-event cal-event-second" data-translate="cal-oct-19b">Uen Live Scheduled @Osaka</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">20</span></div>
+                    <div class="cal-cell"><span class="cal-num">21</span></div>
+                    <div class="cal-cell"><span class="cal-num">22</span></div>
+                    <div class="cal-cell"><span class="cal-num">23</span></div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">24</span></div>
+                    <!-- Week 5 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">25</span></div>
+                    <div class="cal-cell"><span class="cal-num">26</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">27</span>
+                      <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">28</span></div>
+                    <div class="cal-cell"><span class="cal-num">29</span></div>
+                    <div class="cal-cell"><span class="cal-num">30</span></div>
+                    <div class="cal-cell has-event cal-sat">
+                      <span class="cal-num">31</span>
+                      <span class="cal-event" data-translate="cal-oct-31">Live Scheduled @Osaka</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="cal-cell"><span class="cal-num">8</span></div>
-                <div class="cal-cell"><span class="cal-num">9</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">10</span>
-                  <span class="cal-event" data-translate="cal-sep-10">Uen Sparkle Life @STAR BOX</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">11</span></div>
-                <div class="cal-cell cal-sat"><span class="cal-num">12</span></div>
-                <!-- Week 3 -->
-                <div class="cal-cell cal-sun"><span class="cal-num">13</span></div>
-                <div class="cal-cell"><span class="cal-num">14</span></div>
-                <div class="cal-cell"><span class="cal-num">15</span></div>
-                <div class="cal-cell"><span class="cal-num">16</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">17</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">18</span></div>
-                <div class="cal-cell has-event cal-sat">
-                  <span class="cal-num">19</span>
-                  <span class="cal-event" data-translate="cal-sep-19">AGE LIVE TOUR 2026 "PERCENTAGE%" Sendai @darwin</span>
-                </div>
-                <!-- Week 4 -->
-                <div class="cal-cell has-event cal-sun">
-                  <span class="cal-num">20</span>
-                  <span class="cal-event" data-translate="cal-sep-20">Masaya Concert "Cheers to the Masterpieces of Life!" @YCC Hall</span>
-                </div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">21</span>
-                  <span class="cal-event" data-translate="cal-sep-21">3meet @BANGBOO</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">22</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">23</span>
-                  <span class="cal-event" data-translate="cal-sep-23">AGE Memorial Live ~Yuta's Birthday~ @club JOULE</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">24</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">25</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
-                </div>
-                <div class="cal-cell cal-sat"><span class="cal-num">26</span></div>
-                <!-- Week 5 -->
-                <div class="cal-cell cal-sun"><span class="cal-num">27</span></div>
-                <div class="cal-cell"><span class="cal-num">28</span></div>
-                <div class="cal-cell"><span class="cal-num">29</span></div>
-                <div class="cal-cell"><span class="cal-num">30</span></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell cal-empty cal-sat"></div>
               </div>
-            </div>
 
-            <!-- ===== OCTOBER 2026 ===== -->
-            <div class="cal-month-container">
-              <h3 class="cal-month-title" data-translate="cal-month-oct">🗓️ October 2026</h3>
-              <div class="cal-grid">
-                <!-- Day Headers -->
-                <div class="cal-day-hdr cal-sun" data-translate="cal-day-sun">SUN</div>
-                <div class="cal-day-hdr" data-translate="cal-day-mon">MON</div>
-                <div class="cal-day-hdr" data-translate="cal-day-tue">TUE</div>
-                <div class="cal-day-hdr" data-translate="cal-day-wed">WED</div>
-                <div class="cal-day-hdr" data-translate="cal-day-thu">THU</div>
-                <div class="cal-day-hdr" data-translate="cal-day-fri">FRI</div>
-                <div class="cal-day-hdr cal-sat" data-translate="cal-day-sat">SAT</div>
-                <!-- Week 1 -->
-                <div class="cal-cell cal-empty cal-sun"></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell cal-empty"></div>
-                <div class="cal-cell"><span class="cal-num">1</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">2</span>
-                  <span class="cal-event" data-translate="cal-oct-2">Jun "Hypnosis Mic" Rule the Stage @Pia Arena MM</span>
-                </div>
-                <div class="cal-cell cal-sat"><span class="cal-num">3</span></div>
-                <!-- Week 2 -->
-                <div class="cal-cell has-event cal-sun">
-                  <span class="cal-num">4</span>
-                  <span class="cal-event" data-translate="cal-oct-4">AGE LIVE TOUR 2026 "PERCENTAGE%" Tokyo @SHIBUYA DIVE</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">5</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">6</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">7</span></div>
-                <div class="cal-cell"><span class="cal-num">8</span></div>
-                <div class="cal-cell"><span class="cal-num">9</span></div>
-                <div class="cal-cell cal-sat"><span class="cal-num">10</span></div>
-                <!-- Week 3 -->
-                <div class="cal-cell cal-sun"><span class="cal-num">11</span></div>
-                <div class="cal-cell"><span class="cal-num">12</span></div>
-                <div class="cal-cell"><span class="cal-num">13</span></div>
-                <div class="cal-cell"><span class="cal-num">14</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">15</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">16</span></div>
-                <div class="cal-cell cal-sat"><span class="cal-num">17</span></div>
-                <!-- Week 4 -->
-                <div class="cal-cell has-event cal-sun">
-                  <span class="cal-num">18</span>
-                  <span class="cal-event" data-translate="cal-oct-18">Live Scheduled @Osaka</span>
-                </div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">19</span>
-                  <span class="cal-event" data-translate="cal-oct-19a">Masaya Showa 100 Years Super Song Book Show @Festival Hall</span>
-                  <span class="cal-event cal-event-second" data-translate="cal-oct-19b">Uen Live Scheduled @Osaka</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">20</span></div>
-                <div class="cal-cell"><span class="cal-num">21</span></div>
-                <div class="cal-cell"><span class="cal-num">22</span></div>
-                <div class="cal-cell"><span class="cal-num">23</span></div>
-                <div class="cal-cell cal-sat"><span class="cal-num">24</span></div>
-                <!-- Week 5 -->
-                <div class="cal-cell cal-sun"><span class="cal-num">25</span></div>
-                <div class="cal-cell"><span class="cal-num">26</span></div>
-                <div class="cal-cell has-event">
-                  <span class="cal-num">27</span>
-                  <span class="cal-event" data-translate="cal-3meet">3meet Chance!</span>
-                </div>
-                <div class="cal-cell"><span class="cal-num">28</span></div>
-                <div class="cal-cell"><span class="cal-num">29</span></div>
-                <div class="cal-cell"><span class="cal-num">30</span></div>
-                <div class="cal-cell has-event cal-sat">
-                  <span class="cal-num">31</span>
-                  <span class="cal-event" data-translate="cal-oct-31">Live Scheduled @Osaka</span>
+              <!-- ============================================== -->
+              <!-- 두 번째 슬라이드 (새로 추가된 11월) -->
+              <!-- ============================================== -->
+              <div class="schedule-calendars" style="width: 50%; display: flex; justify-content: flex-start; padding-left: 10px;">
+                <!-- ===== NOVEMBER 2026 ===== -->
+                <div class="cal-month-container" style="margin: 0;">
+                  <h3 class="cal-month-title">🗓️ November 2026</h3>
+                  <div class="cal-grid">
+                    <!-- Day Headers -->
+                    <div class="cal-day-hdr cal-sun">SUN</div>
+                    <div class="cal-day-hdr">MON</div>
+                    <div class="cal-day-hdr">TUE</div>
+                    <div class="cal-day-hdr">WED</div>
+                    <div class="cal-day-hdr">THU</div>
+                    <div class="cal-day-hdr">FRI</div>
+                    <div class="cal-day-hdr cal-sat">SAT</div>
+                    <!-- Week 1 -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">1</span></div>
+                    <div class="cal-cell"><span class="cal-num">2</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">3</span>
+                      <span class="cal-event">[M&amp;R] MIDNIGHT DRIVE × M&amp;R 2MAN LIVE @時事通信ホール</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">4</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">5</span>
+                      <span class="cal-event">3meet Chance!</span>
+                    </div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">6</span>
+                      <span class="cal-event">[M&amp;R] Golden Moon Concert In Tokyo @渋谷duo</span>
+                    </div>
+                    <div class="cal-cell cal-sat"><span class="cal-num">7</span></div>
+                    <!-- Week 2 -->
+                    <div class="cal-cell has-event cal-sun">
+                      <span class="cal-num">8</span>
+                      <span class="cal-event">[M&amp;R] 2026バリエーション・ツアー ファイナル</span>
+                    </div>
+                    <div class="cal-cell"><span class="cal-num">9</span></div>
+                    <div class="cal-cell"><span class="cal-num">10</span></div>
+                    <div class="cal-cell"><span class="cal-num">11</span></div>
+                    <div class="cal-cell"><span class="cal-num">12</span></div>
+                    <div class="cal-cell has-event">
+                      <span class="cal-num">13</span>
+                      <span class="cal-event">AGE 7th Anniversary Live @GORILLA HALL OSAKA</span>
+                    </div>
+                    <div class="cal-cell has-event cal-sat">
+                      <span class="cal-num">14</span>
+                      <span class="cal-event">AGE 7th Anniversary Live 特典会 @aer-u cafe</span>
+                    </div>
+                    <!-- Week 3, 4, 5 (이벤트 없음) -->
+                    <div class="cal-cell cal-sun"><span class="cal-num">15</span></div><div class="cal-cell"><span class="cal-num">16</span></div><div class="cal-cell"><span class="cal-num">17</span></div><div class="cal-cell"><span class="cal-num">18</span></div><div class="cal-cell"><span class="cal-num">19</span></div><div class="cal-cell"><span class="cal-num">20</span></div><div class="cal-cell cal-sat"><span class="cal-num">21</span></div>
+                    <div class="cal-cell cal-sun"><span class="cal-num">22</span></div><div class="cal-cell"><span class="cal-num">23</span></div><div class="cal-cell"><span class="cal-num">24</span></div><div class="cal-cell"><span class="cal-num">25</span></div><div class="cal-cell"><span class="cal-num">26</span></div><div class="cal-cell"><span class="cal-num">27</span></div><div class="cal-cell cal-sat"><span class="cal-num">28</span></div>
+                    <div class="cal-cell cal-sun"><span class="cal-num">29</span></div><div class="cal-cell"><span class="cal-num">30</span></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty cal-sat"></div>
+                  </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
+
+          <!-- 슬라이더 오른쪽 화살표 -->
+          <button onclick="moveSchedule(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: #ff66b2; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">&#10095;</button>
+
           <!-- Disclaimer -->
           <p class="schedule-disclaimer" data-translate="schedule-notice" style="margin-top: 20px; text-align: center; font-size: 0.9rem; color: var(--dark-magenta); font-weight: bold; background: rgba(255, 255, 255, 0.65); border: 1.5px solid rgba(255, 105, 180, 0.3); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(4px);">
             The schedule introduced here is announced by Masaya's agency and is subject to change or cancellation. Thank you for your understanding. ⚠️
@@ -462,7 +536,20 @@
         </div>
       </div>
     </div>
+    
+    <!-- 슬라이더 동작 자바스크립트 -->
+    <script>
+      let currentScheduleSlide = 0;
+      function moveSchedule(direction) {
+        const track = document.getElementById('scheduleTrack');
+        currentScheduleSlide += direction;
+        if (currentScheduleSlide < 0) currentScheduleSlide = 0;
+        if (currentScheduleSlide > 1) currentScheduleSlide = 1;
+        track.style.transform = `translateX(-${currentScheduleSlide * 50}%)`;
+      }
+    </script>
   </section>
+  
 
   <!-- Goods Store Section -->
   <section id="goods-store" class="goods-store-section fade-in-section" style="padding: 60px 0; background: var(--light-pink);">
