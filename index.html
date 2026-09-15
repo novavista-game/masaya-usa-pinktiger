@@ -830,16 +830,33 @@
 
   </script>
 
-  <!-- Calendar Event Modal -->
-  <div id="cal-modal" class="cal-modal-overlay">
-    <div class="cal-modal-content">
-      <button class="cal-modal-close" id="cal-modal-close" aria-label="Close modal">&times;</button>
-      <div class="cal-modal-inner">
-        <div class="cal-modal-date" id="cal-modal-date">Date</div>
-        <div class="cal-modal-text" id="cal-modal-text">Event Details</div>
+  <!-- 팝업창(Modal) UI 및 클릭 이벤트 -->
+    <div id="scheduleModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.75); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(3px);">
+      <div style="background: white; padding: 30px; border-radius: 20px; border: 4px dashed #ff66b2; text-align: center; position: relative; max-width: 350px; width: 100%; box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);">
+        <span onclick="document.getElementById('scheduleModal').style.display='none'" style="position: absolute; top: 10px; right: 15px; font-size: 28px; color: #ff66b2; cursor: pointer; font-weight: bold; line-height: 1;">&times;</span>
+        <h3 id="modalDate" style="color: #ff3399; font-weight: bold; margin-bottom: 15px; font-size: 1.3rem;">날짜</h3>
+        <p id="modalDetails" style="color: #333; font-size: 1.1rem; line-height: 1.5; font-weight: bold; word-break: keep-all;">일정 내용</p>
       </div>
     </div>
-  </div>
+
+    <script>
+      // 달력 칸(.has-event) 클릭/터치 시 팝업 띄우기
+      document.querySelectorAll('.has-event').forEach(function(cell) {
+        cell.style.cursor = 'pointer';
+        cell.addEventListener('click', function() {
+          const dateNum = this.querySelector('.cal-num').innerText;
+          const eventTexts = Array.from(this.querySelectorAll('.cal-event')).map(el => el.innerText).join('<br><br>');
+          
+          let monthTitle = this.closest('.cal-month-container').querySelector('.cal-month-title').innerText;
+          monthTitle = monthTitle.replace('🗓️', '').trim();
+
+          document.getElementById('modalDate').innerText = monthTitle + ' ' + dateNum + '일';
+          document.getElementById('modalDetails').innerHTML = eventTexts;
+          
+          document.getElementById('scheduleModal').style.display = 'flex';
+        });
+      });
+    </script>
 
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
