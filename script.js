@@ -1148,14 +1148,12 @@ function resetGame() {
   const nicknameModal = document.getElementById('nickname-modal');
   const nicknameInput = document.getElementById('nickname-input');
   const stampTour = document.getElementById('stamp-tour');
-  const interactiveMap = document.getElementById('interactive-map');
   
   playerNickname = "Guest";
   if (nicknameInput) nicknameInput.value = '';
   
-  // Clean Exit Logic: Hide container and modal, show map
+  // Clean Exit Logic: Hide container and modal
   if (stampTour) stampTour.style.display = 'none';
-  if (interactiveMap) interactiveMap.style.display = 'block';
   if (nicknameModal) nicknameModal.style.display = 'none';
   
   // Expose global variables to reset game state. 
