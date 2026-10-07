@@ -73,13 +73,8 @@ window.translations = {
     "fanletters-empty": "Be the first to leave a message! 💌",
     "recent-letters-title": "Recent Letters from Pinktigers 💌",
     "community-btn": "Fan Letters from Afar",
-    "map-title": "Masaya's Global Footprint 🗺️",
-    "map-subtitle": "Discover fans around the world!",
-    "map-modal-title": "Leave a Marker 🐾",
-    "map-modal-msg-ph": "Write a cheer message!",
-    "map-modal-file-label": "Upload a Photo:",
-    "map-modal-submit": "Submit",
-    "map-modal-cancel": "Cancel",
+    "karaoke-title": "Masaya Karaoke Challenge 🎤✨",
+    "karaoke-subtitle": "Sing along in your language! (30 sec)",
     "lbl-location": "Location",
     "lbl-time": "Time",
     "clickMascotHint": "Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨",
@@ -207,13 +202,8 @@ window.translations = {
     "fanletters-empty": "最初のメッセージを残そう！ 💌",
     "recent-letters-title": "ピンクタイガーからの最近の手紙 💌",
     "community-btn": "ファンレターを送る",
-    "map-title": "マサヤのグローバルフットプリント 🗺️",
-    "map-subtitle": "世界中のファンを発見しよう！",
-    "map-modal-title": "マーカーを残す 🐾",
-    "map-modal-msg-ph": "応援メッセージを書いてね！",
-    "map-modal-file-label": "写真をアップロード：",
-    "map-modal-submit": "送信",
-    "map-modal-cancel": "キャンセル",
+    "karaoke-title": "マサヤ カラオケチャレンジ 🎤✨",
+    "karaoke-subtitle": "あなたの言語で一緒に歌おう！(30秒)",
     "lbl-location": "位置",
     "lbl-time": "投稿時間",
     "clickMascotHint": "ピンクタイガーのマスコットをクリックして、マサヤの隠し写真を見つけてください！ 🐯✨",
@@ -341,13 +331,8 @@ window.translations = {
     "fanletters-empty": "첫 번째로 메시지를 남겨보세요! 💌",
     "recent-letters-title": "핑크타이거의 최근 편지 💌",
     "community-btn": "팬레터 보내기",
-    "map-title": "마사야의 글로벌 발자취 🗺️",
-    "map-subtitle": "전 세계의 팬들을 발견해보세요!",
-    "map-modal-title": "마커 남기기 🐾",
-    "map-modal-msg-ph": "응원 메시지를 남겨주세요!",
-    "map-modal-file-label": "사진 업로드:",
-    "map-modal-submit": "제출",
-    "map-modal-cancel": "취소",
+    "karaoke-title": "마사야 노래방 챌린지 🎤✨",
+    "karaoke-subtitle": "나의 언어로 함께 불러요! (30초)",
     "lbl-location": "위치",
     "lbl-time": "작성 시간",
     "clickMascotHint": "핑크타이거 마스코트를 클릭해서 마사야의 숨은 사진을 찾으세요! 🐯✨",
@@ -475,13 +460,8 @@ window.translations = {
     "fanletters-empty": "¡Sé el primero en dejar un mensaje! 💌",
     "recent-letters-title": "Cartas Recientes de los Pinktigers 💌",
     "community-btn": "Cartas de Fans desde Lejos",
-    "map-title": "Huella Global de Masaya 🗺️",
-    "map-subtitle": "¡Descubre fans alrededor del mundo!",
-    "map-modal-title": "Deja un Marcador 🐾",
-    "map-modal-msg-ph": "¡Escribe un mensaje de ánimo!",
-    "map-modal-file-label": "Sube una Foto:",
-    "map-modal-submit": "Enviar",
-    "map-modal-cancel": "Cancelar",
+    "karaoke-title": "Desafío de Karaoke de Masaya 🎤✨",
+    "karaoke-subtitle": "¡Canta en tu idioma! (30 seg)",
     "lbl-location": "Ubicación",
     "lbl-time": "Tiempo",
     "clickMascotHint": "¡Haz clic en la mascota Pinktiger para encontrar fotos ocultas de Masaya! 🐯✨",
@@ -610,13 +590,8 @@ window.translations = {
     "fanletters-empty": "Soyez le premier à laisser un message ! 💌",
     "recent-letters-title": "Lettres Récentes des Pinktigers 💌",
     "community-btn": "Lettres de Fans de Loin",
-    "map-title": "Empreinte Mondiale de Masaya 🗺️",
-    "map-subtitle": "Découvrez des fans du monde entier !",
-    "map-modal-title": "Laissez un Marqueur 🐾",
-    "map-modal-msg-ph": "Écrivez un message d'encouragement !",
-    "map-modal-file-label": "Téléchargez une Photo :",
-    "map-modal-submit": "Soumettre",
-    "map-modal-cancel": "Annuler",
+    "karaoke-title": "Défi Karaoké de Masaya 🎤✨",
+    "karaoke-subtitle": "Chantez dans votre langue ! (30 s)",
     "lbl-location": "Emplacement",
     "lbl-time": "Heure",
     "clickMascotHint": "Cliquez sur la Mascotte Pinktiger pour trouver des photos cachées de Masaya ! 🐯✨",
@@ -722,7 +697,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguageSwitcher();
   initVideoCarousel();
   initMobileMenu();
-  initInteractiveMap();
   initGoodsSwiper();
   initCalendarModal();
 });
@@ -1662,198 +1636,6 @@ function initMobileMenu() {
       });
     });
   }
-}
-
-/* ==========================================================================
-   9. Interactive Map Logic (Leaflet)
-   ========================================================================== */
-function initInteractiveMap() {
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer || typeof L === 'undefined') return;
-  
-  const map = L.map('map', { 
-    worldCopyJump: true,
-    maxBounds: [[-90, -180], [90, 180]],
-    minZoom: 2,
-    maxBoundsViscosity: 1.0
-  }).setView([20, 0], 2);
-  
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-    noWrap: true
-  }).addTo(map);
-
-  const pawIcon = L.divIcon({
-    html: `
-      <div style="color: #FF69B4; font-size: 20px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-10px, -20px); animation: pulse-paw 2s infinite;">
-        <i class="fa-solid fa-paw"></i>
-      </div>
-      <style>
-        @keyframes pulse-paw {
-          0% { transform: translate(-10px, -20px) scale(1); }
-          50% { transform: translate(-10px, -20px) scale(1.15); }
-          100% { transform: translate(-10px, -20px) scale(1); }
-        }
-      </style>
-    `,
-    className: 'custom-paw-icon',
-    iconSize: [20, 20],
-    iconAnchor: [10, 20],
-    popupAnchor: [0, -20]
-  });
-
-  const clusterPawIcon = L.divIcon({
-    html: `
-      <div style="color: #FF69B4; font-size: 26px; filter: drop-shadow(0px 0px 10px rgba(255, 105, 180, 1)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-13px, -26px); animation: pulse-cluster 1.5s infinite;">
-        <i class="fa-solid fa-paw"></i>
-        <div style="position: absolute; width: 40px; height: 40px; border: 2px solid rgba(255, 105, 180, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);"></div>
-      </div>
-      <style>
-        @keyframes pulse-cluster {
-          0% { transform: translate(-13px, -26px) scale(1); }
-          50% { transform: translate(-13px, -26px) scale(1.1); }
-          100% { transform: translate(-13px, -26px) scale(1); }
-        }
-      </style>
-    `,
-    className: 'custom-cluster-icon',
-    iconSize: [26, 26],
-    iconAnchor: [13, 26]
-  });
-
-  const markerCluster = L.markerClusterGroup({
-    spiderfyOnMaxZoom: true,
-    showCoverageOnHover: false,
-    zoomToBoundsOnClick: true,
-    maxClusterRadius: 50,
-    spiderLegPolylineOptions: { weight: 3, color: 'rgba(255, 105, 180, 0.7)', opacity: 0.8 },
-    iconCreateFunction: function(cluster) {
-      return clusterPawIcon;
-    }
-  });
-  map.addLayer(markerCluster);
-
-  const hardcodedMarkers = [
-    { lat: 34.0522, lng: -118.2437, nickname: "PinkTiger_LA", message: "Been listening to his covers on repeat! Can't wait for a US tour! 🐯💖" },
-    { lat: 40.7128, lng: -74.0060, nickname: "Melody_NY", message: "His vocal range is absolutely insane. This new fan site is gorgeous! 🎤✨" },
-    { lat: 48.8566, lng: 2.3522, nickname: "Paris_PinkTiger", message: "Growing fanbase in Paris! Your vocal tone is incredibly trendy in Europe. 🇫🇷✨" },
-    { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. 🇪🇸🔥" },
-    { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! 🇨🇳🐯" },
-    { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🇧🇷💖" },
-    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🇬🇧🎵" },
-    { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! 🇯🇵🐯" },
-    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷✨" },
-    { lat: 47.6062, lng: -122.3321, nickname: "Seattle_PinkTiger", message: "Streaming your songs every day from the rainy city! We love you Masaya! ☕🐯" },
-    { lat: 33.9367, lng: -118.0278, nickname: "SoCal_Roar", message: "Huge fan from Southern California! Your high notes are amazing! 🌴✨" }
-  ];
-
-  hardcodedMarkers.forEach(item => {
-    const marker = L.marker([item.lat, item.lng], { icon: pawIcon });
-    
-    let popupContent = `<div style="text-align:center; max-width: 250px;">`;
-    popupContent += `<h4 style="color: var(--brand-pink); margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">${item.nickname}</h4>`;
-    popupContent += `<p style="font-family:'Quicksand', sans-serif; color:#333; margin:0;">"${item.message}"</p>`;
-    popupContent += `</div>`;
-    
-    marker.bindPopup(popupContent);
-    markerCluster.addLayer(marker);
-  });
-}
-
-
-
-
-function initInteractiveMap() {
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer || typeof L === 'undefined') return;
-  
-  const map = L.map('map', { 
-    worldCopyJump: true,
-    maxBounds: [[-90, -180], [90, 180]],
-    minZoom: 2,
-    maxBoundsViscosity: 1.0
-  }).setView([20, 0], 2);
-  
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-    noWrap: true
-  }).addTo(map);
-
-  const pawIcon = L.divIcon({
-    html: `
-      <div style="color: #FF69B4; font-size: 20px; filter: drop-shadow(0px 4px 6px rgba(255, 105, 180, 0.8)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-10px, -20px); animation: pulse-paw 2s infinite;">
-        <i class="fa-solid fa-paw"></i>
-      </div>
-      <style>
-        @keyframes pulse-paw {
-          0% { transform: translate(-10px, -20px) scale(1); }
-          50% { transform: translate(-10px, -20px) scale(1.15); }
-          100% { transform: translate(-10px, -20px) scale(1); }
-        }
-      </style>
-    `,
-    className: 'custom-paw-icon',
-    iconSize: [20, 20],
-    iconAnchor: [10, 20],
-    popupAnchor: [0, -20]
-  });
-
-  const clusterPawIcon = L.divIcon({
-    html: `
-      <div style="color: #FF69B4; font-size: 26px; filter: drop-shadow(0px 0px 10px rgba(255, 105, 180, 1)); display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transform: translate(-13px, -26px); animation: pulse-cluster 1.5s infinite;">
-        <i class="fa-solid fa-paw"></i>
-        <div style="position: absolute; width: 40px; height: 40px; border: 2px solid rgba(255, 105, 180, 0.8); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);"></div>
-      </div>
-      <style>
-        @keyframes pulse-cluster {
-          0% { transform: translate(-13px, -26px) scale(1); }
-          50% { transform: translate(-13px, -26px) scale(1.1); }
-          100% { transform: translate(-13px, -26px) scale(1); }
-        }
-      </style>
-    `,
-    className: 'custom-cluster-icon',
-    iconSize: [26, 26],
-    iconAnchor: [13, 26]
-  });
-
-  const markerCluster = L.markerClusterGroup({
-    spiderfyOnMaxZoom: true,
-    showCoverageOnHover: false,
-    zoomToBoundsOnClick: true,
-    maxClusterRadius: 50,
-    spiderLegPolylineOptions: { weight: 3, color: 'rgba(255, 105, 180, 0.7)', opacity: 0.8 },
-    iconCreateFunction: function(cluster) {
-      return clusterPawIcon;
-    }
-  });
-  map.addLayer(markerCluster);
-
-  const hardcodedMarkers = [
-    { lat: 34.0522, lng: -118.2437, nickname: "PinkTiger_LA", message: "Been listening to his covers on repeat! Can't wait for a US tour! 💖" },
-    { lat: 40.7128, lng: -74.0060, nickname: "Melody_NY", message: "His vocal range is absolutely insane. This new fan site is gorgeous! ✨" },
-    { lat: 48.8566, lng: 2.3522, nickname: "Paris_PinkTiger", message: "Growing fanbase in Paris! Your vocal tone is incredibly trendy in Europe. 🗼" },
-    { lat: 40.4168, lng: -3.7038, nickname: "Madrid_MasayaFan", message: "Strong support from Spain! Latin fans are streaming your songs every day. 🎶" },
-    { lat: 39.9042, lng: 116.4074, nickname: "Beijing_Tiger", message: "Huge potential for the global Asian market! Cheering from China! 🐅" },
-    { lat: -23.5505, lng: -46.6333, nickname: "BR_PinkTigers", message: "South American fans are here! We need a global tour soon! 🌎" },
-    { lat: 51.5074, lng: -0.1278, nickname: "London_Pop", message: "Amazing talent. UK fans are definitely tuned in! 🎵" },
-    { lat: 35.6762, lng: 139.6503, nickname: "Tokyo_PinkTiger", message: "Always waiting for your next Tokyo live! The fan energy here is amazing! 🗼" },
-    { lat: 37.5665, lng: 126.9780, nickname: "Seoul_MasayaFan", message: "K-fans are completely mesmerized by your vocal color! Come to Korea soon! 🇰🇷" },
-    { lat: 47.6062, lng: -122.3321, nickname: "Seattle_PinkTiger", message: "Streaming your songs every day from the rainy city! We love you Masaya! ☔" },
-    { lat: 33.9367, lng: -118.0278, nickname: "SoCal_Roar", message: "Huge fan from Southern California! Your high notes are amazing! 🌴" }
-  ];
-
-  hardcodedMarkers.forEach(item => {
-    const marker = L.marker([item.lat, item.lng], { icon: pawIcon });
-    
-    let popupContent = `<div style="text-align:center; max-width: 250px;">`;
-    popupContent += `<h4 style="color: var(--brand-pink); margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">${item.nickname}</h4>`;
-    popupContent += `<p style="font-family:'Quicksand', sans-serif; color:#333; margin:0;">"${item.message}"</p>`;
-    popupContent += `</div>`;
-    
-    marker.bindPopup(popupContent);
-    markerCluster.addLayer(marker);
-  });
 }
 
 /* ==========================================================================

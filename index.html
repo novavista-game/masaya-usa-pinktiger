@@ -38,15 +38,8 @@
   <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Leaflet CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <!-- Leaflet MarkerCluster CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -577,15 +570,209 @@
     </div>
   </section>
 
-  <!-- Interactive Map Section -->
-  <section id="interactive-map" class="fade-in-section" style="padding: 60px 0; background: var(--light-pink);">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <h2 class="section-title" data-translate="map-title" style="margin-bottom: 10px;">Global Pinktiger Interactive Map 🗺️</h2>
-      <p class="section-subtitle" data-translate="map-subtitle" style="margin-bottom: 30px; font-weight: bold; color: var(--primary-pink);">Upload a photo or leave a message of support!</p>
-      
-      <!-- Leaflet Map Container -->
-      <div id="map" style="height: 500px; width: 100%; border-radius: 15px; border: 4px solid var(--white); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2); z-index: 1;"></div>
+  <!-- Masaya Karaoke Challenge Section -->
+  <section id="karaoke-challenge" class="fade-in-section">
+    <style>
+      #karaoke-challenge { padding: 60px 0; background: var(--light-pink); }
+      #karaoke-challenge .karaoke-wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; text-align: center; }
+      #karaoke-challenge .section-subtitle { margin-bottom: 26px; font-weight: bold; color: var(--primary-pink); }
+
+      /* Language tabs */
+      .karaoke-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+      .karaoke-tab {
+        font-family: inherit; font-size: 1rem; font-weight: 800; color: #ff3399;
+        background: #fff; border: 3px solid #ffb6d5; border-radius: 999px; padding: 8px 18px;
+        cursor: pointer; box-shadow: 0 4px 0 #ffb6d5; transition: transform .15s, box-shadow .15s, background .15s;
+      }
+      .karaoke-tab:hover { transform: translateY(-2px) rotate(-2deg); }
+      .karaoke-tab.active { background: linear-gradient(135deg, #ff8ac4, #ff3399); color: #fff; border-color: #ff3399; box-shadow: 0 4px 0 #c2185b; transform: translateY(0) scale(1.05); }
+
+      /* Staff-paper lyric box */
+      .karaoke-staff {
+        position: relative; min-height: 190px; border-radius: 20px; border: 4px solid #fff;
+        box-shadow: 0 10px 25px rgba(255,105,180,.25), inset 0 0 18px rgba(255,105,180,.12);
+        display: flex; align-items: center; justify-content: center; padding: 20px 56px 20px 70px; overflow: hidden;
+        background-color: #fffdf8;
+        background-image:
+          repeating-linear-gradient(to bottom, transparent 0, transparent 17px, #6b5b73 17px, #6b5b73 18.5px);
+        background-size: 100% 90px; background-repeat: repeat-y; background-position: 0 50px;
+      }
+      .karaoke-staff::before { content: '\1D11E'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 4.2rem; color: #ff66b2; line-height: 1; opacity: .85; }
+      .karaoke-staff::after { content: ''; position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none; background: linear-gradient(90deg, rgba(255,240,246,.55), transparent 25%, transparent 80%, rgba(255,240,246,.55)); }
+      /* base (unsung) colour layered under the pink fill */
+      .karaoke-line-holder { position: relative; display: inline-block; max-width: 100%; }
+      .karaoke-line-base { color: #5a4a62; font-size: clamp(1.15rem, 3.6vw, 1.7rem); font-weight: 900; line-height: 1.5; word-break: keep-all; text-shadow: 0 0 6px #fffdf8, 0 0 6px #fffdf8; }
+      .karaoke-line-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; white-space: nowrap; clip-path: inset(0 100% 0 0); }
+      .karaoke-line-fill span { display: block; color: #FF69B4; font-size: clamp(1.15rem, 3.6vw, 1.7rem); font-weight: 900; line-height: 1.5; word-break: keep-all; white-space: normal; }
+      .karaoke-wait { color: #c9a0b8; font-weight: 800; font-size: 1.1rem; }
+
+      /* Audio player */
+      .karaoke-player {
+        margin-top: 22px; display: flex; align-items: center; gap: 14px; background: #fff; border: 3px solid #ffb6d5; border-radius: 999px;
+        padding: 10px 18px; box-shadow: 0 6px 18px rgba(255,105,180,.2);
+      }
+      .karaoke-play-btn { width: 52px; height: 52px; flex: 0 0 52px; border: none; border-radius: 50%; cursor: pointer; font-size: 1.2rem; color: #fff; background: linear-gradient(135deg, #ff8ac4, #ff3399); box-shadow: 0 4px 10px rgba(255,51,153,.45); transition: transform .15s; }
+      .karaoke-play-btn:hover { transform: scale(1.1); }
+      .karaoke-progress { flex: 1; height: 12px; background: #ffe4ec; border-radius: 999px; overflow: hidden; cursor: pointer; }
+      .karaoke-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff9ccf, #ff3399); border-radius: 999px; }
+      .karaoke-time { font-weight: 800; color: #ff3399; font-size: .95rem; min-width: 84px; text-align: right; font-variant-numeric: tabular-nums; }
+      @media (max-width: 520px) {
+        .karaoke-staff { padding: 20px 20px 20px 52px; }
+        .karaoke-staff::before { font-size: 3rem; left: 8px; }
+        .karaoke-time { min-width: 66px; font-size: .8rem; }
+      }
+    </style>
+    <div class="karaoke-wrap">
+      <h2 class="section-title" data-translate="karaoke-title" style="margin-bottom: 10px;">Masaya Karaoke Challenge 🎤✨</h2>
+      <p class="section-subtitle" data-translate="karaoke-subtitle">Sing along in your language! (30 sec)</p>
+
+      <div class="karaoke-tabs" id="karaokeTabs">
+        <button type="button" class="karaoke-tab active" data-klang="KR" id="karaoke-tab-kr">🇰🇷 KR</button>
+        <button type="button" class="karaoke-tab" data-klang="JP" id="karaoke-tab-jp">🇯🇵 JP</button>
+        <button type="button" class="karaoke-tab" data-klang="ES" id="karaoke-tab-es">🇪🇸 ES</button>
+        <button type="button" class="karaoke-tab" data-klang="FR" id="karaoke-tab-fr">🇫🇷 FR</button>
+      </div>
+
+      <div class="karaoke-staff" id="karaokeStaff">
+        <div class="karaoke-line-holder" id="karaokeHolder">
+          <span class="karaoke-wait" id="karaokeWait">♪ ♫ ♪</span>
+        </div>
+      </div>
+
+      <div class="karaoke-player">
+        <button type="button" class="karaoke-play-btn" id="karaokePlayBtn" aria-label="Play / Pause">▶</button>
+        <div class="karaoke-progress" id="karaokeProgress"><div class="karaoke-progress-bar" id="karaokeBar"></div></div>
+        <span class="karaoke-time" id="karaokeTime">0:00 / 0:30</span>
+      </div>
+      <audio id="karaokeAudio" src="assets/nijiiro_mr.mp3" preload="auto"></audio>
     </div>
+
+    <script>
+      (function () {
+        var KARAOKE_END = 30;
+        // start/end in seconds, per-language pronunciation text
+        var karaokeLyrics = [
+          { start: 1, end: 7,
+            KR: '사이고노 코토바니 후리무이타라',
+            JP: '最後の言葉に振り向いたら',
+            ES: 'Saigo no kotoba ni furimuitara',
+            FR: 'Saïgo no kotoba ni fourimouitara' },
+          { start: 8, end: 13,
+            KR: '히토나미니 키에테이타',
+            JP: '人波に消えていた',
+            ES: 'Hitonami ni kieteita',
+            FR: 'Hitonami ni kiétéïta' },
+          { start: 14, end: 19,
+            KR: '아타리마에노 에가오가',
+            JP: '当たり前の笑顔が',
+            ES: 'Atarimae no egao ga',
+            FR: 'Atarimaé no égao ga' },
+          { start: 20, end: 28,
+            KR: '카케가에노 나이 코토니 키즈쿠노가 오소스기타 카나',
+            JP: 'かけがえのないことに気づくのが遅すぎたかな',
+            ES: 'Kakegae no nai koto ni kizuku no ga ososugita kana',
+            FR: 'Kakégaé no naï koto ni kizoukou no ga ososougita kana' }
+        ];
+
+        var audio = document.getElementById('karaokeAudio');
+        var holder = document.getElementById('karaokeHolder');
+        var playBtn = document.getElementById('karaokePlayBtn');
+        var bar = document.getElementById('karaokeBar');
+        var timeEl = document.getElementById('karaokeTime');
+        var progress = document.getElementById('karaokeProgress');
+        var tabs = document.querySelectorAll('#karaokeTabs .karaoke-tab');
+        if (!audio || !holder) return;
+
+        var lang = 'KR';
+        var currentIdx = -1;
+        var baseEl = null, fillEl = null;
+
+        function fmt(t) { t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2); }
+
+        function renderLine(idx) {
+          currentIdx = idx;
+          holder.innerHTML = '';
+          baseEl = fillEl = null;
+          if (idx < 0) {
+            var w = document.createElement('span');
+            w.className = 'karaoke-wait';
+            w.textContent = '♪ ♫ ♪';
+            holder.appendChild(w);
+            return;
+          }
+          var text = karaokeLyrics[idx][lang];
+          baseEl = document.createElement('span');
+          baseEl.className = 'karaoke-line-base';
+          baseEl.textContent = text;
+          fillEl = document.createElement('span');
+          fillEl.className = 'karaoke-line-fill';
+          var inner = document.createElement('span');
+          inner.textContent = text;
+          fillEl.appendChild(inner);
+          holder.appendChild(baseEl);
+          holder.appendChild(fillEl);
+        }
+
+        function findLine(t) {
+          for (var i = 0; i < karaokeLyrics.length; i++) {
+            if (t >= karaokeLyrics[i].start && t < karaokeLyrics[i].end) return i;
+          }
+          return -1;
+        }
+
+        function sync() {
+          var t = audio.currentTime;
+          var idx = findLine(t);
+          if (idx !== currentIdx) renderLine(idx);
+          if (idx >= 0 && fillEl) {
+            var l = karaokeLyrics[idx];
+            var p = Math.min(1, Math.max(0, (t - l.start) / (l.end - l.start)));
+            fillEl.style.clipPath = 'inset(0 ' + (100 - p * 100) + '% 0 0)';
+          }
+          var dur = Math.min(audio.duration || KARAOKE_END, KARAOKE_END);
+          bar.style.width = Math.min(100, (t / dur) * 100) + '%';
+          timeEl.textContent = fmt(t) + ' / ' + fmt(dur);
+          if (t >= KARAOKE_END && !audio.paused) { audio.pause(); }
+        }
+
+        function setPlayIcon() { playBtn.textContent = audio.paused ? '▶' : '⏸'; }
+
+        audio.addEventListener('timeupdate', sync);
+        audio.addEventListener('play', setPlayIcon);
+        audio.addEventListener('pause', setPlayIcon);
+        audio.addEventListener('ended', function () { audio.currentTime = 0; renderLine(-1); sync(); setPlayIcon(); });
+        // smoother sweep than the ~250ms timeupdate cadence
+        (function raf() { if (!audio.paused) sync(); requestAnimationFrame(raf); })();
+
+        playBtn.addEventListener('click', function () {
+          if (audio.paused) {
+            if (audio.currentTime >= KARAOKE_END) audio.currentTime = 0;
+            audio.play().catch(function (e) { console.warn('Karaoke audio blocked:', e); });
+          } else {
+            audio.pause();
+          }
+        });
+
+        progress.addEventListener('click', function (e) {
+          var r = progress.getBoundingClientRect();
+          var dur = Math.min(audio.duration || KARAOKE_END, KARAOKE_END);
+          audio.currentTime = Math.max(0, Math.min(dur, ((e.clientX - r.left) / r.width) * dur));
+          sync();
+        });
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            tabs.forEach(function (t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            lang = tab.getAttribute('data-klang');
+            renderLine(findLine(audio.currentTime));
+            sync();
+          });
+        });
+
+        renderLine(-1);
+      })();
+    </script>
   </section>
 
   <!-- Map Marker Popup Modal (Hidden by default) -->
