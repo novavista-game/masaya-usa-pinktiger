@@ -616,6 +616,37 @@
       .karaoke-progress { flex: 1; height: 12px; background: #ffe4ec; border-radius: 999px; overflow: hidden; cursor: pointer; }
       .karaoke-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff9ccf, #ff3399); border-radius: 999px; }
       .karaoke-time { font-weight: 800; color: #ff3399; font-size: .95rem; min-width: 84px; text-align: right; font-variant-numeric: tabular-nums; }
+
+      /* Song title (top-left of the staff) */
+      .karaoke-song-title {
+        position: absolute; top: 12px; left: 14px; z-index: 3; max-width: calc(100% - 28px);
+        font-weight: 900; font-size: .95rem; color: #fff; padding: 5px 14px; border-radius: 999px;
+        background: linear-gradient(135deg, #ff8ac4, #ff3399); box-shadow: 0 3px 8px rgba(255,51,153,.35);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+
+      /* Playlist prev/next arrows */
+      .karaoke-player-row { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+      .karaoke-player-row .karaoke-player { flex: 1; margin-top: 0; min-width: 0; }
+      .karaoke-nav-btn {
+        flex: 0 0 46px; width: 46px; height: 46px; border-radius: 50%; border: 3px solid #fff; cursor: pointer;
+        font-size: 1.5rem; font-weight: 900; line-height: 1; color: #fff; padding: 0 0 3px;
+        background: linear-gradient(135deg, #ffa6d3, #ff5cad); box-shadow: 0 4px 0 #e0508f, 0 6px 12px rgba(255,105,180,.35);
+        transition: transform .15s, box-shadow .15s, filter .15s;
+      }
+      .karaoke-nav-btn:hover { transform: translateY(-2px) scale(1.08); }
+      .karaoke-nav-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #e0508f; }
+      .karaoke-nav-btn.is-disabled { filter: grayscale(.55) opacity(.6); box-shadow: 0 4px 0 #cfa3b8; }
+      .karaoke-nav-btn.is-disabled:hover { transform: none; }
+      .karaoke-counter { margin-top: 10px; font-weight: 800; font-size: .85rem; color: #ff66b2; }
+      .karaoke-toast {
+        position: fixed; left: 50%; bottom: 40px; z-index: 9999; transform: translate(-50%, 30px); opacity: 0; pointer-events: none;
+        background: #fff; color: #ff3399; font-weight: 900; padding: 12px 24px; border-radius: 999px;
+        border: 3px solid #ff8ac4; box-shadow: 0 8px 22px rgba(255,105,180,.4); transition: opacity .3s, transform .3s;
+      }
+      .karaoke-toast.show { opacity: 1; transform: translate(-50%, 0); }
+      @keyframes karaokeWiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+      .karaoke-nav-btn.wiggle { animation: karaokeWiggle .4s; }
       @media (max-width: 520px) {
         .karaoke-staff { padding: 20px 20px 20px 52px; }
         .karaoke-staff::before { font-size: 3rem; left: 8px; }
@@ -634,24 +665,39 @@
       </div>
 
       <div class="karaoke-staff" id="karaokeStaff">
+        <div class="karaoke-song-title" id="karaokeSongTitle">🎵 虹彩 -にじいろ-</div>
         <div class="karaoke-line-holder" id="karaokeHolder">
           <span class="karaoke-wait" id="karaokeWait">♪ ♫ ♪</span>
         </div>
       </div>
 
-      <div class="karaoke-player">
-        <button type="button" class="karaoke-play-btn" id="karaokePlayBtn" aria-label="Play / Pause">▶</button>
-        <div class="karaoke-progress" id="karaokeProgress"><div class="karaoke-progress-bar" id="karaokeBar"></div></div>
-        <span class="karaoke-time" id="karaokeTime">0:00 / 0:30</span>
+      <div class="karaoke-player-row">
+        <button type="button" class="karaoke-nav-btn" id="karaokePrevBtn" aria-label="Previous song">&#10094;</button>
+        <div class="karaoke-player">
+          <button type="button" class="karaoke-play-btn" id="karaokePlayBtn" aria-label="Play / Pause">▶</button>
+          <div class="karaoke-progress" id="karaokeProgress"><div class="karaoke-progress-bar" id="karaokeBar"></div></div>
+          <span class="karaoke-time" id="karaokeTime">0:00 / 0:30</span>
+        </div>
+        <button type="button" class="karaoke-nav-btn" id="karaokeNextBtn" aria-label="Next song">&#10095;</button>
       </div>
-      <audio id="karaokeAudio" src="assets/nijiiro_mr.mp3" preload="auto"></audio>
+      <div class="karaoke-counter" id="karaokeCounter">1 / 1</div>
+      <div class="karaoke-toast" id="karaokeToast">Coming Soon! 🐯🎶</div>
+      <audio id="karaokeAudio" src="assets/nijiiro_vocal_30s.mp3" preload="auto"></audio>
     </div>
 
     <script>
       (function () {
         var KARAOKE_END = 30;
-        // start/end in seconds, per-language pronunciation text
-        var karaokeLyrics = [
+
+        // ===== Playlist: add a new song by pushing another object to this array =====
+        // { title, audio, duration (sec), lyrics: [{ start, end, KR, JP, ES, FR }, ...] }
+        const karaokePlaylist = [
+          {
+            title: '虹彩 -にじいろ-',
+            audio: 'assets/nijiiro_vocal_30s.mp3',
+            duration: 30,
+            // start/end in seconds, per-language pronunciation text
+            lyrics: [
           { start: 1, end: 7,
             KR: '사이고노 코토바니 후리무이타라',
             JP: '最後の言葉に振り向いたら',
@@ -672,7 +718,11 @@
             JP: 'かけがえのないことに気づくのが遅すぎたかな',
             ES: 'Kakegae no nai koto ni kizuku no ga ososugita kana',
             FR: 'Kakégaé no naï koto ni kizoukou no ga ososougita kana' }
+            ]
+          }
         ];
+        var songIdx = 0;
+        var karaokeLyrics = karaokePlaylist[0].lyrics;
 
         var audio = document.getElementById('karaokeAudio');
         var holder = document.getElementById('karaokeHolder');
@@ -681,6 +731,11 @@
         var timeEl = document.getElementById('karaokeTime');
         var progress = document.getElementById('karaokeProgress');
         var tabs = document.querySelectorAll('#karaokeTabs .karaoke-tab');
+        var titleEl = document.getElementById('karaokeSongTitle');
+        var prevBtn = document.getElementById('karaokePrevBtn');
+        var nextBtn = document.getElementById('karaokeNextBtn');
+        var counterEl = document.getElementById('karaokeCounter');
+        var toastEl = document.getElementById('karaokeToast');
         if (!audio || !holder) return;
 
         var lang = 'KR';
@@ -770,7 +825,50 @@
           });
         });
 
-        renderLine(-1);
+        // Load a song from the playlist: updates title, audio source and lyric data instantly
+        function loadSong(i) {
+          var song = karaokePlaylist[i];
+          songIdx = i;
+          audio.pause();
+          audio.src = song.audio;
+          audio.load();
+          karaokeLyrics = song.lyrics;
+          KARAOKE_END = song.duration || 30;
+          titleEl.textContent = '🎵 ' + song.title;
+          counterEl.textContent = (i + 1) + ' / ' + karaokePlaylist.length;
+          renderLine(-1);
+          sync();
+          setPlayIcon();
+        }
+
+        var toastTimer = null;
+        function showComingSoon(btn) {
+          toastEl.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+          btn.classList.remove('wiggle');
+          void btn.offsetWidth;
+          btn.classList.add('wiggle');
+        }
+
+        function moveSong(dir) {
+          if (karaokePlaylist.length <= 1) { return; }
+          loadSong((songIdx + dir + karaokePlaylist.length) % karaokePlaylist.length);
+        }
+
+        [[prevBtn, -1], [nextBtn, 1]].forEach(function (pair) {
+          pair[0].addEventListener('click', function () {
+            if (karaokePlaylist.length <= 1) { showComingSoon(pair[0]); return; }
+            moveSong(pair[1]);
+          });
+          // single-song playlist: look disabled, but still show the cute alert on click
+          if (karaokePlaylist.length <= 1) {
+            pair[0].classList.add('is-disabled');
+            pair[0].setAttribute('aria-disabled', 'true');
+          }
+        });
+
+        loadSong(0);
       })();
     </script>
   </section>
