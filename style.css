@@ -2478,3 +2478,36 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 .masaya-yt-section { overflow: hidden !important; }
 .masaya-yt-section .yt-widget-container { overflow: hidden !important; }
 .masaya-yt-section .yt-widget-container [class*="elfsight-app"] { margin-bottom: -70px !important; }
+
+/* YouTube widget container: fixed 1:1 box, centered content, deeper crop */
+.masaya-yt-section .yt-widget-container {
+  aspect-ratio: 1 / 1;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] { width: 100%; margin-bottom: -120px !important; }
+
+/* YouTube card: 1:1 like the Instagram card, centered widget, bottom badge area cropped on PC and mobile */
+.about-grid > .masaya-yt-section {
+  aspect-ratio: 1 / 1;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden !important;
+  height: auto !important;
+}
+.masaya-yt-section .yt-widget-container {
+  aspect-ratio: auto;
+  flex: 1 1 auto;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden !important;
+}
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] { width: 100%; margin-bottom: -150px !important; }
+@media (max-width: 768px) {
+  .about-grid > .masaya-yt-section { aspect-ratio: 1 / 1; display: flex !important; height: auto !important; }
+}
