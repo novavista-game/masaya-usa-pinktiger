@@ -2462,3 +2462,14 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   .about-grid > .masaya-ig-updates-section { display: block; height: auto !important; min-height: 0 !important; align-self: start; }
   .masaya-yt-section .yt-widget-container { display: block; min-height: 0; }
 }
+
+/* YouTube widget watermark: faint + non-clickable (kept in DOM and visible, never display:none) */
+.masaya-yt-section .yt-widget-container a[href*="elfsight.com"],
+.masaya-yt-section .yt-widget-container [class*="eapps-link"],
+.masaya-yt-section .yt-widget-container a[title*="Free YouTube"],
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] a[href*="elfsight.com"] {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 0.1 !important;
+  pointer-events: none !important;
+}
