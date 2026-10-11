@@ -2473,3 +2473,8 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   opacity: 0.1 !important;
   pointer-events: none !important;
 }
+
+/* YouTube widget: crop bottom badge area by pulling widget past the clipped container (gallery layout only; modal untouched) */
+.masaya-yt-section { overflow: hidden !important; }
+.masaya-yt-section .yt-widget-container { overflow: hidden !important; }
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] { margin-bottom: -70px !important; }
