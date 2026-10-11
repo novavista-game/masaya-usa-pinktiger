@@ -2440,3 +2440,13 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   }
 }
 .goods-card .goods-edition { margin: -4px 0 12px; font-size: 0.9rem; font-weight: 600; color: var(--primary-pink); letter-spacing: 0.03em; }
+
+/* Masaya's Journey: Instagram + YouTube responsive layout */
+.about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+.about-grid > .masaya-ig-updates-section { min-width: 0; box-sizing: border-box; }
+.masaya-yt-section .yt-widget-container { min-height: 300px; }
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .masaya-ig-updates-section { padding: 16px; height: auto; }
+  .ig-section-title { font-size: 1.2rem; }
+}
