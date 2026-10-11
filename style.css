@@ -2450,3 +2450,15 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   .masaya-ig-updates-section { padding: 16px; height: auto; }
   .ig-section-title { font-size: 1.2rem; }
 }
+
+/* Journey cards: equal height on desktop, vertically centered YouTube widget, fit-content on mobile */
+.about-grid { align-items: stretch; }
+.about-grid > .masaya-ig-updates-section { display: flex; flex-direction: column; height: auto; align-self: stretch; }
+.about-grid > .masaya-ig-updates-section .ig-widget-container { flex: 1 1 auto; }
+.masaya-yt-section .yt-widget-container { display: flex; flex-direction: column; justify-content: center; align-items: stretch; min-height: 0; }
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] { width: 100%; margin-bottom: 0 !important; }
+@media (max-width: 768px) {
+  .about-grid { display: grid !important; grid-template-columns: 1fr !important; align-items: start !important; gap: 24px !important; }
+  .about-grid > .masaya-ig-updates-section { display: block; height: auto !important; min-height: 0 !important; align-self: start; }
+  .masaya-yt-section .yt-widget-container { display: block; min-height: 0; }
+}
