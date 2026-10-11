@@ -2517,7 +2517,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 .masaya-yt-section .yt-widget-container { overflow: hidden !important; }
 .masaya-yt-section .yt-widget-container [class*="elfsight-app"] {
   margin-bottom: 0 !important;
-  clip-path: inset(0 0 70px 0);
+  clip-path: inset(0 0 100px 0);
 }
 @media (min-width: 769px) {
   .about-grid > .masaya-yt-section {
