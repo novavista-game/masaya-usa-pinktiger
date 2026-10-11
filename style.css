@@ -2511,3 +2511,19 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 @media (max-width: 768px) {
   .about-grid > .masaya-yt-section { aspect-ratio: 1 / 1; display: flex !important; height: auto !important; }
 }
+
+/* YouTube card v3: hard-clip bottom badge, height locked to Instagram card on desktop */
+.masaya-yt-section { overflow: hidden !important; }
+.masaya-yt-section .yt-widget-container { overflow: hidden !important; }
+.masaya-yt-section .yt-widget-container [class*="elfsight-app"] {
+  margin-bottom: 0 !important;
+  clip-path: inset(0 0 70px 0);
+}
+@media (min-width: 769px) {
+  .about-grid > .masaya-yt-section {
+    aspect-ratio: auto !important;
+    align-self: stretch;
+    height: 0 !important;
+    min-height: 100% !important;
+  }
+}
