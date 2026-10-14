@@ -2562,7 +2562,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 #melodyCatchFrame {
   border: none;
   width: 100%;
-  height: 640px;
+  height: 740px;
   border-radius: 34px;
   overflow: hidden;
   background: transparent;
@@ -2571,6 +2571,6 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 
 @media (max-width: 900px) {
   #melodyCatchFrame {
-    height: 620px;
+    height: 720px;
   }
 }

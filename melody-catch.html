@@ -37,7 +37,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 0;
+      padding: 0 0 8px 0;
       overflow: hidden;
     }
 
@@ -109,6 +109,25 @@
     .guide-open-btn:hover {
       transform: translateY(-1px) scale(1.03);
       box-shadow: 0 5px 14px rgba(255, 92, 158, 0.35);
+    }
+
+    .quit-game-btn {
+      border: 2px solid #ff7a7a;
+      background: linear-gradient(135deg, #ffe3e3 0%, #ffd0e0 100%);
+      color: #e8325a;
+      font-weight: 900;
+      font-size: 0.72rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255, 92, 110, 0.28);
+      transition: transform 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .quit-game-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 5px 14px rgba(255, 92, 110, 0.4);
     }
 
     .audio-group {
@@ -239,12 +258,17 @@
     .stage-container {
       position: relative;
       width: 100%;
-      height: 360px;
+      height: 320px;
       background: radial-gradient(circle at 50% 35%, #ffffff 0%, #fff4f8 65%, #ffe6f0 100%);
       border: 3px solid #ffc2da;
       border-radius: 26px;
       overflow: hidden;
       touch-action: none;
+    }
+
+    @media (max-width: 600px) {
+      .stage-container { height: 300px; }
+      .site-card-frame { padding: 8px 10px; gap: 5px; }
     }
 
     .stage-container.fever-mode {
@@ -822,6 +846,7 @@
 
       <!-- 새로 추가된 게임 요령 버튼 (언어 바와 BGM 사이) -->
       <button class="guide-open-btn" id="howToPlayBtn">❓ 게임 요령</button>
+      <button class="quit-game-btn" id="quitGameBtn">⏹️ 게임 중단</button>
 
       <div class="audio-group">
         <button class="pill-btn active" id="bgmBtn">🎵 BGM ON</button>
@@ -1177,6 +1202,8 @@
     const I18N = {
       ko: {
         howToBtn: '❓ 게임 요령',
+
+        quitBtn: '⏹️ 게임 중단',
         banner: '핑크타이거를 움직여 14종 스페셜 포토카드와 👑골드 왕관 등급을 모두 모아보세요! 🐯✨',
         nextTrack: '⏭️ 다른 곡 듣기',
         startTitle: '마사야 덕질 게임 💖',
@@ -1226,6 +1253,8 @@
       },
       en: {
         howToBtn: '❓ How to Play',
+
+        quitBtn: '⏹️ Quit',
         banner: 'Move Pinktiger to unlock all 14 Masaya Photocards & 👑 Gold Crown Grades! 🐯✨',
         nextTrack: '⏭️ Next Song',
         startTitle: 'Masaya Stan Game 💖',
@@ -1274,6 +1303,8 @@
       },
       ja: {
         howToBtn: '❓ 遊び方',
+
+        quitBtn: '⏹️ 終了',
         banner: 'ピンクタイガーを動かして全14種のフォトカード＆👑ゴールド王冠を集めよう！🐯✨',
         nextTrack: '⏭️ 次の曲へ',
         startTitle: 'Masaya 推し活ゲーム 💖',
@@ -1322,6 +1353,8 @@
       },
       es: {
         howToBtn: '❓ Guía',
+
+        quitBtn: '⏹️ Salir',
         banner: '¡Mueve a Pinktiger para desbloquear las 14 Fototarjetas de Masaya y las 👑 Coronas de Oro! 🐯✨',
         nextTrack: '⏭️ Otra Canción',
         startTitle: 'Juego Fan de Masaya 💖',
@@ -1370,6 +1403,8 @@
       },
       fr: {
         howToBtn: '❓ Règles',
+
+        quitBtn: '⏹️ Quitter',
         banner: 'Déplacez Pinktiger pour débloquer les 14 Photocards Masaya et les 👑 Couronnes d’Or ! 🐯✨',
         nextTrack: '⏭️ Chanson Suiv.',
         startTitle: 'Jeu Stan de Masaya 💖',
@@ -1426,6 +1461,7 @@
       const t = I18N[lang];
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       document.getElementById('howToPlayBtn').textContent = t.howToBtn;
+      document.getElementById('quitGameBtn').textContent = t.quitBtn;
       document.getElementById('bannerText').textContent = t.banner;
       document.getElementById('nextTrackBtn').textContent = t.nextTrack;
       document.getElementById('startTitle').textContent = t.startTitle;
@@ -1846,6 +1882,43 @@
       renderLeaderboard();
       document.getElementById('overModal').classList.remove('hidden');
     }
+
+    function quitGame() {
+      gameRunning = false;
+      pausedByHowTo = false;
+      score = 0;
+      lives = 3;
+      stage = 1;
+      feverGauge = 0;
+      feverTimer = 0;
+      heartsCaughtInRun = 0;
+      items = [];
+      particles = [];
+      floatTexts = [];
+      bgmPlayer.pause();
+      bgmPlayer.currentTime = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stageBox.classList.remove('fever-mode');
+      try { updateHUD(); } catch (err) {}
+      document.getElementById('howToModal').classList.remove('open');
+      document.getElementById('overModal').classList.add('hidden');
+      document.getElementById('startModal').classList.remove('hidden');
+    }
+
+    document.getElementById('quitGameBtn').addEventListener('click', quitGame);
+
+    // 부모 창 iframe 높이 자동 조절
+    function notifyParentResize() {
+      const card = document.querySelector('.site-card-frame');
+      if (!card || window.parent === window) return;
+      window.parent.postMessage({ type: 'RESIZE_GAME_FRAME', height: card.offsetHeight + 16 }, '*');
+    }
+    window.addEventListener('load', notifyParentResize);
+    window.addEventListener('resize', notifyParentResize);
+    if (window.ResizeObserver) {
+      new ResizeObserver(notifyParentResize).observe(document.querySelector('.site-card-frame'));
+    }
+    notifyParentResize();
 
     function gameLoop() {
       if (!gameRunning) return;

@@ -1832,3 +1832,12 @@ function initGoodsSwiper() {
     });
   }
 }
+
+
+// Auto-resize the Masaya Stan Game iframe to its content height
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'RESIZE_GAME_FRAME' && e.data.height) {
+    const frame = document.getElementById('melodyCatchFrame');
+    if (frame) frame.style.height = e.data.height + 'px';
+  }
+});
