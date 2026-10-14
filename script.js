@@ -1031,7 +1031,38 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+function syncGameLanguage(lang) {
+  const frame = document.getElementById('melodyCatchFrame');
+  if (!frame) return;
+  try {
+    const base = (frame.getAttribute('src') || './melody-catch.html').split('#')[0];
+    const target = base + '#' + lang;
+    if (frame.getAttribute('src') !== target) {
+      // Change hash only (no reload when the document is already loaded)
+      if (frame.contentWindow && frame.contentWindow.location.pathname.endsWith('melody-catch.html')) {
+        frame.contentWindow.location.hash = lang;
+      } else {
+        frame.setAttribute('src', target);
+      }
+    }
+  } catch (err) {
+    // cross-origin fallback
+  }
+  if (frame.contentWindow) frame.contentWindow.postMessage({ type: 'SET_LANG', lang: lang }, '*');
+}
+
+(function () {
+  const frame = document.getElementById('melodyCatchFrame');
+  if (frame) {
+    frame.addEventListener('load', () => {
+      const lang = localStorage.getItem('preferredLang') || document.documentElement.lang || 'ko';
+      frame.contentWindow.postMessage({ type: 'SET_LANG', lang: lang }, '*');
+    });
+  }
+})();
+
 function updateLanguage(lang) {
+  syncGameLanguage(lang);
   // Save chosen language preference
   localStorage.setItem('preferredLang', lang);
   

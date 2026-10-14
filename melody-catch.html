@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>마사야 덕질 게임 | Masaya Stan Game - Pinktiger</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+KR:wght@500;700;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-pastel-1: #fff0f6;
+      --bg-pastel-2: #ffe0ec;
+      --card-white: #ffffff;
+      --pink-border: #ff5c9e;
+      --pink-hot: #ff2e83;
+      --pink-soft: #ffb3d1;
+      --pink-badge: #fff2f7;
+      --text-main: #4a2036;
+      --text-sub: #9c5978;
+      --gold-accent: #ffb800;
+      --gold-light: #fff3b0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      font-family: 'Fredoka', 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+      background: transparent;
+      color: var(--text-main);
+      min-height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .site-card-frame {
+      width: 100%;
+      max-width: 100%;
+      background: var(--card-white);
+      border: 4px solid var(--pink-border);
+      border-radius: 34px;
+      box-shadow: 0 14px 36px rgba(255, 92, 158, 0.25), 0 0 22px rgba(255, 92, 158, 0.15);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .lang-group {
+      display: flex;
+      background: var(--pink-badge);
+      border: 2px solid var(--pink-soft);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-sub);
+      font-weight: 800;
+      font-size: 0.7rem;
+      padding: 4px 7px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--pink-border);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(255, 92, 158, 0.35);
+    }
+
+    /* 언어 바와 BGM 버튼 사이의 '게임 요령 (How to Play)' 버튼 */
+    .guide-open-btn {
+      border: 2px solid var(--gold-accent);
+      background: linear-gradient(135deg, #fff9db 0%, #ffe3f0 100%);
+      color: var(--pink-hot);
+      font-weight: 900;
+      font-size: 0.72rem;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255, 184, 0, 0.28);
+      transition: transform 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .guide-open-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 5px 14px rgba(255, 92, 158, 0.35);
+    }
+
+    .audio-group {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .pill-btn {
+      border: 2px solid var(--pink-soft);
+      background: var(--pink-badge);
+      color: var(--pink-hot);
+      font-weight: 800;
+      font-size: 0.7rem;
+      padding: 5px 9px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .pill-btn.active {
+      background: #ffe0ee;
+      border-color: var(--pink-border);
+    }
+
+    .now-playing-bar {
+      background: linear-gradient(90deg, #fff0f6, #fff8e7, #fff0f6);
+      border: 1.5px solid #ffcbe0;
+      border-radius: 999px;
+      padding: 4px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--pink-hot);
+      gap: 6px;
+    }
+
+    .next-track-btn {
+      border: none;
+      background: var(--pink-border);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .dashed-speech-banner {
+      background: #fff4f8;
+      border: 2.5px dashed var(--pink-border);
+      border-radius: 18px;
+      padding: 8px 12px;
+      text-align: center;
+      color: var(--pink-hot);
+      font-weight: 800;
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hud-box {
+      background: var(--pink-badge);
+      border: 2px solid #ffd1e3;
+      border-radius: 16px;
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    .hud-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--text-sub);
+      text-transform: uppercase;
+    }
+
+    .hud-val {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+    }
+
+    .fever-wrap {
+      background: #fff5f9;
+      border: 2px solid #ffd1e3;
+      border-radius: 999px;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fever-label {
+      font-size: 0.72rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+      white-space: nowrap;
+    }
+
+    .fever-track {
+      flex: 1;
+      height: 10px;
+      background: #ffe3ee;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .fever-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff69b4, #ffb800);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .stage-container {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      background: radial-gradient(circle at 50% 35%, #ffffff 0%, #fff4f8 65%, #ffe6f0 100%);
+      border: 3px solid #ffc2da;
+      border-radius: 26px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .stage-container.fever-mode {
+      border-color: var(--gold-accent);
+      box-shadow: inset 0 0 30px rgba(255, 184, 0, 0.35);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .stage-toast {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: linear-gradient(135deg, #ff2e83, #ffb800);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.84rem;
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(255, 46, 131, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 15;
+      white-space: nowrap;
+    }
+
+    .stage-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .overlay-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      text-align: center;
+      z-index: 20;
+      transition: opacity 0.25s ease;
+    }
+
+    .overlay-modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mascot-hero {
+      width: 106px;
+      height: 106px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(255, 92, 158, 0.28));
+      animation: floatBob 2.4s ease-in-out infinite;
+      margin-bottom: 6px;
+    }
+
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-7px) scale(1.03); }
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+      margin-bottom: 4px;
+    }
+
+    .modal-desc {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      max-width: 390px;
+    }
+
+    .item-guide-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      width: 100%;
+      max-width: 350px;
+      margin-bottom: 12px;
+    }
+
+    .guide-chip {
+      background: var(--pink-badge);
+      border: 1.5px solid #ffcbe0;
+      border-radius: 12px;
+      padding: 6px 8px;
+      font-size: 0.73rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #ff4d94 0%, #ff85b3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 28px;
+      font-size: 0.96rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 77, 148, 0.35);
+      transition: transform 0.15s;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.96);
+    }
+
+    .photocard-bar {
+      background: var(--pink-badge);
+      border: 2px solid #ffd1e3;
+      border-radius: 20px;
+      padding: 8px 10px;
+    }
+
+    .photocard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .photo-title-wrap {
+      font-size: 0.73rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .page-tabs {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .page-tab-btn {
+      border: 1.5px solid var(--pink-soft);
+      background: #fff;
+      color: var(--text-sub);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .page-tab-btn.active {
+      background: var(--pink-hot);
+      border-color: var(--pink-hot);
+      color: #fff;
+    }
+
+    .slots-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .photo-slot {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      border: 2px dashed #ff9ec4;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #ff9ec4;
+      font-weight: 900;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .photo-slot.unlocked {
+      border: 2.5px solid var(--pink-hot);
+      box-shadow: 0 3px 10px rgba(255, 46, 131, 0.22);
+    }
+
+    .photo-slot.unlocked:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .photo-slot.crowned {
+      border: 2.5px solid var(--gold-accent);
+      box-shadow: 0 0 12px rgba(255, 184, 0, 0.65);
+      animation: goldPulse 2s infinite alternate;
+    }
+
+    @keyframes goldPulse {
+      0% { box-shadow: 0 0 6px rgba(255, 184, 0, 0.45); }
+      100% { box-shadow: 0 0 14px rgba(255, 184, 0, 0.9); }
+    }
+
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .crown-badge {
+      position: absolute;
+      top: 1px;
+      right: 2px;
+      font-size: 0.72rem;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+      pointer-events: none;
+    }
+
+    .zoom-hint {
+      position: absolute;
+      bottom: 0;
+      inset-inline: 0;
+      background: rgba(255, 46, 131, 0.75);
+      color: #fff;
+      font-size: 0.55rem;
+      text-align: center;
+      font-weight: 800;
+      padding: 1px 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .photo-slot.unlocked:hover .zoom-hint {
+      opacity: 1;
+    }
+
+    /* 라이트박스 & 게임 요령(How to Play) 모달 공통 */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 12, 28, 0.76);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .photocard-frame {
+      width: 100%;
+      max-width: 340px;
+      background: linear-gradient(145deg, #ffffff 0%, #fff0f6 100%);
+      border: 5px solid var(--pink-border);
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 92, 158, 0.5);
+      text-align: center;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .lightbox-modal.open .photocard-frame {
+      transform: scale(1);
+    }
+
+    .photocard-frame.gold-edition {
+      border-color: var(--gold-accent);
+      background: linear-gradient(145deg, #fffdf2 0%, #ffe9f3 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 38px rgba(255, 184, 0, 0.75);
+    }
+
+    /* 게임 요령(How to Play) 상세 안내 모달 카드 */
+    .guide-modal-card {
+      width: 100%;
+      max-width: 470px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #ffffff;
+      border: 4px solid var(--pink-border);
+      border-radius: 28px;
+      padding: 18px 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 28px rgba(255, 92, 158, 0.45);
+      text-align: left;
+      transform: scale(0.92);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .lightbox-modal.open .guide-modal-card {
+      transform: scale(1);
+    }
+
+    .guide-modal-header {
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px dashed #ffcbe0;
+    }
+
+    .guide-modal-title {
+      font-size: 1.22rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+      margin-bottom: 4px;
+    }
+
+    .guide-concept-box {
+      background: #fff4f8;
+      border: 1.5px solid #ffcbe0;
+      border-radius: 14px;
+      padding: 8px 11px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.42;
+      margin-bottom: 10px;
+    }
+
+    .guide-sec-title {
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: var(--pink-hot);
+      margin: 8px 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .guide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .guide-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      background: var(--pink-badge);
+      border: 1.5px solid #ffd8e8;
+      border-radius: 14px;
+      padding: 7px 10px;
+    }
+
+    .guide-row.gold-row {
+      background: linear-gradient(90deg, #fffdf0, #fff2f8);
+      border-color: var(--gold-accent);
+    }
+
+    .guide-icon {
+      font-size: 1.35rem;
+      line-height: 1.1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .guide-text-col {
+      flex: 1;
+    }
+
+    .guide-item-name {
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .guide-pts-badge {
+      background: var(--pink-hot);
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 1px 7px;
+      border-radius: 999px;
+    }
+
+    .guide-pts-badge.gold {
+      background: var(--gold-accent);
+      color: #4a2036;
+    }
+
+    .guide-pts-badge.danger {
+      background: #ff3b6b;
+    }
+
+    .guide-item-desc {
+      font-size: 0.73rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      line-height: 1.35;
+    }
+
+    .guide-stage-box {
+      background: #fff9fc;
+      border: 1.5px dashed var(--pink-soft);
+      border-radius: 14px;
+      padding: 8px 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.48;
+      margin-bottom: 12px;
+    }
+
+    .guide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .reset-progress-btn {
+      border: 1.5px solid #ffb3d1;
+      background: #fff;
+      color: var(--text-sub);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .card-rarity-pill {
+      display: inline-block;
+      background: var(--pink-hot);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .photocard-frame.gold-edition .card-rarity-pill {
+      background: linear-gradient(90deg, #ff9900, #ffcc00);
+      color: #4a2036;
+    }
+
+    .lightbox-img-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #ffd1e3;
+      background: #fff;
+      margin-bottom: 10px;
+    }
+
+    .lightbox-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lightbox-caption {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .lightbox-sub {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      max-width: 310px;
+      margin-bottom: 10px;
+    }
+
+    .nick-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 2px solid var(--pink-soft);
+      font-weight: 700;
+      outline: none;
+    }
+
+    .save-btn {
+      background: var(--pink-hot);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .rank-list {
+      width: 100%;
+      max-width: 310px;
+      background: var(--pink-badge);
+      border-radius: 14px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      max-height: 105px;
+      overflow-y: auto;
+    }
+
+    .rank-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 1px dashed #ffd1e3;
+      font-weight: 700;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .sub-btn {
+      background: #fff;
+      border: 2px solid var(--pink-border);
+      color: var(--pink-hot);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-card-frame">
+    <!-- 상단: 5개 국어 바 | ❓ 게임 요령(How to Play) | 사운드 바 -->
+    <div class="top-bar">
+      <div class="lang-group">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn active" data-lang="ko">KO</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+
+      <!-- 새로 추가된 게임 요령 버튼 (언어 바와 BGM 사이) -->
+      <button class="guide-open-btn" id="howToPlayBtn">❓ 게임 요령</button>
+
+      <div class="audio-group">
+        <button class="pill-btn active" id="bgmBtn">🎵 BGM ON</button>
+        <button class="pill-btn active" id="sfxBtn">🔔 SFX ON</button>
+      </div>
+    </div>
+
+    <!-- 현재 재생 중인 스테이지 BGM 표시 & 곡 넘기기 -->
+    <div class="now-playing-bar">
+      <span id="nowPlayingText">🎶 STAGE 1 BGM: 虹彩 -にじいろ- (Masaya)</span>
+      <button class="next-track-btn" id="nextTrackBtn">⏭️ 다른 곡 듣기</button>
+    </div>
+
+    <!-- 웹사이트 동일 스타일 점선 배너 -->
+    <div class="dashed-speech-banner" id="bannerText">
+      핑크타이거를 움직여 14종 스페셜 포토카드와 👑골드 왕관 등급을 모두 모아보세요! 🐯✨
+    </div>
+
+    <!-- 점수 / 스테이지 / 생명력 -->
+    <div class="hud-grid">
+      <div class="hud-box">
+        <div class="hud-label" id="lblScore">SCORE</div>
+        <div class="hud-val" id="scoreVal">0</div>
+      </div>
+      <div class="hud-box">
+        <div class="hud-label" id="lblStage">STAGE</div>
+        <div class="hud-val" id="stageVal">STAGE 1</div>
+      </div>
+      <div class="hud-box">
+        <div class="hud-label" id="lblLives">LIVES</div>
+        <div class="hud-val" id="livesVal">❤️❤️❤️</div>
+      </div>
+    </div>
+
+    <!-- 피버 게이지 -->
+    <div class="fever-wrap">
+      <div class="fever-label" id="lblFever">✨ FEVER</div>
+      <div class="fever-track">
+        <div class="fever-fill" id="feverFill"></div>
+      </div>
+    </div>
+
+    <!-- 메인 캔버스 영역 -->
+    <div class="stage-container" id="stageBox">
+      <div class="stage-toast" id="stageToast">🎉 STAGE UP!</div>
+      <canvas id="gameCanvas" width="480" height="420"></canvas>
+
+      <!-- 시작 화면 -->
+      <div class="overlay-modal" id="startModal">
+        <img id="heroMascotImg" class="mascot-hero" alt="Pinktiger Mascot" />
+        <div class="modal-title" id="startTitle">마사야 덕질 게임 💖</div>
+        <div class="modal-desc" id="startDesc">
+          스테이지가 올라갈 때마다 마사야의 명곡이 바뀌고,<br/>하트를 모으면 14종 포토카드 & 👑골드 카드가 해금됩니다!
+        </div>
+        <div class="item-guide-grid">
+          <div class="guide-chip">🎵 <span id="gNote">음표 +10점</span></div>
+          <div class="guide-chip">💖 <span id="gHeart">하트 +30점 & 카드해금</span></div>
+          <div class="guide-chip">🌟 <span id="gMic">마이크 2배 피버!</span></div>
+          <div class="guide-chip">⚡ <span id="gCloud">번개 생명력 -1</span></div>
+        </div>
+        <button class="cta-btn" id="startBtn">게임 시작하기 🐾</button>
+      </div>
+
+      <!-- 게임 오버 화면 -->
+      <div class="overlay-modal hidden" id="overModal">
+        <div class="modal-title" id="overTitle">멜로디 스테이지 종료! 🎤</div>
+        <div class="modal-desc">
+          <span id="finalScoreLabel">최종 점수</span>: <strong id="finalScoreNum" style="color:#ff2e83;font-size:1.25rem;">0</strong>
+          <div id="collectionSummaryText" style="font-size:0.76rem;color:#9c5978;margin-top:2px;"></div>
+        </div>
+        <div class="input-row">
+          <input type="text" id="nickInput" class="nick-input" placeholder="닉네임 입력" maxlength="12" />
+          <button class="save-btn" id="saveRankBtn">기록 저장</button>
+        </div>
+        <div class="rank-list" id="rankList"></div>
+        <div class="action-row">
+          <button class="cta-btn" id="retryBtn" style="padding:9px 20px;font-size:0.9rem;">다시 하기 🔄</button>
+          <button class="sub-btn" id="shareBtn">점수 복사 📋</button>
+          <button class="sub-btn" id="exitBtn">팬 사이트로 🏠</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 마사야 14종 포토카드 컬렉션 & 페이지 전환 탭 -->
+    <div class="photocard-bar">
+      <div class="photocard-header">
+        <div class="photo-title-wrap">
+          <span id="photoHeaderTitle">📸 포토카드 도감 (클릭하면 크게 보입니다!)</span>
+          <span id="photoCountText" style="color:#ff2e83;">0 / 14</span>
+        </div>
+        <div class="page-tabs">
+          <button class="page-tab-btn active" id="tabPage1">Page 1 (1~7)</button>
+          <button class="page-tab-btn" id="tabPage2">✨ Page 2 (8~14)</button>
+        </div>
+      </div>
+      <div class="slots-row" id="photoSlots"></div>
+    </div>
+  </div>
+
+  <!-- 1) 게임 요령 (How to Play) 5개 국어 상세 안내 모달 -->
+  <div class="lightbox-modal" id="howToModal">
+    <div class="guide-modal-card">
+      <div class="guide-modal-header">
+        <div class="guide-modal-title" id="htpTitle">🐯 마사야 덕질 게임 요령</div>
+      </div>
+
+      <div class="guide-concept-box" id="htpConcept">
+        마사야의 무대 위에서 아기 호랑이(핑크타이거)를 마우스, 방향키(◀▶), 또는 터치로 좌우로 움직여 하늘에서 떨어지는 음표와 하트를 받아내는 게임입니다!
+      </div>
+
+      <div class="guide-sec-title" id="htpItemSec">🎯 아이템별 점수 & 특별한 역할</div>
+      <div class="guide-list">
+        <div class="guide-row">
+          <div class="guide-icon">🎵</div>
+          <div class="guide-text-col">
+            <div class="guide-item-name">
+              <span id="htpNoteName">일반 음표 (Note)</span>
+              <span class="guide-pts-badge" id="htpNotePts">+10점 (피버 시 +20점)</span>
+            </div>
+            <div class="guide-item-desc" id="htpNoteDesc">
+              가장 많이 떨어지는 기본 아이템입니다. 받을 때마다 피아노 계이름이 연주되며, 놓쳐도 생명력이 깎이지 않습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-row">
+          <div class="guide-icon">💖</div>
+          <div class="guide-text-col">
+            <div class="guide-item-name">
+              <span id="htpHeartName">핑크 하트 (Pink Heart)</span>
+              <span class="guide-pts-badge" id="htpHeartPts">+30점 (피버 시 +60점)</span>
+            </div>
+            <div class="guide-item-desc" id="htpHeartDesc">
+              2개 잡을 때마다 하단 포토카드(1~14번)가 1장씩 열립니다! (Page 1 완성 시 +200점, Page 2 완성 시 +300점 보너스!)
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-row gold-row">
+          <div class="guide-icon">👑</div>
+          <div class="guide-text-col">
+            <div class="guide-item-name">
+              <span id="htpCrownName">황금 왕관 (14장 해금 후 등장!)</span>
+              <span class="guide-pts-badge gold" id="htpCrownPts">+60점 (피버 시 +120점)</span>
+            </div>
+            <div class="guide-item-desc" id="htpCrownDesc">
+              14장의 카드를 모두 모으면 하트가 황금 왕관(👑)으로 진화합니다! 2개마다 카드 테두리가 황금 왕관 등급으로 승급하며 +50점 추가 보너스를 줍니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-row">
+          <div class="guide-icon">🌟</div>
+          <div class="guide-text-col">
+            <div class="guide-item-name">
+              <span id="htpMicName">골든 스타 / 마이크 (FEVER)</span>
+              <span class="guide-pts-badge gold" id="htpMicPts">+50점 & 5초간 점수 2배!</span>
+            </div>
+            <div class="guide-item-desc" id="htpMicDesc">
+              획득 즉시(또는 FEVER 막대 100% 충전 시) 5초 동안 모든 아이템 점수가 2배(🔥FEVER 2X)로 껑충 뜁니다!
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-row">
+          <div class="guide-icon">⚡</div>
+          <div class="guide-text-col">
+            <div class="guide-item-name">
+              <span id="htpCloudName">번개 (피해야 할 방해물!)</span>
+              <span class="guide-pts-badge danger" id="htpCloudPts">생명력(❤️) -1 감소</span>
+            </div>
+            <div class="guide-item-desc" id="htpCloudDesc">
+              유일하게 피해야 하는 장애물입니다! 닿으면 생명력 하트(❤️❤️❤️)가 1개 줄어들며, 3번 닿으면 게임이 종료됩니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-sec-title" id="htpStageSec">🎶 스테이지별 배경음악(BGM) 변화</div>
+      <div class="guide-stage-box" id="htpStageDesc">
+        • <b>STAGE 1 (0~170점)</b>: 虹彩 -にじいろ- (산뜻한 시작)<br/>
+        • <b>STAGE 2 (180~440점)</b>: 이방인 (리듬감 있게 속도 UP!)<br/>
+        • <b>STAGE 3 (450점 이상)</b>: For You, 陽炎, 첫눈 등 명곡 릴레이 재생!
+      </div>
+
+      <div class="guide-footer">
+        <button class="reset-progress-btn" id="resetColBtn">🔄 도감 초기화</button>
+        <button class="cta-btn" id="closeHowToBtn" style="padding:9px 26px;font-size:0.9rem;">확인했어요! 🐾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2) 포토카드 크게 보기 라이트박스 모달 -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="photocard-frame" id="lightboxFrame">
+      <div class="card-rarity-pill" id="lightboxBadge">🌸 MASAYA COLLECTION</div>
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="Masaya Photocard" />
+      </div>
+      <div class="lightbox-caption" id="lightboxTitle">Masaya Special Card</div>
+      <div class="lightbox-sub" id="lightboxSub">하트를 모아 모든 카드를 👑골드 등급으로 업그레이드해보세요!</div>
+      <button class="cta-btn" id="closeLightboxBtn" style="padding:8px 24px;font-size:0.88rem;">닫기 ✨</button>
+    </div>
+  </div>
+
+  <script>
+    // 1. 내장 백업 SVG 마스코트
+    const FALLBACK_MASCOT_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+        <defs>
+          <radialGradient id="fur" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#ffd9e8"/>
+            <stop offset="100%" stop-color="#ffb3d1"/>
+          </radialGradient>
+        </defs>
+        <path d="M172 182 Q218 175 212 140 Q206 122 188 135 Q192 155 168 168 Z" fill="url(#fur)" stroke="#702948" stroke-width="5" stroke-linejoin="round"/>
+        <ellipse cx="120" cy="168" rx="52" ry="46" fill="url(#fur)" stroke="#702948" stroke-width="5"/>
+        <ellipse cx="120" cy="172" rx="30" ry="32" fill="#ffffff"/>
+        <circle cx="66" cy="58" r="26" fill="url(#fur)" stroke="#702948" stroke-width="5"/>
+        <circle cx="174" cy="58" r="26" fill="url(#fur)" stroke="#702948" stroke-width="5"/>
+        <ellipse cx="120" cy="102" rx="68" ry="56" fill="url(#fur)" stroke="#702948" stroke-width="5"/>
+        <path d="M120 48 L120 76 M98 56 Q120 62 142 56 M103 68 Q120 73 137 68" stroke="#9e3f68" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+        <circle cx="93" cy="104" r="15" fill="#4f2137"/><circle cx="88" cy="98" r="5.5" fill="#ffffff"/>
+        <circle cx="147" cy="104" r="15" fill="#4f2137"/><circle cx="142" cy="98" r="5.5" fill="#ffffff"/>
+        <polygon points="113,114 127,114 120,122" fill="#ff73a1" stroke="#702948" stroke-width="3"/>
+        <path d="M108 124 Q120 142 132 124 Z" fill="#ff6b8b" stroke="#702948" stroke-width="3.5"/>
+      </svg>
+    `);
+
+    const GITHUB_BASE = 'https://novavista-game.github.io/masaya-usa-pinktiger/assets/';
+    const LOCAL_BASE = './assets/';
+
+    const mascotImg = new Image();
+    const heroMascotEl = document.getElementById('heroMascotImg');
+
+    function setAssetSrc(el, fileName, fallbackSvg = null) {
+      const encoded = encodeURIComponent(fileName);
+      el.src = LOCAL_BASE + encoded;
+      el.onerror = () => {
+        if (!el.src.includes('novavista-game.github.io')) {
+          el.src = GITHUB_BASE + encoded;
+        } else if (fallbackSvg) {
+          el.src = fallbackSvg;
+        }
+      };
+    }
+
+    setAssetSrc(mascotImg, 'pinktiger.png', FALLBACK_MASCOT_SVG);
+    setAssetSrc(heroMascotEl, 'pinktiger.png', FALLBACK_MASCOT_SVG);
+
+    // 2. 스테이지별 자동 BGM 시스템
+    const STAGE_TRACKS = {
+      1: [{ file: 'nijiiro_vocal_30s.mp3', title: '虹彩 -にじいろ- (Masaya)' }],
+      2: [{ file: 'ibangin.mp3', title: '이방인 (Masaya)' }],
+      3: [
+        { file: 'For you.mp4', title: 'For You (Masaya Climax)' },
+        { file: 'Kagerou.mp4', title: '陽炎 -Kagerou- (Masaya)' },
+        { file: '당신과의 키스를 세어보아요.mp4', title: '당신과의 키스를 세어보아요' },
+        { file: '마사야 첫눈.mp4', title: '첫눈 -First Snow- (Masaya)' },
+        { file: '마지막 비 420.mp4', title: '마지막 비 (Masaya)' },
+        { file: '참새의 눈물.mp4', title: 'すずめの涙 -참새의 눈물-' }
+      ]
+    };
+
+    const bgmPlayer = document.createElement('video');
+    bgmPlayer.style.display = 'none';
+    bgmPlayer.volume = 0.5;
+    bgmPlayer.playsInline = true;
+    document.body.appendChild(bgmPlayer);
+
+    let currentBgmStage = 1;
+    let stage3TrackIdx = 0;
+    let bgmEnabled = true;
+
+    function playStageBgm(targetStage, forceNext = false) {
+      currentBgmStage = targetStage;
+      const list = STAGE_TRACKS[targetStage] || STAGE_TRACKS[3];
+
+      if (targetStage === 3) {
+        if (forceNext) stage3TrackIdx = (stage3TrackIdx + 1) % list.length;
+      } else {
+        stage3TrackIdx = 0;
+      }
+
+      const track = list[stage3TrackIdx % list.length];
+      const encoded = encodeURIComponent(track.file);
+
+      bgmPlayer.loop = (targetStage < 3);
+      bgmPlayer.src = LOCAL_BASE + encoded;
+
+      bgmPlayer.onerror = () => {
+        if (!bgmPlayer.src.includes('novavista-game.github.io')) {
+          bgmPlayer.src = GITHUB_BASE + encoded;
+          if (bgmEnabled && gameRunning) bgmPlayer.play().catch(() => {});
+        }
+      };
+
+      document.getElementById('nowPlayingText').textContent = `🎶 STAGE ${targetStage}: ${track.title}`;
+      if (bgmEnabled && gameRunning) {
+        bgmPlayer.play().catch(() => {});
+      }
+    }
+
+    bgmPlayer.addEventListener('ended', () => {
+      if (currentBgmStage === 3) {
+        playStageBgm(3, true);
+      } else {
+        bgmPlayer.currentTime = 0;
+        if (bgmEnabled && gameRunning) bgmPlayer.play().catch(() => {});
+      }
+    });
+
+    document.getElementById('nextTrackBtn').addEventListener('click', () => {
+      playStageBgm(3, true);
+      if (bgmEnabled) bgmPlayer.play().catch(() => {});
+    });
+
+    // 3. 14종 포토카드 데이터
+    const PHOTO_CATALOG = [
+      { id: 1, file: '마사야 사진 1.png', title: 'Masaya Portrait #1', page: 1 },
+      { id: 2, file: '마사야 사진 2.png', title: 'Masaya Portrait #2', page: 1 },
+      { id: 3, file: '마사야 사진 3.png', title: 'Masaya Portrait #3', page: 1 },
+      { id: 4, file: '마사야 사진 4.png', title: 'Masaya Portrait #4', page: 1 },
+      { id: 5, file: '마사야 사진 5.png', title: 'Masaya Portrait #5', page: 1 },
+      { id: 6, file: '마사야 사진 6.png', title: 'Masaya Portrait #6', page: 1 },
+      { id: 7, file: '마사야 사진 7.png', title: 'Masaya Portrait #7', page: 1 },
+      { id: 8, file: 'profile.png', title: 'Masaya Official Profile ✨', page: 2 },
+      { id: 9, file: '마사야 호랑이 없는 이미지.jpg', title: 'Masaya Special Cut 🌸', page: 2 },
+      { id: 10, file: '행사안경-Final.png', title: 'Pinktiger Event Glasses 🕶️', page: 2 },
+      { id: 11, file: 'goods_karaoke.jpg', title: 'Karaoke Edition Goods 🎤', page: 2 },
+      { id: 12, file: 'goods_sea_prince.jpg', title: 'Sea Prince Masaya 🌊', page: 2 },
+      { id: 13, file: 'goods_yukata.jpg', title: 'Summer Yukata Edition 🎆', page: 2 },
+      { id: 14, file: 'goods_rabbit.jpg', title: 'Special Cute Edition 🎀', page: 2 }
+    ];
+
+    const COL_STORAGE_KEY = 'pinktiger_collection_progress_v3';
+    let collectionProgress = parseInt(localStorage.getItem(COL_STORAGE_KEY) || '0', 10);
+    let currentAlbumPage = 1;
+
+    function saveCollectionProgress() {
+      localStorage.setItem(COL_STORAGE_KEY, String(collectionProgress));
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('stageToast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // 4. 5개 국어 번역 데이터 (게임 UI + 게임 요령 모달 전체 포함)
+    const I18N = {
+      ko: {
+        howToBtn: '❓ 게임 요령',
+        banner: '핑크타이거를 움직여 14종 스페셜 포토카드와 👑골드 왕관 등급을 모두 모아보세요! 🐯✨',
+        nextTrack: '⏭️ 다른 곡 듣기',
+        startTitle: '마사야 덕질 게임 💖',
+        startDesc: '스테이지가 올라갈 때마다 마사야의 명곡이 바뀌고, 하트를 모으면 14종 포토카드 & 👑골드 카드가 해금됩니다!',
+        gNote: '음표 +10점',
+        gHeart: '하트 +30점 & 카드해금',
+        gMic: '마이크 2배 피버!',
+        gCloud: '번개 생명력 -1',
+        startBtn: '게임 시작하기 🐾',
+        overTitle: '멜로디 스테이지 종료! 🎤',
+        finalScoreLabel: '최종 점수',
+        nickPh: '닉네임 입력',
+        saveBtn: '기록 저장',
+        retryBtn: '다시 하기 🔄',
+        shareBtn: '점수 복사 📋',
+        exitBtn: '팬 사이트로 🏠',
+        photoHeader: '📸 포토카드 도감 (클릭하면 크게 보입니다!)',
+        closeBtn: '닫기 ✨',
+        goldSub: '축하합니다! 골드 크라운 등급으로 업그레이드된 마스터 포토카드입니다! 💖',
+        normSub: '게임에서 💖하트를 더 모으면 👑골드 왕관 테두리로 업그레이드됩니다!',
+        summaryFmt: (u, c) => `수집한 포토카드: ${u}/14장 | 👑 골드 등급: ${c}/14장`,
+        copied: '점수가 복사되었습니다! SNS에 공유해보세요 💖',
+        // 게임 요령 모달
+        htpTitle: '🐯 마사야 덕질 게임 요령',
+        htpConcept: '마사야의 콘서트 무대 위에서 아기 호랑이(핑크타이거)를 마우스, 키보드 방향키(◀▶), 또는 터치로 좌우로 움직여 하늘에서 떨어지는 음표와 하트를 받아내는 게임입니다!',
+        htpItemSec: '🎯 아이템별 점수 & 특별한 역할',
+        htpNoteName: '일반 음표 (Note)',
+        htpNotePts: '+10점 (피버 시 +20점)',
+        htpNoteDesc: '가장 많이 떨어지는 기본 아이템입니다. 받을 때마다 피아노 계이름이 연주되며, 놓쳐도 생명력이 깎이지 않습니다.',
+        htpHeartName: '핑크 하트 (Pink Heart)',
+        htpHeartPts: '+30점 (피버 시 +60점)',
+        htpHeartDesc: '2개 잡을 때마다 하단 포토카드(1~14번)가 1장씩 열립니다! (Page 1 완성 시 +200점, Page 2 완성 시 +300점 보너스!)',
+        htpCrownName: '황금 왕관 (14장 해금 후 등장!)',
+        htpCrownPts: '+60점 (피버 시 +120점)',
+        htpCrownDesc: '14장의 카드를 모두 모으면 하트가 황금 왕관(👑)으로 진화합니다! 2개마다 카드 테두리가 황금 왕관 등급으로 승급하며 +50점 보너스를 줍니다.',
+        htpMicName: '골든 스타 / 마이크 (FEVER)',
+        htpMicPts: '+50점 & 5초간 점수 2배!',
+        htpMicDesc: '획득 즉시(또는 FEVER 막대 100% 충전 시) 5초 동안 모든 아이템 점수가 2배(🔥FEVER 2X)로 껑충 뜁니다!',
+        htpCloudName: '번개 (피해야 할 방해물!)',
+        htpCloudPts: '생명력(❤️) -1 감소',
+        htpCloudDesc: '유일하게 피해야 하는 장애물입니다! 닿으면 생명력 하트(❤️❤️❤️)가 1개 줄어들며, 3번 닿으면 게임이 종료됩니다.',
+        htpStageSec: '🎶 스테이지별 배경음악(BGM) 변화',
+        htpStageDesc: '• <b>STAGE 1 (0~170점)</b>: 虹彩 -にじいろ- (산뜻한 시작)<br/>• <b>STAGE 2 (180~440점)</b>: 이방인 (리듬감 있게 속도 UP!)<br/>• <b>STAGE 3 (450점 이상)</b>: For You, 陽炎, 첫눈 등 명곡 릴레이 재생!',
+        resetBtn: '🔄 도감 초기화',
+        resetConfirm: '모아둔 포토카드 도감을 처음(0/14)으로 초기화할까요?',
+        htpClose: '확인했어요! 🐾'
+      },
+      en: {
+        howToBtn: '❓ How to Play',
+        banner: 'Move Pinktiger to unlock all 14 Masaya Photocards & 👑 Gold Crown Grades! 🐯✨',
+        nextTrack: '⏭️ Next Song',
+        startTitle: 'Masaya Stan Game 💖',
+        startDesc: 'BGM changes every stage! Catch hearts to unlock 14 Photocards & 👑 Gold Cards!',
+        gNote: 'Note +10 pts',
+        gHeart: 'Heart +30 & Card',
+        gMic: 'Golden Mic 2x Fever!',
+        gCloud: 'Storm -1 Life',
+        startBtn: 'Start Game 🐾',
+        overTitle: 'Melody Stage Complete! 🎤',
+        finalScoreLabel: 'Final Score',
+        nickPh: 'Your Nickname',
+        saveBtn: 'Save',
+        retryBtn: 'Play Again 🔄',
+        shareBtn: 'Copy Score 📋',
+        exitBtn: 'Fan Site 🏠',
+        photoHeader: '📸 Photocard Album (Click any card to zoom!)',
+        closeBtn: 'Close ✨',
+        goldSub: 'Congrats! This card has been upgraded to 👑 Gold Crown Master Grade! 💖',
+        normSub: 'Catch more 💖 Hearts in-game to upgrade this card to a 👑 Gold Crown frame!',
+        summaryFmt: (u, c) => `Photocards Unlocked: ${u}/14 | 👑 Gold Grade: ${c}/14`,
+        copied: 'Score copied to clipboard! Share it with fans 💖',
+        htpTitle: '🐯 How to Play Masaya Stan Game',
+        htpConcept: 'Move baby Pinktiger left & right (Mouse, Arrow Keys ◀▶, or Touch) on Masaya’s concert stage to catch falling musical notes and hearts!',
+        htpItemSec: '🎯 Item Points & Special Effects',
+        htpNoteName: 'Musical Note',
+        htpNotePts: '+10 pts (Fever: +20 pts)',
+        htpNoteDesc: 'Basic item that plays piano scale notes when caught. Missing notes does NOT reduce your lives!',
+        htpHeartName: 'Pink Heart',
+        htpHeartPts: '+30 pts (Fever: +60 pts)',
+        htpHeartDesc: 'Every 2 hearts unlocks 1 new Masaya Photocard (1~14)! (+200 bonus for Page 1, +300 bonus for Page 2!)',
+        htpCrownName: 'Golden Crown (After 14 Cards!)',
+        htpCrownPts: '+60 pts (Fever: +120 pts)',
+        htpCrownDesc: 'Once all 14 cards are unlocked, Hearts evolve into Golden Crowns (👑)! Every 2 crowns upgrades a card frame to Gold (+50 bonus pts).',
+        htpMicName: 'Golden Star / Mic (FEVER)',
+        htpMicPts: '+50 pts & 5s 2x Score!',
+        htpMicDesc: 'Activates 5 seconds of 🔥FEVER 2X Mode immediately (or when the FEVER bar hits 100%), doubling all points!',
+        htpCloudName: 'Lightning (Avoid!)',
+        htpCloudPts: '-1 Life (❤️)',
+        htpCloudDesc: 'The only obstacle to dodge! Touching lightning removes 1 Heart life (❤️❤️❤️). Game ends when all 3 lives are lost.',
+        htpStageSec: '🎶 Stage BGM Progression',
+        htpStageDesc: '• <b>STAGE 1 (0~170 pts)</b>: Nijiiro (Gentle start)<br/>• <b>STAGE 2 (180~440 pts)</b>: Ibangin (Faster rhythm!)<br/>• <b>STAGE 3 (450+ pts)</b>: Masaya Hit Song Relay (For You, Kagerou, First Snow & more!)',
+        resetBtn: '🔄 Reset Album',
+        resetConfirm: 'Reset your Photocard Album progress back to 0/14?',
+        htpClose: 'Got It! 🐾'
+      },
+      ja: {
+        howToBtn: '❓ 遊び方',
+        banner: 'ピンクタイガーを動かして全14種のフォトカード＆👑ゴールド王冠を集めよう！🐯✨',
+        nextTrack: '⏭️ 次の曲へ',
+        startTitle: 'Masaya 推し活ゲーム 💖',
+        startDesc: 'ステージごとにMasayaの名曲が変化！ハートを集めて全14種＆👑ゴールドカードを解放しよう！',
+        gNote: '音符 +10点',
+        gHeart: 'ハート +30点＆カード',
+        gMic: 'マイク 2倍フィーバー!',
+        gCloud: 'カミナリ ライフ-1',
+        startBtn: 'ゲームスタート 🐾',
+        overTitle: 'ステージ終了！ 🎤',
+        finalScoreLabel: '最終スコア',
+        nickPh: 'ニックネーム',
+        saveBtn: '保存',
+        retryBtn: 'もう一度 🔄',
+        shareBtn: 'スコア共有 📋',
+        exitBtn: 'ファンサイトへ 🏠',
+        photoHeader: '📸 フォトカード図鑑 (クリックで拡大表示!)',
+        closeBtn: '閉じる ✨',
+        goldSub: 'おめでとうございます！👑ゴールド王冠ランクのマスターフォトカードです！💖',
+        normSub: 'ゲームで💖ハートをもっと集めると👑ゴールド王冠フレームに進化します！',
+        summaryFmt: (u, c) => `獲得フォトカード: ${u}/14枚 | 👑 ゴールド: ${c}/14枚`,
+        copied: 'スコアをコピーしました！SNSでシェアしよう 💖',
+        htpTitle: '🐯 Masaya 推し活ゲーム 遊び方',
+        htpConcept: 'Masayaのステージ上でピンクタイガーを左右（マウス・矢印キー◀▶・タッチ）に動かして、降ってくる音符とハートをキャッチしよう！',
+        htpItemSec: '🎯 アイテムの点数と役割',
+        htpNoteName: '音符 (Note)',
+        htpNotePts: '+10点 (フィーバー時 +20点)',
+        htpNoteDesc: 'キャッチするたびにピアノの音階が鳴ります。取り逃してもライフは減りません。',
+        htpHeartName: 'ピンクハート (Heart)',
+        htpHeartPts: '+30点 (フィーバー時 +60点)',
+        htpHeartDesc: '2個集めるごとに下のフォトカード(全14種)が1枚解放！（Page1完成で+200点、Page2完成で+300点ボーナス！）',
+        htpCrownName: 'ゴールド王冠 (14枚解放後に登場!)',
+        htpCrownPts: '+60点 (フィーバー時 +120点)',
+        htpCrownDesc: '14枚すべて集めるとハートが王冠(👑)に進化！2個ごとにカードがゴールド王冠フレームに昇格し+50点ボーナス！',
+        htpMicName: 'ゴールデンスター (FEVER)',
+        htpMicPts: '+50点＆5秒間スコア2倍!',
+        htpMicDesc: '獲得すると即座に（またはFEVERゲージ100%で）5秒間すべての得点が2倍(🔥FEVER 2X)になります！',
+        htpCloudName: 'カミナリ (よけよう！)',
+        htpCloudPts: 'ライフ(❤️) -1減少',
+        htpCloudDesc: '唯一の障害物です！当たるとライフ(❤️❤️❤️)が1つ減り、3回当たるとゲームオーバーになります。',
+        htpStageSec: '🎶 ステージ別BGMの変化',
+        htpStageDesc: '• <b>STAGE 1 (0~170点)</b>: 虹彩 -にじいろ-<br/>• <b>STAGE 2 (180~440点)</b>: 異邦人 (スピードUP!)<br/>• <b>STAGE 3 (450点以上)</b>: For You、陽炎、初雪など名曲メドレー！',
+        resetBtn: '🔄 図鑑リセット',
+        resetConfirm: '集めたフォトカード図鑑を最初(0/14)にリセットしますか？',
+        htpClose: 'わかりました！ 🐾'
+      },
+      es: {
+        howToBtn: '❓ Guía',
+        banner: '¡Mueve a Pinktiger para desbloquear las 14 Fototarjetas de Masaya y las 👑 Coronas de Oro! 🐯✨',
+        nextTrack: '⏭️ Otra Canción',
+        startTitle: 'Juego Fan de Masaya 💖',
+        startDesc: '¡La música de Masaya cambia en cada etapa! ¡Atrapa corazones para coleccionar las 14 tarjetas y 👑 Oro!',
+        gNote: 'Nota +10 pts',
+        gHeart: 'Corazón +30 y Foto',
+        gMic: '¡Micrófono 2x Fiebre!',
+        gCloud: 'Rayo -1 Vida',
+        startBtn: '¡Jugar Ahora! 🐾',
+        overTitle: '¡Escenario Terminado! 🎤',
+        finalScoreLabel: 'Puntuación Final',
+        nickPh: 'Tu Apodo',
+        saveBtn: 'Guardar',
+        retryBtn: 'Jugar de Nuevo 🔄',
+        shareBtn: 'Copiar Pts 📋',
+        exitBtn: 'Sitio Fan 🏠',
+        photoHeader: '📸 Álbum de Fotos (¡Haz clic para ampliar!)',
+        closeBtn: 'Cerrar ✨',
+        goldSub: '¡Felicidades! ¡Esta tarjeta ha subido al grado maestro 👑 Corona de Oro! 💖',
+        normSub: '¡Atrapa más 💖 corazones para mejorar esta tarjeta con marco de 👑 Corona de Oro!',
+        summaryFmt: (u, c) => `Fototarjetas: ${u}/14 | 👑 Grado Oro: ${c}/14`,
+        copied: '¡Puntuación copiada al portapapeles! Compártela en redes 💖',
+        htpTitle: '🐯 Guía del Juego Fan de Masaya',
+        htpConcept: '¡Mueve a Pinktiger a la izquierda y derecha (Ratón, Flechas ◀▶ o Pantalla Táctil) en el escenario de Masaya para atrapar notas y corazones!',
+        htpItemSec: '🎯 Puntos y Efectos de Objetos',
+        htpNoteName: 'Nota Musical',
+        htpNotePts: '+10 pts (Fiebre: +20 pts)',
+        htpNoteDesc: 'Objeto básico que toca notas de piano. ¡Dejar caer notas NO reduce tus vidas!',
+        htpHeartName: 'Corazón Rosa',
+        htpHeartPts: '+30 pts (Fiebre: +60 pts)',
+        htpHeartDesc: '¡Cada 2 corazones desbloquea 1 Fototarjeta de Masaya (1~14)! (+200 pts bono en Pág. 1, +300 pts en Pág. 2).',
+        htpCrownName: 'Corona de Oro (¡Tras 14 Cartas!)',
+        htpCrownPts: '+60 pts (Fiebre: +120 pts)',
+        htpCrownDesc: '¡Al reunir las 14 tarjetas, los corazones evolucionan a Coronas (👑)! Cada 2 coronas mejora una tarjeta a Oro (+50 pts).',
+        htpMicName: 'Estrella Dorada (FEVER)',
+        htpMicPts: '+50 pts y 2x Puntos (5s)',
+        htpMicDesc: '¡Activa 5 segundos de modo 🔥FEVER 2X al instante, duplicando todos los puntos!',
+        htpCloudName: 'Rayo (¡Esquívalo!)',
+        htpCloudPts: '-1 Vida (❤️)',
+        htpCloudDesc: '¡El único obstáculo! Tocar un rayo quita 1 vida (❤️❤️❤️). El juego termina al perder las 3 vidas.',
+        htpStageSec: '🎶 Música BGM por Etapa',
+        htpStageDesc: '• <b>STAGE 1 (0~170 pts)</b>: Nijiiro<br/>• <b>STAGE 2 (180~440 pts)</b>: Ibangin (¡Más rápido!)<br/>• <b>STAGE 3 (450+ pts)</b>: ¡Popurrí de éxitos de Masaya (For You, Kagerou y más)!',
+        resetBtn: '🔄 Reiniciar Álbum',
+        resetConfirm: '¿Reiniciar el álbum de fototarjetas a 0/14?',
+        htpClose: '¡Entendido! 🐾'
+      },
+      fr: {
+        howToBtn: '❓ Règles',
+        banner: 'Déplacez Pinktiger pour débloquer les 14 Photocards Masaya et les 👑 Couronnes d’Or ! 🐯✨',
+        nextTrack: '⏭️ Chanson Suiv.',
+        startTitle: 'Jeu Stan de Masaya 💖',
+        startDesc: 'Les chansons de Masaya changent à chaque niveau ! Attrapez des cœurs pour les 14 cartes & 👑 Or !',
+        gNote: 'Note +10 pts',
+        gHeart: 'Cœur +30 & Carte',
+        gMic: 'Micro 2x Fever !',
+        gCloud: 'Orage -1 Vie',
+        startBtn: 'Jouer 🐾',
+        overTitle: 'Scène Terminée ! 🎤',
+        finalScoreLabel: 'Score Final',
+        nickPh: 'Votre Pseudo',
+        saveBtn: 'Sauver',
+        retryBtn: 'Rejouer 🔄',
+        shareBtn: 'Copier Score 📋',
+        exitBtn: 'Site Fan 🏠',
+        photoHeader: '📸 Album Photocards (Cliquez pour agrandir !)',
+        closeBtn: 'Fermer ✨',
+        goldSub: 'Félicitations ! Cette carte est améliorée au rang maître 👑 Couronne d’Or ! 💖',
+        normSub: 'Attrapez plus de 💖 cœurs pour améliorer cette carte avec une 👑 Couronne d’Or !',
+        summaryFmt: (u, c) => `Photocards : ${u}/14 | 👑 Rang Or : ${c}/14`,
+        copied: 'Score copié dans le presse-papiers ! Partagez-le 💖',
+        htpTitle: '🐯 Règles du Jeu Stan de Masaya',
+        htpConcept: 'Déplacez Pinktiger à gauche et à droite (Souris, Flèches ◀▶ ou Tactile) sur la scène de Masaya pour attraper les notes et les cœurs !',
+        htpItemSec: '🎯 Points et Rôles des Objets',
+        htpNoteName: 'Note de Musique',
+        htpNotePts: '+10 pts (Fever : +20 pts)',
+        htpNoteDesc: 'Joue une note de piano à chaque prise. Manquer une note NE réduit PAS vos vies !',
+        htpHeartName: 'Cœur Rose',
+        htpHeartPts: '+30 pts (Fever : +60 pts)',
+        htpHeartDesc: 'Chaque paire de cœurs débloque 1 Photocard Masaya (1~14) ! (+200 pts bonus Page 1, +300 pts Page 2).',
+        htpCrownName: 'Couronne d’Or (Après 14 Cartes !)',
+        htpCrownPts: '+60 pts (Fever : +120 pts)',
+        htpCrownDesc: 'Une fois les 14 cartes débloquées, les cœurs deviennent des Couronnes (👑) ! Chaque paire améliore une carte en Or (+50 pts).',
+        htpMicName: 'Étoile d’Or (FEVER)',
+        htpMicPts: '+50 pts & Score x2 (5s)',
+        htpMicDesc: 'Active immédiatement 5 secondes de mode 🔥FEVER 2X, doublant tous les points !',
+        htpCloudName: 'Éclair (À éviter !)',
+        htpCloudPts: '-1 Vie (❤️)',
+        htpCloudDesc: 'Le seul obstacle à éviter ! Toucher un éclair enlève 1 vie (❤️❤️❤️). La partie se termine après 3 éclairs.',
+        htpStageSec: '🎶 Musique BGM par Niveau',
+        htpStageDesc: '• <b>STAGE 1 (0~170 pts)</b> : Nijiiro<br/>• <b>STAGE 2 (180~440 pts)</b> : Ibangin (Plus rapide !)<br/>• <b>STAGE 3 (450+ pts)</b> : Medley des succès de Masaya (For You, Kagerou, etc.) !',
+        resetBtn: '🔄 Réinitialiser',
+        resetConfirm: 'Voulez-vous réinitialiser votre album à 0/14 ?',
+        htpClose: 'Compris ! 🐾'
+      }
+    };
+
+    let currentLang = 'ko';
+
+    function setLanguage(lang) {
+      if (!I18N[lang]) lang = 'ko';
+      currentLang = lang;
+      const t = I18N[lang];
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      document.getElementById('howToPlayBtn').textContent = t.howToBtn;
+      document.getElementById('bannerText').textContent = t.banner;
+      document.getElementById('nextTrackBtn').textContent = t.nextTrack;
+      document.getElementById('startTitle').textContent = t.startTitle;
+      document.getElementById('startDesc').textContent = t.startDesc;
+      document.getElementById('gNote').textContent = t.gNote;
+      document.getElementById('gHeart').textContent = t.gHeart;
+      document.getElementById('gMic').textContent = t.gMic;
+      document.getElementById('gCloud').textContent = t.gCloud;
+      document.getElementById('startBtn').textContent = t.startBtn;
+      document.getElementById('overTitle').textContent = t.overTitle;
+      document.getElementById('finalScoreLabel').textContent = t.finalScoreLabel;
+      document.getElementById('nickInput').placeholder = t.nickPh;
+      document.getElementById('saveRankBtn').textContent = t.saveBtn;
+      document.getElementById('retryBtn').textContent = t.retryBtn;
+      document.getElementById('shareBtn').textContent = t.shareBtn;
+      document.getElementById('exitBtn').textContent = t.exitBtn;
+      document.getElementById('photoHeaderTitle').textContent = t.photoHeader;
+      document.getElementById('closeLightboxBtn').textContent = t.closeBtn;
+
+      // 게임 요령 모달 다국어 반영
+      document.getElementById('htpTitle').textContent = t.htpTitle;
+      document.getElementById('htpConcept').textContent = t.htpConcept;
+      document.getElementById('htpItemSec').textContent = t.htpItemSec;
+      document.getElementById('htpNoteName').textContent = t.htpNoteName;
+      document.getElementById('htpNotePts').textContent = t.htpNotePts;
+      document.getElementById('htpNoteDesc').textContent = t.htpNoteDesc;
+      document.getElementById('htpHeartName').textContent = t.htpHeartName;
+      document.getElementById('htpHeartPts').textContent = t.htpHeartPts;
+      document.getElementById('htpHeartDesc').textContent = t.htpHeartDesc;
+      document.getElementById('htpCrownName').textContent = t.htpCrownName;
+      document.getElementById('htpCrownPts').textContent = t.htpCrownPts;
+      document.getElementById('htpCrownDesc').textContent = t.htpCrownDesc;
+      document.getElementById('htpMicName').textContent = t.htpMicName;
+      document.getElementById('htpMicPts').textContent = t.htpMicPts;
+      document.getElementById('htpMicDesc').textContent = t.htpMicDesc;
+      document.getElementById('htpCloudName').textContent = t.htpCloudName;
+      document.getElementById('htpCloudPts').textContent = t.htpCloudPts;
+      document.getElementById('htpCloudDesc').textContent = t.htpCloudDesc;
+      document.getElementById('htpStageSec').textContent = t.htpStageSec;
+      document.getElementById('htpStageDesc').innerHTML = t.htpStageDesc;
+      document.getElementById('resetColBtn').textContent = t.resetBtn;
+      document.getElementById('closeHowToBtn').textContent = t.htpClose;
+
+      const unlockedCount = Math.min(14, collectionProgress);
+      const crownCount = Math.max(0, Math.min(14, collectionProgress - 14));
+      document.getElementById('collectionSummaryText').textContent = t.summaryFmt(unlockedCount, crownCount);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    // 부모 창(index.html) 언어 동기화
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'SET_LANG') setLanguage(e.data.lang);
+    });
+    window.addEventListener('hashchange', () => {
+      const h = window.location.hash.replace('#', '').toLowerCase();
+      if (I18N[h]) setLanguage(h);
+    });
+
+    const hashLang = window.location.hash.replace('#', '').toLowerCase();
+    if (I18N[hashLang]) {
+      setLanguage(hashLang);
+    }
+
+    // 게임 요령 (How to Play) 모달 열기/닫기
+    let pausedByHowTo = false;
+    function openHowToModal() {
+      if (gameRunning) {
+        pausedByHowTo = true;
+        gameRunning = false;
+      }
+      document.getElementById('howToModal').classList.add('open');
+    }
+
+    function closeHowToModal() {
+      document.getElementById('howToModal').classList.remove('open');
+      if (pausedByHowTo) {
+        pausedByHowTo = false;
+        gameRunning = true;
+        requestAnimationFrame(gameLoop);
+      }
+    }
+
+    document.getElementById('howToPlayBtn').addEventListener('click', openHowToModal);
+    document.getElementById('closeHowToBtn').addEventListener('click', closeHowToModal);
+    document.getElementById('howToModal').addEventListener('click', (e) => {
+      if (e.target.id === 'howToModal') closeHowToModal();
+    });
+
+    // 도감 초기화 버튼 (처음부터 다시 모으는 테스트용)
+    document.getElementById('resetColBtn').addEventListener('click', () => {
+      if (confirm(I18N[currentLang].resetConfirm)) {
+        collectionProgress = 0;
+        currentAlbumPage = 1;
+        saveCollectionProgress();
+        renderPhotoSlots();
+        closeHowToModal();
+      }
+    });
+
+    function renderPhotoSlots() {
+      const slotsContainer = document.getElementById('photoSlots');
+      slotsContainer.innerHTML = '';
+
+      document.getElementById('tabPage1').classList.toggle('active', currentAlbumPage === 1);
+      document.getElementById('tabPage2').classList.toggle('active', currentAlbumPage === 2);
+
+      const pageItems = PHOTO_CATALOG.filter(item => item.page === currentAlbumPage);
+      pageItems.forEach(item => {
+        const isUnlocked = collectionProgress >= item.id;
+        const isCrowned = collectionProgress >= (item.id + 14);
+
+        const slot = document.createElement('div');
+        slot.className = 'photo-slot' + (isUnlocked ? ' unlocked' : '') + (isCrowned ? ' crowned' : '');
+
+        if (isUnlocked) {
+          const img = document.createElement('img');
+          setAssetSrc(img, item.file, FALLBACK_MASCOT_SVG);
+          slot.appendChild(img);
+
+          if (isCrowned) {
+            const crown = document.createElement('span');
+            crown.className = 'crown-badge';
+            crown.textContent = '👑';
+            slot.appendChild(crown);
+          }
+
+          const hint = document.createElement('div');
+          hint.className = 'zoom-hint';
+          hint.textContent = '🔍 VIEW';
+          slot.appendChild(hint);
+
+          slot.addEventListener('click', () => openLightbox(item, isCrowned));
+        } else {
+          slot.textContent = item.page === 2 ? '✨🔒' : '🔒';
+        }
+        slotsContainer.appendChild(slot);
+      });
+
+      const unlockedCount = Math.min(14, collectionProgress);
+      const crownCount = Math.max(0, Math.min(14, collectionProgress - 14));
+      document.getElementById('photoCountText').textContent =
+        crownCount > 0 ? `${unlockedCount}/14 (👑${crownCount})` : `${unlockedCount} / 14`;
+    }
+
+    document.getElementById('tabPage1').addEventListener('click', () => {
+      currentAlbumPage = 1;
+      renderPhotoSlots();
+    });
+    document.getElementById('tabPage2').addEventListener('click', () => {
+      currentAlbumPage = 2;
+      renderPhotoSlots();
+    });
+
+    let pausedByLightbox = false;
+    function openLightbox(item, isCrowned) {
+      if (gameRunning) {
+        pausedByLightbox = true;
+        gameRunning = false;
+      }
+      const t = I18N[currentLang];
+      const modal = document.getElementById('lightboxModal');
+      const frame = document.getElementById('lightboxFrame');
+      const img = document.getElementById('lightboxImg');
+      const badge = document.getElementById('lightboxBadge');
+      const title = document.getElementById('lightboxTitle');
+      const sub = document.getElementById('lightboxSub');
+
+      frame.classList.toggle('gold-edition', isCrowned);
+      badge.textContent = isCrowned ? '👑 GOLD CROWN MASTER CARD' : `🌸 COLLECTION #${item.id} / 14`;
+      title.textContent = item.title;
+      sub.textContent = isCrowned ? t.goldSub : t.normSub;
+      setAssetSrc(img, item.file, FALLBACK_MASCOT_SVG);
+      modal.classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
+      if (pausedByLightbox) {
+        pausedByLightbox = false;
+        gameRunning = true;
+        requestAnimationFrame(gameLoop);
+      }
+    }
+
+    document.getElementById('closeLightboxBtn').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxModal').addEventListener('click', (e) => {
+      if (e.target.id === 'lightboxModal') closeLightbox();
+    });
+
+    renderPhotoSlots();
+
+    // 5. Web Audio API 효과음
+    let audioCtx = null;
+    let sfxEnabled = true;
+    const SCALE_NOTES = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+    let scaleIdx = 0;
+
+    function playNoteSound(type) {
+      if (!sfxEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'note' || type === 'heart') {
+        const freq = SCALE_NOTES[scaleIdx % SCALE_NOTES.length];
+        scaleIdx++;
+        osc.type = type === 'heart' ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        if (type === 'heart') osc.frequency.exponentialRampToValueAtTime(freq * 1.25, now + 0.18);
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+        osc.start(now);
+        osc.stop(now + 0.32);
+      } else if (type === 'mic' || type === 'fanfare') {
+        [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+          const o = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          o.type = 'triangle';
+          o.frequency.setValueAtTime(f, now + i * 0.06);
+          g.gain.setValueAtTime(0.2, now + i * 0.06);
+          g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.38);
+          o.connect(g);
+          g.connect(audioCtx.destination);
+          o.start(now + i * 0.06);
+          o.stop(now + i * 0.06 + 0.38);
+        });
+      } else if (type === 'hit') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.linearRampToValueAtTime(65, now + 0.25);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+        osc.start(now);
+        osc.stop(now + 0.26);
+      }
+    }
+
+    document.getElementById('bgmBtn').addEventListener('click', (e) => {
+      bgmEnabled = !bgmEnabled;
+      e.currentTarget.classList.toggle('active', bgmEnabled);
+      e.currentTarget.textContent = bgmEnabled ? '🎵 BGM ON' : '🎵 BGM OFF';
+      if (bgmEnabled && gameRunning) bgmPlayer.play().catch(() => {});
+      else bgmPlayer.pause();
+    });
+
+    document.getElementById('sfxBtn').addEventListener('click', (e) => {
+      sfxEnabled = !sfxEnabled;
+      e.currentTarget.classList.toggle('active', sfxEnabled);
+      e.currentTarget.textContent = sfxEnabled ? '🔔 SFX ON' : '🔕 SFX OFF';
+    });
+
+    // 6. 메인 게임 엔진
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const stageBox = document.getElementById('stageBox');
+
+    let gameRunning = false;
+    let score = 0;
+    let lives = 3;
+    let stage = 1;
+    let feverGauge = 0;
+    let feverTimer = 0;
+    let heartsCaughtInRun = 0;
+
+    const player = {
+      x: 240,
+      y: 356,
+      w: 84,
+      h: 84,
+      targetX: 240,
+      tilt: 0
+    };
+
+    let items = [];
+    let particles = [];
+    let floatTexts = [];
+    let keys = { left: false, right: false };
+    let spawnTimer = 0;
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      player.targetX = (e.clientX - rect.left) * scaleX;
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      player.targetX = (e.touches[0].clientX - rect.left) * scaleX;
+    }, { passive: false });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keys.left = true;
+      if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keys.right = true;
+    });
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keys.left = false;
+      if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keys.right = false;
+    });
+
+    function spawnItem() {
+      const r = Math.random();
+      let type = 'note';
+      let emoji = '🎵';
+      let pts = 10;
+      if (r > 0.85) { type = 'cloud'; emoji = '⚡'; pts = 0; }
+      else if (r > 0.77) { type = 'mic'; emoji = '🌟'; pts = 50; }
+      else if (r > 0.50) {
+        type = 'heart';
+        emoji = collectionProgress >= 14 ? '👑' : '💖';
+        pts = collectionProgress >= 14 ? 60 : 30;
+      }
+
+      const speedBase = 2.4 + (stage - 1) * 0.9 + (feverTimer > 0 ? 1.0 : 0);
+      items.push({
+        x: 36 + Math.random() * (canvas.width - 72),
+        y: -30,
+        r: 22,
+        type,
+        emoji,
+        pts,
+        vy: speedBase + Math.random() * 1.25,
+        sway: (Math.random() - 0.5) * 1.2
+      });
+    }
+
+    function createBurst(x, y, color) {
+      for (let i = 0; i < 12; i++) {
+        const angle = (Math.PI * 2 * i) / 12;
+        const spd = 1.5 + Math.random() * 3.2;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * spd,
+          vy: Math.sin(angle) * spd,
+          life: 1,
+          color
+        });
+      }
+    }
+
+    function unlockNextCard() {
+      if (collectionProgress < 28) {
+        collectionProgress++;
+        saveCollectionProgress();
+
+        if (collectionProgress === 7) {
+          score += 200;
+          playNoteSound('fanfare');
+          showToast('🎉 Page 1 Complete! +200 & ✨Page 2 Open!');
+          currentAlbumPage = 2;
+        } else if (collectionProgress === 8) {
+          currentAlbumPage = 2;
+          showToast('✨ Special Card #8 Unlocked!');
+        } else if (collectionProgress === 14) {
+          score += 300;
+          playNoteSound('fanfare');
+          showToast('🏆 All 14 Cards! +300 & 👑Gold Mode!');
+        } else if (collectionProgress > 14) {
+          const crownedId = collectionProgress - 14;
+          currentAlbumPage = crownedId <= 7 ? 1 : 2;
+          showToast(`👑 Card #${crownedId} Gold Crown! (+50)`);
+          score += 50;
+        } else {
+          showToast(`📸 Card #${collectionProgress} Unlocked!`);
+        }
+        renderPhotoSlots();
+      } else {
+        score += 50;
+      }
+    }
+
+    function updateHUD() {
+      document.getElementById('scoreVal').textContent = score;
+      document.getElementById('stageVal').textContent = `STAGE ${stage}`;
+      document.getElementById('livesVal').textContent = '❤️'.repeat(Math.max(0, lives)) || '💔';
+      const pct = feverTimer > 0 ? (feverTimer / 300) * 100 : feverGauge;
+      document.getElementById('feverFill').style.width = `${Math.min(100, pct)}%`;
+      document.getElementById('lblFever').textContent = feverTimer > 0 ? '🔥 FEVER 2X!' : '✨ FEVER';
+      stageBox.classList.toggle('fever-mode', feverTimer > 0);
+    }
+
+    function startGame() {
+      score = 0;
+      lives = 3;
+      stage = 1;
+      feverGauge = 0;
+      feverTimer = 0;
+      heartsCaughtInRun = 0;
+      scaleIdx = 0;
+      items = [];
+      particles = [];
+      floatTexts = [];
+      gameRunning = true;
+      document.getElementById('startModal').classList.add('hidden');
+      document.getElementById('overModal').classList.add('hidden');
+      playStageBgm(1);
+      updateHUD();
+      requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+      gameRunning = false;
+      bgmPlayer.pause();
+      document.getElementById('finalScoreNum').textContent = score;
+      const unlockedCount = Math.min(14, collectionProgress);
+      const crownCount = Math.max(0, Math.min(14, collectionProgress - 14));
+      document.getElementById('collectionSummaryText').textContent =
+        I18N[currentLang].summaryFmt(unlockedCount, crownCount);
+      renderLeaderboard();
+      document.getElementById('overModal').classList.remove('hidden');
+    }
+
+    function gameLoop() {
+      if (!gameRunning) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      let newStage = 1;
+      if (score >= 450) newStage = 3;
+      else if (score >= 180) newStage = 2;
+
+      if (newStage !== stage) {
+        stage = newStage;
+        playNoteSound('fanfare');
+        playStageBgm(stage);
+        showToast(stage === 2 ? '🎵 STAGE 2! BGM: 이방인' : '🔥 STAGE 3 CLIMAX! Masaya Medley!');
+      }
+
+      if (feverTimer > 0) feverTimer--;
+
+      if (keys.left) player.targetX -= 6.5;
+      if (keys.right) player.targetX += 6.5;
+      player.targetX = Math.max(45, Math.min(canvas.width - 45, player.targetX));
+
+      const dx = player.targetX - player.x;
+      player.x += dx * 0.22;
+      player.tilt = Math.max(-0.22, Math.min(0.22, dx * 0.012));
+
+      spawnTimer++;
+      const interval = Math.max(21, 46 - stage * 6 - (feverTimer > 0 ? 7 : 0));
+      if (spawnTimer >= interval) {
+        spawnTimer = 0;
+        spawnItem();
+      }
+
+      for (let i = items.length - 1; i >= 0; i--) {
+        const it = items[i];
+        it.y += it.vy;
+        it.x += Math.sin(it.y * 0.04) * it.sway;
+
+        ctx.save();
+        ctx.font = '30px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(it.emoji, it.x, it.y);
+        ctx.restore();
+
+        const dist = Math.hypot(it.x - player.x, it.y - (player.y - 6));
+        if (dist < 46) {
+          if (it.type === 'cloud') {
+            lives--;
+            scaleIdx = 0;
+            playNoteSound('hit');
+            createBurst(it.x, it.y, '#ff3b6b');
+            floatTexts.push({ x: it.x, y: it.y, text: '-1 ❤️', color: '#ff2e63', life: 1 });
+            if (lives <= 0) {
+              updateHUD();
+              endGame();
+              return;
+            }
+          } else {
+            const mult = feverTimer > 0 ? 2 : 1;
+            const gained = it.pts * mult;
+            score += gained;
+            playNoteSound(it.type);
+            createBurst(it.x, it.y, it.type === 'mic' ? '#ffb800' : '#ff5c9e');
+            floatTexts.push({ x: it.x, y: it.y, text: `+${gained}`, color: '#ff2e83', life: 1 });
+
+            if (it.type === 'heart') {
+              feverGauge = Math.min(100, feverGauge + 25);
+              heartsCaughtInRun++;
+              if (heartsCaughtInRun % 2 === 1) {
+                unlockNextCard();
+              }
+            } else if (it.type === 'mic' || feverGauge >= 100) {
+              feverTimer = 300;
+              feverGauge = 0;
+            }
+          }
+          items.splice(i, 1);
+          updateHUD();
+          continue;
+        }
+
+        if (it.y > canvas.height + 35) items.splice(i, 1);
+      }
+
+      ctx.save();
+      ctx.translate(player.x, player.y);
+      ctx.rotate(player.tilt);
+      ctx.drawImage(mascotImg, -player.w / 2, -player.h / 2, player.w, player.h);
+      ctx.restore();
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.035;
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.life;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      for (let i = floatTexts.length - 1; i >= 0; i--) {
+        const ft = floatTexts[i];
+        ft.y -= 1.4;
+        ft.life -= 0.03;
+        if (ft.life <= 0) { floatTexts.splice(i, 1); continue; }
+        ctx.save();
+        ctx.globalAlpha = ft.life;
+        ctx.font = '900 18px Fredoka, sans-serif';
+        ctx.fillStyle = ft.color;
+        ctx.textAlign = 'center';
+        ctx.fillText(ft.text, ft.x, ft.y);
+        ctx.restore();
+      }
+
+      updateHUD();
+      requestAnimationFrame(gameLoop);
+    }
+
+    // 7. 리더보드 & SNS 공유
+    const STORAGE_KEY = 'pinktiger_melody_ranks_v3';
+    function getRanks() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+          { name: 'Pinktiger_USA', score: 980 },
+          { name: 'Masaya_Love', score: 680 },
+          { name: 'AGE_OfficialFan', score: 450 }
+        ];
+      } catch { return []; }
+    }
+
+    function renderLeaderboard() {
+      const list = getRanks();
+      const el = document.getElementById('rankList');
+      el.innerHTML = list.slice(0, 5).map((r, idx) =>
+        `<div class="rank-item"><span>#${idx + 1} ${r.name}</span><span>${r.score} pts</span></div>`
+      ).join('');
+    }
+
+    document.getElementById('saveRankBtn').addEventListener('click', () => {
+      const name = document.getElementById('nickInput').value.trim() || 'PinktigerFan';
+      const list = getRanks();
+      list.push({ name, score });
+      list.sort((a, b) => b.score - a.score);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list.slice(0, 10)));
+      renderLeaderboard();
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      const unlockedCount = Math.min(14, collectionProgress);
+      const crownCount = Math.max(0, Math.min(14, collectionProgress - 14));
+      const shareText = `🐯🎵 ${I18N[currentLang].startTitle}\nScore: ${score} pts | Photocards: ${unlockedCount}/14 (👑Gold: ${crownCount})\nPlay on Masaya USA Pinktiger: https://novavista-game.github.io/masaya-usa-pinktiger/#${currentLang}`;
+      navigator.clipboard.writeText(shareText).then(() => {
+        alert(I18N[currentLang].copied);
+      });
+    });
+
+    document.getElementById('exitBtn').addEventListener('click', () => {
+      window.open(`https://novavista-game.github.io/masaya-usa-pinktiger/#${currentLang}`, '_blank');
+    });
+
+    document.getElementById('startBtn').addEventListener('click', startGame);
+    document.getElementById('retryBtn').addEventListener('click', startGame);
+  </script>
+</body>
+</html>
