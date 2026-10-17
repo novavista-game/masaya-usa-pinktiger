@@ -112,6 +112,7 @@ window.translations = {
     "schedule-notice": "The schedule introduced here is announced by Masaya's agency and is subject to change or cancellation. Thank you for your understanding. ⚠️",
     "cal-month-oct": "🗓️ October 2026",
     "cal-month-nov": "🗓️ November 2026",
+    "cal-month-dec": "📅 December 2026",
     "cal-day-sun": "SUN",
     "cal-day-mon": "MON",
     "cal-day-tue": "TUE",
@@ -125,15 +126,19 @@ window.translations = {
     "cal-oct-4": "[AGE] AGE LIVE TOUR 2026 \"PERCENTAGE%\" Tokyo @SHIBUYA DIVE",
     "cal-oct-10": "[M&R] FM802 MINAMI WHEEL 2026 @club JOULE",
     "cal-oct-17": "[AGE] Jun \"Ranju no Anshitsu\" @SYD Hall",
-    "cal-oct-18": "[AGE] 3meet @OSAKA MUSE",
+    "cal-oct-18": "[AGE] 3meet ~HALLOWEEN~ @OSAKA MUSE",
+    "cal-oct-23": "[AGE] Masaya \"MCM PRESENTS Masaya's Pink Disco Party @MCM GINZA HAUS1\" (※Masaya only)",
+    "cal-oct-31": "[AGE] 3meet ~Halloween Another Story~ @aer-u cafe",
     "cal-oct-19a": "[AGE] Masaya \"Furuya Ichiro × Nanno Yoko presents Showa 101 Super Song Book Show\" @Festival Hall",
     "cal-oct-19b": "[AGE] Uen \"Vig presents Blue Hour vol.2\" @Kyobashi Arc",
     "cal-nov-3": "[M&R] MIDNIGHT DRIVE × M&R Special 2MAN LIVE @Jiji Press Hall",
+    "cal-nov-3b": "[AGE] EGOIST vol.3 @TOKIO TOKYO",
     "cal-nov-6": "[M&R] 2026 Golden Moon Concert In Tokyo (By your side) @Shibuya duo MUSIC EXCHANGE",
     "cal-nov-7": "[AGE] 3meet @club JOULE",
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO \"2026 Variation Tour Final\" @Katsushika Symphony Hills",
-    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA",
-    "cal-nov-14": "[AGE] AGE 7th Anniversary Live Bonus Event @aer-u cafe"
+    "cal-dec-5": "[AGE] Live Scheduled @Osaka",
+    "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Special Event @Tokyo Metro Area"
 
   },
   ja: {
@@ -244,6 +249,7 @@ window.translations = {
     "schedule-notice": "ここで紹介されているスケジュールはMasayaの所属事務所が発表したものであり、キャンセルや変更される場合がありますので、ご了承ください。 ⚠️",
     "cal-month-oct": "🗓️ 2026年 10月",
     "cal-month-nov": "🗓️ 2026年 11月",
+    "cal-month-dec": "📅 2026年 12月",
     "cal-day-sun": "日",
     "cal-day-mon": "月",
     "cal-day-tue": "火",
@@ -257,15 +263,19 @@ window.translations = {
     "cal-oct-4": "[AGE] AGE LIVE TOUR 2026 \"PERCENTAGE%\" 東京公演 @SHIBUYA DIVE",
     "cal-oct-10": "[M&R] FM802 MINAMI WHEEL 2026 @club JOULE",
     "cal-oct-17": "[AGE] Jun『らんじゅのあんしつ @SYDホール』",
-    "cal-oct-18": "[AGE] 3meet @OSAKA MUSE",
+    "cal-oct-18": "[AGE] 3meet〜HALLOWEEN〜 @OSAKA MUSE",
+    "cal-oct-23": "[AGE] Masaya『MCM PRESENTS Masaya's Pink Disco Party @MCM GINZA HAUS1』(※Masayaのみ)",
+    "cal-oct-31": "[AGE] 3meet 〜Halloween Another Story〜 @aer-u cafe",
     "cal-oct-19a": "[AGE] Masaya『古家伊知郎×南野陽子 presents 昭和101年スーパーソングブックショウ @フェスティバルホール』",
     "cal-oct-19b": "[AGE] Uen『Vig presents Blue Hour vol.2 @京橋Arc』",
     "cal-nov-3": "[M&R] MIDNIGHT DRIVE × M&R Special 2MAN LIVE @時事通信ホール",
+    "cal-nov-3b": "[AGE] EGOIST vol.3 @TOKIO TOKYO",
     "cal-nov-6": "[M&R] 2026 Golden Moon Concert In Tokyo (By your side) @渋谷duo MUSIC EXCHANGE",
     "cal-nov-7": "[AGE] 3meet @club JOULE",
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO「2026バリエーション・ツアー ファイナル」@かつしかシンフォニーヒルズ",
-    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA",
-    "cal-nov-14": "[AGE] AGE 7th Anniversary Live 特典会 @aer-u cafe"
+    "cal-dec-5": "[AGE] ライブ予定@大阪",
+    "cal-dec-11": "[AGE] AGE 7th Anniversary Live @新宿ReNY",
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 特典会 @首都圏"
   },
   ko: {
     "nav-home": "홈",
@@ -376,6 +386,7 @@ window.translations = {
     "schedule-notice": "여기에 소개된 일정은 마사야의 소속사에서 공지한 내용으로 일정은 취소되거나 변경될 수 있으니, 이 점 양해 부탁드립니다 ⚠️",
     "cal-month-oct": "🗓️ 2026년 10월",
     "cal-month-nov": "🗓️ 2026년 11월",
+    "cal-month-dec": "📅 2026년 12월",
     "cal-day-sun": "일",
     "cal-day-mon": "월",
     "cal-day-tue": "화",
@@ -389,15 +400,19 @@ window.translations = {
     "cal-oct-4": "[AGE] AGE LIVE TOUR 2026 \"PERCENTAGE%\" 도쿄 공연 @SHIBUYA DIVE",
     "cal-oct-10": "[M&R] FM802 MINAMI WHEEL 2026 @club JOULE",
     "cal-oct-17": "[AGE] Jun『란쥬노안시츠 @SYD홀』",
-    "cal-oct-18": "[AGE] 3meet @OSAKA MUSE",
+    "cal-oct-18": "[AGE] 3meet ~HALLOWEEN~ @OSAKA MUSE",
+    "cal-oct-23": "[AGE] Masaya 『MCM PRESENTS Masaya's Pink Disco Party @MCM GINZA HAUS1』 (※마사야 단독)",
+    "cal-oct-31": "[AGE] 3meet ~Halloween Another Story~ @aer-u cafe",
     "cal-oct-19a": "[AGE] Masaya『후루야 이치로×미나미노 요코 presents 쇼와 101년 슈퍼 송 북 쇼 @페스티벌 홀』",
     "cal-oct-19b": "[AGE] Uen『Vig presents Blue Hour vol.2 @교바시 Arc』",
     "cal-nov-3": "[M&R] MIDNIGHT DRIVE × M&R Special 2MAN LIVE @지지통신홀",
+    "cal-nov-3b": "[AGE] EGOIST vol.3 @TOKIO TOKYO",
     "cal-nov-6": "[M&R] 2026 Golden Moon Concert In Tokyo (By your side) @시부야 duo MUSIC EXCHANGE",
     "cal-nov-7": "[AGE] 3meet @club JOULE",
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO「2026 바리에이션 투어 파이널」@가쓰시카 심포니 힐즈",
-    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA",
-    "cal-nov-14": "[AGE] AGE 7th Anniversary Live 특전회 @aer-u cafe"
+    "cal-dec-5": "[AGE] 라이브 예정 @오사카",
+    "cal-dec-11": "[AGE] AGE 7th Anniversary Live @신주쿠 ReNY",
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 특전회 @수도권"
   },
   es: {
     "nav-home": "Inicio",
@@ -508,6 +523,7 @@ window.translations = {
     "schedule-notice": "El calendario presentado aquí es anunciado por la agencia de Masaya y está sujeto a cambios o cancelaciones. Gracias por su comprensión. ⚠️",
     "cal-month-oct": "🗓️ Octubre 2026",
     "cal-month-nov": "🗓️ Noviembre 2026",
+    "cal-month-dec": "📅 Diciembre 2026",
     "cal-day-sun": "DOM",
     "cal-day-mon": "LUN",
     "cal-day-tue": "MAR",
@@ -521,15 +537,19 @@ window.translations = {
     "cal-oct-4": "[AGE] AGE LIVE TOUR 2026 \"PERCENTAGE%\" Tokio @SHIBUYA DIVE",
     "cal-oct-10": "[M&R] FM802 MINAMI WHEEL 2026 @club JOULE",
     "cal-oct-17": "[AGE] Jun \"Ranju no Anshitsu\" @SYD Hall",
-    "cal-oct-18": "[AGE] 3meet @OSAKA MUSE",
+    "cal-oct-18": "[AGE] 3meet ~HALLOWEEN~ @OSAKA MUSE",
+    "cal-oct-23": "[AGE] Masaya \"MCM PRESENTS Masaya's Pink Disco Party @MCM GINZA HAUS1\" (※Solo Masaya)",
+    "cal-oct-31": "[AGE] 3meet ~Halloween Another Story~ @aer-u cafe",
     "cal-oct-19a": "[AGE] Masaya \"Furuya Ichiro × Nanno Yoko presenta Showa 101 Super Song Book Show\" @Festival Hall",
     "cal-oct-19b": "[AGE] Uen \"Vig presenta Blue Hour vol.2\" @Kyobashi Arc",
     "cal-nov-3": "[M&R] MIDNIGHT DRIVE × M&R Special 2MAN LIVE @Jiji Press Hall",
+    "cal-nov-3b": "[AGE] EGOIST vol.3 @TOKIO TOKYO",
     "cal-nov-6": "[M&R] 2026 Golden Moon Concert In Tokyo (By your side) @Shibuya duo MUSIC EXCHANGE",
     "cal-nov-7": "[AGE] 3meet @club JOULE",
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO \"2026 Variation Tour Final\" @Katsushika Symphony Hills",
-    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA",
-    "cal-nov-14": "[AGE] AGE 7th Anniversary Live Evento de regalos @aer-u cafe"
+    "cal-dec-5": "[AGE] Concierto Programado @Osaka",
+    "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Evento Especial @Área Metropolitana de Tokio"
   },
   fr: {
     "nav-home": "Accueil",
@@ -641,6 +661,7 @@ window.translations = {
     "schedule-notice": "Le programme présenté ici est annoncé par l'agence de Masaya et est sujet à changement ou annulation. Merci de votre compréhension. ⚠️",
     "cal-month-oct": "🗓️ Octobre 2026",
     "cal-month-nov": "🗓️ Novembre 2026",
+    "cal-month-dec": "📅 Décembre 2026",
     "cal-day-sun": "DIM",
     "cal-day-mon": "LUN",
     "cal-day-tue": "MAR",
@@ -654,15 +675,19 @@ window.translations = {
     "cal-oct-4": "[AGE] AGE LIVE TOUR 2026 «PERCENTAGE%» Tokyo @SHIBUYA DIVE",
     "cal-oct-10": "[M&R] FM802 MINAMI WHEEL 2026 @club JOULE",
     "cal-oct-17": "[AGE] Jun «Ranju no Anshitsu» @SYD Hall",
-    "cal-oct-18": "[AGE] 3meet @OSAKA MUSE",
+    "cal-oct-18": "[AGE] 3meet ~HALLOWEEN~ @OSAKA MUSE",
+    "cal-oct-23": "[AGE] Masaya « MCM PRESENTS Masaya's Pink Disco Party @MCM GINZA HAUS1 » (※Masaya uniquement)",
+    "cal-oct-31": "[AGE] 3meet ~Halloween Another Story~ @aer-u cafe",
     "cal-oct-19a": "[AGE] Masaya «Furuya Ichiro × Nanno Yoko présente Showa 101 Super Song Book Show» @Festival Hall",
     "cal-oct-19b": "[AGE] Uen «Vig présente Blue Hour vol.2» @Kyobashi Arc",
     "cal-nov-3": "[M&R] MIDNIGHT DRIVE × M&R Special 2MAN LIVE @Jiji Press Hall",
+    "cal-nov-3b": "[AGE] EGOIST vol.3 @TOKIO TOKYO",
     "cal-nov-6": "[M&R] 2026 Golden Moon Concert In Tokyo (By your side) @Shibuya duo MUSIC EXCHANGE",
     "cal-nov-7": "[AGE] 3meet @club JOULE",
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO «2026 Variation Tour Final» @Katsushika Symphony Hills",
-    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA",
-    "cal-nov-14": "[AGE] AGE 7th Anniversary Live Événement bonus @aer-u cafe"
+    "cal-dec-5": "[AGE] Concert prévu @Osaka",
+    "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Événement Spécial @Région de Tokyo"
   }
 };
 
@@ -760,7 +785,7 @@ function initCalendarModal() {
           monthText = window.translations[currentLang][monthKey];
         }
         // Clean up emojis from month text
-        monthText = monthText.replace('🗓️', '').trim();
+        monthText = monthText.replace('🗓️', '').replace('📅', '').trim();
         
         const dayNum = dayNumEl ? dayNumEl.textContent : "";
         dateString = `${monthText} ${dayNum}`;
