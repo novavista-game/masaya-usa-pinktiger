@@ -2576,9 +2576,9 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 }
 
 /* ==========================================================================
-   📖 VOGUE MASAYA — E-Magazine (mascot section, left card)
+   📖 MASAYA MAGAZINE — E-Magazine (mascot section, left card)
    ========================================================================== */
-.vogue-mag-card {
+.masaya-mag-card {
   --vm-ink: #1c0d15;
   --vm-paper: #fffaf6;
   --vm-pink: #ff5c9e;
@@ -2606,7 +2606,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 }
 
 /* thin inner gold hairline for a luxe print feel */
-.vogue-mag-card::after {
+.masaya-mag-card::after {
   content: '';
   position: absolute;
   inset: 6px;
@@ -2800,16 +2800,50 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 }
 
 .vm-masthead {
-  margin: 6px 0 0;
-  font-family: var(--vm-serif);
-  font-weight: 900;
-  font-size: 3.4rem;
-  font-size: clamp(2rem, 10.5cqw, 4.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #fff;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
   white-space: nowrap;
+}
+
+.vm-mast-main {
+  display: block;
+  font-family: var(--vm-serif);
+  font-weight: 900;
+  font-size: 4rem;
+  font-size: clamp(2.6rem, 17cqw, 6.4rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.vm-mast-sub {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: 0.45em;
+  font-family: var(--vm-display);
+  font-weight: 700;
+  font-size: 1rem;
+  font-size: clamp(0.85rem, 4cqw, 1.45rem);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em; /* balance trailing letter-spacing for true centering */
+  color: #fff;
+}
+
+.vm-mast-sub::before,
+.vm-mast-sub::after {
+  content: '';
+  width: 2.2em;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vm-gold-light));
+}
+
+.vm-mast-sub::after {
+  background: linear-gradient(90deg, var(--vm-gold-light), transparent);
 }
 
 .vm-cover-sub {
@@ -3195,18 +3229,18 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 
 /* ---------- Responsive ---------- */
 @media (max-width: 992px) {
-  .vogue-mag-card {
+  .masaya-mag-card {
     height: 720px;
     min-height: 0;
   }
 }
 
 @media (max-width: 900px) {
-  .vogue-mag-card {
+  .masaya-mag-card {
     height: 720px;
     border-radius: 28px;
   }
-  .vogue-mag-card::after { border-radius: 22px; }
+  .masaya-mag-card::after { border-radius: 22px; }
   .vm-topbar { justify-content: center; padding: 12px 14px 8px; }
   .vm-title { font-size: 1.35rem; }
   .vm-photo { flex-basis: 42%; margin: 12px 12px 0; }
@@ -3215,7 +3249,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 }
 
 @media (max-width: 480px) {
-  .vogue-mag-card { height: 680px; }
+  .masaya-mag-card { height: 680px; }
   .vm-issue-badge { font-size: 0.68rem; padding: 5px 10px; }
   .vm-mini-btn { font-size: 0.7rem; padding: 4px 9px; }
   .vm-counter { font-size: 0.85rem; min-width: 38px; }

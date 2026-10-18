@@ -1088,7 +1088,7 @@ function syncGameLanguage(lang) {
 
 function updateLanguage(lang) {
   syncGameLanguage(lang);
-  if (typeof renderVogueMagazine === 'function') renderVogueMagazine(lang);
+  if (typeof renderMasayaMagazine === 'function') renderMasayaMagazine(lang);
   // Save chosen language preference
   localStorage.setItem('preferredLang', lang);
   
@@ -1777,7 +1777,7 @@ function initMascotEasterEgg() {
 }
 
 /* ==========================================================================
-   10-B. 📖 VOGUE MASAYA — Oct 2026 Premiere Issue (Vol. 1) E-Magazine
+   10-B. 📖 MASAYA MAGAZINE — Oct 2026 Premiere Issue (Vol. 1) E-Magazine
    ========================================================================== */
 window.magazineTranslations = {
   ko: {
@@ -1785,7 +1785,7 @@ window.magazineTranslations = {
     prevBtn: "◀ 이전 면", nextBtn: "다음 면 ▶",
     p1: {
       tag: "SPECIAL DEBUT ISSUE",
-      title: "VOGUE MASAYA",
+      title: "MASAYA MAGAZINE",
       subtitle: "THE PINK & GOLDEN ERA",
       headlines: ["✦ 오사카의 가을 하늘을 수놓은 단독 무대", "✦ 쇼와 101년 명곡의 디바 & 긴자 MCM 핑크 디스코", "✦ AGE 투어 파이널과 M&R 30만 뷰 신화"]
     },
@@ -1820,7 +1820,7 @@ window.magazineTranslations = {
     prevBtn: "◀ Prev", nextBtn: "Next ▶",
     p1: {
       tag: "SPECIAL DEBUT ISSUE",
-      title: "VOGUE MASAYA",
+      title: "MASAYA MAGAZINE",
       subtitle: "THE PINK & GOLDEN ERA",
       headlines: ["✦ Solo Open-Air Stage Under Osaka's Autumn Sky", "✦ Showa Songbook Legend & MCM Ginza Pink Disco", "✦ AGE Tour Finale & M&R's 300K Views Milestone"]
     },
@@ -1855,7 +1855,7 @@ window.magazineTranslations = {
     prevBtn: "◀ 前へ", nextBtn: "次へ ▶",
     p1: {
       tag: "SPECIAL DEBUT ISSUE",
-      title: "VOGUE MASAYA",
+      title: "MASAYA MAGAZINE",
       subtitle: "THE PINK & GOLDEN ERA",
       headlines: ["✦ 大阪の秋空に響いた感動のソロステージ", "✦ 昭和101年名曲の歌姫＆銀座MCMピンクディスコ", "✦ AGEツアーファイナル＆M&R 30万回再生突破"]
     },
@@ -1890,7 +1890,7 @@ window.magazineTranslations = {
     prevBtn: "◀ Ant.", nextBtn: "Sig. ▶",
     p1: {
       tag: "SPECIAL DEBUT ISSUE",
-      title: "VOGUE MASAYA",
+      title: "MASAYA MAGAZINE",
       subtitle: "THE PINK & GOLDEN ERA",
       headlines: ["✦ Escenario en solitario bajo el cielo otoñal de Osaka", "✦ Leyenda vocal en Festival Hall y MCM Ginza Pink Disco", "✦ Final de gira de AGE y 300 mil vistas de M&R"]
     },
@@ -1925,7 +1925,7 @@ window.magazineTranslations = {
     prevBtn: "◀ Préc.", nextBtn: "Suiv. ▶",
     p1: {
       tag: "SPECIAL DEBUT ISSUE",
-      title: "VOGUE MASAYA",
+      title: "MASAYA MAGAZINE",
       subtitle: "THE PINK & GOLDEN ERA",
       headlines: ["✦ Scène solo sous le ciel d'automne d'Osaka", "✦ Diva du Festival Hall & Pink Disco chez MCM Ginza", "✦ Finale de la tournée AGE & 300K vues pour M&R"]
     },
@@ -1963,15 +1963,32 @@ function vmResolve(pack, path) {
 }
 
 // Render all magazine text for the given language (textContent only → safe for "<By your side>")
-function renderVogueMagazine(lang) {
-  const root = document.getElementById('vogueMagazine');
+function renderMasayaMagazine(lang) {
+  const root = document.getElementById('masayaMagazine');
   const packs = window.magazineTranslations;
   if (!root || !packs) return;
   const pack = packs[lang] || packs.en;
 
   root.querySelectorAll('[data-mag]').forEach(el => {
     const val = vmResolve(pack, el.getAttribute('data-mag'));
-    if (typeof val === 'string') el.textContent = val;
+    if (typeof val !== 'string') return;
+    if (el.classList.contains('vm-masthead')) {
+      // Cover logo: "MASAYA" (large serif) over "MAGAZINE" (wide tracking)
+      const spaceIdx = val.indexOf(' ');
+      const main = document.createElement('span');
+      main.className = 'vm-mast-main';
+      main.textContent = spaceIdx > -1 ? val.slice(0, spaceIdx) : val;
+      el.textContent = '';
+      el.appendChild(main);
+      if (spaceIdx > -1) {
+        const sub = document.createElement('span');
+        sub.className = 'vm-mast-sub';
+        sub.textContent = val.slice(spaceIdx + 1);
+        el.appendChild(sub);
+      }
+      return;
+    }
+    el.textContent = val;
   });
 
   root.querySelectorAll('[data-mag-list]').forEach(list => {
@@ -2007,8 +2024,8 @@ function renderVogueMagazine(lang) {
   root.setAttribute('lang', lang);
 }
 
-function initVogueMagazine() {
-  const root = document.getElementById('vogueMagazine');
+function initMasayaMagazine() {
+  const root = document.getElementById('masayaMagazine');
   if (!root) return;
 
   const stage = document.getElementById('vmStage');
@@ -2079,7 +2096,7 @@ function initVogueMagazine() {
     }
   }, { passive: true });
 
-  renderVogueMagazine(document.documentElement.lang || localStorage.getItem('preferredLang') || 'en');
+  renderMasayaMagazine(document.documentElement.lang || localStorage.getItem('preferredLang') || 'en');
   render();
 }
 
@@ -2132,7 +2149,7 @@ function initFanLetterCarousel() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMascotEasterEgg();
-  initVogueMagazine();
+  initMasayaMagazine();
   initFanLetterCarousel();
 });
 
