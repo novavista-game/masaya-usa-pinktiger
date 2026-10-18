@@ -1730,8 +1730,9 @@ window.magazineTranslations = {
     p3: {
       tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
       title: "대형 홀의 보컬 전설 & 긴자 핑크 아이콘",
-      subtitle: "10.19 페스티벌 홀 솔로 출격 & 10.23 MCM 긴자 파티",
-      body: "보컬리스트와 패션 아이콘으로서 마사야의 진가가 동시에 폭발하는 10월입니다! 10월 19일에는 2,700석 규모의 명문 오사카 페스티벌 홀에서 열리는 『쇼와 101년 슈퍼 송북 쇼!』에 대선배 레전드 가수들과 나란히 솔로로 무대에 오릅니다. 이어 10월 23일에는 도쿄 긴자 명품 하우스에서 단독 호스트로 『MCM PRESENTS Masaya's Pink Disco Party』를 개최하며 독보적인 매력을 발산합니다."
+      subtitle: "쇼와 101년 송북 쇼(요코하마·오사카) & 10.23 MCM 긴자 파티",
+      body: "보컬리스트와 패션 아이콘으로서 마사야의 진가가 동시에 폭발하는 10월입니다! 요코하마 공연에서 뜨거운 감동의 폭풍을 일으킨 『쇼와 101년 슈퍼 송북 쇼!』의 열기가 10월 19일 오사카 페스티벌 홀(2,700석 대공연장)로 이어집니다. 이어 10월 23일에는 도쿄 긴자 명품 하우스에서 단독 호스트로 『MCM PRESENTS Masaya's Pink Disco Party』(@MCM GINZA HAUS1)를 개최합니다.",
+      linkLabel: "✨ MCM Pink Disco Party 공식 안내 (@AGE_MASAYA_)"
     },
     p4: {
       tag: "GROUP & UNIT • AGE & M&R",
@@ -1743,7 +1744,8 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "11월, 더욱 거대한 감동이 찾아옵니다",
       subtitle: "놓쳐선 안 될 11월 빅 이벤트 라인업",
-      body: "• 11.03 (화): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@지지통신홀)\n• 11.06 (금): 2026 Golden Moon Concert in Tokyo (한일 합동 콘서트 @시부야 duo)\n• 11.08 (일): JPOP CLASSIC CLUB 투어 파이널 (@카츠시카 심포니 힐즈 모차르트 홀)\n• 11.13 (금)~14 (토): 대망의 『AGE 7th Anniversary Live』 (@고릴라 홀 오사카)"
+      body: "• 11.03 (화): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@지지통신홀)\n• 11.06 (금): 2026 Golden Moon Concert in Tokyo (한일 합동 콘서트 @시부야 duo)\n• 11.08 (일): JPOP CLASSIC CLUB 투어 파이널 (@카츠시카 심포니 힐즈 모차르트 홀)\n• 11.13 (금)~14 (토): 대망의 『AGE 7th Anniversary Live』 (@고릴라 홀 오사카)",
+      linkLabel: "🎤 M&R 라이브 영상 보기 — AI「Story」｜Masaya & Ryo"
     }
   },
   en: {
@@ -1764,8 +1766,9 @@ window.magazineTranslations = {
     p3: {
       tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
       title: "Grand Hall Vocalist & Ginza Pink Icon",
-      subtitle: "Oct 19 Festival Hall & Oct 23 MCM Ginza Party",
-      body: "October showcases Masaya as both a powerhouse vocalist and a fashion icon! On Oct 19, he performs solo alongside legendary Japanese artists at the prestigious 2,700-seat Osaka Festival Hall for the 'Showa 101 Super Songbook Show!' Then on Oct 23, he takes over Tokyo's luxury district as the solo star of 'MCM PRESENTS Masaya's Pink Disco Party' at MCM GINZA HAUS1."
+      subtitle: "Showa 101 Songbook Show (Yokohama & Osaka) & Oct 23 MCM Ginza",
+      body: "October showcases Masaya as both a powerhouse vocalist and a fashion icon! Following an emotional standing ovation at the Yokohama show, the 'Showa 101 Super Songbook Show!' heads to the prestigious 2,700-seat Osaka Festival Hall on Oct 19. Then on Oct 23, he stars solo at 'MCM PRESENTS Masaya's Pink Disco Party' at MCM GINZA HAUS1 in Tokyo.",
+      linkLabel: "✨ MCM Pink Disco Party Official Info (@AGE_MASAYA_)"
     },
     p4: {
       tag: "GROUP & UNIT • AGE & M&R",
@@ -1777,7 +1780,8 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "Bigger Moments Await in November",
       subtitle: "Must-Watch November Live Lineup",
-      body: "• Nov 3: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• Nov 6: 2026 Golden Moon Concert in Tokyo <By your side> (@Shibuya duo)\n• Nov 8: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills Mozart Hall)\n• Nov 13–14: The Grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
+      body: "• Nov 3: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• Nov 6: 2026 Golden Moon Concert in Tokyo <By your side> (@Shibuya duo)\n• Nov 8: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills Mozart Hall)\n• Nov 13–14: The Grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      linkLabel: "🎤 Watch M&R Live — AI「Story」｜Masaya & Ryo"
     }
   },
   ja: {
@@ -1798,8 +1802,9 @@ window.magazineTranslations = {
     p3: {
       tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
       title: "名門ホールの歌姫＆銀座のピンクアイコン",
-      subtitle: "10.19 フェスティバルホール＆10.23 MCM銀座パーティ",
-      body: "ボーカリストとしてもファッションアイコンとしても輝く10月！10月19日には名門・大阪フェスティバルホールで開催される『昭和101年 スーパー・ソングブック・ショウ！』に豪華レジェンド歌手と共にソロ出演。さらに10月23日には東京・銀座にて単独イベント『MCM PRESENTS Masaya's Pink Disco Party』(@MCM GINZA HAUS1)を開催します！"
+      subtitle: "昭和101年ソングブックショウ(横浜・大阪)＆10.23 MCM銀座パーティ",
+      body: "横浜公演で感動の嵐を巻き起こした『昭和101年 スーパー・ソングブック・ショウ！』の熱気が、10月19日の名門・大阪フェスティバルホールへと続きます！さらに10月23日には東京・銀座にて単独イベント『MCM PRESENTS Masaya's Pink Disco Party』(@MCM GINZA HAUS1)を開催し、圧倒的な存在感を放ちます。",
+      linkLabel: "✨ MCM Pink Disco Party 公式案内 (@AGE_MASAYA_)"
     },
     p4: {
       tag: "GROUP & UNIT • AGE & M&R",
@@ -1811,7 +1816,8 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "11月、さらなる感動のステージへ",
       subtitle: "見逃せない11月の注目スケジュール",
-      body: "• 11/3 (火): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@時事通信ホール)\n• 11/6 (金): 2026 Golden Moon Concert in Tokyo (@渋谷duo MUSIC EXCHANGE)\n• 11/8 (日): JPOP CLASSIC CLUB ツアーファイナル (@かつしかシンフォニーヒルズ)\n• 11/13 (金)～14 (土): 待望の『AGE 7th Anniversary Live』 (@GORILLA HALL OSAKA)"
+      body: "• 11/3 (火): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@時事通信ホール)\n• 11/6 (金): 2026 Golden Moon Concert in Tokyo (@渋谷duo MUSIC EXCHANGE)\n• 11/8 (日): JPOP CLASSIC CLUB ツアーファイナル (@かつしかシンフォニーヒルズ)\n• 11/13 (金)～14 (土): 待望の『AGE 7th Anniversary Live』 (@GORILLA HALL OSAKA)",
+      linkLabel: "🎤 M&R ライブ映像 — AI「Story」｜Masaya & Ryo"
     }
   },
   es: {
@@ -1832,8 +1838,9 @@ window.magazineTranslations = {
     p3: {
       tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
       title: "Leyenda Vocal e Ícono Rosa en Ginza",
-      subtitle: "19 Oct Festival Hall y 23 Oct Fiesta MCM Ginza",
-      body: "¡Octubre muestra a Masaya como una estrella vocal y un ícono de la moda! El 19 de octubre actúa en solitario junto a grandes leyendas en el prestigioso Osaka Festival Hall ('Showa 101 Super Songbook Show!'). Luego, el 23 de octubre, protagoniza en solitario la exclusiva 'MCM PRESENTS Masaya's Pink Disco Party' en MCM GINZA HAUS1 en Tokio."
+      subtitle: "Showa 101 Songbook Show (Yokohama y Osaka) y 23 Oct MCM Ginza",
+      body: "Tras causar gran emoción en el concierto de Yokohama, el 'Showa 101 Super Songbook Show!' llega al prestigioso Osaka Festival Hall el 19 de octubre. Luego, el 23 de octubre, Masaya protagoniza en solitario la exclusiva 'MCM PRESENTS Masaya's Pink Disco Party' en MCM GINZA HAUS1 en Tokio.",
+      linkLabel: "✨ Info oficial de MCM Pink Disco Party (@AGE_MASAYA_)"
     },
     p4: {
       tag: "GROUP & UNIT • AGE & M&R",
@@ -1845,7 +1852,8 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVIEMBRE 2026",
       title: "Grandes Momentos Esperan en Noviembre",
       subtitle: "Eventos Imperdibles de Noviembre",
-      body: "• 3 Nov: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov: 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills)\n• 13–14 Nov: Gran Concierto 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
+      body: "• 3 Nov: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov: 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills)\n• 13–14 Nov: Gran Concierto 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      linkLabel: "🎤 Ver M&R en vivo — AI「Story」｜Masaya & Ryo"
     }
   },
   fr: {
@@ -1866,8 +1874,9 @@ window.magazineTranslations = {
     p3: {
       tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
       title: "Légende Vocale & Icône Rose à Ginza",
-      subtitle: "19 Oct Festival Hall & 23 Oct Soirée MCM Ginza",
-      body: "Octobre consacre Masaya à la fois comme grand vocaliste et icône de mode ! Le 19 octobre, il chante en solo aux côtés de légendes japonaises au prestigieux Osaka Festival Hall ('Showa 101 Super Songbook Show!'). Puis, le 23 octobre, il est la star solo de la soirée 'MCM PRESENTS Masaya's Pink Disco Party' chez MCM GINZA HAUS1 à Tokyo."
+      subtitle: "Showa 101 Songbook Show (Yokohama & Osaka) & 23 Oct MCM Ginza",
+      body: "Après avoir suscité une immense émotion lors du concert de Yokohama, le 'Showa 101 Super Songbook Show!' rejoint le prestigieux Osaka Festival Hall le 19 octobre. Puis, le 23 octobre, Masaya sera la star solo de la soirée 'MCM PRESENTS Masaya's Pink Disco Party' chez MCM GINZA HAUS1 à Tokyo.",
+      linkLabel: "✨ Infos officielles MCM Pink Disco Party (@AGE_MASAYA_)"
     },
     p4: {
       tag: "GROUP & UNIT • AGE & M&R",
@@ -1879,7 +1888,8 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBRE 2026",
       title: "Un Mois de Novembre Exceptionnel",
       subtitle: "Les Grands Rendez-vous de Novembre",
-      body: "• 3 Nov : MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov : 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov : Finale de tournée JPOP CLASSIC CLUB (@Katsushika Symphony Hills)\n• 13–14 Nov : Le grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
+      body: "• 3 Nov : MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov : 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov : Finale de tournée JPOP CLASSIC CLUB (@Katsushika Symphony Hills)\n• 13–14 Nov : Le grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      linkLabel: "🎤 Voir M&R en live — AI「Story」｜Masaya & Ryo"
     }
   }
 };

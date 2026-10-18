@@ -3068,6 +3068,35 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   color: var(--vm-pink-hot);
 }
 
+/* Secondary article link (e.g. MCM party info, M&R live video) */
+.vm-sub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 7px 14px;
+  font-family: var(--vm-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--vm-pink-hot);
+  text-decoration: none;
+  background: linear-gradient(135deg, #fff0f6 0%, #fff8e7 100%);
+  border: 1.5px solid #ffc2da;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.vm-sub-link:hover,
+.vm-sub-link:focus-visible {
+  color: #fff;
+  background: linear-gradient(135deg, var(--vm-pink-hot), #ff85b3 70%, var(--vm-gold));
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 46, 131, 0.3);
+  outline: none;
+}
+
 /* ---------- Page 5 · November preview schedule ---------- */
 .vm-schedule {
   list-style: none;
