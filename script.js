@@ -1688,7 +1688,7 @@ function initVideoCarousel() {
 
   const videos = [
     {
-      src: 'assets/_마사야 새노래_Final_10.18.26.mp4',
+      src: 'assets/마사야 새노래_Final_10.18.26.mp4',
       caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">誰より好きなのに (古内東子), 누구보다 좋아하는데 - Edited by Pinktiger USA</span></p>'
     },
     {
