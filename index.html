@@ -27,6 +27,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Lilita+One&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Editorial fonts for the VOGUE MASAYA E-Magazine -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Noto+Serif+JP:wght@500;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons for Cute UI elements -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -42,7 +44,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -72,7 +74,7 @@
         <a href="#hero" class="nav-link" data-translate="nav-home">Home</a>
         <a href="#about" class="nav-link" data-translate="nav-about">About Masaya</a>
         <a href="#schedule" class="nav-link" data-translate="nav-schedule">Upcoming Schedule</a>
-        <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">🎮 Masaya Stan Game</a>
+        <a href="index.html#mascot" class="nav-link" data-translate="nav-mascot">📖 Magazine &amp; 🎮 Game</a>
         <a href="#goods-store" class="nav-link" data-translate="nav-goods">Digital Merch</a>
         <a href="index.html#channels" class="nav-link" data-translate="nav-support">Support & Channels</a>
         <a href="index.html#karaoke-challenge" class="nav-link" data-translate="nav-karaoke">🎤 30-Sec Karaoke</a>
@@ -168,11 +170,6 @@
   <!-- Mascot Mascot Section -->
   <section id="mascot" class="mascot-section fade-in-section">
     <div class="container">
-      <div class="mascot-grid">
-        <!-- Combined Mascot Image with Easter Egg -->
-        <div class="combined-hotpick-card action-card" style="display: flex; justify-content: center; align-items: center; padding: 20px; background: var(--white); border-radius: 20px; border: 4px solid var(--primary-pink); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2); width: 100%; height: 100%; position: relative;">
-          <div class="mascot-frame" style="position: relative; width: 90%; max-width: 400px; margin: 0 auto;">
-            
             <!-- SVG Heart Clip Path (at document level for fixed-position modal access) -->
             <svg width="0" height="0" style="position: absolute;">
               <defs>
@@ -201,21 +198,120 @@
               .heart-pop-anim {
                 animation: popInHeartModal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
               }
-              #mascot-trigger:hover {
-                transform: scale(1.1);
-                filter: brightness(1.1);
-              }
             </style>
 
-            <!-- Click Mascot Hint Text -->
-            <div class="mascot-hint-text" data-translate="clickMascotHint">
-              Click the Pinktiger mascot to find Masaya's hidden photos! 🐯✨
+      <div class="mascot-grid">
+        <!-- 📖 VOGUE MASAYA — Oct 2026 Premiere Issue (Vol. 1) E-Magazine -->
+        <article class="vogue-mag-card" id="vogueMagazine" aria-roledescription="carousel" aria-label="VOGUE MASAYA E-Magazine">
+          <!-- Top bar -->
+          <div class="vm-topbar">
+            <span class="vm-issue-badge" id="vmIssueBadge" data-mag="issueBadge">📖 MONTHLY ISSUE • VOL. 01 (OCT 2026)</span>
+            <div class="vm-top-controls">
+              <button type="button" class="vm-mini-btn" id="vmTopPrev" data-mag="prevBtn">◀ Prev</button>
+              <span class="vm-counter" aria-live="polite"><b id="vmCurrent">1</b> / <span id="vmTotal">5</span></span>
+              <button type="button" class="vm-mini-btn" id="vmTopNext" data-mag="nextBtn">Next ▶</button>
             </div>
-
-            <img src="assets/profile.png" alt="Official Pinktiger Mascot" id="mascot-trigger" class="mascot-image floating-animation" style="width: 100%; display: block; margin: 0 auto; cursor: pointer; transition: all 0.3s ease; position: relative; z-index: 10;">
-            <div class="mascot-shadow" style="width: 70%; height: 25px; background: rgba(0,0,0,0.1); border-radius: 50%; margin: 15px auto 0 auto;"></div>
           </div>
-        </div>
+
+          <!-- Pages -->
+          <div class="vm-stage" id="vmStage" tabindex="0">
+
+            <!-- Page 1 · Cover -->
+            <section class="vm-page vm-cover is-active" id="vmPage1" aria-label="Page 1">
+              <img class="vm-cover-img" src="assets/마사야 사진 1.png" alt="Masaya — VOGUE MASAYA cover" loading="lazy">
+              <div class="vm-cover-shade"></div>
+              <div class="vm-cover-top">
+                <span class="vm-cover-tag" data-mag="p1.tag">SPECIAL DEBUT ISSUE</span>
+                <h2 class="vm-masthead" data-mag="p1.title">VOGUE MASAYA</h2>
+                <p class="vm-cover-sub" data-mag="p1.subtitle">THE PINK &amp; GOLDEN ERA</p>
+              </div>
+              <div class="vm-cover-bottom">
+                <ul class="vm-headlines" data-mag-list="p1.headlines"></ul>
+                <div class="vm-cover-meta"><span>OCT 2026</span><span>VOL. 01</span><span>MASAYA USA PINKTIGER</span></div>
+              </div>
+            </section>
+
+            <!-- Page 2 · Solo Spotlight 01 -->
+            <section class="vm-page vm-feature is-future" id="vmPage2" aria-label="Page 2">
+              <figure class="vm-photo">
+                <img class="vm-photo-bg" src="assets/마사야 사진 4.png" alt="" aria-hidden="true" loading="lazy">
+                <img class="vm-photo-main" src="assets/마사야 사진 4.png" alt="Masaya solo stage in Osaka" loading="lazy">
+                <span class="vm-photo-tag" data-mag="p2.tag"></span>
+                <span class="vm-folio">02</span>
+              </figure>
+              <div class="vm-article">
+                <h3 class="vm-title" data-mag="p2.title"></h3>
+                <p class="vm-subtitle" data-mag="p2.subtitle"></p>
+                <div class="vm-rule"><span>✦</span></div>
+                <p class="vm-body" data-mag="p2.body"></p>
+              </div>
+            </section>
+
+            <!-- Page 3 · Solo Spotlight 02 -->
+            <section class="vm-page vm-feature is-future" id="vmPage3" aria-label="Page 3">
+              <figure class="vm-photo">
+                <img class="vm-photo-bg" src="assets/마사야 사진 7.png" alt="" aria-hidden="true" loading="lazy">
+                <img class="vm-photo-main" src="assets/마사야 사진 7.png" alt="Masaya — vocal &amp; fashion" loading="lazy">
+                <span class="vm-photo-tag" data-mag="p3.tag"></span>
+                <span class="vm-folio">03</span>
+              </figure>
+              <div class="vm-article">
+                <h3 class="vm-title" data-mag="p3.title"></h3>
+                <p class="vm-subtitle" data-mag="p3.subtitle"></p>
+                <div class="vm-rule"><span>✦</span></div>
+                <p class="vm-body" data-mag="p3.body"></p>
+              </div>
+            </section>
+
+            <!-- Page 4 · AGE & M&R -->
+            <section class="vm-page vm-feature is-future" id="vmPage4" aria-label="Page 4">
+              <figure class="vm-photo">
+                <img class="vm-photo-bg" src="assets/마사야 사진 2.png" alt="" aria-hidden="true" loading="lazy">
+                <img class="vm-photo-main" src="assets/마사야 사진 2.png" alt="Masaya with AGE &amp; M&amp;R" loading="lazy">
+                <span class="vm-photo-tag" data-mag="p4.tag"></span>
+                <span class="vm-folio">04</span>
+              </figure>
+              <div class="vm-article">
+                <h3 class="vm-title" data-mag="p4.title"></h3>
+                <p class="vm-subtitle" data-mag="p4.subtitle"></p>
+                <div class="vm-rule"><span>✦</span></div>
+                <p class="vm-body" data-mag="p4.body"></p>
+              </div>
+            </section>
+
+            <!-- Page 5 · November Preview & Editor's Note -->
+            <section class="vm-page vm-preview is-future" id="vmPage5" aria-label="Page 5">
+              <div class="vm-preview-head">
+                <img class="vm-preview-thumb" src="assets/마사야 호랑이 없는 이미지.jpg" alt="Masaya illustration" loading="lazy">
+                <div class="vm-preview-heading">
+                  <span class="vm-kicker" data-mag="p5.tag"></span>
+                  <h3 class="vm-title" data-mag="p5.title"></h3>
+                  <p class="vm-subtitle" data-mag="p5.subtitle"></p>
+                </div>
+                <span class="vm-folio vm-folio-dark">05</span>
+              </div>
+              <ul class="vm-schedule" data-mag-list="p5.body"></ul>
+              <!-- Editor Pinktiger box → triggers the hidden Masaya photo easter egg -->
+              <button type="button" class="vm-editor-box" id="mascot-trigger">
+                <img src="assets/pinktiger.png?v=4" alt="Editor Pinktiger" class="vm-editor-img">
+                <span class="vm-editor-note" data-mag="p5.mascotNote"></span>
+              </button>
+            </section>
+          </div>
+
+          <!-- Bottom navigation -->
+          <div class="vm-bottom-nav">
+            <button type="button" class="vm-big-btn" id="vmPrev" aria-label="Previous page">◀</button>
+            <div class="vm-dots" id="vmDots" role="tablist">
+              <button type="button" class="vm-dot is-active" data-go="0" aria-label="Page 1"></button>
+              <button type="button" class="vm-dot" data-go="1" aria-label="Page 2"></button>
+              <button type="button" class="vm-dot" data-go="2" aria-label="Page 3"></button>
+              <button type="button" class="vm-dot" data-go="3" aria-label="Page 4"></button>
+              <button type="button" class="vm-dot" data-go="4" aria-label="Page 5"></button>
+            </div>
+            <button type="button" class="vm-big-btn" id="vmNext" aria-label="Next page">▶</button>
+          </div>
+        </article>
         
         <!-- Masaya Stan Game (마사야 덕질 게임) -->
         <div class="mascot-game-card">
@@ -1202,6 +1298,6 @@
   <!-- Script Reference -->
 
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

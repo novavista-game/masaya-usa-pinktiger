@@ -8,7 +8,7 @@ window.translations = {
     "nav-home": "Home",
     "nav-about": "About Masaya",
     "nav-schedule": "Upcoming Schedule",
-    "nav-mascot": "🎮 Masaya Stan Game",
+    "nav-mascot": "📖 Magazine & 🎮 Game",
     "nav-goods": "Digital Merch",
     "nav-support": "Support & Channels",
     "nav-karaoke": "🎤 30-Sec Karaoke",
@@ -145,7 +145,7 @@ window.translations = {
     "nav-home": "ホーム",
     "nav-about": "マサヤについて",
     "nav-schedule": "スケジュール",
-    "nav-mascot": "🎮 Masaya 推し活ゲーム",
+    "nav-mascot": "📖 マガジン & 🎮 推し活ゲーム",
     "nav-goods": "デジタルグッズ",
     "nav-support": "応援＆公式リンク",
     "nav-karaoke": "🎤 30秒 カラオケ",
@@ -281,7 +281,7 @@ window.translations = {
     "nav-home": "홈",
     "nav-about": "마사야 소개",
     "nav-schedule": "주요 스케줄",
-    "nav-mascot": "🎮 마사야 덕질 게임",
+    "nav-mascot": "📖 매거진 & 🎮 덕질 게임",
     "nav-goods": "디지털 굿즈",
     "nav-support": "응원 & 공식 채널",
     "nav-karaoke": "🎤 30초 노래방",
@@ -418,7 +418,7 @@ window.translations = {
     "nav-home": "Inicio",
     "nav-about": "Sobre Masaya",
     "nav-schedule": "Próximos Eventos",
-    "nav-mascot": "🎮 Juego Fan de Masaya",
+    "nav-mascot": "📖 Revista & 🎮 Juego",
     "nav-goods": "Productos Digitales",
     "nav-support": "Apoyo y Enlaces",
     "nav-karaoke": "🎤 Karaoke de 30 Seg",
@@ -555,7 +555,7 @@ window.translations = {
     "nav-home": "Accueil",
     "nav-about": "À propos de Masaya",
     "nav-schedule": "Événements à venir",
-    "nav-mascot": "🎮 Jeu Stan de Masaya",
+    "nav-mascot": "📖 Magazine & 🎮 Jeu",
     "nav-goods": "Produits Numériques",
     "nav-support": "Soutien et Chaînes",
     "nav-karaoke": "🎤 Karaoké 30 Sec",
@@ -1088,6 +1088,7 @@ function syncGameLanguage(lang) {
 
 function updateLanguage(lang) {
   syncGameLanguage(lang);
+  if (typeof renderVogueMagazine === 'function') renderVogueMagazine(lang);
   // Save chosen language preference
   localStorage.setItem('preferredLang', lang);
   
@@ -1776,6 +1777,313 @@ function initMascotEasterEgg() {
 }
 
 /* ==========================================================================
+   10-B. 📖 VOGUE MASAYA — Oct 2026 Premiere Issue (Vol. 1) E-Magazine
+   ========================================================================== */
+window.magazineTranslations = {
+  ko: {
+    issueBadge: "📖 창간호 • VOL. 01 (2026. 10)",
+    prevBtn: "◀ 이전 면", nextBtn: "다음 면 ▶",
+    p1: {
+      tag: "SPECIAL DEBUT ISSUE",
+      title: "VOGUE MASAYA",
+      subtitle: "THE PINK & GOLDEN ERA",
+      headlines: ["✦ 오사카의 가을 하늘을 수놓은 단독 무대", "✦ 쇼와 101년 명곡의 디바 & 긴자 MCM 핑크 디스코", "✦ AGE 투어 파이널과 M&R 30만 뷰 신화"]
+    },
+    p2: {
+      tag: "SOLO SPOTLIGHT 01 • 10.03 OSAKA",
+      title: "가을 하늘을 수놓은 감동의 목소리",
+      subtitle: "오사카 금강학원 학원제 야외 스테이지 단독 공연",
+      body: "지난 10월 3일, 한국 국제학교인 오사카 금강학원 야외 스테이지에 마사야가 솔로 아티스트로 단독 등단했습니다. 청량한 가을바람 속에서 울려 퍼진 마사야의 폭발적인 성량과 감미로운 보컬은 학생들과 관객들을 단숨에 사로잡았습니다. 특히 유튜브에 공개된 노컷 풀버전 라이브 직캠은 단기간에 조회수 2만 4천 회를 돌파하며 한일 양국 팬들의 뜨거운 찬사를 받고 있습니다."
+    },
+    p3: {
+      tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
+      title: "대형 홀의 보컬 전설 & 긴자 핑크 아이콘",
+      subtitle: "10.19 페스티벌 홀 솔로 출격 & 10.23 MCM 긴자 파티",
+      body: "보컬리스트와 패션 아이콘으로서 마사야의 진가가 동시에 폭발하는 10월입니다! 10월 19일에는 2,700석 규모의 명문 오사카 페스티벌 홀에서 열리는 『쇼와 101년 슈퍼 송북 쇼!』에 대선배 레전드 가수들과 나란히 솔로로 무대에 오릅니다. 이어 10월 23일에는 도쿄 긴자 명품 하우스에서 단독 호스트로 『MCM PRESENTS Masaya's Pink Disco Party』를 개최하며 독보적인 매력을 발산합니다."
+    },
+    p4: {
+      tag: "GROUP & UNIT • AGE & M&R",
+      title: "멈추지 않는 질주, AGE & M&R",
+      subtitle: "투어 파이널 성료 & 미나미 휠 페스티벌 열기",
+      body: "그룹과 유닛 활동 역시 눈부신 성과를 기록 중입니다. 10월 4일 시부야 DIVE에서 열린 『AGE LIVE TOUR 2026 PERCENTAGE%』 도쿄 공연으로 전국 투어의 화려한 피날레를 장식했으며, 10월 10일에는 M&R로서 일본 최대 쇼케이스 페스티벌 『FM802 MINAMI WHEEL 2026』 무대를 뜨겁게 달구었습니다. M&R의 오사카 명곡 커버 영상 시리즈는 유튜브 합산 30만 뷰를 돌파하며 역주행 신화를 쓰고 있습니다."
+    },
+    p5: {
+      tag: "COMING UP • NOVEMBER 2026 PREVIEW",
+      title: "11월, 더욱 거대한 감동이 찾아옵니다",
+      subtitle: "놓쳐선 안 될 11월 빅 이벤트 라인업",
+      body: "• 11.03 (화): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@지지통신홀)\n• 11.06 (금): 2026 Golden Moon Concert in Tokyo (한일 합동 콘서트 @시부야 duo)\n• 11.08 (일): JPOP CLASSIC CLUB 투어 파이널 (@카츠시카 심포니 힐즈 모차르트 홀)\n• 11.13 (금)~14 (토): 대망의 『AGE 7th Anniversary Live』 (@고릴라 홀 오사카)",
+      mascotNote: "🐯 에디터 핑크타이거의 보너스: 저를 클릭하면 숨겨진 마사야 스페셜 포토가 열려요! ✨"
+    }
+  },
+  en: {
+    issueBadge: "📖 PREMIERE ISSUE • VOL. 01 (OCT 2026)",
+    prevBtn: "◀ Prev", nextBtn: "Next ▶",
+    p1: {
+      tag: "SPECIAL DEBUT ISSUE",
+      title: "VOGUE MASAYA",
+      subtitle: "THE PINK & GOLDEN ERA",
+      headlines: ["✦ Solo Open-Air Stage Under Osaka's Autumn Sky", "✦ Showa Songbook Legend & MCM Ginza Pink Disco", "✦ AGE Tour Finale & M&R's 300K Views Milestone"]
+    },
+    p2: {
+      tag: "SOLO SPOTLIGHT 01 • OCT 3 OSAKA",
+      title: "A Voice That Painted the Autumn Sky",
+      subtitle: "Solo Stage at OKIS (Kongo Gakuen) Festival",
+      body: "On October 3, Masaya took the open-air stage solo at Osaka Korean International School (Kongo Gakuen). Under the crisp autumn sky, his breathtaking vocal range and heartfelt emotion captivated students and fans alike. The uncut full-performance video on YouTube quickly surpassed 24,000 views, becoming a beloved sensation among fans in both Japan and Korea."
+    },
+    p3: {
+      tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
+      title: "Grand Hall Vocalist & Ginza Pink Icon",
+      subtitle: "Oct 19 Festival Hall & Oct 23 MCM Ginza Party",
+      body: "October showcases Masaya as both a powerhouse vocalist and a fashion icon! On Oct 19, he performs solo alongside legendary Japanese artists at the prestigious 2,700-seat Osaka Festival Hall for the 'Showa 101 Super Songbook Show!' Then on Oct 23, he takes over Tokyo's luxury district as the solo star of 'MCM PRESENTS Masaya's Pink Disco Party' at MCM GINZA HAUS1."
+    },
+    p4: {
+      tag: "GROUP & UNIT • AGE & M&R",
+      title: "Unstoppable Momentum: AGE & M&R",
+      subtitle: "Tour Finale Success & Minami Wheel Showcase",
+      body: "Both group and unit activities are reaching new heights. On Oct 4, AGE celebrated the grand finale of 'AGE LIVE TOUR 2026 PERCENTAGE%' at SHIBUYA DIVE in Tokyo. On Oct 10, M&R electrified 'FM802 MINAMI WHEEL 2026' at club JOULE, while their nostalgic Osaka classic cover series on YouTube has officially surpassed 300,000 combined views!"
+    },
+    p5: {
+      tag: "COMING UP • NOVEMBER 2026 PREVIEW",
+      title: "Bigger Moments Await in November",
+      subtitle: "Must-Watch November Live Lineup",
+      body: "• Nov 3: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• Nov 6: 2026 Golden Moon Concert in Tokyo <By your side> (@Shibuya duo)\n• Nov 8: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills Mozart Hall)\n• Nov 13–14: The Grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      mascotNote: "🐯 Editor Pinktiger's Bonus: Click me to reveal Masaya's hidden special photos! ✨"
+    }
+  },
+  ja: {
+    issueBadge: "📖 創刊号 • VOL. 01 (2026. 10)",
+    prevBtn: "◀ 前へ", nextBtn: "次へ ▶",
+    p1: {
+      tag: "SPECIAL DEBUT ISSUE",
+      title: "VOGUE MASAYA",
+      subtitle: "THE PINK & GOLDEN ERA",
+      headlines: ["✦ 大阪の秋空に響いた感動のソロステージ", "✦ 昭和101年名曲の歌姫＆銀座MCMピンクディスコ", "✦ AGEツアーファイナル＆M&R 30万回再生突破"]
+    },
+    p2: {
+      tag: "SOLO SPOTLIGHT 01 • 10.03 OSAKA",
+      title: "秋空を彩った圧巻の歌声",
+      subtitle: "金剛学園 学園祭 野外ステージ ソロ出演",
+      body: "10月3日、大阪の金剛学園・野外ステージにMasayaがソロとして登場！澄み渡る秋空の下、圧倒的な声量と繊細な表現力で生徒や観客を一瞬で魅了しました。YouTubeに公開されたノーカット版ライブ映像は瞬く間に2.4万回再生を突破し、日韓両国のファンから熱い感動の声が寄せられています。"
+    },
+    p3: {
+      tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
+      title: "名門ホールの歌姫＆銀座のピンクアイコン",
+      subtitle: "10.19 フェスティバルホール＆10.23 MCM銀座パーティ",
+      body: "ボーカリストとしてもファッションアイコンとしても輝く10月！10月19日には名門・大阪フェスティバルホールで開催される『昭和101年 スーパー・ソングブック・ショウ！』に豪華レジェンド歌手と共にソロ出演。さらに10月23日には東京・銀座にて単独イベント『MCM PRESENTS Masaya's Pink Disco Party』(@MCM GINZA HAUS1)を開催します！"
+    },
+    p4: {
+      tag: "GROUP & UNIT • AGE & M&R",
+      title: "止まらない躍進、AGE & M&R",
+      subtitle: "ツアー東京公演完走＆MINAMI WHEEL出演",
+      body: "グループとユニットの勢いも加速中！10月4日にはSHIBUYA DIVEにて『AGE LIVE TOUR 2026 PERCENTAGE%』東京公演を大盛況で締めくくり、10月10日にはM&Rとして日本最大級のショーケース『FM802 MINAMI WHEEL 2026』に出演。さらにM&Rの大阪名曲カバー動画はYouTube合計30万回再生を突破しました！"
+    },
+    p5: {
+      tag: "COMING UP • NOVEMBER 2026 PREVIEW",
+      title: "11月、さらなる感動のステージへ",
+      subtitle: "見逃せない11月の注目スケジュール",
+      body: "• 11/3 (火): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@時事通信ホール)\n• 11/6 (金): 2026 Golden Moon Concert in Tokyo (@渋谷duo MUSIC EXCHANGE)\n• 11/8 (日): JPOP CLASSIC CLUB ツアーファイナル (@かつしかシンフォニーヒルズ)\n• 11/13 (金)～14 (土): 待望の『AGE 7th Anniversary Live』 (@GORILLA HALL OSAKA)",
+      mascotNote: "🐯 編集長ピンクタイガーのおまけ：私をクリックするとMasayaの隠しフォトが見られるよ！✨"
+    }
+  },
+  es: {
+    issueBadge: "📖 EDICIÓN DEBUT • VOL. 01 (OCT 2026)",
+    prevBtn: "◀ Ant.", nextBtn: "Sig. ▶",
+    p1: {
+      tag: "SPECIAL DEBUT ISSUE",
+      title: "VOGUE MASAYA",
+      subtitle: "THE PINK & GOLDEN ERA",
+      headlines: ["✦ Escenario en solitario bajo el cielo otoñal de Osaka", "✦ Leyenda vocal en Festival Hall y MCM Ginza Pink Disco", "✦ Final de gira de AGE y 300 mil vistas de M&R"]
+    },
+    p2: {
+      tag: "SOLO SPOTLIGHT 01 • 03 OCT OSAKA",
+      title: "Una Voz que Iluminó el Cielo de Otoño",
+      subtitle: "Actuación en Solitario en el Festival Kongo Gakuen",
+      body: "El 3 de octubre, Masaya subió al escenario al aire libre en solitario en la Escuela Internacional Coreana de Osaka (Kongo Gakuen). Su impresionante potencia vocal cautivó a todos los presentes. El video completo sin cortes en YouTube superó rápidamente las 24,000 vistas, emocionando a los fans de Japón, Corea y todo el mundo."
+    },
+    p3: {
+      tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
+      title: "Leyenda Vocal e Ícono Rosa en Ginza",
+      subtitle: "19 Oct Festival Hall y 23 Oct Fiesta MCM Ginza",
+      body: "¡Octubre muestra a Masaya como una estrella vocal y un ícono de la moda! El 19 de octubre actúa en solitario junto a grandes leyendas en el prestigioso Osaka Festival Hall ('Showa 101 Super Songbook Show!'). Luego, el 23 de octubre, protagoniza en solitario la exclusiva 'MCM PRESENTS Masaya's Pink Disco Party' en MCM GINZA HAUS1 en Tokio."
+    },
+    p4: {
+      tag: "GROUP & UNIT • AGE & M&R",
+      title: "Impulso Imparable: AGE y M&R",
+      subtitle: "Final de Gira y Festival Minami Wheel",
+      body: "El 4 de octubre, AGE celebró con gran éxito el concierto de Tokio de 'AGE LIVE TOUR 2026 PERCENTAGE%' en SHIBUYA DIVE. El 10 de octubre, M&R brilló en el festival 'FM802 MINAMI WHEEL 2026', mientras que sus covers de clásicos de Osaka en YouTube ya han superado las 300,000 reproducciones combinadas."
+    },
+    p5: {
+      tag: "COMING UP • NOVIEMBRE 2026",
+      title: "Grandes Momentos Esperan en Noviembre",
+      subtitle: "Eventos Imperdibles de Noviembre",
+      body: "• 3 Nov: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov: 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills)\n• 13–14 Nov: Gran Concierto 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      mascotNote: "🐯 Bonus de Pinktiger: ¡Haz clic en mí para descubrir las fotos ocultas de Masaya! ✨"
+    }
+  },
+  fr: {
+    issueBadge: "📖 NUMÉRO N°01 • OCT 2026",
+    prevBtn: "◀ Préc.", nextBtn: "Suiv. ▶",
+    p1: {
+      tag: "SPECIAL DEBUT ISSUE",
+      title: "VOGUE MASAYA",
+      subtitle: "THE PINK & GOLDEN ERA",
+      headlines: ["✦ Scène solo sous le ciel d'automne d'Osaka", "✦ Diva du Festival Hall & Pink Disco chez MCM Ginza", "✦ Finale de la tournée AGE & 300K vues pour M&R"]
+    },
+    p2: {
+      tag: "SOLO SPOTLIGHT 01 • 03 OCT OSAKA",
+      title: "Une Voix qui a Sublimé le Ciel d'Automne",
+      subtitle: "Performance Solo au Festival de Kongo Gakuen",
+      body: "Le 3 octobre, Masaya s'est produit en solo sur la scène en plein air de l'école internationale coréenne d'Osaka (Kongo Gakuen). Sa puissance vocale exceptionnelle a immédiatement conquis le public. La vidéo intégrale sur YouTube a rapidement dépassé les 24 000 vues, suscitant l'admiration des fans du monde entier."
+    },
+    p3: {
+      tag: "SOLO SPOTLIGHT 02 • VOCAL & FASHION",
+      title: "Légende Vocale & Icône Rose à Ginza",
+      subtitle: "19 Oct Festival Hall & 23 Oct Soirée MCM Ginza",
+      body: "Octobre consacre Masaya à la fois comme grand vocaliste et icône de mode ! Le 19 octobre, il chante en solo aux côtés de légendes japonaises au prestigieux Osaka Festival Hall ('Showa 101 Super Songbook Show!'). Puis, le 23 octobre, il est la star solo de la soirée 'MCM PRESENTS Masaya's Pink Disco Party' chez MCM GINZA HAUS1 à Tokyo."
+    },
+    p4: {
+      tag: "GROUP & UNIT • AGE & M&R",
+      title: "Élan Inarrêtable : AGE & M&R",
+      subtitle: "Finale de Tournée & Festival Minami Wheel",
+      body: "Le 4 octobre, AGE a clôturé en beauté le concert de Tokyo du 'AGE LIVE TOUR 2026 PERCENTAGE%' au SHIBUYA DIVE. Le 10 octobre, le duo M&R a enflammé le festival 'FM802 MINAMI WHEEL 2026', tandis que leurs reprises de classiques d'Osaka cumulent désormais plus de 300 000 vues sur YouTube !"
+    },
+    p5: {
+      tag: "COMING UP • NOVEMBRE 2026",
+      title: "Un Mois de Novembre Exceptionnel",
+      subtitle: "Les Grands Rendez-vous de Novembre",
+      body: "• 3 Nov : MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov : 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov : Finale de tournée JPOP CLASSIC CLUB (@Katsushika Symphony Hills)\n• 13–14 Nov : Le grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
+      mascotNote: "🐯 Bonus de Pinktiger : Cliquez sur moi pour révéler les photos cachées de Masaya ! ✨"
+    }
+  }
+};
+
+// Resolve "p2.title" style keys inside a language pack
+function vmResolve(pack, path) {
+  return path.split('.').reduce((obj, k) => (obj && obj[k] !== undefined ? obj[k] : undefined), pack);
+}
+
+// Render all magazine text for the given language (textContent only → safe for "<By your side>")
+function renderVogueMagazine(lang) {
+  const root = document.getElementById('vogueMagazine');
+  const packs = window.magazineTranslations;
+  if (!root || !packs) return;
+  const pack = packs[lang] || packs.en;
+
+  root.querySelectorAll('[data-mag]').forEach(el => {
+    const val = vmResolve(pack, el.getAttribute('data-mag'));
+    if (typeof val === 'string') el.textContent = val;
+  });
+
+  root.querySelectorAll('[data-mag-list]').forEach(list => {
+    let val = vmResolve(pack, list.getAttribute('data-mag-list'));
+    if (typeof val === 'string') val = val.split('\n');
+    if (!Array.isArray(val)) return;
+    list.textContent = '';
+    val.forEach(line => {
+      const li = document.createElement('li');
+      if (line.startsWith('✦')) {
+        // Cover headline: gold star + headline text
+        const star = document.createElement('span');
+        star.className = 'vm-star';
+        star.textContent = '✦';
+        li.appendChild(star);
+        li.appendChild(document.createTextNode(line.slice(1)));
+      } else {
+        // Schedule line: emphasize the date part before the first colon
+        const m = line.match(/^(•\s*.+?)(\s?:\s)(.*)$/);
+        if (m) {
+          const strong = document.createElement('strong');
+          strong.textContent = m[1];
+          li.appendChild(strong);
+          li.appendChild(document.createTextNode(m[2] + m[3]));
+        } else {
+          li.textContent = line;
+        }
+      }
+      list.appendChild(li);
+    });
+  });
+
+  root.setAttribute('lang', lang);
+}
+
+function initVogueMagazine() {
+  const root = document.getElementById('vogueMagazine');
+  if (!root) return;
+
+  const stage = document.getElementById('vmStage');
+  const pages = Array.from(root.querySelectorAll('.vm-page'));
+  const dots = Array.from(root.querySelectorAll('.vm-dot'));
+  const counter = document.getElementById('vmCurrent');
+  const totalEl = document.getElementById('vmTotal');
+  const prevBtns = [document.getElementById('vmPrev'), document.getElementById('vmTopPrev')];
+  const nextBtns = [document.getElementById('vmNext'), document.getElementById('vmTopNext')];
+  const total = pages.length;
+  let current = 0;
+
+  if (totalEl) totalEl.textContent = total;
+
+  const render = () => {
+    pages.forEach((page, idx) => {
+      page.classList.toggle('is-active', idx === current);
+      page.classList.toggle('is-past', idx < current);
+      page.classList.toggle('is-future', idx > current);
+      page.setAttribute('aria-hidden', idx === current ? 'false' : 'true');
+      page.inert = idx !== current;
+    });
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('is-active', idx === current);
+      dot.setAttribute('aria-selected', idx === current ? 'true' : 'false');
+    });
+    if (counter) counter.textContent = current + 1;
+    prevBtns.forEach(b => { if (b) b.disabled = current === 0; });
+    nextBtns.forEach(b => { if (b) b.disabled = current === total - 1; });
+  };
+
+  const goTo = (idx) => {
+    const target = Math.max(0, Math.min(total - 1, idx));
+    if (target === current) return;
+    current = target;
+    // Start each newly opened page from the top of its article
+    pages[current].querySelectorAll('.vm-article').forEach(a => { a.scrollTop = 0; });
+    pages[current].scrollTop = 0;
+    render();
+  };
+
+  prevBtns.forEach(b => b && b.addEventListener('click', () => goTo(current - 1)));
+  nextBtns.forEach(b => b && b.addEventListener('click', () => goTo(current + 1)));
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(parseInt(dot.getAttribute('data-go'), 10))));
+
+  // Keyboard arrows when the magazine is focused
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  // Touch swipe (mobile)
+  let startX = 0, startY = 0, tracking = false;
+  stage.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    tracking = true;
+  }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    if (!tracking) return;
+    tracking = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      goTo(dx < 0 ? current + 1 : current - 1);
+    }
+  }, { passive: true });
+
+  renderVogueMagazine(document.documentElement.lang || localStorage.getItem('preferredLang') || 'en');
+  render();
+}
+
+/* ==========================================================================
    11. Fan Letter Carousel
    ========================================================================== */
 
@@ -1824,6 +2132,7 @@ function initFanLetterCarousel() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMascotEasterEgg();
+  initVogueMagazine();
   initFanLetterCarousel();
 });
 
