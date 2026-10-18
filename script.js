@@ -8,7 +8,7 @@ window.translations = {
     "nav-home": "Home",
     "nav-about": "About Masaya",
     "nav-schedule": "Upcoming Schedule",
-    "nav-mascot": "📖 Magazine & 🎮 Game",
+    "nav-mascot": "📖 Magazine & Game",
     "nav-goods": "Digital Merch",
     "nav-support": "Support & Channels",
     "nav-karaoke": "🎤 30-Sec Karaoke",
@@ -18,6 +18,7 @@ window.translations = {
     "hero-btn-join": "Join the Pride 🎀",
     "hero-btn-learn": "Learn More 🐯",
     "video-caption": "<span class=\"label\">Featured Performance:</span> Masaya singing \"첫눈처럼 너에게 가겠다 (I Will Go to You Like the First Snow)\" with English lyrics ❄️🎶",
+    "video-caption-dareyori": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">Dare Yori Suki Nanoni (Toko Furuuchi) - Edited by Pinktiger USA</span>",
     "about-section-title": "Masaya's Journey 🐯✨",
     "about-bio-h3": "The Voice that Crosses Borders",
     "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> is a powerhouse vocalist from Japan whose emotional range and brilliant stage presence have captured hearts across Asia. Known for his flawless pitch, soaring high notes, and passionate deliveries, he brings a deep sense of vulnerability to every song he sings.",
@@ -138,14 +139,25 @@ window.translations = {
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO \"2026 Variation Tour Final\" @Katsushika Symphony Hills",
     "cal-dec-5": "[AGE] Live Scheduled @Osaka",
     "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
-    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Special Event @Tokyo Metro Area"
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Special Event @Tokyo Metro Area",
+    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Day 1)",
+    "cal-nov-14": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Day 2)",
+    "cal-dec-16": "[M&R] M&R PREMIUM LIVE 2026 @Hulic Hall Tokyo",
+    "cal-dec-23": "[M&R] M&R Special Live @Music Club JANUS (Osaka)",
+    "yt-card-1-title": "🎤 Masaya Official YouTube",
+    "yt-card-1-desc": "Signature covers & cozy vlogs from Masaya's own channel.",
+    "yt-card-2-title": "🎶 M&R Official YouTube",
+    "yt-card-2-desc": "Popular cover series & the classic hits that passed 300K views.",
+    "yt-card-3-title": "🌟 AGE Official Live Highlights",
+    "yt-card-3-desc": "Live tour moments & electrifying stage highlights.",
+    "yt-card-cta": "Watch on YouTube ▶"
 
   },
   ja: {
     "nav-home": "ホーム",
     "nav-about": "マサヤについて",
     "nav-schedule": "スケジュール",
-    "nav-mascot": "📖 マガジン & 🎮 推し活ゲーム",
+    "nav-mascot": "📖 マガジン＆ゲーム",
     "nav-goods": "デジタルグッズ",
     "nav-support": "応援＆公式リンク",
     "nav-karaoke": "🎤 30秒 カラオケ",
@@ -155,6 +167,7 @@ window.translations = {
     "hero-btn-join": "ファンクラブに入る 🎀",
     "hero-btn-learn": "もっと知る 🐯",
     "video-caption": "<span class=\"label\">注目パフォーマンス:</span> 英語字幕付きで歌う「첫눈처럼 너에게 가겠다 (初雪のように君に行く)」 ❄️🎶",
+    "video-caption-dareyori": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">誰より好きなのに (古内東子) - Edited by Pinktiger USA</span>",
     "about-section-title": "マサヤの歩み 🐯✨",
     "about-bio-h3": "国境を越える歌声",
     "about-bio-p1": "<strong>堀川雅也 (Masaya Horikawa)</strong> は、アジア全域で心を揺さぶるエモーショナルな歌声と圧倒的なステージ存在感を持つ日本の実力派ボーカリストです。完璧なピッチ、伸びやかなハイトーン、そして情熱的な表現力で、歌うすべての楽曲に深い感動をもたらします。",
@@ -275,13 +288,24 @@ window.translations = {
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO「2026バリエーション・ツアー ファイナル」@かつしかシンフォニーヒルズ",
     "cal-dec-5": "[AGE] ライブ予定@大阪",
     "cal-dec-11": "[AGE] AGE 7th Anniversary Live @新宿ReNY",
-    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 特典会 @首都圏"
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 特典会 @首都圏",
+    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA（1日目）",
+    "cal-nov-14": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA（2日目）",
+    "cal-dec-16": "[M&R] M&R PREMIUM LIVE 2026 @ヒューリックホール東京",
+    "cal-dec-23": "[M&R] M&R Special Live @Music Club JANUS（大阪）",
+    "yt-card-1-title": "🎤 Masaya 公式YouTube",
+    "yt-card-1-desc": "Masaya本人チャンネルの代表カバー＆Vlogをチェック！",
+    "yt-card-2-title": "🎶 M&R 公式YouTube",
+    "yt-card-2-desc": "人気カバーシリーズ＆再生30万回突破の名曲動画",
+    "yt-card-3-title": "🌟 AGE 公式ライブハイライト",
+    "yt-card-3-desc": "ライブツアー＆ステージの名場面ハイライト",
+    "yt-card-cta": "YouTubeで見る ▶"
   },
   ko: {
     "nav-home": "홈",
     "nav-about": "마사야 소개",
     "nav-schedule": "주요 스케줄",
-    "nav-mascot": "📖 매거진 & 🎮 덕질 게임",
+    "nav-mascot": "📖 매거진 & 게임",
     "nav-goods": "디지털 굿즈",
     "nav-support": "응원 & 공식 채널",
     "nav-karaoke": "🎤 30초 노래방",
@@ -292,6 +316,7 @@ window.translations = {
     "hero-btn-learn": "자세히 보기 🐯",
     "video-caption": "<span class=\"label\">주요 무대:</span> 영어 자막과 함께 감상하는 마사야의 \"첫눈처럼 너에게 가겠다\" ❄️🎶",
     "video-caption-2": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">For You (영어 자막) - Edited by Pinktiger USA</span>",
+    "video-caption-dareyori": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">누구보다 좋아하는데 (誰より好きなのに / 후루우치 토코) - Edited by Pinktiger USA</span>",
     "about-section-title": "마사야의 여정 🐯✨",
     "about-bio-h3": "국경을 넘는 목소리",
     "about-bio-p1": "<strong>호리카와 마사야(堀川雅야)</strong>는 아시아 전역에서 감성적인 가창력과 압도적인 무대 매너로 사랑받는 일본의 실력파 보컬리스트입니다. 완벽한 음정, 가슴을 울리는 고음, 그리고 폭발적인 가창력으로 노래하는 매 순간 깊은 감동을 선사합니다.",
@@ -412,13 +437,24 @@ window.translations = {
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO「2026 바리에이션 투어 파이널」@가쓰시카 심포니 힐즈",
     "cal-dec-5": "[AGE] 라이브 예정 @오사카",
     "cal-dec-11": "[AGE] AGE 7th Anniversary Live @신주쿠 ReNY",
-    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 특전회 @수도권"
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live 특전회 @수도권",
+    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (1일 차)",
+    "cal-nov-14": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (2일 차)",
+    "cal-dec-16": "[M&R] M&R PREMIUM LIVE 2026 @휴릭 홀 도쿄",
+    "cal-dec-23": "[M&R] M&R Special Live @Music Club JANUS (오사카)",
+    "yt-card-1-title": "🎤 마사야 공식 유튜브",
+    "yt-card-1-desc": "마사야 본인 채널의 대표 커버 & 브이로그를 만나보세요!",
+    "yt-card-2-title": "🎶 M&R 공식 유튜브",
+    "yt-card-2-desc": "인기 커버 시리즈 & 30만 뷰 돌파 명곡 영상",
+    "yt-card-3-title": "🌟 AGE 공식 라이브 하이라이트",
+    "yt-card-3-desc": "라이브 투어 & 무대 하이라이트 명장면",
+    "yt-card-cta": "유튜브에서 보기 ▶"
   },
   es: {
     "nav-home": "Inicio",
     "nav-about": "Sobre Masaya",
     "nav-schedule": "Próximos Eventos",
-    "nav-mascot": "📖 Revista & 🎮 Juego",
+    "nav-mascot": "📖 Revista y Juego",
     "nav-goods": "Productos Digitales",
     "nav-support": "Apoyo y Enlaces",
     "nav-karaoke": "🎤 Karaoke de 30 Seg",
@@ -429,6 +465,7 @@ window.translations = {
     "hero-btn-learn": "Aprende Más 🐯",
     "video-caption": "<span class=\"label\">Actuación Destacada:</span> Masaya cantando \"첫눈처럼 너에게 가겠다 (I Will Go to You Like the First Snow)\" con letras en inglés ❄️🎶",
     "video-caption-2": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">For You (Subtítulos en Inglés) - Editado por Pinktiger USA</span>",
+    "video-caption-dareyori": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">Dare Yori Suki Nanoni (Toko Furuuchi) - Editado por Pinktiger USA</span>",
     "about-section-title": "El Viaje de Masaya 🐯✨",
     "about-bio-h3": "La Voz que Cruza Fronteras",
     "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> es un poderoso vocalista de Japón cuyo rango emocional y brillante presencia escénica han capturado corazones en toda Asia. Conocido por su afinación perfecta, sus impresionantes notas altas y sus entregas apasionadas, aporta un profundo sentido de vulnerabilidad a cada canción que interpreta.",
@@ -549,13 +586,24 @@ window.translations = {
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO \"2026 Variation Tour Final\" @Katsushika Symphony Hills",
     "cal-dec-5": "[AGE] Concierto Programado @Osaka",
     "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
-    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Evento Especial @Área Metropolitana de Tokio"
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Evento Especial @Área Metropolitana de Tokio",
+    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Día 1)",
+    "cal-nov-14": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Día 2)",
+    "cal-dec-16": "[M&R] M&R PREMIUM LIVE 2026 @Hulic Hall Tokyo",
+    "cal-dec-23": "[M&R] M&R Special Live @Music Club JANUS (Osaka)",
+    "yt-card-1-title": "🎤 YouTube Oficial de Masaya",
+    "yt-card-1-desc": "Covers emblemáticos y vlogs del propio canal de Masaya.",
+    "yt-card-2-title": "🎶 YouTube Oficial de M&R",
+    "yt-card-2-desc": "Serie de covers populares y clásicos con más de 300 mil vistas.",
+    "yt-card-3-title": "🌟 Momentos en Vivo Oficiales de AGE",
+    "yt-card-3-desc": "Lo mejor de la gira en vivo y del escenario.",
+    "yt-card-cta": "Ver en YouTube ▶"
   },
   fr: {
     "nav-home": "Accueil",
     "nav-about": "À propos de Masaya",
     "nav-schedule": "Événements à venir",
-    "nav-mascot": "📖 Magazine & 🎮 Jeu",
+    "nav-mascot": "📖 Magazine & Jeu",
     "nav-goods": "Produits Numériques",
     "nav-support": "Soutien et Chaînes",
     "nav-karaoke": "🎤 Karaoké 30 Sec",
@@ -567,6 +615,7 @@ window.translations = {
     "hero-btn-learn": "En Savoir Plus 🐯",
     "video-caption": "<span class=\"label\">Performance en Vedette :</span> Masaya chantant \"첫눈처럼 너에게 가겠다 (I Will Go to You Like the First Snow)\" avec des paroles en anglais ❄️🎶",
     "video-caption-2": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">Pour Vous (Sous-titres anglais) - Édité par Pinktiger USA</span>",
+    "video-caption-dareyori": "<span class=\"label\" style=\"font-weight: 700; color: #FF1493;\">Dare Yori Suki Nanoni (Toko Furuuchi) - Édité par Pinktiger USA</span>",
     "about-section-title": "Le Parcours de Masaya 🐯✨",
     "about-bio-h3": "La Voix qui Traverse les Frontières",
     "about-bio-p1": "<strong>Masaya Horikawa (堀川雅也)</strong> est un puissant chanteur japonais dont la gamme émotionnelle et la présence scénique lumineuse ont conquis les cœurs à travers l'Asie. Connu pour sa justesse parfaite, ses notes hautes époustouflantes et ses interprétations passionnées, il apporte un profond sentiment de vulnérabilité à chaque chanson.",
@@ -687,7 +736,18 @@ window.translations = {
     "cal-nov-8": "[M&R] JPOP CLASSIC CLUB TOKYO «2026 Variation Tour Final» @Katsushika Symphony Hills",
     "cal-dec-5": "[AGE] Concert prévu @Osaka",
     "cal-dec-11": "[AGE] AGE 7th Anniversary Live @Shinjuku ReNY",
-    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Événement Spécial @Région de Tokyo"
+    "cal-dec-12": "[AGE] AGE 7th Anniversary Live Événement Spécial @Région de Tokyo",
+    "cal-nov-13": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Jour 1)",
+    "cal-nov-14": "[AGE] AGE 7th Anniversary Live @GORILLA HALL OSAKA (Jour 2)",
+    "cal-dec-16": "[M&R] M&R PREMIUM LIVE 2026 @Hulic Hall Tokyo",
+    "cal-dec-23": "[M&R] M&R Special Live @Music Club JANUS (Osaka)",
+    "yt-card-1-title": "🎤 YouTube Officiel de Masaya",
+    "yt-card-1-desc": "Reprises phares et vlogs de la chaîne de Masaya.",
+    "yt-card-2-title": "🎶 YouTube Officiel de M&R",
+    "yt-card-2-desc": "Séries de reprises populaires et classiques à plus de 300K vues.",
+    "yt-card-3-title": "🌟 Temps Forts Live Officiels d'AGE",
+    "yt-card-3-desc": "Moments de tournée et meilleurs passages sur scène.",
+    "yt-card-cta": "Regarder sur YouTube ▶"
   }
 };
 
@@ -1627,6 +1687,10 @@ function initVideoCarousel() {
   if (!videoPlayer || !captionEl || !nextButton || !prevButton) return;
 
   const videos = [
+    {
+      src: 'assets/_마사야 새노래_Final_10.18.26.mp4',
+      caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">誰より好きなのに (古内東子), 누구보다 좋아하는데 - Edited by Pinktiger USA</span></p>'
+    },
     {
       src: 'assets/Kagerou.mp4',
       caption: '<p><span class="label" style="font-weight: 700; color: #FF1493;">陽炎 (Kagerou) , 아지랑이 - Edited by Pinktiger USA</span></p>'
