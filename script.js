@@ -1709,74 +1709,6 @@ function initMobileMenu() {
 }
 
 /* ==========================================================================
-   10. Mascot Easter Egg
-   ========================================================================== */
-function initMascotEasterEgg() {
-  const mascotTrigger = document.getElementById('mascot-trigger');
-  const eeModal = document.getElementById('easter-egg-modal');
-  const eeImage = document.getElementById('ee-image');
-  const eeModalContent = document.getElementById('ee-modal-content');
-  
-  if (!mascotTrigger || !eeModal || !eeImage) return;
-
-  let eeCount = 0;
-  const eeTotal = 7;
-  let eeTimeout = null;
-
-  // Preload all images for instant display
-  const imagePaths = [];
-  for (let i = 1; i <= eeTotal; i++) {
-    const path = `assets/마사야 사진 ${i}.png`;
-    imagePaths.push(path);
-    const preloadImg = new Image();
-    preloadImg.src = path;
-  }
-
-  const hideModal = () => {
-    eeModal.style.opacity = '0';
-    eeModal.style.pointerEvents = 'none';
-    eeModal.style.visibility = 'hidden';
-    if (eeTimeout) {
-      clearTimeout(eeTimeout);
-      eeTimeout = null;
-    }
-  };
-
-  mascotTrigger.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent sparkle click handler from interfering
-    eeCount = (eeCount % eeTotal) + 1; // cycles 1 to 7
-    
-    // Set image source (no encodeURI - browser handles Korean filenames natively)
-    eeImage.src = imagePaths[eeCount - 1];
-    
-    // Ensure image element is visible and on top
-    eeImage.style.display = 'block';
-    eeImage.style.visibility = 'visible';
-    eeImage.style.opacity = '1';
-    eeImage.style.zIndex = '2';
-    
-    // Show modal with fade
-    eeModal.style.opacity = '1';
-    eeModal.style.pointerEvents = 'auto';
-    eeModal.style.visibility = 'visible';
-    
-    // Reset animation
-    if (eeModalContent) {
-      eeModalContent.classList.remove('heart-pop-anim');
-      void eeModalContent.offsetWidth; // Trigger reflow
-      eeModalContent.classList.add('heart-pop-anim');
-    }
-
-    // Auto-hide after 3 seconds
-    if (eeTimeout) clearTimeout(eeTimeout);
-    eeTimeout = setTimeout(hideModal, 3000);
-  });
-
-  // Close modal when clicking anywhere on the modal
-  eeModal.addEventListener('click', hideModal);
-}
-
-/* ==========================================================================
    10-B. 📖 MASAYA MAGAZINE — Oct 2026 Premiere Issue (Vol. 1) E-Magazine
    ========================================================================== */
 window.magazineTranslations = {
@@ -1811,8 +1743,7 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "11월, 더욱 거대한 감동이 찾아옵니다",
       subtitle: "놓쳐선 안 될 11월 빅 이벤트 라인업",
-      body: "• 11.03 (화): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@지지통신홀)\n• 11.06 (금): 2026 Golden Moon Concert in Tokyo (한일 합동 콘서트 @시부야 duo)\n• 11.08 (일): JPOP CLASSIC CLUB 투어 파이널 (@카츠시카 심포니 힐즈 모차르트 홀)\n• 11.13 (금)~14 (토): 대망의 『AGE 7th Anniversary Live』 (@고릴라 홀 오사카)",
-      mascotNote: "🐯 에디터 핑크타이거의 보너스: 저를 클릭하면 숨겨진 마사야 스페셜 포토가 열려요! ✨"
+      body: "• 11.03 (화): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@지지통신홀)\n• 11.06 (금): 2026 Golden Moon Concert in Tokyo (한일 합동 콘서트 @시부야 duo)\n• 11.08 (일): JPOP CLASSIC CLUB 투어 파이널 (@카츠시카 심포니 힐즈 모차르트 홀)\n• 11.13 (금)~14 (토): 대망의 『AGE 7th Anniversary Live』 (@고릴라 홀 오사카)"
     }
   },
   en: {
@@ -1846,8 +1777,7 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "Bigger Moments Await in November",
       subtitle: "Must-Watch November Live Lineup",
-      body: "• Nov 3: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• Nov 6: 2026 Golden Moon Concert in Tokyo <By your side> (@Shibuya duo)\n• Nov 8: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills Mozart Hall)\n• Nov 13–14: The Grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
-      mascotNote: "🐯 Editor Pinktiger's Bonus: Click me to reveal Masaya's hidden special photos! ✨"
+      body: "• Nov 3: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• Nov 6: 2026 Golden Moon Concert in Tokyo <By your side> (@Shibuya duo)\n• Nov 8: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills Mozart Hall)\n• Nov 13–14: The Grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
     }
   },
   ja: {
@@ -1881,8 +1811,7 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBER 2026 PREVIEW",
       title: "11月、さらなる感動のステージへ",
       subtitle: "見逃せない11月の注目スケジュール",
-      body: "• 11/3 (火): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@時事通信ホール)\n• 11/6 (金): 2026 Golden Moon Concert in Tokyo (@渋谷duo MUSIC EXCHANGE)\n• 11/8 (日): JPOP CLASSIC CLUB ツアーファイナル (@かつしかシンフォニーヒルズ)\n• 11/13 (金)～14 (土): 待望の『AGE 7th Anniversary Live』 (@GORILLA HALL OSAKA)",
-      mascotNote: "🐯 編集長ピンクタイガーのおまけ：私をクリックするとMasayaの隠しフォトが見られるよ！✨"
+      body: "• 11/3 (火): MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@時事通信ホール)\n• 11/6 (金): 2026 Golden Moon Concert in Tokyo (@渋谷duo MUSIC EXCHANGE)\n• 11/8 (日): JPOP CLASSIC CLUB ツアーファイナル (@かつしかシンフォニーヒルズ)\n• 11/13 (金)～14 (土): 待望の『AGE 7th Anniversary Live』 (@GORILLA HALL OSAKA)"
     }
   },
   es: {
@@ -1916,8 +1845,7 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVIEMBRE 2026",
       title: "Grandes Momentos Esperan en Noviembre",
       subtitle: "Eventos Imperdibles de Noviembre",
-      body: "• 3 Nov: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov: 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills)\n• 13–14 Nov: Gran Concierto 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
-      mascotNote: "🐯 Bonus de Pinktiger: ¡Haz clic en mí para descubrir las fotos ocultas de Masaya! ✨"
+      body: "• 3 Nov: MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov: 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov: JPOP CLASSIC CLUB Tour Final (@Katsushika Symphony Hills)\n• 13–14 Nov: Gran Concierto 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
     }
   },
   fr: {
@@ -1951,8 +1879,7 @@ window.magazineTranslations = {
       tag: "COMING UP • NOVEMBRE 2026",
       title: "Un Mois de Novembre Exceptionnel",
       subtitle: "Les Grands Rendez-vous de Novembre",
-      body: "• 3 Nov : MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov : 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov : Finale de tournée JPOP CLASSIC CLUB (@Katsushika Symphony Hills)\n• 13–14 Nov : Le grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)",
-      mascotNote: "🐯 Bonus de Pinktiger : Cliquez sur moi pour révéler les photos cachées de Masaya ! ✨"
+      body: "• 3 Nov : MIDNIGHT DRIVE × M&R Special 2MAN LIVE (@Jiji Press Hall)\n• 6 Nov : 2026 Golden Moon Concert in Tokyo (@Shibuya duo)\n• 8 Nov : Finale de tournée JPOP CLASSIC CLUB (@Katsushika Symphony Hills)\n• 13–14 Nov : Le grand 'AGE 7th Anniversary Live' (@GORILLA HALL OSAKA)"
     }
   }
 };
@@ -2148,7 +2075,6 @@ function initFanLetterCarousel() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMascotEasterEgg();
   initMasayaMagazine();
   initFanLetterCarousel();
 });

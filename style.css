@@ -2911,37 +2911,47 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 
 .vm-photo {
   position: relative;
-  flex: 0 0 46%;
+  display: block;
+  flex: 0 0 auto;
+  height: 220px;
   margin: 16px 16px 0;
   border-radius: 20px;
   overflow: hidden;
   background: #2a0f1d;
   border: 1.5px solid var(--vm-gold);
   box-shadow: 0 10px 24px rgba(28, 13, 21, 0.18);
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.vm-photo-bg {
-  position: absolute;
-  inset: -20px;
-  width: calc(100% + 40px);
-  height: calc(100% + 40px);
-  object-fit: cover;
-  filter: blur(18px) saturate(1.25) brightness(0.75);
-}
-
-.vm-photo-main {
-  position: absolute;
-  inset: 0;
+.vm-photo-img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 22px rgba(0, 0, 0, 0.4));
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.vm-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(28, 13, 21, 0.35) 0%, transparent 35%, transparent 65%, rgba(28, 13, 21, 0.45) 100%);
+  pointer-events: none;
+}
+
+.vm-photo:hover .vm-photo-img,
+.vm-photo:focus-visible .vm-photo-img {
+  transform: scale(1.05);
+  filter: brightness(1.06);
 }
 
 .vm-photo-tag {
   position: absolute;
   left: 12px;
-  bottom: 12px;
+  top: 12px;
+  z-index: 2;
   max-width: calc(100% - 70px);
   font-family: var(--vm-display);
   font-size: 0.66rem;
@@ -2954,10 +2964,37 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   box-shadow: 0 4px 14px rgba(255, 46, 131, 0.4);
 }
 
+.vm-watch-badge {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  font-family: var(--vm-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(28, 13, 21, 0.72);
+  border: 1px solid var(--vm-gold-light);
+  padding: 5px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.vm-photo:hover .vm-watch-badge,
+.vm-photo:focus-visible .vm-watch-badge {
+  background: #ff0033;
+  border-color: #ff0033;
+  transform: translateY(-2px);
+}
+
 .vm-folio {
   position: absolute;
   top: 10px;
   right: 14px;
+  z-index: 2;
   font-family: var(--vm-serif);
   font-style: italic;
   font-weight: 700;
@@ -3031,66 +3068,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   color: var(--vm-pink-hot);
 }
 
-/* ---------- Page 5 · Preview & Editor ---------- */
-.vm-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 18px 20px 16px;
-  overflow-y: auto;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(255, 92, 158, 0.12), transparent 45%),
-    radial-gradient(circle at 0% 100%, rgba(243, 213, 138, 0.22), transparent 40%),
-    var(--vm-paper);
-}
-
-.vm-preview-head {
-  position: relative;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid;
-  border-image: linear-gradient(90deg, var(--vm-pink), var(--vm-gold), transparent) 1;
-}
-
-.vm-preview-thumb {
-  flex: 0 0 auto;
-  width: 84px;
-  height: 104px;
-  object-fit: cover;
-  object-position: center 18%;
-  border-radius: 14px;
-  border: 2px solid var(--vm-gold);
-  box-shadow: 0 6px 16px rgba(201, 161, 74, 0.3);
-}
-
-.vm-preview-heading {
-  min-width: 0;
-  padding-right: 34px;
-}
-
-.vm-kicker {
-  display: inline-block;
-  font-family: var(--vm-display);
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--vm-gold);
-  margin-bottom: 4px;
-}
-
-.vm-preview .vm-title {
-  font-size: 1.32rem;
-}
-
-.vm-folio-dark {
-  top: 0;
-  right: 0;
-  color: var(--vm-pink);
-  text-shadow: none;
-}
-
+/* ---------- Page 5 · November preview schedule ---------- */
 .vm-schedule {
   list-style: none;
   margin: 0;
@@ -3121,55 +3099,6 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 .vm-schedule li strong {
   color: var(--vm-pink-hot);
   font-weight: 700;
-}
-
-.vm-editor-box {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  text-align: left;
-  font: inherit;
-  cursor: pointer;
-  padding: 10px 14px;
-  border-radius: 18px;
-  border: 2px dashed var(--vm-pink);
-  background: linear-gradient(135deg, #fff0f6 0%, #fff8e7 100%);
-  box-shadow: 0 6px 18px rgba(255, 92, 158, 0.18);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.vm-editor-box:hover,
-.vm-editor-box:focus-visible {
-  transform: translateY(-3px) scale(1.015);
-  border-color: var(--vm-gold);
-  box-shadow: 0 10px 26px rgba(255, 92, 158, 0.3);
-  outline: none;
-}
-
-.vm-editor-img {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--vm-gold-light);
-  animation: vmEditorBob 2.6s ease-in-out infinite;
-}
-
-.vm-editor-note {
-  font-family: var(--vm-sans);
-  font-size: 0.86rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--vm-pink-hot);
-}
-
-@keyframes vmEditorBob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(-4deg); }
 }
 
 /* ---------- Bottom nav ---------- */
@@ -3243,7 +3172,7 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   .masaya-mag-card::after { border-radius: 22px; }
   .vm-topbar { justify-content: center; padding: 12px 14px 8px; }
   .vm-title { font-size: 1.35rem; }
-  .vm-photo { flex-basis: 42%; margin: 12px 12px 0; }
+  .vm-photo { height: 200px; margin: 12px 12px 0; }
   .vm-article { padding: 14px 18px 16px; }
   .vm-headlines li { font-size: 0.95rem; }
 }
@@ -3253,22 +3182,18 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
   .vm-issue-badge { font-size: 0.68rem; padding: 5px 10px; }
   .vm-mini-btn { font-size: 0.7rem; padding: 4px 9px; }
   .vm-counter { font-size: 0.85rem; min-width: 38px; }
-  .vm-photo { flex-basis: 38%; }
+  .vm-photo { height: 180px; }
   .vm-title { font-size: 1.2rem; }
   .vm-subtitle { font-size: 0.86rem; }
   .vm-body { font-size: 0.87rem; line-height: 1.65; }
   .vm-headlines li { font-size: 0.86rem; }
   .vm-cover-meta { font-size: 0.54rem; letter-spacing: 0.12em; }
-  .vm-preview { padding: 14px 14px 12px; gap: 10px; }
-  .vm-preview-thumb { width: 66px; height: 84px; }
-  .vm-preview .vm-title { font-size: 1.1rem; }
   .vm-schedule li { font-size: 0.8rem; padding: 7px 10px; }
-  .vm-editor-img { width: 52px; height: 52px; }
-  .vm-editor-note { font-size: 0.8rem; }
+  .vm-watch-badge { font-size: 0.68rem; padding: 4px 10px; }
   .vm-big-btn { width: 42px; height: 42px; }
   .vm-dots { gap: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vm-page, .vm-cover-img, .vm-editor-img { transition: none; animation: none; }
+  .vm-page, .vm-cover-img, .vm-photo-img { transition: none; animation: none; }
 }

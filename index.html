@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -170,36 +170,6 @@
   <!-- Mascot Mascot Section -->
   <section id="mascot" class="mascot-section fade-in-section">
     <div class="container">
-            <!-- SVG Heart Clip Path (at document level for fixed-position modal access) -->
-            <svg width="0" height="0" style="position: absolute;">
-              <defs>
-                <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
-                  <path d="M0.5 0.15 C0.25 -0.05 -0.05 0.2 0.15 0.5 L0.5 0.85 L0.85 0.5 C1.05 0.2 0.75 -0.05 0.5 0.15 Z" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <!-- Easter Egg Popup Modal -->
-            <div id="easter-egg-modal" style="opacity: 0; pointer-events: none; visibility: hidden; transition: all 0.4s ease; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,192,203,0.8); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(5px);">
-              <div id="ee-modal-content" style="position: relative; width: 80vw; max-width: 400px; aspect-ratio: 1 / 1; filter: drop-shadow(0 20px 40px rgba(255,20,147,0.5));">
-                <!-- Pink Frame (behind the image) -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-pink); clip-path: url(#heart-clip); z-index: 1;"></div>
-                <!-- Inner Image (on top of pink frame) -->
-                <img id="ee-image" src="" alt="Masaya Easter Egg" style="position: absolute; top: 3%; left: 3%; width: 94%; height: 94%; object-fit: cover; clip-path: url(#heart-clip); z-index: 2;">
-              </div>
-            </div>
-
-            <style>
-              @keyframes popInHeartModal {
-                0% { transform: scale(0) rotate(-10deg); opacity: 0; }
-                70% { transform: scale(1.1) rotate(5deg); opacity: 1; }
-                100% { transform: scale(1) rotate(0deg); opacity: 1; }
-              }
-              .heart-pop-anim {
-                animation: popInHeartModal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-              }
-            </style>
-
       <div class="mascot-grid">
         <!-- 📖 MASAYA MAGAZINE — Oct 2026 Premiere Issue (Vol. 1) E-Magazine -->
         <article class="masaya-mag-card" id="masayaMagazine" aria-roledescription="carousel" aria-label="MASAYA MAGAZINE E-Magazine">
@@ -231,14 +201,14 @@
               </div>
             </section>
 
-            <!-- Page 2 · Solo Spotlight 01 -->
+            <!-- Page 2 · Solo Spotlight 01 (10.03 Kongo Gakuen festival, uncut) -->
             <section class="vm-page vm-feature is-future" id="vmPage2" aria-label="Page 2">
-              <figure class="vm-photo">
-                <img class="vm-photo-bg" src="assets/마사야 사진 4.png" alt="" aria-hidden="true" loading="lazy">
-                <img class="vm-photo-main" src="assets/마사야 사진 4.png" alt="Masaya solo stage in Osaka" loading="lazy">
+              <a class="vm-photo" href="https://www.youtube.com/watch?v=Fgt6GlIiENE" target="_blank" rel="noopener noreferrer" title="2026.10.3 金剛学園学園祭（ノーカット版）Masaya">
+                <img class="vm-photo-img" src="https://i.ytimg.com/vi/Fgt6GlIiENE/maxresdefault.jpg" data-fallback="https://i.ytimg.com/vi/Fgt6GlIiENE/hqdefault.jpg" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" onload="if(this.naturalWidth<=120&&this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" alt="2026.10.3 金剛学園学園祭（ノーカット版）Masaya" loading="lazy">
                 <span class="vm-photo-tag" data-mag="p2.tag"></span>
                 <span class="vm-folio">02</span>
-              </figure>
+                <span class="vm-watch-badge">▶ Watch Live</span>
+              </a>
               <div class="vm-article">
                 <h3 class="vm-title" data-mag="p2.title"></h3>
                 <p class="vm-subtitle" data-mag="p2.subtitle"></p>
@@ -247,14 +217,14 @@
               </div>
             </section>
 
-            <!-- Page 3 · Solo Spotlight 02 -->
+            <!-- Page 3 · Solo Spotlight 02 (Masaya - 虹彩 -にじいろ-) -->
             <section class="vm-page vm-feature is-future" id="vmPage3" aria-label="Page 3">
-              <figure class="vm-photo">
-                <img class="vm-photo-bg" src="assets/마사야 사진 7.png" alt="" aria-hidden="true" loading="lazy">
-                <img class="vm-photo-main" src="assets/마사야 사진 7.png" alt="Masaya — vocal &amp; fashion" loading="lazy">
+              <a class="vm-photo" href="https://www.youtube.com/watch?v=fcEXr3q3Npg" target="_blank" rel="noopener noreferrer" title="Masaya - 虹彩 -にじいろ-">
+                <img class="vm-photo-img" src="https://i.ytimg.com/vi/fcEXr3q3Npg/maxresdefault.jpg" data-fallback="https://i.ytimg.com/vi/fcEXr3q3Npg/hqdefault.jpg" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" onload="if(this.naturalWidth<=120&&this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" alt="Masaya - 虹彩 -にじいろ-" loading="lazy">
                 <span class="vm-photo-tag" data-mag="p3.tag"></span>
                 <span class="vm-folio">03</span>
-              </figure>
+                <span class="vm-watch-badge">▶ Watch Live</span>
+              </a>
               <div class="vm-article">
                 <h3 class="vm-title" data-mag="p3.title"></h3>
                 <p class="vm-subtitle" data-mag="p3.subtitle"></p>
@@ -263,14 +233,14 @@
               </div>
             </section>
 
-            <!-- Page 4 · AGE & M&R -->
+            <!-- Page 4 · AGE & M&R (「やっぱ好きやねん」Covered by M&R) -->
             <section class="vm-page vm-feature is-future" id="vmPage4" aria-label="Page 4">
-              <figure class="vm-photo">
-                <img class="vm-photo-bg" src="assets/마사야 사진 2.png" alt="" aria-hidden="true" loading="lazy">
-                <img class="vm-photo-main" src="assets/마사야 사진 2.png" alt="Masaya with AGE &amp; M&amp;R" loading="lazy">
+              <a class="vm-photo" href="https://www.youtube.com/watch?v=VNKRSsZjrGY" target="_blank" rel="noopener noreferrer" title="「やっぱ好きやねん / やしきたかじん」Covered by M&amp;R">
+                <img class="vm-photo-img" src="https://i.ytimg.com/vi/VNKRSsZjrGY/maxresdefault.jpg" data-fallback="https://i.ytimg.com/vi/VNKRSsZjrGY/hqdefault.jpg" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" onload="if(this.naturalWidth<=120&&this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" alt="「やっぱ好きやねん / やしきたかじん」Covered by M&amp;R" loading="lazy">
                 <span class="vm-photo-tag" data-mag="p4.tag"></span>
                 <span class="vm-folio">04</span>
-              </figure>
+                <span class="vm-watch-badge">▶ Watch Live</span>
+              </a>
               <div class="vm-article">
                 <h3 class="vm-title" data-mag="p4.title"></h3>
                 <p class="vm-subtitle" data-mag="p4.subtitle"></p>
@@ -279,23 +249,20 @@
               </div>
             </section>
 
-            <!-- Page 5 · November Preview & Editor's Note -->
-            <section class="vm-page vm-preview is-future" id="vmPage5" aria-label="Page 5">
-              <div class="vm-preview-head">
-                <img class="vm-preview-thumb" src="assets/마사야 호랑이 없는 이미지.jpg" alt="Masaya illustration" loading="lazy">
-                <div class="vm-preview-heading">
-                  <span class="vm-kicker" data-mag="p5.tag"></span>
-                  <h3 class="vm-title" data-mag="p5.title"></h3>
-                  <p class="vm-subtitle" data-mag="p5.subtitle"></p>
-                </div>
-                <span class="vm-folio vm-folio-dark">05</span>
+            <!-- Page 5 · November 2026 Preview (M&R - 陽炎 Kagerou) -->
+            <section class="vm-page vm-feature is-future" id="vmPage5" aria-label="Page 5">
+              <a class="vm-photo" href="https://www.youtube.com/watch?v=TbnSSbP52aI" target="_blank" rel="noopener noreferrer" title="M&amp;R - 陽炎 Kagerou">
+                <img class="vm-photo-img" src="https://i.ytimg.com/vi/TbnSSbP52aI/maxresdefault.jpg" data-fallback="https://i.ytimg.com/vi/TbnSSbP52aI/hqdefault.jpg" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" onload="if(this.naturalWidth<=120&&this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback');}" alt="M&amp;R - 陽炎 Kagerou" loading="lazy">
+                <span class="vm-photo-tag" data-mag="p5.tag"></span>
+                <span class="vm-folio">05</span>
+                <span class="vm-watch-badge">▶ Watch Live</span>
+              </a>
+              <div class="vm-article">
+                <h3 class="vm-title" data-mag="p5.title"></h3>
+                <p class="vm-subtitle" data-mag="p5.subtitle"></p>
+                <div class="vm-rule"><span>✦</span></div>
+                <ul class="vm-schedule" data-mag-list="p5.body"></ul>
               </div>
-              <ul class="vm-schedule" data-mag-list="p5.body"></ul>
-              <!-- Editor Pinktiger box → triggers the hidden Masaya photo easter egg -->
-              <button type="button" class="vm-editor-box" id="mascot-trigger">
-                <img src="assets/pinktiger.png?v=4" alt="Editor Pinktiger" class="vm-editor-img">
-                <span class="vm-editor-note" data-mag="p5.mascotNote"></span>
-              </button>
             </section>
           </div>
 
@@ -1298,6 +1265,6 @@
   <!-- Script Reference -->
 
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
