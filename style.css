@@ -3226,3 +3226,18 @@ h1, h2, h3, h4, p, span, .btn, .mascot-hint-text, .channel-btn, .mascot-bubble, 
 @media (prefers-reduced-motion: reduce) {
   .vm-page, .vm-cover-img, .vm-photo-img { transition: none; animation: none; }
 }
+
+/* ==========================================================================
+   Instagram Feed — 삭제/만료된 라이브 게시물 & 빈 미디어 포스트 완전 숨김
+   (ig-live-filter.js 가 해당 포스트 블록에 클래스/속성을 부여)
+   ========================================================================== */
+.pt-ig-hidden-post,
+[data-pt-ig-hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
